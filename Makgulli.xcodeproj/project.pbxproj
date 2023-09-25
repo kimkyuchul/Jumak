@@ -22,6 +22,8 @@
 		5A70BA6D2AC1795600506846 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6C2AC1795600506846 /* RxSwift */; };
 		5A70BA702AC179A500506846 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6F2AC179A500506846 /* Realm */; };
 		5A70BA722AC179A500506846 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA712AC179A500506846 /* RealmSwift */; };
+		5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1C72AC19119006040D2 /* Bundle+.swift */; };
+		5A9DA1CA2AC1920A006040D2 /* NaverMaps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
@@ -59,6 +61,8 @@
 		5A70BA532AC174EC00506846 /* MakgulliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITests.swift; sourceTree = "<group>"; };
 		5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5A70BA622AC1788E00506846 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5A9DA1C72AC19119006040D2 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
+		5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NaverMaps.plist; sourceTree = "<group>"; };
 		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,12 +143,11 @@
 		5A70BA312AC174E600506846 /* Makgulli */ = {
 			isa = PBXGroup;
 			children = (
-				5A70BA322AC174E600506846 /* AppDelegate.swift */,
-				5A70BA342AC174E600506846 /* SceneDelegate.swift */,
-				5A70BA3B2AC174EC00506846 /* Assets.xcassets */,
-				5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */,
-				5A70BA402AC174EC00506846 /* Info.plist */,
-				5A70BA622AC1788E00506846 /* MapViewController.swift */,
+				5A9DA1C02AC18F9D006040D2 /* Application */,
+				5A9DA1C32AC1903D006040D2 /* Common */,
+				5A9DA1C12AC19030006040D2 /* Data */,
+				5A9DA1C22AC19035006040D2 /* Domain */,
+				5A9DA1C42AC19050006040D2 /* Presentation */,
 			);
 			path = Makgulli;
 			sourceTree = "<group>";
@@ -164,6 +167,65 @@
 				5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */,
 			);
 			path = MakgulliUITests;
+			sourceTree = "<group>";
+		};
+		5A9DA1C02AC18F9D006040D2 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				5A70BA322AC174E600506846 /* AppDelegate.swift */,
+				5A70BA342AC174E600506846 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		5A9DA1C12AC19030006040D2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		5A9DA1C22AC19035006040D2 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		5A9DA1C32AC1903D006040D2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1C62AC19106006040D2 /* Extension */,
+				5A9DA1C52AC1909C006040D2 /* Resource */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5A9DA1C42AC19050006040D2 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				5A70BA622AC1788E00506846 /* MapViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		5A9DA1C52AC1909C006040D2 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5A70BA3B2AC174EC00506846 /* Assets.xcassets */,
+				5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */,
+				5A70BA402AC174EC00506846 /* Info.plist */,
+				5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		5A9DA1C62AC19106006040D2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1C72AC19119006040D2 /* Bundle+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		64AEBEDA30B71C9D4154194F /* Frameworks */ = {
@@ -299,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A70BA3F2AC174EC00506846 /* LaunchScreen.storyboard in Resources */,
+				5A9DA1CA2AC1920A006040D2 /* NaverMaps.plist in Resources */,
 				5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */,
+				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
 				5A70BA632AC1788E00506846 /* MapViewController.swift in Sources */,
 			);
@@ -601,7 +665,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Makgulli/Info.plist;
+				INFOPLIST_FILE = Makgulli/Common/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -635,7 +699,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Makgulli/Info.plist;
+				INFOPLIST_FILE = Makgulli/Common/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
