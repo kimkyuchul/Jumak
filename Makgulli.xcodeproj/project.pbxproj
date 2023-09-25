@@ -15,6 +15,12 @@
 		5A70BA542AC174EC00506846 /* MakgulliUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA532AC174EC00506846 /* MakgulliUITests.swift */; };
 		5A70BA562AC174EC00506846 /* MakgulliUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */; };
 		5A70BA632AC1788E00506846 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA622AC1788E00506846 /* MapViewController.swift */; };
+		5A70BA662AC178E600506846 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA652AC178E600506846 /* SnapKit */; };
+		5A70BA692AC1795600506846 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA682AC1795600506846 /* RxCocoa */; };
+		5A70BA6B2AC1795600506846 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6A2AC1795600506846 /* RxRelay */; };
+		5A70BA6D2AC1795600506846 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6C2AC1795600506846 /* RxSwift */; };
+		5A70BA702AC179A500506846 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6F2AC179A500506846 /* Realm */; };
+		5A70BA722AC179A500506846 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA712AC179A500506846 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +60,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A70BA722AC179A500506846 /* RealmSwift in Frameworks */,
+				5A70BA6B2AC1795600506846 /* RxRelay in Frameworks */,
+				5A70BA692AC1795600506846 /* RxCocoa in Frameworks */,
+				5A70BA6D2AC1795600506846 /* RxSwift in Frameworks */,
+				5A70BA662AC178E600506846 /* SnapKit in Frameworks */,
+				5A70BA702AC179A500506846 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +152,14 @@
 			dependencies = (
 			);
 			name = Makgulli;
+			packageProductDependencies = (
+				5A70BA652AC178E600506846 /* SnapKit */,
+				5A70BA682AC1795600506846 /* RxCocoa */,
+				5A70BA6A2AC1795600506846 /* RxRelay */,
+				5A70BA6C2AC1795600506846 /* RxSwift */,
+				5A70BA6F2AC179A500506846 /* Realm */,
+				5A70BA712AC179A500506846 /* RealmSwift */,
+			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
 			productType = "com.apple.product-type.application";
@@ -212,6 +232,11 @@
 				Base,
 			);
 			mainGroup = 5A70BA262AC174E600506846;
+			packageReferences = (
+				5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -600,6 +625,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5A70BA652AC178E600506846 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		5A70BA682AC1795600506846 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		5A70BA6A2AC1795600506846 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		5A70BA6C2AC1795600506846 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		5A70BA6F2AC179A500506846 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		5A70BA712AC179A500506846 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5A70BA272AC174E600506846 /* Project object */;
 }
