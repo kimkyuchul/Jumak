@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
-		5A70BA372AC174E600506846 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA362AC174E600506846 /* ViewController.swift */; };
-		5A70BA3A2AC174E600506846 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA382AC174E600506846 /* Main.storyboard */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
 		5A70BA3F2AC174EC00506846 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */; };
 		5A70BA4A2AC174EC00506846 /* MakgulliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA492AC174EC00506846 /* MakgulliTests.swift */; };
 		5A70BA542AC174EC00506846 /* MakgulliUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA532AC174EC00506846 /* MakgulliUITests.swift */; };
 		5A70BA562AC174EC00506846 /* MakgulliUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */; };
+		5A70BA632AC1788E00506846 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA622AC1788E00506846 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +38,6 @@
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5A70BA362AC174E600506846 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5A70BA392AC174E600506846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A70BA3B2AC174EC00506846 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A70BA3E2AC174EC00506846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A70BA402AC174EC00506846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +46,7 @@
 		5A70BA4F2AC174EC00506846 /* MakgulliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakgulliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA532AC174EC00506846 /* MakgulliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITests.swift; sourceTree = "<group>"; };
 		5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5A70BA622AC1788E00506846 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +99,10 @@
 			children = (
 				5A70BA322AC174E600506846 /* AppDelegate.swift */,
 				5A70BA342AC174E600506846 /* SceneDelegate.swift */,
-				5A70BA362AC174E600506846 /* ViewController.swift */,
-				5A70BA382AC174E600506846 /* Main.storyboard */,
 				5A70BA3B2AC174EC00506846 /* Assets.xcassets */,
 				5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */,
 				5A70BA402AC174EC00506846 /* Info.plist */,
+				5A70BA622AC1788E00506846 /* MapViewController.swift */,
 			);
 			path = Makgulli;
 			sourceTree = "<group>";
@@ -233,7 +230,6 @@
 			files = (
 				5A70BA3F2AC174EC00506846 /* LaunchScreen.storyboard in Resources */,
 				5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */,
-				5A70BA3A2AC174E600506846 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +254,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A70BA372AC174E600506846 /* ViewController.swift in Sources */,
 				5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
+				5A70BA632AC1788E00506846 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +293,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5A70BA382AC174E600506846 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5A70BA392AC174E600506846 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,7 +430,7 @@
 				INFOPLIST_FILE = Makgulli/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -475,7 +463,7 @@
 				INFOPLIST_FILE = Makgulli/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
