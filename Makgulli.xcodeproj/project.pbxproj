@@ -29,6 +29,10 @@
 		5A9DA1D12AC19A3F006040D2 /* LINESeedKR-Rg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1CE2AC19A3F006040D2 /* LINESeedKR-Rg.otf */; };
 		5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D22AC19AFB006040D2 /* UIFont+.swift */; };
 		5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D42AC19D30006040D2 /* UIColor+.swift */; };
+		5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D72AC1A1F2006040D2 /* ImageLiteral.swift */; };
+		5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D92AC1A2AA006040D2 /* StringLiteral.swift */; };
+		5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1DB2AC1A378006040D2 /* DesignLiteral.swift */; };
+		5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
@@ -73,6 +77,10 @@
 		5A9DA1CE2AC19A3F006040D2 /* LINESeedKR-Rg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LINESeedKR-Rg.otf"; path = "../../../../../../../Downloads/LINE_Seed_Sans_KR 2/OTF/LINESeedKR-Rg.otf"; sourceTree = "<group>"; };
 		5A9DA1D22AC19AFB006040D2 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		5A9DA1D42AC19D30006040D2 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		5A9DA1D72AC1A1F2006040D2 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
+		5A9DA1D92AC1A2AA006040D2 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
+		5A9DA1DB2AC1A378006040D2 /* DesignLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignLiteral.swift; sourceTree = "<group>"; };
+		5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricLiteral.swift; sourceTree = "<group>"; };
 		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +213,7 @@
 		5A9DA1C32AC1903D006040D2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA1D62AC1A1D8006040D2 /* Literal */,
 				5A9DA1C62AC19106006040D2 /* Extension */,
 				5A9DA1C52AC1909C006040D2 /* Resource */,
 			);
@@ -249,6 +258,17 @@
 				5A9DA1CD2AC19A3F006040D2 /* LINESeedKR-Th.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		5A9DA1D62AC1A1D8006040D2 /* Literal */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1D72AC1A1F2006040D2 /* ImageLiteral.swift */,
+				5A9DA1D92AC1A2AA006040D2 /* StringLiteral.swift */,
+				5A9DA1DB2AC1A378006040D2 /* DesignLiteral.swift */,
+				5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */,
+			);
+			path = Literal;
 			sourceTree = "<group>";
 		};
 		64AEBEDA30B71C9D4154194F /* Frameworks */ = {
@@ -517,8 +537,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */,
+				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
+				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
 				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
+				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
 				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
+				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
 				5A70BA632AC1788E00506846 /* MapViewController.swift in Sources */,
 				5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */,
