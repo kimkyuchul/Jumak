@@ -3,19 +3,38 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		506CA1E64669FE0853F40A90 /* libPods-Makgulli-MakgulliUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
-		5A70BA372AC174E600506846 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA362AC174E600506846 /* ViewController.swift */; };
-		5A70BA3A2AC174E600506846 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA382AC174E600506846 /* Main.storyboard */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
 		5A70BA3F2AC174EC00506846 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */; };
 		5A70BA4A2AC174EC00506846 /* MakgulliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA492AC174EC00506846 /* MakgulliTests.swift */; };
 		5A70BA542AC174EC00506846 /* MakgulliUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA532AC174EC00506846 /* MakgulliUITests.swift */; };
 		5A70BA562AC174EC00506846 /* MakgulliUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */; };
+		5A70BA632AC1788E00506846 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA622AC1788E00506846 /* MapViewController.swift */; };
+		5A70BA662AC178E600506846 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA652AC178E600506846 /* SnapKit */; };
+		5A70BA692AC1795600506846 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA682AC1795600506846 /* RxCocoa */; };
+		5A70BA6B2AC1795600506846 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6A2AC1795600506846 /* RxRelay */; };
+		5A70BA6D2AC1795600506846 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6C2AC1795600506846 /* RxSwift */; };
+		5A70BA702AC179A500506846 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6F2AC179A500506846 /* Realm */; };
+		5A70BA722AC179A500506846 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA712AC179A500506846 /* RealmSwift */; };
+		5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1C72AC19119006040D2 /* Bundle+.swift */; };
+		5A9DA1CA2AC1920A006040D2 /* NaverMaps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */; };
+		5A9DA1CF2AC19A3F006040D2 /* LINESeedKR-Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1CC2AC19A3F006040D2 /* LINESeedKR-Bd.otf */; };
+		5A9DA1D02AC19A3F006040D2 /* LINESeedKR-Th.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1CD2AC19A3F006040D2 /* LINESeedKR-Th.otf */; };
+		5A9DA1D12AC19A3F006040D2 /* LINESeedKR-Rg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1CE2AC19A3F006040D2 /* LINESeedKR-Rg.otf */; };
+		5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D22AC19AFB006040D2 /* UIFont+.swift */; };
+		5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D42AC19D30006040D2 /* UIColor+.swift */; };
+		5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D72AC1A1F2006040D2 /* ImageLiteral.swift */; };
+		5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D92AC1A2AA006040D2 /* StringLiteral.swift */; };
+		5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1DB2AC1A378006040D2 /* DesignLiteral.swift */; };
+		5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */; };
+		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
+		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +55,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli-MakgulliUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		463D854F776FDADD2658D9BD /* Pods-Makgulli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli.release.xcconfig"; path = "Target Support Files/Pods-Makgulli/Pods-Makgulli.release.xcconfig"; sourceTree = "<group>"; };
+		51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakgulliTests.release.xcconfig"; path = "Target Support Files/Pods-MakgulliTests/Pods-MakgulliTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5A70BA362AC174E600506846 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5A70BA392AC174E600506846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A70BA3B2AC174EC00506846 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A70BA3E2AC174EC00506846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A70BA402AC174EC00506846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +69,24 @@
 		5A70BA4F2AC174EC00506846 /* MakgulliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakgulliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA532AC174EC00506846 /* MakgulliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITests.swift; sourceTree = "<group>"; };
 		5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5A70BA622AC1788E00506846 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5A9DA1C72AC19119006040D2 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
+		5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NaverMaps.plist; sourceTree = "<group>"; };
+		5A9DA1CC2AC19A3F006040D2 /* LINESeedKR-Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LINESeedKR-Bd.otf"; path = "../../../../../../../Downloads/LINE_Seed_Sans_KR 2/OTF/LINESeedKR-Bd.otf"; sourceTree = "<group>"; };
+		5A9DA1CD2AC19A3F006040D2 /* LINESeedKR-Th.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LINESeedKR-Th.otf"; path = "../../../../../../../Downloads/LINE_Seed_Sans_KR 2/OTF/LINESeedKR-Th.otf"; sourceTree = "<group>"; };
+		5A9DA1CE2AC19A3F006040D2 /* LINESeedKR-Rg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LINESeedKR-Rg.otf"; path = "../../../../../../../Downloads/LINE_Seed_Sans_KR 2/OTF/LINESeedKR-Rg.otf"; sourceTree = "<group>"; };
+		5A9DA1D22AC19AFB006040D2 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		5A9DA1D42AC19D30006040D2 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		5A9DA1D72AC1A1F2006040D2 /* ImageLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiteral.swift; sourceTree = "<group>"; };
+		5A9DA1D92AC1A2AA006040D2 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
+		5A9DA1DB2AC1A378006040D2 /* DesignLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignLiteral.swift; sourceTree = "<group>"; };
+		5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricLiteral.swift; sourceTree = "<group>"; };
+		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MakgulliTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E264EB7DCC1E4513F31412DC /* Pods-MakgulliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakgulliTests.debug.xcconfig"; path = "Target Support Files/Pods-MakgulliTests/Pods-MakgulliTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F42A819738E82936BB69AC5F /* Pods-Makgulli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli/Pods-Makgulli.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +94,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A70BA722AC179A500506846 /* RealmSwift in Frameworks */,
+				5A70BA6B2AC1795600506846 /* RxRelay in Frameworks */,
+				5A70BA692AC1795600506846 /* RxCocoa in Frameworks */,
+				5A70BA6D2AC1795600506846 /* RxSwift in Frameworks */,
+				5A70BA662AC178E600506846 /* SnapKit in Frameworks */,
+				5A70BA702AC179A500506846 /* Realm in Frameworks */,
+				D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +116,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				506CA1E64669FE0853F40A90 /* libPods-Makgulli-MakgulliUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C90E139FD36705BE1388911 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F42A819738E82936BB69AC5F /* Pods-Makgulli.debug.xcconfig */,
+				463D854F776FDADD2658D9BD /* Pods-Makgulli.release.xcconfig */,
+				7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */,
+				629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */,
+				E264EB7DCC1E4513F31412DC /* Pods-MakgulliTests.debug.xcconfig */,
+				51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5A70BA262AC174E600506846 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +143,8 @@
 				5A70BA482AC174EC00506846 /* MakgulliTests */,
 				5A70BA522AC174EC00506846 /* MakgulliUITests */,
 				5A70BA302AC174E600506846 /* Products */,
+				0C90E139FD36705BE1388911 /* Pods */,
+				64AEBEDA30B71C9D4154194F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +161,11 @@
 		5A70BA312AC174E600506846 /* Makgulli */ = {
 			isa = PBXGroup;
 			children = (
-				5A70BA322AC174E600506846 /* AppDelegate.swift */,
-				5A70BA342AC174E600506846 /* SceneDelegate.swift */,
-				5A70BA362AC174E600506846 /* ViewController.swift */,
-				5A70BA382AC174E600506846 /* Main.storyboard */,
-				5A70BA3B2AC174EC00506846 /* Assets.xcassets */,
-				5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */,
-				5A70BA402AC174EC00506846 /* Info.plist */,
+				5A9DA1C02AC18F9D006040D2 /* Application */,
+				5A9DA1C32AC1903D006040D2 /* Common */,
+				5A9DA1C12AC19030006040D2 /* Data */,
+				5A9DA1C22AC19035006040D2 /* Domain */,
+				5A9DA1C42AC19050006040D2 /* Presentation */,
 			);
 			path = Makgulli;
 			sourceTree = "<group>";
@@ -127,6 +187,100 @@
 			path = MakgulliUITests;
 			sourceTree = "<group>";
 		};
+		5A9DA1C02AC18F9D006040D2 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				5A70BA322AC174E600506846 /* AppDelegate.swift */,
+				5A70BA342AC174E600506846 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		5A9DA1C12AC19030006040D2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		5A9DA1C22AC19035006040D2 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		5A9DA1C32AC1903D006040D2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1D62AC1A1D8006040D2 /* Literal */,
+				5A9DA1C62AC19106006040D2 /* Extension */,
+				5A9DA1C52AC1909C006040D2 /* Resource */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5A9DA1C42AC19050006040D2 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				5A70BA622AC1788E00506846 /* MapViewController.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		5A9DA1C52AC1909C006040D2 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1CB2AC19A22006040D2 /* Font */,
+				5A70BA3B2AC174EC00506846 /* Assets.xcassets */,
+				5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */,
+				5A70BA402AC174EC00506846 /* Info.plist */,
+				5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		5A9DA1C62AC19106006040D2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1C72AC19119006040D2 /* Bundle+.swift */,
+				5A9DA1D22AC19AFB006040D2 /* UIFont+.swift */,
+				5A9DA1D42AC19D30006040D2 /* UIColor+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		5A9DA1CB2AC19A22006040D2 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1CC2AC19A3F006040D2 /* LINESeedKR-Bd.otf */,
+				5A9DA1CE2AC19A3F006040D2 /* LINESeedKR-Rg.otf */,
+				5A9DA1CD2AC19A3F006040D2 /* LINESeedKR-Th.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		5A9DA1D62AC1A1D8006040D2 /* Literal */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1D72AC1A1F2006040D2 /* ImageLiteral.swift */,
+				5A9DA1D92AC1A2AA006040D2 /* StringLiteral.swift */,
+				5A9DA1DB2AC1A378006040D2 /* DesignLiteral.swift */,
+				5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */,
+			);
+			path = Literal;
+			sourceTree = "<group>";
+		};
+		64AEBEDA30B71C9D4154194F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */,
+				1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */,
+				C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,15 +288,25 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A70BA592AC174EC00506846 /* Build configuration list for PBXNativeTarget "Makgulli" */;
 			buildPhases = (
+				5B67162CB0DB09E678549152 /* [CP] Check Pods Manifest.lock */,
 				5A70BA2B2AC174E600506846 /* Sources */,
 				5A70BA2C2AC174E600506846 /* Frameworks */,
 				5A70BA2D2AC174E600506846 /* Resources */,
+				E889CEAF9F61E3A48B4D8D69 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Makgulli;
+			packageProductDependencies = (
+				5A70BA652AC178E600506846 /* SnapKit */,
+				5A70BA682AC1795600506846 /* RxCocoa */,
+				5A70BA6A2AC1795600506846 /* RxRelay */,
+				5A70BA6C2AC1795600506846 /* RxSwift */,
+				5A70BA6F2AC179A500506846 /* Realm */,
+				5A70BA712AC179A500506846 /* RealmSwift */,
+			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
 			productType = "com.apple.product-type.application";
@@ -151,6 +315,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A70BA5C2AC174EC00506846 /* Build configuration list for PBXNativeTarget "MakgulliTests" */;
 			buildPhases = (
+				2F322F6F8F340F83E52FA724 /* [CP] Check Pods Manifest.lock */,
 				5A70BA412AC174EC00506846 /* Sources */,
 				5A70BA422AC174EC00506846 /* Frameworks */,
 				5A70BA432AC174EC00506846 /* Resources */,
@@ -169,9 +334,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A70BA5F2AC174EC00506846 /* Build configuration list for PBXNativeTarget "MakgulliUITests" */;
 			buildPhases = (
+				C984B1E4B13FB59DB3836549 /* [CP] Check Pods Manifest.lock */,
 				5A70BA4B2AC174EC00506846 /* Sources */,
 				5A70BA4C2AC174EC00506846 /* Frameworks */,
 				5A70BA4D2AC174EC00506846 /* Resources */,
+				5D35DDBE5F5506EB25744EEF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -207,7 +374,7 @@
 				};
 			};
 			buildConfigurationList = 5A70BA2A2AC174E600506846 /* Build configuration list for PBXProject "Makgulli" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -215,6 +382,11 @@
 				Base,
 			);
 			mainGroup = 5A70BA262AC174E600506846;
+			packageReferences = (
+				5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,9 +403,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A9DA1D12AC19A3F006040D2 /* LINESeedKR-Rg.otf in Resources */,
 				5A70BA3F2AC174EC00506846 /* LaunchScreen.storyboard in Resources */,
+				5A9DA1CF2AC19A3F006040D2 /* LINESeedKR-Bd.otf in Resources */,
+				5A9DA1D02AC19A3F006040D2 /* LINESeedKR-Th.otf in Resources */,
+				5A9DA1CA2AC1920A006040D2 /* NaverMaps.plist in Resources */,
 				5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */,
-				5A70BA3A2AC174E600506846 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,14 +428,124 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2F322F6F8F340F83E52FA724 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MakgulliTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B67162CB0DB09E678549152 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Makgulli-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D35DDBE5F5506EB25744EEF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C984B1E4B13FB59DB3836549 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Makgulli-MakgulliUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E889CEAF9F61E3A48B4D8D69 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Makgulli/Pods-Makgulli-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Makgulli/Pods-Makgulli-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Makgulli/Pods-Makgulli-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5A70BA2B2AC174E600506846 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A70BA372AC174E600506846 /* ViewController.swift in Sources */,
 				5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */,
+				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
+				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
+				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
+				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
+				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
+				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
+				5A70BA632AC1788E00506846 /* MapViewController.swift in Sources */,
+				5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +582,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5A70BA382AC174E600506846 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5A70BA392AC174E600506846 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -366,7 +643,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +697,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -432,6 +709,7 @@
 		};
 		5A70BA5A2AC174EC00506846 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F42A819738E82936BB69AC5F /* Pods-Makgulli.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -439,12 +717,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Makgulli/Info.plist;
+				INFOPLIST_FILE = Makgulli/Common/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,14 +732,18 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		5A70BA5B2AC174EC00506846 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 463D854F776FDADD2658D9BD /* Pods-Makgulli.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -467,12 +751,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Makgulli/Info.plist;
+				INFOPLIST_FILE = Makgulli/Common/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,14 +766,18 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		5A70BA5D2AC174EC00506846 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E264EB7DCC1E4513F31412DC /* Pods-MakgulliTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +798,7 @@
 		};
 		5A70BA5E2AC174EC00506846 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -528,6 +819,7 @@
 		};
 		5A70BA602AC174EC00506846 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -546,6 +838,7 @@
 		};
 		5A70BA612AC174EC00506846 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -602,6 +895,66 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5A70BA652AC178E600506846 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		5A70BA682AC1795600506846 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		5A70BA6A2AC1795600506846 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		5A70BA6C2AC1795600506846 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		5A70BA6F2AC179A500506846 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		5A70BA712AC179A500506846 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5A70BA272AC174E600506846 /* Project object */;
 }
