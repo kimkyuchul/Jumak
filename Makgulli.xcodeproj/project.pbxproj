@@ -202,7 +202,6 @@
 				5A9DA1C02AC18F9D006040D2 /* Application */,
 				5A9DA1C32AC1903D006040D2 /* Common */,
 				5A9DA1C12AC19030006040D2 /* Data */,
-				5A9DA1FA2AC2FCB4006040D2 /* Repositories */,
 				5A9DA1C22AC19035006040D2 /* Domain */,
 				5A9DA1C42AC19050006040D2 /* Presentation */,
 			);
@@ -238,6 +237,7 @@
 		5A9DA1C12AC19030006040D2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA1FA2AC2FCB4006040D2 /* Repositories */,
 				5A9DA1F02AC2F378006040D2 /* DTO+Mapping */,
 				5A9DA1DF2AC1B0E7006040D2 /* Network */,
 			);
