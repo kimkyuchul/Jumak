@@ -52,6 +52,11 @@
 		5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA20E2AC3D739006040D2 /* ViewModelType.swift */; };
 		5A9DA2122AC3DB5E006040D2 /* RxViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2112AC3DB5E006040D2 /* RxViewController+.swift */; };
 		5A9DA2142AC3DD0D006040D2 /* KakaoAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */; };
+		5A9DA2172AC3F629006040D2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2162AC3F629006040D2 /* LocationService.swift */; };
+		5A9DA21A2AC415C5006040D2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2192AC415C5006040D2 /* BaseViewController.swift */; };
+		5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */; };
+		5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21D2AC419D5006040D2 /* LocationView.swift */; };
+		5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21F2AC41A19006040D2 /* BaseView.swift */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
@@ -118,6 +123,11 @@
 		5A9DA20E2AC3D739006040D2 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		5A9DA2112AC3DB5E006040D2 /* RxViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxViewController+.swift"; sourceTree = "<group>"; };
 		5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KakaoAPIKey.plist; sourceTree = "<group>"; };
+		5A9DA2162AC3F629006040D2 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		5A9DA2192AC415C5006040D2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetupable.swift; sourceTree = "<group>"; };
+		5A9DA21D2AC419D5006040D2 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		5A9DA21F2AC41A19006040D2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +268,8 @@
 		5A9DA1C32AC1903D006040D2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA2182AC415B7006040D2 /* Base */,
+				5A9DA2152AC3F613006040D2 /* Service */,
 				5A9DA20D2AC3D72A006040D2 /* Protocal */,
 				5A9DA1D62AC1A1D8006040D2 /* Literal */,
 				5A9DA1C62AC19106006040D2 /* Extension */,
@@ -269,6 +281,7 @@
 		5A9DA1C42AC19050006040D2 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA21D2AC419D5006040D2 /* LocationView.swift */,
 				5A70BA622AC1788E00506846 /* LocationViewController.swift */,
 				5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */,
 			);
@@ -411,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA20E2AC3D739006040D2 /* ViewModelType.swift */,
+				5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */,
 			);
 			path = Protocal;
 			sourceTree = "<group>";
@@ -421,6 +435,23 @@
 				5A9DA2112AC3DB5E006040D2 /* RxViewController+.swift */,
 			);
 			path = Rx;
+			sourceTree = "<group>";
+		};
+		5A9DA2152AC3F613006040D2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA2162AC3F629006040D2 /* LocationService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		5A9DA2182AC415B7006040D2 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA2192AC415C5006040D2 /* BaseViewController.swift */,
+				5A9DA21F2AC41A19006040D2 /* BaseView.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		64AEBEDA30B71C9D4154194F /* Frameworks */ = {
@@ -695,6 +726,7 @@
 				5A9DA2012AC3C227006040D2 /* SearchLocationVO.swift in Sources */,
 				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
 				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
+				5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */,
 				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
 				5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */,
 				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
@@ -717,7 +749,11 @@
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
 				5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */,
+				5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */,
+				5A9DA2172AC3F629006040D2 /* LocationService.swift in Sources */,
 				5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */,
+				5A9DA21A2AC415C5006040D2 /* BaseViewController.swift in Sources */,
+				5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
