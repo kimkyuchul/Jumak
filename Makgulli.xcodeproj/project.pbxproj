@@ -15,7 +15,7 @@
 		5A70BA4A2AC174EC00506846 /* MakgulliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA492AC174EC00506846 /* MakgulliTests.swift */; };
 		5A70BA542AC174EC00506846 /* MakgulliUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA532AC174EC00506846 /* MakgulliUITests.swift */; };
 		5A70BA562AC174EC00506846 /* MakgulliUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */; };
-		5A70BA632AC1788E00506846 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA622AC1788E00506846 /* MapViewController.swift */; };
+		5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA622AC1788E00506846 /* LocationViewController.swift */; };
 		5A70BA662AC178E600506846 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA652AC178E600506846 /* SnapKit */; };
 		5A70BA692AC1795600506846 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA682AC1795600506846 /* RxCocoa */; };
 		5A70BA6B2AC1795600506846 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6A2AC1795600506846 /* RxRelay */; };
@@ -33,6 +33,25 @@
 		5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D92AC1A2AA006040D2 /* StringLiteral.swift */; };
 		5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1DB2AC1A378006040D2 /* DesignLiteral.swift */; };
 		5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */; };
+		5A9DA1E52AC2B4DF006040D2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5A9DA1E42AC2B4DF006040D2 /* Alamofire */; };
+		5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1E62AC2B4F2006040D2 /* TargetType.swift */; };
+		5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1E82AC2B703006040D2 /* HeaderType.swift */; };
+		5A9DA1EB2AC2B74B006040D2 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1EA2AC2B74B006040D2 /* Task.swift */; };
+		5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1EC2AC2BBFE006040D2 /* URLConstants.swift */; };
+		5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1EE2AC2C169006040D2 /* NetworkManager.swift */; };
+		5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1F12AC2F39C006040D2 /* SearchLocationDTO.swift */; };
+		5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1F52AC2F51C006040D2 /* LocationAPI.swift */; };
+		5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1F82AC2F79D006040D2 /* SearchLocationReqeustDTO.swift */; };
+		5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1FB2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift */; };
+		5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1FD2AC3B070006040D2 /* Encodable+.swift */; };
+		5A9DA2012AC3C227006040D2 /* SearchLocationVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2002AC3C227006040D2 /* SearchLocationVO.swift */; };
+		5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2042AC3CABB006040D2 /* LocationUseCase.swift */; };
+		5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2062AC3CC7F006040D2 /* SearchLocationUseCase.swift */; };
+		5A9DA20A2AC3CE9F006040D2 /* SearchLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2092AC3CE9F006040D2 /* SearchLocationRepository.swift */; };
+		5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */; };
+		5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA20E2AC3D739006040D2 /* ViewModelType.swift */; };
+		5A9DA2122AC3DB5E006040D2 /* RxViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2112AC3DB5E006040D2 /* RxViewController+.swift */; };
+		5A9DA2142AC3DD0D006040D2 /* KakaoAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
@@ -69,7 +88,7 @@
 		5A70BA4F2AC174EC00506846 /* MakgulliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakgulliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA532AC174EC00506846 /* MakgulliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITests.swift; sourceTree = "<group>"; };
 		5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		5A70BA622AC1788E00506846 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5A70BA622AC1788E00506846 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		5A9DA1C72AC19119006040D2 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NaverMaps.plist; sourceTree = "<group>"; };
 		5A9DA1CC2AC19A3F006040D2 /* LINESeedKR-Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LINESeedKR-Bd.otf"; path = "../../../../../../../Downloads/LINE_Seed_Sans_KR 2/OTF/LINESeedKR-Bd.otf"; sourceTree = "<group>"; };
@@ -81,6 +100,24 @@
 		5A9DA1D92AC1A2AA006040D2 /* StringLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiteral.swift; sourceTree = "<group>"; };
 		5A9DA1DB2AC1A378006040D2 /* DesignLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignLiteral.swift; sourceTree = "<group>"; };
 		5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricLiteral.swift; sourceTree = "<group>"; };
+		5A9DA1E62AC2B4F2006040D2 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		5A9DA1E82AC2B703006040D2 /* HeaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderType.swift; sourceTree = "<group>"; };
+		5A9DA1EA2AC2B74B006040D2 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		5A9DA1EC2AC2BBFE006040D2 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
+		5A9DA1EE2AC2C169006040D2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		5A9DA1F12AC2F39C006040D2 /* SearchLocationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationDTO.swift; sourceTree = "<group>"; };
+		5A9DA1F52AC2F51C006040D2 /* LocationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAPI.swift; sourceTree = "<group>"; };
+		5A9DA1F82AC2F79D006040D2 /* SearchLocationReqeustDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationReqeustDTO.swift; sourceTree = "<group>"; };
+		5A9DA1FB2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchLocationRepository.swift; sourceTree = "<group>"; };
+		5A9DA1FD2AC3B070006040D2 /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
+		5A9DA2002AC3C227006040D2 /* SearchLocationVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationVO.swift; sourceTree = "<group>"; };
+		5A9DA2042AC3CABB006040D2 /* LocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUseCase.swift; sourceTree = "<group>"; };
+		5A9DA2062AC3CC7F006040D2 /* SearchLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationUseCase.swift; sourceTree = "<group>"; };
+		5A9DA2092AC3CE9F006040D2 /* SearchLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationRepository.swift; sourceTree = "<group>"; };
+		5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		5A9DA20E2AC3D739006040D2 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		5A9DA2112AC3DB5E006040D2 /* RxViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxViewController+.swift"; sourceTree = "<group>"; };
+		5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = KakaoAPIKey.plist; sourceTree = "<group>"; };
 		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A70BA722AC179A500506846 /* RealmSwift in Frameworks */,
+				5A9DA1E52AC2B4DF006040D2 /* Alamofire in Frameworks */,
 				5A70BA6B2AC1795600506846 /* RxRelay in Frameworks */,
 				5A70BA692AC1795600506846 /* RxCocoa in Frameworks */,
 				5A70BA6D2AC1795600506846 /* RxSwift in Frameworks */,
@@ -164,6 +202,7 @@
 				5A9DA1C02AC18F9D006040D2 /* Application */,
 				5A9DA1C32AC1903D006040D2 /* Common */,
 				5A9DA1C12AC19030006040D2 /* Data */,
+				5A9DA1FA2AC2FCB4006040D2 /* Repositories */,
 				5A9DA1C22AC19035006040D2 /* Domain */,
 				5A9DA1C42AC19050006040D2 /* Presentation */,
 			);
@@ -199,6 +238,8 @@
 		5A9DA1C12AC19030006040D2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA1F02AC2F378006040D2 /* DTO+Mapping */,
+				5A9DA1DF2AC1B0E7006040D2 /* Network */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -206,6 +247,10 @@
 		5A9DA1C22AC19035006040D2 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA2082AC3CE64006040D2 /* RepositoryInterface */,
+				5A9DA2022AC3C44B006040D2 /* UseCase */,
+				5A9DA1FF2AC3C214006040D2 /* VO */,
+				5A9DA1F72AC2F760006040D2 /* Request */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -213,6 +258,7 @@
 		5A9DA1C32AC1903D006040D2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA20D2AC3D72A006040D2 /* Protocal */,
 				5A9DA1D62AC1A1D8006040D2 /* Literal */,
 				5A9DA1C62AC19106006040D2 /* Extension */,
 				5A9DA1C52AC1909C006040D2 /* Resource */,
@@ -223,7 +269,8 @@
 		5A9DA1C42AC19050006040D2 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				5A70BA622AC1788E00506846 /* MapViewController.swift */,
+				5A70BA622AC1788E00506846 /* LocationViewController.swift */,
+				5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -236,6 +283,7 @@
 				5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */,
 				5A70BA402AC174EC00506846 /* Info.plist */,
 				5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */,
+				5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -243,9 +291,11 @@
 		5A9DA1C62AC19106006040D2 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA2102AC3DB56006040D2 /* Rx */,
 				5A9DA1C72AC19119006040D2 /* Bundle+.swift */,
 				5A9DA1D22AC19AFB006040D2 /* UIFont+.swift */,
 				5A9DA1D42AC19D30006040D2 /* UIColor+.swift */,
+				5A9DA1FD2AC3B070006040D2 /* Encodable+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -269,6 +319,108 @@
 				5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */,
 			);
 			path = Literal;
+			sourceTree = "<group>";
+		};
+		5A9DA1DF2AC1B0E7006040D2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1F32AC2F44D006040D2 /* API */,
+				5A9DA1E02AC1B0EF006040D2 /* Foundation */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5A9DA1E02AC1B0EF006040D2 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1E62AC2B4F2006040D2 /* TargetType.swift */,
+				5A9DA1E82AC2B703006040D2 /* HeaderType.swift */,
+				5A9DA1EA2AC2B74B006040D2 /* Task.swift */,
+				5A9DA1EC2AC2BBFE006040D2 /* URLConstants.swift */,
+				5A9DA1EE2AC2C169006040D2 /* NetworkManager.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		5A9DA1F02AC2F378006040D2 /* DTO+Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1F12AC2F39C006040D2 /* SearchLocationDTO.swift */,
+			);
+			path = "DTO+Mapping";
+			sourceTree = "<group>";
+		};
+		5A9DA1F32AC2F44D006040D2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1F52AC2F51C006040D2 /* LocationAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5A9DA1F72AC2F760006040D2 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1F82AC2F79D006040D2 /* SearchLocationReqeustDTO.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		5A9DA1FA2AC2FCB4006040D2 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1FB2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		5A9DA1FF2AC3C214006040D2 /* VO */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA2002AC3C227006040D2 /* SearchLocationVO.swift */,
+			);
+			path = VO;
+			sourceTree = "<group>";
+		};
+		5A9DA2022AC3C44B006040D2 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA2032AC3C6AC006040D2 /* Location */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		5A9DA2032AC3C6AC006040D2 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA2042AC3CABB006040D2 /* LocationUseCase.swift */,
+				5A9DA2062AC3CC7F006040D2 /* SearchLocationUseCase.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		5A9DA2082AC3CE64006040D2 /* RepositoryInterface */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA2092AC3CE9F006040D2 /* SearchLocationRepository.swift */,
+			);
+			path = RepositoryInterface;
+			sourceTree = "<group>";
+		};
+		5A9DA20D2AC3D72A006040D2 /* Protocal */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA20E2AC3D739006040D2 /* ViewModelType.swift */,
+			);
+			path = Protocal;
+			sourceTree = "<group>";
+		};
+		5A9DA2102AC3DB56006040D2 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA2112AC3DB5E006040D2 /* RxViewController+.swift */,
+			);
+			path = Rx;
 			sourceTree = "<group>";
 		};
 		64AEBEDA30B71C9D4154194F /* Frameworks */ = {
@@ -306,6 +458,7 @@
 				5A70BA6C2AC1795600506846 /* RxSwift */,
 				5A70BA6F2AC179A500506846 /* Realm */,
 				5A70BA712AC179A500506846 /* RealmSwift */,
+				5A9DA1E42AC2B4DF006040D2 /* Alamofire */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -386,6 +539,7 @@
 				5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -409,6 +563,7 @@
 				5A9DA1D02AC19A3F006040D2 /* LINESeedKR-Th.otf in Resources */,
 				5A9DA1CA2AC1920A006040D2 /* NaverMaps.plist in Resources */,
 				5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */,
+				5A9DA2142AC3DD0D006040D2 /* KakaoAPIKey.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,14 +692,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */,
+				5A9DA2012AC3C227006040D2 /* SearchLocationVO.swift in Sources */,
 				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
+				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
+				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
+				5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */,
 				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
 				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
 				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
+				5A9DA2122AC3DB5E006040D2 /* RxViewController+.swift in Sources */,
+				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
+				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
+				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
+				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
+				5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */,
+				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
 				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
+				5A9DA1EB2AC2B74B006040D2 /* Task.swift in Sources */,
+				5A9DA20A2AC3CE9F006040D2 /* SearchLocationRepository.swift in Sources */,
+				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
 				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
-				5A70BA632AC1788E00506846 /* MapViewController.swift in Sources */,
+				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
+				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
+				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
+				5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */,
 				5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -921,6 +1093,14 @@
 				kind = branch;
 			};
 		};
+		5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -953,6 +1133,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		5A9DA1E42AC2B4DF006040D2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

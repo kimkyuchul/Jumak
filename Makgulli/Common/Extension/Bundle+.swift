@@ -18,4 +18,15 @@ extension Bundle {
         }
         return clientID
     }
+    
+    var kakaoAPIKey: String {
+        guard let file = self.path(forResource: "KakaoAPIKey", ofType: "plist") else {
+            fatalError("KakaoAPIKey.plist 파일이 없습니다.")
+        }
+        guard let resource = NSDictionary(contentsOfFile: file) else { fatalError("파일 형식 에러") }
+        guard let clientID = resource["APIKey"] as? String else {
+            fatalError("KakaoAPIKey에 APIKey을 설정해주세요.")
+        }
+        return clientID
+    }
 }
