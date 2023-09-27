@@ -13,7 +13,7 @@ import RxRelay
 import RxCocoa
 
 final class LocationViewController: UIViewController {
-    private let viewModel = LocationViewModel(searchLocationUseCase: DefaultSearchLocationUseCase(searchLocationRepository: DefaultSearchLocationRepository(networkManager: NetworkManager())))
+    private let viewModel = LocationViewModel(searchLocationUseCase: DefaultSearchLocationUseCase(searchLocationRepository: DefaultSearchLocationRepository(networkManager: NetworkManager())), locationUseCase: DefaultLocationUseCase(locationService: DefaultLocationManager()))
     
     var bag: DisposeBag = .init()
         
@@ -33,7 +33,19 @@ final class LocationViewController: UIViewController {
         
         output.locationVO
             .bind(onNext: { searchLocationVO in
-                print(searchLocationVO)
+//                print(searchLocationVO)
+            })
+            .disposed(by: bag)
+        
+        output.currentUserLocation
+            .bind(onNext: { location in
+                print(location)
+            })
+            .disposed(by: bag)
+        
+        output.authorizationAlertShouldShow
+            .bind(onNext: { authorization in
+                print(authorization)
             })
             .disposed(by: bag)
     }
