@@ -14,6 +14,7 @@ import RxRelay
 protocol LocationService {
     var authorizationStatus: BehaviorRelay<CLAuthorizationStatus> { get set }
     var locationCoordinate: PublishRelay<CLLocationCoordinate2D> { get set }
+    var locationUpdateSubject: PublishSubject<Void> { get set }
     func start()
     func stop()
     func requestAuthorization()
@@ -76,10 +77,12 @@ final class DefaultLocationManager: NSObject, LocationService {
 extension DefaultLocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coordinate = locations.last?.coordinate {
-            self.locationCoordinate.accept(coordinate)
+            locationCoordinate.accept(coordinate)
             print("==", locationCoordinate.values)
             print("== \(#function)", coordinate)
         }
+        
+        locationUpdateSubject.onNext(())
         stop()
     }
     

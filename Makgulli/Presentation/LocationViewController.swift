@@ -33,7 +33,7 @@ final class LocationViewController: UIViewController {
         
         output.locationVO
             .bind(onNext: { searchLocationVO in
-//                print(searchLocationVO)
+                print(searchLocationVO)
             })
             .disposed(by: bag)
         

@@ -12,8 +12,9 @@ import RxSwift
 import RxRelay
 
 protocol LocationUseCase {
-    var locationCoordinate:  BehaviorRelay<CLLocationCoordinate2D> { get }
-    var authorizationDeniedStatus: PublishRelay<Bool> { get }
+    var locationCoordinate:  BehaviorRelay<CLLocationCoordinate2D> { get set }
+    var authorizationDeniedStatus: PublishRelay<Bool> { get set  }
+    var locationUpdateSubject: PublishRelay<Void> { get set }
     
     func observeUserLocation()
     func checkAuthorization()
@@ -28,6 +29,7 @@ final class DefaultLocationUseCase: LocationUseCase {
     // 권한 요청 거부 시 Default value 설정
     var locationCoordinate = BehaviorRelay<CLLocationCoordinate2D>(value: CLLocationCoordinate2D(latitude: 127.06283102249932, longitude: 37.514322572335935))
     var authorizationDeniedStatus = PublishRelay<Bool>()
+    var locationUpdateSubject = PublishRelay<Void>()
     
     init(locationService: LocationService) {
         self.locationService = locationService
@@ -38,6 +40,7 @@ final class DefaultLocationUseCase: LocationUseCase {
             .withUnretained(self)
             .bind(onNext: {owner, coordinate in
                 owner.locationCoordinate.accept(coordinate)
+                owner.locationUpdateSubject.accept(())
             })
             .disposed(by: disposebag)
     }

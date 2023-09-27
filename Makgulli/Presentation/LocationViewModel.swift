@@ -36,7 +36,6 @@ class LocationViewModel: ViewModelType {
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
     }
     
-    
     func transform(input: Input) -> Output {
         let output = Output()
         
@@ -46,7 +45,6 @@ class LocationViewModel: ViewModelType {
                 owner.locationUseCase.checkLocationAuthorization()
                 owner.locationUseCase.checkAuthorization()
                 owner.locationUseCase.observeUserLocation()
-                owner.searchLocationUseCase.fetchLocation(query: "막걸리", x: "127.06283102249932", y: "37.514322572335935", page: 1, display: 30)
             })
             .disposed(by: disposeBag)
         
@@ -67,6 +65,17 @@ class LocationViewModel: ViewModelType {
         
         self.locationUseCase.authorizationDeniedStatus
             .bind(to: output.authorizationAlertShouldShow)
+            .disposed(by: disposeBag)
+        
+        self.locationUseCase.locationUpdateSubject
+            .withLatestFrom(output.currentUserLocation)
+            .withUnretained(self)
+            .bind(onNext: { owner, userLocation in
+                let x = "\(userLocation.longitude)"
+                let y = "\(userLocation.latitude)"
+                
+                owner.searchLocationUseCase.fetchLocation(query: "막걸리", x: x, y: y, page: 1, display: 30)
+            })
             .disposed(by: disposeBag)
                 
         return output
