@@ -9,7 +9,6 @@ import UIKit
 import NMapsMap
 
 import RxSwift
-import RxRelay
 import RxCocoa
 
 final class LocationViewController: BaseViewController {
@@ -18,6 +17,7 @@ final class LocationViewController: BaseViewController {
     
     private let viewModel = LocationViewModel(searchLocationUseCase: DefaultSearchLocationUseCase(searchLocationRepository: DefaultSearchLocationRepository(networkManager: NetworkManager())), locationUseCase: DefaultLocationUseCase(locationService: DefaultLocationManager()))
     private var markers: [NMFMarker] = []
+    private var selectMarkerSubject = PublishSubject<Int>()
     
     override func loadView() {
         self.view = locationView
@@ -33,7 +33,7 @@ final class LocationViewController: BaseViewController {
         
         output.locationVO
             .bind(onNext: { searchLocationVO in
-//                print(searchLocationVO)
+                // 하단 콜렉션뷰 데이터 바인딩
             })
             .disposed(by: disposeBag)
         
@@ -45,12 +45,10 @@ final class LocationViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
             
-        
         output.currentUserLocation
             .withUnretained(self)
             .bind(onNext: { owner, location in
                 owner.updateUserCurrentLocation(latitude: location.latitude, longitude: location.longitude)
-//                print(location)
             })
             .disposed(by: disposeBag)
         
@@ -76,8 +74,9 @@ final class LocationViewController: BaseViewController {
     }
     
     private func setUpMarker(storeList: [DocumentVO]) {
+        self.clearMarker()
         
-        for store in storeList {
+        for (index, store) in storeList.enumerated() {
             let x = Double(store.x) ?? 0
             let y = Double(store.y) ?? 0
             
@@ -85,7 +84,18 @@ final class LocationViewController: BaseViewController {
             marker.position = NMGLatLng(lat: y, lng: x)
             marker.iconImage = NMFOverlayImage(name: "imgLocationDirection", in: Bundle.naverMapFramework())
             marker.mapView = self.locationView.mapView
+            marker.touchHandler = { [weak self] _ in
+                self?.selectMarkerSubject.onNext(index)
+                return true
+            }
             self.markers.append(marker)
         }
+    }
+    
+    private func clearMarker() {
+        for marker in self.markers {
+            marker.mapView = nil
+        }
+        self.markers.removeAll()
     }
 }
