@@ -32,6 +32,7 @@ class LocationViewModel: ViewModelType {
     
     struct Output {
         let locationVO = PublishRelay<SearchLocationVO>()
+        let storeList = PublishRelay<[DocumentVO]>()
         let currentUserLocation = PublishRelay<CLLocationCoordinate2D>()
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
     }
@@ -50,10 +51,19 @@ class LocationViewModel: ViewModelType {
         
         
         let locationVO = searchLocationUseCase.locationVO
+            .share()
         
         locationVO
             .subscribe(onNext: { locationVO in
                 output.locationVO.accept(locationVO)
+            }) { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
+        locationVO
+            .subscribe(onNext: { locationVO in
+                output.storeList.accept(locationVO.documents)
             }) { error in
                 print(error)
             }
