@@ -306,6 +306,7 @@
 				5A70BA6C2AC1795600506846 /* RxSwift */,
 				5A70BA6F2AC179A500506846 /* Realm */,
 				5A70BA712AC179A500506846 /* RealmSwift */,
+				5A9DA1E42AC2B4DF006040D2 /* Alamofire */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -386,6 +387,7 @@
 				5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -921,6 +923,14 @@
 				kind = branch;
 			};
 		};
+		5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -953,6 +963,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		5A9DA1E42AC2B4DF006040D2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
