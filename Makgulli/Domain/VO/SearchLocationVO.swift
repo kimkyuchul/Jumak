@@ -25,6 +25,6 @@ struct DocumentVO {
     let roadAddressName: String
     let id: String
     let phone: String?
-    let x: String
-    let y: String
+    let x: Double
+    let y: Double
 }

@@ -268,6 +268,7 @@
 		5A9DA1C32AC1903D006040D2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA2212AC57E20006040D2 /* UIComponent */,
 				5A9DA2182AC415B7006040D2 /* Base */,
 				5A9DA2152AC3F613006040D2 /* Service */,
 				5A9DA20D2AC3D72A006040D2 /* Protocal */,
@@ -452,6 +453,13 @@
 				5A9DA21F2AC41A19006040D2 /* BaseView.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		5A9DA2212AC57E20006040D2 /* UIComponent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIComponent;
 			sourceTree = "<group>";
 		};
 		64AEBEDA30B71C9D4154194F /* Frameworks */ = {

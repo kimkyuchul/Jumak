@@ -16,4 +16,7 @@ enum StringLiteral {
         
         /// Alert
         static let networkError = "네트워크 에러"
+    
+        /// nil
+        static let noPhoneNumberMessage = "전화번호 정보가 없어요"
 }
