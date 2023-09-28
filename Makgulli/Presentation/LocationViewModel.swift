@@ -34,9 +34,12 @@ class LocationViewModel: ViewModelType {
     struct Output {
         let storeList = PublishRelay<[DocumentVO]>()
         let selectedMarkerIndex = PublishRelay<Int?>()
+        let setCameraPosition = PublishRelay<(Double, Double)>()
         let currentUserLocation = PublishRelay<CLLocationCoordinate2D>()
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
     }
+    
+    private var storeList: [DocumentVO] = []
     
     func transform(input: Input) -> Output {
         let output = Output()
@@ -49,11 +52,32 @@ class LocationViewModel: ViewModelType {
                 owner.locationUseCase.observeUserLocation()
             })
             .disposed(by: disposeBag)
-    
-        input.didSelectMarker
+        
+        let storeListObservable = output.storeList.asObservable()
+        
+        storeListObservable
+            .withUnretained(self)
+            .subscribe(onNext: { owner, documentVO in
+                owner.storeList = documentVO
+            })
+            .disposed(by: disposeBag)
+        
+        let didSelectMarker = input.didSelectMarker
+            .share()
+        
+        didSelectMarker
             .bind(to: output.selectedMarkerIndex)
             .disposed(by: disposeBag)
-                        
+        
+        didSelectMarker
+            .withUnretained(self)
+            .bind(onNext: { owner, index in
+                guard let index = index else { return  }
+                let store = owner.storeList[index]
+                output.setCameraPosition.accept((store.y, store.x))
+            })
+            .disposed(by: disposeBag)
+        
         self.searchLocationUseCase.locationVO
             .subscribe(onNext: { locationVO in
                 output.storeList.accept(locationVO.documents)
@@ -80,7 +104,7 @@ class LocationViewModel: ViewModelType {
                 owner.searchLocationUseCase.fetchLocation(query: "막걸리", x: x, y: y, page: 1, display: 30)
             })
             .disposed(by: disposeBag)
-                
+        
         return output
     }
 }

@@ -48,6 +48,11 @@ final class LocationViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        output.setCameraPosition
+            .asDriver(onErrorJustReturn: (LocationLiteral.longitude, LocationLiteral.latitude))
+            .drive(self.locationView.rx.cameraPosition)
+            .disposed(by: disposeBag)
+        
         output.currentUserLocation
             .withUnretained(self)
             .bind(onNext: { owner, location in
@@ -66,7 +71,7 @@ final class LocationViewController: BaseViewController {
         latitude: CLLocationDegrees,
         longitude: CLLocationDegrees
     ) {
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 15)
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 12)
         locationView.mapView.moveCamera(cameraUpdate)
         cameraUpdate.animation = .easeIn
         
@@ -80,11 +85,8 @@ final class LocationViewController: BaseViewController {
         self.clearMarker()
         
         for (index, store) in storeList.enumerated() {
-            let x = Double(store.x) ?? 0
-            let y = Double(store.y) ?? 0
-            
             let marker = NMFMarker()
-            marker.position = NMGLatLng(lat: y, lng: x)
+            marker.position = NMGLatLng(lat: store.y, lng: store.x)
             
             if index == selectedIndex {
                 marker.iconImage = NMFOverlayImage(image: ImageLiteral.touchMarker)

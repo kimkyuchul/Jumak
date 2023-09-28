@@ -34,4 +34,27 @@ class LocationView: BaseView {
             make.edges.equalTo(0)
         }
     }
+    
+    fileprivate func moveCamera(latitude: Double, longitude: Double) {
+            let cameraPosition = NMFCameraPosition(
+                NMGLatLng(
+                    lat: latitude,
+                    lng: longitude
+                ),
+                zoom: self.mapView.zoomLevel
+            )
+            let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
+            
+            cameraUpdate.animation = .easeIn
+            self.mapView.moveCamera(cameraUpdate)
+        }
+}
+
+extension Reactive where Base: LocationView {
+    var cameraPosition: Binder<(Double, Double)> {
+        return Binder(self.base) { view, cameraPosition in
+            let (latitude, longitude) = cameraPosition
+            view.moveCamera(latitude: latitude, longitude: longitude)
+        }
+    }
 }
