@@ -24,14 +24,21 @@ class LocationView: BaseView {
         return mapView
     }()
     
+    let userAddressButton = UserAddressButton()
     
     override func setHierarchy() {
-        self.addSubview(mapView)
+        [mapView, userAddressButton].forEach {
+            self.addSubview($0)
+        }
     }
     
     override func setConstraints() {
         mapView.snp.makeConstraints { make in
             make.edges.equalTo(0)
+        }
+        
+        userAddressButton.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(11)
         }
     }
     

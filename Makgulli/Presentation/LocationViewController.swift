@@ -61,9 +61,7 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.currentUserAddress
-            .bind { string in
-                print(string)
-            }
+            .bind(to: locationView.userAddressButton.rx.addressTitle)
             .disposed(by: disposeBag)
         
         output.authorizationAlertShouldShow
