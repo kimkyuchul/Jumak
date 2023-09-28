@@ -21,4 +21,5 @@ protocol BaseViewControllerProtocol: AnyObject, ViewSetupable {
 
 protocol BaseBindableProtocol: AnyObject, ViewSetupable {
     func bind()
+    func bindAction()
 }

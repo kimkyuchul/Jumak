@@ -71,6 +71,15 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    override func bindAction() {
+        locationView.questionButton.rx.tap
+            .asDriver(onErrorJustReturn: Void())
+            .drive(with: self) { owner, _ in
+                owner.present(QuestionViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     private func updateUserCurrentLocation(
         latitude: CLLocationDegrees,
         longitude: CLLocationDegrees
