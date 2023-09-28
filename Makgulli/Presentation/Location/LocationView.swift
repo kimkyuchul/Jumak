@@ -12,9 +12,7 @@ import RxCocoa
 import NMapsMap
 
 class LocationView: BaseView {
-    
-    var locationOverlay: NMFLocationOverlay?
-    
+
     lazy var mapView: NMFMapView = {
         let mapView = NMFMapView()
         mapView.allowsZooming = true
@@ -23,11 +21,13 @@ class LocationView: BaseView {
         self.locationOverlay = mapView.locationOverlay
         return mapView
     }()
-    
+    let questionButton = QuestionButton()
     let userAddressButton = UserAddressButton()
     
+    var locationOverlay: NMFLocationOverlay?
+    
     override func setHierarchy() {
-        [mapView, userAddressButton].forEach {
+        [mapView, questionButton, userAddressButton].forEach {
             self.addSubview($0)
         }
     }
@@ -37,8 +37,15 @@ class LocationView: BaseView {
             make.edges.equalTo(0)
         }
         
+        questionButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(24)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(9)
+        }
+        
         userAddressButton.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(self.safeAreaLayoutGuide).inset(11)
+            make.leading.equalTo(questionButton.snp.trailing).offset(11)
+            make.centerY.equalTo(questionButton.snp.centerY)
+            make.trailing.equalToSuperview().inset(24)
         }
     }
     

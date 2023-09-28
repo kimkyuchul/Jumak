@@ -59,6 +59,8 @@
 		5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21F2AC41A19006040D2 /* BaseView.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
+		5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */; };
+		5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
@@ -132,6 +134,8 @@
 		5A9DA21F2AC41A19006040D2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
+		5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,9 +290,7 @@
 		5A9DA1C42AC19050006040D2 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				5A9DA21D2AC419D5006040D2 /* LocationView.swift */,
-				5A70BA622AC1788E00506846 /* LocationViewController.swift */,
-				5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */,
+				5ADC002E2AC5E2C60024D7F8 /* Location */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -464,8 +466,28 @@
 			isa = PBXGroup;
 			children = (
 				5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */,
+				5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */,
 			);
 			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		5ADC002E2AC5E2C60024D7F8 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC002F2AC5E2DA0024D7F8 /* View */,
+				5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */,
+				5A9DA21D2AC419D5006040D2 /* LocationView.swift */,
+				5A70BA622AC1788E00506846 /* LocationViewController.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		5ADC002F2AC5E2DA0024D7F8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		64AEBEDA30B71C9D4154194F /* Frameworks */ = {
@@ -761,6 +783,8 @@
 				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
 				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
+				5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */,
+				5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */,
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
 				5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
