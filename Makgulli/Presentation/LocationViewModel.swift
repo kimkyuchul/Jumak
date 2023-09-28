@@ -36,6 +36,7 @@ class LocationViewModel: ViewModelType {
         let selectedMarkerIndex = PublishRelay<Int?>()
         let setCameraPosition = PublishRelay<(Double, Double)>()
         let currentUserLocation = PublishRelay<CLLocationCoordinate2D>()
+        let currentUserAddress = PublishRelay<String>()
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
     }
     
@@ -86,8 +87,20 @@ class LocationViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        self.locationUseCase.locationCoordinate
+        let locationCoordinate = self.locationUseCase.locationCoordinate
+            .share()
+        
+        locationCoordinate
             .bind(to: output.currentUserLocation)
+            .disposed(by: disposeBag)
+        
+        locationCoordinate
+            .withUnretained(self)
+            .flatMapLatest { owner, location in
+                let location = CLLocation(latitude: location.latitude, longitude: location.longitude)
+                return owner.locationUseCase.reverseGeocodeLocation(location: location)
+            }
+            .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
         
         self.locationUseCase.authorizationDeniedStatus

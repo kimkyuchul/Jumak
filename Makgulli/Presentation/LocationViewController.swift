@@ -6,10 +6,10 @@
 //
 
 import UIKit
-import NMapsMap
 
 import RxSwift
 import RxCocoa
+import NMapsMap
 
 final class LocationViewController: BaseViewController {
     
@@ -58,6 +58,12 @@ final class LocationViewController: BaseViewController {
             .bind(onNext: { owner, location in
                 owner.updateUserCurrentLocation(latitude: location.latitude, longitude: location.longitude)
             })
+            .disposed(by: disposeBag)
+        
+        output.currentUserAddress
+            .bind { string in
+                print(string)
+            }
             .disposed(by: disposeBag)
         
         output.authorizationAlertShouldShow

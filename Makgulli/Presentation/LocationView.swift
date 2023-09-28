@@ -37,10 +37,7 @@ class LocationView: BaseView {
     
     fileprivate func moveCamera(latitude: Double, longitude: Double) {
             let cameraPosition = NMFCameraPosition(
-                NMGLatLng(
-                    lat: latitude,
-                    lng: longitude
-                ),
+                NMGLatLng(lat: latitude,lng: longitude),
                 zoom: self.mapView.zoomLevel
             )
             let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
