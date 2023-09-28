@@ -28,11 +28,12 @@ class LocationViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
+        let didSelectMarker: PublishRelay<Int?>
     }
     
     struct Output {
-        let locationVO = PublishRelay<SearchLocationVO>()
         let storeList = PublishRelay<[DocumentVO]>()
+        let selectedMarkerIndex = PublishRelay<Int?>()
         let currentUserLocation = PublishRelay<CLLocationCoordinate2D>()
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
     }
@@ -48,20 +49,12 @@ class LocationViewModel: ViewModelType {
                 owner.locationUseCase.observeUserLocation()
             })
             .disposed(by: disposeBag)
-        
-        
-        let locationVO = searchLocationUseCase.locationVO
-            .share()
-        
-        locationVO
-            .subscribe(onNext: { locationVO in
-                output.locationVO.accept(locationVO)
-            }) { error in
-                print(error)
-            }
+    
+        input.didSelectMarker
+            .bind(to: output.selectedMarkerIndex)
             .disposed(by: disposeBag)
-        
-        locationVO
+                        
+        self.searchLocationUseCase.locationVO
             .subscribe(onNext: { locationVO in
                 output.storeList.accept(locationVO.documents)
             }) { error in

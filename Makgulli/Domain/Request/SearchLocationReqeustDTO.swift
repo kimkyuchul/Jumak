@@ -11,7 +11,7 @@ struct SearchLocationRequestDTO: Encodable {
     let query: String
     let x: String // longitude (경도)
     let y: String // latitude (위도)
-    let radius: Int = 20000
+    let radius: Int = 10000
     let page: Int
     let display: Int
     let categoryGroupCode: CategoryGroupCode = .restaurant

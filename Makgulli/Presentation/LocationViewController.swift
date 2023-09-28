@@ -17,7 +17,7 @@ final class LocationViewController: BaseViewController {
     
     private let viewModel = LocationViewModel(searchLocationUseCase: DefaultSearchLocationUseCase(searchLocationRepository: DefaultSearchLocationRepository(networkManager: NetworkManager())), locationUseCase: DefaultLocationUseCase(locationService: DefaultLocationManager()))
     private var markers: [NMFMarker] = []
-    private var selectMarkerSubject = PublishSubject<Int>()
+    private var selectMarkerRelay = PublishRelay<Int?>()
     
     override func loadView() {
         self.view = locationView
@@ -28,23 +28,26 @@ final class LocationViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = LocationViewModel.Input(viewDidLoadEvent: Observable.just(()).asObservable())
+        let input = LocationViewModel.Input(viewDidLoadEvent: Observable.just(()).asObservable(), didSelectMarker: selectMarkerRelay)
         let output = viewModel.transform(input: input)
-        
-        output.locationVO
-            .bind(onNext: { searchLocationVO in
-                // 하단 콜렉션뷰 데이터 바인딩
-            })
-            .disposed(by: disposeBag)
-        
+                
         output.storeList
+            .take(1)
             .withUnretained(self)
             .bind(onNext: { owner, storeList in
-                print(storeList)
                 owner.setUpMarker(storeList: storeList)
             })
             .disposed(by: disposeBag)
-            
+        
+        Observable.combineLatest(output.selectedMarkerIndex, output.storeList)
+            .withUnretained(self)
+            .bind(onNext: { owner, data in
+                let (selectedIndex, storeList) = data
+                guard selectedIndex ?? 0 < storeList.count else { return }
+                owner.setUpMarker(selectedIndex: selectedIndex, storeList: storeList)
+            })
+            .disposed(by: disposeBag)
+        
         output.currentUserLocation
             .withUnretained(self)
             .bind(onNext: { owner, location in
@@ -73,7 +76,7 @@ final class LocationViewController: BaseViewController {
         locationOverlay.icon = NMFOverlayImage(name: "imgLocationDirection", in: Bundle.naverMapFramework())
     }
     
-    private func setUpMarker(storeList: [DocumentVO]) {
+    private func setUpMarker(selectedIndex: Int? = nil, storeList: [DocumentVO]) {
         self.clearMarker()
         
         for (index, store) in storeList.enumerated() {
@@ -83,9 +86,16 @@ final class LocationViewController: BaseViewController {
             let marker = NMFMarker()
             marker.position = NMGLatLng(lat: y, lng: x)
             marker.iconImage = NMFOverlayImage(name: "imgLocationDirection", in: Bundle.naverMapFramework())
+            
+            if index == selectedIndex {
+                print("선택된 마커")
+            } else {
+                print("선택되지 않은 마커들")
+            }
+            
             marker.mapView = self.locationView.mapView
             marker.touchHandler = { [weak self] _ in
-                self?.selectMarkerSubject.onNext(index)
+                self?.selectMarkerRelay.accept(index)
                 return true
             }
             self.markers.append(marker)
