@@ -85,12 +85,15 @@ final class LocationViewController: BaseViewController {
             
             let marker = NMFMarker()
             marker.position = NMGLatLng(lat: y, lng: x)
-            marker.iconImage = NMFOverlayImage(name: "imgLocationDirection", in: Bundle.naverMapFramework())
             
             if index == selectedIndex {
-                print("선택된 마커")
+                marker.iconImage = NMFOverlayImage(image: ImageLiteral.touchMarker)
+                marker.width = DesignLiteral.touchMarkerWidth
+                marker.height = DesignLiteral.touchMarkerheight
             } else {
-                print("선택되지 않은 마커들")
+                marker.iconImage = NMFOverlayImage(image: ImageLiteral.marker)
+                marker.width = DesignLiteral.marker
+                marker.height = DesignLiteral.marker
             }
             
             marker.mapView = self.locationView.mapView
