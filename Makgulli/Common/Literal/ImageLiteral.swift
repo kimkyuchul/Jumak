@@ -14,6 +14,8 @@ enum ImageLiteral {
     
     //MARK: - logo icon
     static var makgulliLogo: UIImage { .load(named: "makgulliLogo") }
+    static var touchMarker: UIImage { .load(named: "TouchMarker") }
+    static var marker: UIImage { .load(named: "Marker") }
     
     //MARK: - Home
     
