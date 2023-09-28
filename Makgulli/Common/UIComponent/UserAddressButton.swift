@@ -33,9 +33,7 @@ final class UserAddressButton: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         clipsToBounds = true
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 10, height: 10)
-        layer.shadowOpacity = 0.1
+        self.dropShadow()
     }
     
     override func layoutSubviews() {

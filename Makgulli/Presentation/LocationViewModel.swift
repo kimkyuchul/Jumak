@@ -16,6 +16,7 @@ class LocationViewModel: ViewModelType {
     
     private let searchLocationUseCase: SearchLocationUseCase
     private let locationUseCase: LocationUseCase
+    private var storeList: [DocumentVO] = []
     
     init(searchLocationUseCase: SearchLocationUseCase, locationUseCase: LocationUseCase) {
         self.searchLocationUseCase = searchLocationUseCase
@@ -39,9 +40,7 @@ class LocationViewModel: ViewModelType {
         let currentUserAddress = PublishRelay<String>()
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
     }
-    
-    private var storeList: [DocumentVO] = []
-    
+
     func transform(input: Input) -> Output {
         let output = Output()
         
