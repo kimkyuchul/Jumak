@@ -33,8 +33,9 @@ final class LocationViewController: BaseViewController {
         let input = LocationViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
                    didSelectMarker: selectMarkerRelay,
-                   didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(3), scheduler: MainScheduler.asyncInstance), changeMapLocation: changeMapLocation,
-                   didSelectRefreshButton: locationView.researchButton.rx.tap.asObservable())
+                   didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(2), scheduler: MainScheduler.asyncInstance), changeMapLocation: changeMapLocation,
+                   didSelectRefreshButton: locationView.researchButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
+                   didSelectUserLocationButton: locationView.userLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance))
         let output = viewModel.transform(input: input)
         
         output.storeList
@@ -103,9 +104,13 @@ final class LocationViewController: BaseViewController {
         latitude: CLLocationDegrees,
         longitude: CLLocationDegrees
     ) {
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: latitude, lng: longitude), zoomTo: 12)
-        locationView.mapView.moveCamera(cameraUpdate)
+        let cameraPosition = NMFCameraPosition(
+            NMGLatLng(lat: latitude,lng: longitude),
+            zoom: locationView.mapView.zoomLevel
+        )
+        let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
         cameraUpdate.animation = .easeIn
+        locationView.mapView.moveCamera(cameraUpdate)
         
         guard let locationOverlay = locationView.locationOverlay else { return }
         locationOverlay.hidden = false

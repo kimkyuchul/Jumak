@@ -35,6 +35,7 @@ class LocationViewModel: ViewModelType {
         let didSelectCategoryCell: Observable<IndexPath>
         let changeMapLocation: PublishRelay<CLLocationCoordinate2D>
         let didSelectRefreshButton: Observable<Void>
+        let didSelectUserLocationButton: Observable<Void>
     }
     
     struct Output {
@@ -100,11 +101,19 @@ class LocationViewModel: ViewModelType {
         input.didSelectRefreshButton
             .withLatestFrom(currentLocation)
             .flatMap { [weak self] location -> Observable<String> in
-                output.reSearchButtonHidden.accept(false)
+                output.reSearchButtonHidden.accept(true)
                 self?.searchLocationUseCase.fetchLocation(query: self?.categoryType.rawValue ?? StringLiteral.MAKGULLI, x: location.x, y: location.y, page: 1, display: 30)
                 return self?.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation) ?? .empty()
             }
             .bind(to: output.currentUserAddress)
+            .disposed(by: disposeBag)
+        
+        input.didSelectUserLocationButton
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                output.reSearchButtonHidden.accept(true)
+                owner.locationUseCase.startUpdatingLocation()
+            })
             .disposed(by: disposeBag)
                         
         self.locationUseCase.locationUpdateSubject

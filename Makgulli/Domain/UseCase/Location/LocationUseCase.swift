@@ -19,6 +19,7 @@ protocol LocationUseCase {
     func observeUserLocation()
     func checkAuthorization()
     func checkLocationAuthorization()
+    func startUpdatingLocation()
     func reverseGeocodeLocation(location: CLLocation) -> Observable<String>
 }
 
@@ -59,6 +60,10 @@ final class DefaultLocationUseCase: LocationUseCase {
     
     func checkLocationAuthorization() {
         self.locationService.checkLocationAuthorization()
+    }
+    
+    func startUpdatingLocation() {
+        self.locationService.startUpdatingLocation()
     }
     
     func reverseGeocodeLocation(location: CLLocation) -> Observable<String> {
