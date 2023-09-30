@@ -51,6 +51,7 @@ class LocationView: BaseView {
         return button
     }()
     
+    
     var locationOverlay: NMFLocationOverlay?
     
     override func layoutSubviews() {
@@ -67,7 +68,8 @@ class LocationView: BaseView {
     
     override func setConstraints() {
         mapView.snp.makeConstraints { make in
-            make.edges.equalTo(0)
+            make.top.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
         
         questionButton.snp.makeConstraints { make in

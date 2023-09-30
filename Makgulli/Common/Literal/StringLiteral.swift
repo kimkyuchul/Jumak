@@ -9,6 +9,9 @@ import Foundation
 
 enum StringLiteral {
         /// TabBar
+        static let home = "홈"
+        static let location = "막걸리찾기"
+        static let Favorites = "즐겨찾는곳"
         
         /// category
         static let MAKGULLI = "막걸리"
