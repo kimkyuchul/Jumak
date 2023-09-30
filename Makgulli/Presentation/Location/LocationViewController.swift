@@ -37,12 +37,14 @@ final class LocationViewController: BaseViewController {
         output.storeList
             .withUnretained(self)
             .bind(onNext: { owner, storeList in
-                print(storeList)
                 owner.setUpMarker(storeList: storeList)
             })
             .disposed(by: disposeBag)
-        
-        Observable.combineLatest(output.selectedMarkerIndex, output.storeList)
+            
+        output.selectedMarkerIndex
+            .withLatestFrom(output.storeList) { index, storeList in
+                return (index, storeList)
+            }
             .withUnretained(self)
             .bind(onNext: { owner, data in
                 let (selectedIndex, storeList) = data

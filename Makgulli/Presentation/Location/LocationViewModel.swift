@@ -98,7 +98,6 @@ class LocationViewModel: ViewModelType {
         
         self.searchLocationUseCase.locationVO
             .subscribe(onNext: { locationVO in
-                print(locationVO.documents)
                 output.storeList.accept(locationVO.documents)
             }) { error in
                 print(error)
