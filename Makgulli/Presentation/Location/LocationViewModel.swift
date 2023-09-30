@@ -34,6 +34,7 @@ class LocationViewModel: ViewModelType {
         let didSelectMarker: PublishRelay<Int?>
         let didSelectCategoryCell: Observable<IndexPath>
         let changeMapLocation: PublishRelay<CLLocationCoordinate2D>
+        let didSelectRefreshButton: Observable<Void>
     }
     
     struct Output {
@@ -56,7 +57,7 @@ class LocationViewModel: ViewModelType {
                 owner.locationUseCase.observeUserLocation()
             })
             .disposed(by: disposeBag)
-                
+        
         let didSelectMarker = input.didSelectMarker
             .share()
         
@@ -80,11 +81,9 @@ class LocationViewModel: ViewModelType {
             .bind(onNext: { [weak self] indexLocation in
                 let (indexPath, location) = indexLocation
                 let categoryType = CategoryType.allCases[indexPath.row]
-                let x = "\(location.longitude)"
-                let y = "\(location.latitude)"
                 
                 self?.categoryType = categoryType
-                self?.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: x, y: y, page: 1, display: 30)
+                self?.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: location.x, y: location.y, page: 1, display: 30)
             })
             .disposed(by: disposeBag)
         
@@ -94,16 +93,21 @@ class LocationViewModel: ViewModelType {
                 owner.currentLocation.accept(coordinate)
             })
             .disposed(by: disposeBag)
-            
-        
+    
+        input.didSelectRefreshButton
+            .withLatestFrom(currentLocation)
+            .flatMap { [weak self] location -> Observable<String> in
+                self?.searchLocationUseCase.fetchLocation(query: self?.categoryType.rawValue ?? StringLiteral.MAKGULLI, x: location.x, y: location.y, page: 1, display: 30)
+                return self?.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation) ?? .empty()
+            }
+            .bind(to: output.currentUserAddress)
+            .disposed(by: disposeBag)
+                        
         self.locationUseCase.locationUpdateSubject
             .withLatestFrom(output.currentUserLocation)
             .withUnretained(self)
             .bind(onNext: { owner, userLocation in
-                let x = "\(userLocation.longitude)"
-                let y = "\(userLocation.latitude)"
-                
-                owner.searchLocationUseCase.fetchLocation(query: "막걸리", x: x, y: y, page: 1, display: 30)
+                owner.searchLocationUseCase.fetchLocation(query: "막걸리", x: userLocation.x, y: userLocation.y, page: 1, display: 30)
             })
             .disposed(by: disposeBag)
         
@@ -141,8 +145,7 @@ class LocationViewModel: ViewModelType {
         locationCoordinate
             .withUnretained(self)
             .flatMapLatest { owner, location in
-                let location = CLLocation(latitude: location.latitude, longitude: location.longitude)
-                return owner.locationUseCase.reverseGeocodeLocation(location: location)
+                return owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
             }
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
@@ -150,7 +153,8 @@ class LocationViewModel: ViewModelType {
         self.locationUseCase.authorizationDeniedStatus
             .bind(to: output.authorizationAlertShouldShow)
             .disposed(by: disposeBag)
-    
+        
         return output
     }
 }
+

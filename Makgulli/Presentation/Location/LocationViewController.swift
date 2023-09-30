@@ -33,7 +33,8 @@ final class LocationViewController: BaseViewController {
         let input = LocationViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
                    didSelectMarker: selectMarkerRelay,
-                   didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(3), scheduler: MainScheduler.asyncInstance), changeMapLocation: changeMapLocation)
+                   didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(3), scheduler: MainScheduler.asyncInstance), changeMapLocation: changeMapLocation,
+                   didSelectRefreshButton: locationView.researchButton.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         
         output.storeList
@@ -92,6 +93,7 @@ final class LocationViewController: BaseViewController {
                 owner.present(QuestionViewController(), animated: true)
             }
             .disposed(by: disposeBag)
+        
     }
     
     private func updateUserCurrentLocation(
@@ -143,13 +145,22 @@ final class LocationViewController: BaseViewController {
 }
 
 extension LocationViewController: NMFMapViewCameraDelegate {
+    func mapView(_ mapView: NMFMapView, cameraWillChangeByReason reason: Int, animated: Bool) {
+        if reason == NMFMapChangedByGesture {
+            let location = CLLocationCoordinate2D(
+                latitude: mapView.cameraPosition.target.lat,
+                longitude: mapView.cameraPosition.target.lng
+            )
+            self.changeMapLocation.accept(location)
+        }
+    }
+    
     func mapView(_ mapView: NMFMapView, cameraDidChangeByReason reason: Int, animated: Bool) {
         if reason == NMFMapChangedByGesture {
             let location = CLLocationCoordinate2D(
                 latitude: mapView.cameraPosition.target.lat,
                 longitude: mapView.cameraPosition.target.lng
             )
-        
             self.changeMapLocation.accept(location)
         }
     }
