@@ -7,10 +7,10 @@
 
 import UIKit
 
-enum CategoryType: CaseIterable {
-    case makgulli
-    case pajeon
-    case bossam
+enum CategoryType: String, CaseIterable {
+    case makgulli = "막걸리"
+    case pajeon = "파전"
+    case bossam = "보쌈"
     
     var title: String {
         switch self {

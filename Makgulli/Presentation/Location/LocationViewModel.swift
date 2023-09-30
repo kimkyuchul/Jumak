@@ -30,6 +30,7 @@ class LocationViewModel: ViewModelType {
     struct Input {
         let viewDidLoadEvent: Observable<Void>
         let didSelectMarker: PublishRelay<Int?>
+        let didSelectCategoryCell: Observable<IndexPath>
     }
     
     struct Output {
@@ -40,7 +41,7 @@ class LocationViewModel: ViewModelType {
         let currentUserAddress = PublishRelay<String>()
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
     }
-
+    
     func transform(input: Input) -> Output {
         let output = Output()
         
@@ -52,16 +53,7 @@ class LocationViewModel: ViewModelType {
                 owner.locationUseCase.observeUserLocation()
             })
             .disposed(by: disposeBag)
-        
-        let storeListObservable = output.storeList.asObservable()
-        
-        storeListObservable
-            .withUnretained(self)
-            .subscribe(onNext: { owner, documentVO in
-                owner.storeList = documentVO
-            })
-            .disposed(by: disposeBag)
-        
+                
         let didSelectMarker = input.didSelectMarker
             .share()
         
@@ -78,12 +70,48 @@ class LocationViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
+        input.didSelectCategoryCell
+            .withLatestFrom(output.currentUserLocation) { index, location in
+                return (index, location)
+            }
+            .withUnretained(self)
+            .bind(onNext: { owner, indexLocation in
+                let (indexPath, location) = indexLocation
+                let query = CategoryType.allCases[indexPath.row].rawValue
+                let x = "\(location.longitude)"
+                let y = "\(location.latitude)"
+                
+                owner.searchLocationUseCase.fetchLocation(query: query, x: x, y: y, page: 1, display: 30)
+            })
+            .disposed(by: disposeBag)
+        
+        self.locationUseCase.locationUpdateSubject
+            .withLatestFrom(output.currentUserLocation)
+            .withUnretained(self)
+            .bind(onNext: { owner, userLocation in
+                let x = "\(userLocation.longitude)"
+                let y = "\(userLocation.latitude)"
+                
+                owner.searchLocationUseCase.fetchLocation(query: "막걸리", x: x, y: y, page: 1, display: 30)
+            })
+            .disposed(by: disposeBag)
+        
         self.searchLocationUseCase.locationVO
             .subscribe(onNext: { locationVO in
+                print(locationVO.documents)
                 output.storeList.accept(locationVO.documents)
             }) { error in
                 print(error)
             }
+            .disposed(by: disposeBag)
+        
+        let storeListObservable = output.storeList.asObservable()
+        
+        storeListObservable
+            .withUnretained(self)
+            .subscribe(onNext: { owner, documentVO in
+                owner.storeList = documentVO
+            })
             .disposed(by: disposeBag)
         
         let locationCoordinate = self.locationUseCase.locationCoordinate
@@ -105,18 +133,7 @@ class LocationViewModel: ViewModelType {
         self.locationUseCase.authorizationDeniedStatus
             .bind(to: output.authorizationAlertShouldShow)
             .disposed(by: disposeBag)
-        
-        self.locationUseCase.locationUpdateSubject
-            .withLatestFrom(output.currentUserLocation)
-            .withUnretained(self)
-            .bind(onNext: { owner, userLocation in
-                let x = "\(userLocation.longitude)"
-                let y = "\(userLocation.latitude)"
-                
-                owner.searchLocationUseCase.fetchLocation(query: "막걸리", x: x, y: y, page: 1, display: 30)
-            })
-            .disposed(by: disposeBag)
-        
+    
         return output
     }
 }

@@ -28,11 +28,13 @@ final class LocationViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = LocationViewModel.Input(viewDidLoadEvent: Observable.just(()).asObservable(), didSelectMarker: selectMarkerRelay)
+        let input = LocationViewModel
+            .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
+                   didSelectMarker: selectMarkerRelay,
+                   didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(3), scheduler: MainScheduler.asyncInstance))
         let output = viewModel.transform(input: input)
         
         output.storeList
-            .take(1)
             .withUnretained(self)
             .bind(onNext: { owner, storeList in
                 print(storeList)
@@ -70,6 +72,13 @@ final class LocationViewController: BaseViewController {
                 print(authorization)
             })
             .disposed(by: disposeBag)
+        
+        Observable.just(CategoryType.allCases)
+            .bind(to: locationView.categoryCollectionView.rx.items(cellIdentifier: "CategoryCollectionViewCell", cellType: CategoryCollectionViewCell.self)) {
+                index, item, cell in
+                cell.configureCell(item: item)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func bindAction() {
@@ -77,13 +86,6 @@ final class LocationViewController: BaseViewController {
             .asDriver(onErrorJustReturn: Void())
             .drive(with: self) { owner, _ in
                 owner.present(QuestionViewController(), animated: true)
-            }
-            .disposed(by: disposeBag)
-        
-        Observable.just(CategoryType.allCases)
-            .bind(to: locationView.categoryCollectionView.rx.items(cellIdentifier: "CategoryCollectionViewCell", cellType: CategoryCollectionViewCell.self)) {
-                index, item, cell in
-                cell.configureCell(item: item)
             }
             .disposed(by: disposeBag)
     }
