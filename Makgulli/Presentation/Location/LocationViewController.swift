@@ -18,6 +18,7 @@ final class LocationViewController: BaseViewController {
     private let viewModel = LocationViewModel(searchLocationUseCase: DefaultSearchLocationUseCase(searchLocationRepository: DefaultSearchLocationRepository(networkManager: NetworkManager())), locationUseCase: DefaultLocationUseCase(locationService: DefaultLocationManager()))
     private var markers: [NMFMarker] = []
     private var selectMarkerRelay = PublishRelay<Int?>()
+    private var changeMapLocation = PublishRelay<CLLocationCoordinate2D>()
     
     override func loadView() {
         self.view = locationView
@@ -25,13 +26,14 @@ final class LocationViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationView.mapView.addCameraDelegate(delegate: self)
     }
     
     override func bind() {
         let input = LocationViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
                    didSelectMarker: selectMarkerRelay,
-                   didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(3), scheduler: MainScheduler.asyncInstance))
+                   didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(3), scheduler: MainScheduler.asyncInstance), changeMapLocation: changeMapLocation)
         let output = viewModel.transform(input: input)
         
         output.storeList
@@ -40,7 +42,7 @@ final class LocationViewController: BaseViewController {
                 owner.setUpMarker(storeList: storeList)
             })
             .disposed(by: disposeBag)
-            
+        
         output.selectedMarkerIndex
             .withLatestFrom(output.storeList) { index, storeList in
                 return (index, storeList)
@@ -137,5 +139,18 @@ final class LocationViewController: BaseViewController {
             marker.mapView = nil
         }
         self.markers.removeAll()
+    }
+}
+
+extension LocationViewController: NMFMapViewCameraDelegate {
+    func mapView(_ mapView: NMFMapView, cameraDidChangeByReason reason: Int, animated: Bool) {
+        if reason == NMFMapChangedByGesture {
+            let location = CLLocationCoordinate2D(
+                latitude: mapView.cameraPosition.target.lat,
+                longitude: mapView.cameraPosition.target.lng
+            )
+        
+            self.changeMapLocation.accept(location)
+        }
     }
 }

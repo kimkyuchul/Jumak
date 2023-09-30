@@ -17,6 +17,8 @@ class LocationViewModel: ViewModelType {
     private let searchLocationUseCase: SearchLocationUseCase
     private let locationUseCase: LocationUseCase
     private var storeList: [DocumentVO] = []
+    private var categoryType: CategoryType = .makgulli
+    private var currentLocation = PublishRelay<CLLocationCoordinate2D>()
     
     init(searchLocationUseCase: SearchLocationUseCase, locationUseCase: LocationUseCase) {
         self.searchLocationUseCase = searchLocationUseCase
@@ -31,6 +33,7 @@ class LocationViewModel: ViewModelType {
         let viewDidLoadEvent: Observable<Void>
         let didSelectMarker: PublishRelay<Int?>
         let didSelectCategoryCell: Observable<IndexPath>
+        let changeMapLocation: PublishRelay<CLLocationCoordinate2D>
     }
     
     struct Output {
@@ -71,19 +74,27 @@ class LocationViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         input.didSelectCategoryCell
-            .withLatestFrom(output.currentUserLocation) { index, location in
+            .withLatestFrom(currentLocation) { index, location in
                 return (index, location)
             }
-            .withUnretained(self)
-            .bind(onNext: { owner, indexLocation in
+            .bind(onNext: { [weak self] indexLocation in
                 let (indexPath, location) = indexLocation
-                let query = CategoryType.allCases[indexPath.row].rawValue
+                let categoryType = CategoryType.allCases[indexPath.row]
                 let x = "\(location.longitude)"
                 let y = "\(location.latitude)"
                 
-                owner.searchLocationUseCase.fetchLocation(query: query, x: x, y: y, page: 1, display: 30)
+                self?.categoryType = categoryType
+                self?.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: x, y: y, page: 1, display: 30)
             })
             .disposed(by: disposeBag)
+        
+        input.changeMapLocation
+            .withUnretained(self)
+            .bind(onNext: { owner, coordinate in
+                owner.currentLocation.accept(coordinate)
+            })
+            .disposed(by: disposeBag)
+            
         
         self.locationUseCase.locationUpdateSubject
             .withLatestFrom(output.currentUserLocation)
@@ -115,6 +126,13 @@ class LocationViewModel: ViewModelType {
         
         let locationCoordinate = self.locationUseCase.locationCoordinate
             .share()
+        
+        locationCoordinate
+            .withUnretained(self)
+            .bind(onNext: { owner, coordinate in
+                owner.currentLocation.accept(coordinate)
+            })
+            .disposed(by: disposeBag)
         
         locationCoordinate
             .bind(to: output.currentUserLocation)
