@@ -78,6 +78,10 @@ final class LocationViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        output.reSearchButtonHidden
+            .bind(to: locationView.rx.handleResearchButtonVisibility)
+            .disposed(by: disposeBag)
+        
         Observable.just(CategoryType.allCases)
             .bind(to: locationView.categoryCollectionView.rx.items(cellIdentifier: "CategoryCollectionViewCell", cellType: CategoryCollectionViewCell.self)) {
                 index, item, cell in
@@ -93,7 +97,6 @@ final class LocationViewController: BaseViewController {
                 owner.present(QuestionViewController(), animated: true)
             }
             .disposed(by: disposeBag)
-        
     }
     
     private func updateUserCurrentLocation(

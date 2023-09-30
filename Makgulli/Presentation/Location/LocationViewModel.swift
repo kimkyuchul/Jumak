@@ -44,6 +44,7 @@ class LocationViewModel: ViewModelType {
         let currentUserLocation = PublishRelay<CLLocationCoordinate2D>()
         let currentUserAddress = PublishRelay<String>()
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
+        let reSearchButtonHidden = PublishRelay<Bool>()
     }
     
     func transform(input: Input) -> Output {
@@ -82,6 +83,7 @@ class LocationViewModel: ViewModelType {
                 let (indexPath, location) = indexLocation
                 let categoryType = CategoryType.allCases[indexPath.row]
                 
+                output.reSearchButtonHidden.accept(true)
                 self?.categoryType = categoryType
                 self?.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: location.x, y: location.y, page: 1, display: 30)
             })
@@ -90,6 +92,7 @@ class LocationViewModel: ViewModelType {
         input.changeMapLocation
             .withUnretained(self)
             .bind(onNext: { owner, coordinate in
+                output.reSearchButtonHidden.accept(false)
                 owner.currentLocation.accept(coordinate)
             })
             .disposed(by: disposeBag)
@@ -97,6 +100,7 @@ class LocationViewModel: ViewModelType {
         input.didSelectRefreshButton
             .withLatestFrom(currentLocation)
             .flatMap { [weak self] location -> Observable<String> in
+                output.reSearchButtonHidden.accept(false)
                 self?.searchLocationUseCase.fetchLocation(query: self?.categoryType.rawValue ?? StringLiteral.MAKGULLI, x: location.x, y: location.y, page: 1, display: 30)
                 return self?.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation) ?? .empty()
             }

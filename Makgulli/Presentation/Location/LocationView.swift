@@ -47,6 +47,7 @@ class LocationView: BaseView {
         let button = UIButton()
         button.configuration = configuration
         button.backgroundColor = .brown
+        button.alpha = 0.0
         return button
     }()
     
@@ -103,6 +104,15 @@ class LocationView: BaseView {
         cameraUpdate.animation = .easeIn
         self.mapView.moveCamera(cameraUpdate)
     }
+    
+    fileprivate func handleResearchButtonVisibility(isHidden: Bool) {
+        UIView.transition(
+            with: self.researchButton,
+            duration: 0.8,
+            options: .curveEaseOut) { [weak self] in
+                self?.researchButton.alpha = isHidden ? 0.0 : 1.0
+            }
+    }
 }
 
 extension Reactive where Base: LocationView {
@@ -110,6 +120,12 @@ extension Reactive where Base: LocationView {
         return Binder(self.base) { view, cameraPosition in
             let (latitude, longitude) = cameraPosition
             view.moveCamera(latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    var handleResearchButtonVisibility: Binder<Bool> {
+        return Binder(self.base) { view, isHidden in
+            view.handleResearchButtonVisibility(isHidden: isHidden)
         }
     }
 }
