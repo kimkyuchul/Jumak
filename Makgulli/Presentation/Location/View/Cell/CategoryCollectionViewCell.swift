@@ -41,7 +41,7 @@ final class CategoryCollectionViewCell: BaseCollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.setViewShadow(backView: containerView, radius: 23)
+        self.cellShadow(backView: containerView, radius: 23)
     }
     
     override func setHierarchy() {

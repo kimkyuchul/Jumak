@@ -11,6 +11,9 @@ enum StringLiteral {
         /// TabBar
         
         /// category
+        static let MAKGULLI = "막걸리"
+        static let PAJEON = "with 파전"
+        static let BOSSAM = "with 보쌈"
         
         /// Toast
         

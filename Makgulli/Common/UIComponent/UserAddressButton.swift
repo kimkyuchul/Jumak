@@ -33,12 +33,12 @@ final class UserAddressButton: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         clipsToBounds = true
-        self.dropShadow()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = 10
+        self.dropShadow()
     }
     
     override func setHierarchy() {
