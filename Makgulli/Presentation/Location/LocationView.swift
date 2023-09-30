@@ -23,7 +23,6 @@ class LocationView: BaseView {
     }()
     let questionButton = QuestionButton()
     let userAddressButton = UserAddressButton()
-    
     lazy var categoryCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
         collectionView.showsHorizontalScrollIndicator = false
@@ -31,11 +30,36 @@ class LocationView: BaseView {
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
         return collectionView
     }()
+    let researchButton: UIButton = {
+        var configuration = UIButton.Configuration.plain()
+        configuration.buttonSize = .large
+        let attributedTitle = NSAttributedString(string: "이 지역에서 다시 검색",
+                                                 attributes: [
+                                                    .font: UIFont.boldLineSeed(size: ._16),
+                                                    .foregroundColor: UIColor.white
+                                                 ])
+        configuration.attributedTitle = AttributedString(attributedTitle)
+        configuration.image = ImageLiteral.reSearchArrowIcon
+        configuration.baseForegroundColor = .white
+        configuration.imagePadding = 5
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+        configuration.imagePlacement = .leading
+        let button = UIButton()
+        button.configuration = configuration
+        button.backgroundColor = .brown
+        return button
+    }()
     
     var locationOverlay: NMFLocationOverlay?
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        researchButton.layer.cornerRadius = 20
+        researchButton.dropShadow()
+    }
+    
     override func setHierarchy() {
-        [mapView, questionButton, userAddressButton, categoryCollectionView].forEach {
+        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton].forEach {
             self.addSubview($0)
         }
     }
@@ -60,6 +84,12 @@ class LocationView: BaseView {
             make.top.equalTo(userAddressButton.snp.bottom).offset(11)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(46)
+        }
+        
+        researchButton.snp.makeConstraints { make in
+            make.top.equalTo(categoryCollectionView.snp.bottom).offset(9)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(40)
         }
     }
     

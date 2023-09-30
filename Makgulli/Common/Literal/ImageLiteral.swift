@@ -28,6 +28,7 @@ enum ImageLiteral {
     static var bookMarkIcon: UIImage { .load(systemName: "bookmark") }
     static var fillBookMarkIcon: UIImage { .load(systemName: "bookmark.fill") }
     static var rightCircleArrowIcon: UIImage { .load(systemName: "arrow.forward.circle") }
+    static var reSearchArrowIcon: UIImage { .load(systemName: "arrow.counterclockwise") }
     static var mapQuestionIcon: UIImage { .load(systemName: "takeoutbag.and.cup.and.straw") }
     static var makgulliCategoryIcon: UIImage { .load(systemName: "bolt.heart.fill") }
     static var pajeonCategoryIcon: UIImage { .load(systemName: "cloud.sun.rain.fill") }
