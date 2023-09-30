@@ -17,6 +17,9 @@ enum StringLiteral {
         static let MAKGULLI = "막걸리"
         static let PAJEON = "with 파전"
         static let BOSSAM = "with 보쌈"
+    
+        ///Button Title
+        static let reSearchButton = "이 지역에서 다시 검색"
         
         /// Toast
         

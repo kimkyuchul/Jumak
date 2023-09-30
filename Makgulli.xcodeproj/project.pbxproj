@@ -67,6 +67,7 @@
 		5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */; };
 		5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */; };
 		5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */; };
+		5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
@@ -148,6 +149,7 @@
 		5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -520,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */,
+				5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
 				5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
+				5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */,
 				5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */,
 				5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */,
 				5A9DA2172AC3F629006040D2 /* LocationService.swift in Sources */,

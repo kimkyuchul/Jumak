@@ -18,13 +18,14 @@ class LocationView: BaseView {
         mapView.allowsZooming = true
         mapView.logoInteractionEnabled = false
         mapView.positionMode = .direction
+        mapView.zoomLevel = 12
         self.locationOverlay = mapView.locationOverlay
         return mapView
     }()
     let questionButton = QuestionButton()
     let userAddressButton = UserAddressButton()
     lazy var categoryCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createCategoryLayout())
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
@@ -33,7 +34,7 @@ class LocationView: BaseView {
     let researchButton: UIButton = {
         var configuration = UIButton.Configuration.plain()
         configuration.buttonSize = .large
-        let attributedTitle = NSAttributedString(string: "이 지역에서 다시 검색",
+        let attributedTitle = NSAttributedString(string: StringLiteral.reSearchButton,
                                                  attributes: [
                                                     .font: UIFont.boldLineSeed(size: ._16),
                                                     .foregroundColor: UIColor.white
@@ -50,6 +51,24 @@ class LocationView: BaseView {
         button.alpha = 0.0
         return button
     }()
+    let userLocationButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .brown
+        button.setImage(ImageLiteral.userLocationIcon, for: .normal)
+        button.tintColor = .white
+        return button
+    }()
+    lazy var storeCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width * 0.7, height: 120)
+        layout.minimumInteritemSpacing = 15
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
     
     
     var locationOverlay: NMFLocationOverlay?
@@ -58,10 +77,12 @@ class LocationView: BaseView {
         super.layoutSubviews()
         researchButton.layer.cornerRadius = 20
         researchButton.dropShadow()
+        userLocationButton.layer.cornerRadius = userLocationButton.frame.height / 2
+        userLocationButton.dropShadow()
     }
     
     override func setHierarchy() {
-        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton].forEach {
+        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton, userLocationButton, storeCollectionView].forEach {
             self.addSubview($0)
         }
     }
@@ -94,6 +115,20 @@ class LocationView: BaseView {
             make.centerX.equalToSuperview()
             make.height.equalTo(40)
         }
+        
+        userLocationButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
+            make.size.equalTo(42)
+        }
+        
+        storeCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(userLocationButton.snp.bottom).offset(24)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(24)
+            make.height.equalTo(130)
+        }
+        
+        
     }
     
     fileprivate func moveCamera(latitude: Double, longitude: Double) {
@@ -134,17 +169,14 @@ extension Reactive where Base: LocationView {
 
 
 private extension LocationView {
-    func createLayout() -> UICollectionViewLayout {
+    func createCategoryLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(80), heightDimension: .fractionalHeight(1.0))
-        
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(80), heightDimension: .absolute(46))
-        
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         section.interGroupSpacing = 11
         

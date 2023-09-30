@@ -45,7 +45,6 @@ final class CategoryCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func setHierarchy() {
-        
         self.addSubview(containerView)
         
         [categoryImageView, categoryLabel].forEach {
@@ -54,7 +53,6 @@ final class CategoryCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func setConstraints() {
-        
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
