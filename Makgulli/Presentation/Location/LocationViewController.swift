@@ -30,11 +30,12 @@ final class LocationViewController: BaseViewController {
     override func bind() {
         let input = LocationViewModel.Input(viewDidLoadEvent: Observable.just(()).asObservable(), didSelectMarker: selectMarkerRelay)
         let output = viewModel.transform(input: input)
-                
+        
         output.storeList
             .take(1)
             .withUnretained(self)
             .bind(onNext: { owner, storeList in
+                print(storeList)
                 owner.setUpMarker(storeList: storeList)
             })
             .disposed(by: disposeBag)
@@ -76,6 +77,13 @@ final class LocationViewController: BaseViewController {
             .asDriver(onErrorJustReturn: Void())
             .drive(with: self) { owner, _ in
                 owner.present(QuestionViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        Observable.just(CategoryType.allCases)
+            .bind(to: locationView.categoryCollectionView.rx.items(cellIdentifier: "CategoryCollectionViewCell", cellType: CategoryCollectionViewCell.self)) {
+                index, item, cell in
+                cell.configureCell(item: item)
             }
             .disposed(by: disposeBag)
     }
