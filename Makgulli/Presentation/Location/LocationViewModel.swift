@@ -17,7 +17,7 @@ class LocationViewModel: ViewModelType {
     private let searchLocationUseCase: SearchLocationUseCase
     private let locationUseCase: LocationUseCase
     private var storeList: [DocumentVO] = []
-    private var categoryType: CategoryType = .makgulli
+    private var categoryType = BehaviorRelay<CategoryType>(value: .makgulli)
     private var currentLocation = PublishRelay<CLLocationCoordinate2D>()
     
     init(searchLocationUseCase: SearchLocationUseCase, locationUseCase: LocationUseCase) {
@@ -85,7 +85,7 @@ class LocationViewModel: ViewModelType {
                 let categoryType = CategoryType.allCases[indexPath.row]
                 
                 output.reSearchButtonHidden.accept(true)
-                self?.categoryType = categoryType
+                self?.categoryType.accept(categoryType)
                 self?.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: location.x, y: location.y, page: 1, display: 30)
             })
             .disposed(by: disposeBag)
@@ -97,13 +97,17 @@ class LocationViewModel: ViewModelType {
                 owner.currentLocation.accept(coordinate)
             })
             .disposed(by: disposeBag)
+        
+        let currentLocationAndCategoryType = Observable.combineLatest(self.currentLocation, self.categoryType)
     
         input.didSelectRefreshButton
-            .withLatestFrom(currentLocation)
-            .flatMap { [weak self] location -> Observable<String> in
+            .withLatestFrom(currentLocationAndCategoryType)
+            .flatMap { [weak self] currentLocationAndCategoryType -> Observable<String> in
+                let (currentLocation, categoryType) = currentLocationAndCategoryType
+                
                 output.reSearchButtonHidden.accept(true)
-                self?.searchLocationUseCase.fetchLocation(query: self?.categoryType.rawValue ?? StringLiteral.MAKGULLI, x: location.x, y: location.y, page: 1, display: 30)
-                return self?.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation) ?? .empty()
+                self?.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: currentLocation.x, y: currentLocation.y, page: 1, display: 30)
+                return self?.locationUseCase.reverseGeocodeLocation(location: currentLocation.convertToCLLocation) ?? .empty()
             }
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
@@ -115,12 +119,16 @@ class LocationViewModel: ViewModelType {
                 owner.locationUseCase.startUpdatingLocation()
             })
             .disposed(by: disposeBag)
-                        
+        
+        let userLocationAndCategoryType = Observable.zip(output.currentUserLocation, self.categoryType)
+        
         self.locationUseCase.locationUpdateSubject
-            .withLatestFrom(output.currentUserLocation)
+            .withLatestFrom(userLocationAndCategoryType)
             .withUnretained(self)
-            .bind(onNext: { owner, userLocation in
-                owner.searchLocationUseCase.fetchLocation(query: "막걸리", x: userLocation.x, y: userLocation.y, page: 1, display: 30)
+            .bind(onNext: { owner, userLocationAndCategoryType in
+                let (userLocation, categoryType) = userLocationAndCategoryType
+                
+                owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: userLocation.x, y: userLocation.y, page: 1, display: 30)
             })
             .disposed(by: disposeBag)
         
@@ -171,3 +179,8 @@ class LocationViewModel: ViewModelType {
     }
 }
 
+extension LocationViewModel {
+//    private func transformCollectionViewDataSource(output: LocationViewModel.Output) {
+//        Observable.combineLatest(output.storeList, )
+//    }
+}
