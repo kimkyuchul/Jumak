@@ -46,6 +46,8 @@ class LocationViewModel: ViewModelType {
         let currentUserAddress = PublishRelay<String>()
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
         let reSearchButtonHidden = PublishRelay<Bool>()
+        let storeCollectionViewDataSource = BehaviorRelay<[DocumentVO]>(value: [])
+        
     }
     
     func transform(input: Input) -> Output {
@@ -175,12 +177,33 @@ class LocationViewModel: ViewModelType {
             .bind(to: output.authorizationAlertShouldShow)
             .disposed(by: disposeBag)
         
+        transformCollectionViewDataSource(output: output)
+        
         return output
     }
 }
 
 extension LocationViewModel {
-//    private func transformCollectionViewDataSource(output: LocationViewModel.Output) {
-//        Observable.combineLatest(output.storeList, )
-//    }
+    private func transformCollectionViewDataSource(output: LocationViewModel.Output) {
+        Observable.combineLatest(output.storeList, self.categoryType)
+            .map { storeList, categoryType in
+                return storeList.map { store in
+                    return DocumentVO(
+                        placeName: store.placeName,
+                        distance: store.distance,
+                        placeURL: store.placeURL,
+                        categoryName: store.categoryName,
+                        addressName: store.addressName,
+                        roadAddressName: store.roadAddressName,
+                        id: store.id,
+                        phone: store.phone,
+                        x: store.x,
+                        y: store.y,
+                        categoryType: categoryType
+                    )
+                }
+            }
+            .bind(to: output.storeCollectionViewDataSource)
+            .disposed(by: disposeBag)
+    }
 }

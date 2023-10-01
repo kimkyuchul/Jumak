@@ -27,4 +27,5 @@ struct DocumentVO {
     let phone: String?
     let x: Double
     let y: Double
+    let categoryType: CategoryType
 }

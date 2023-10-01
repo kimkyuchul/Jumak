@@ -89,6 +89,13 @@ final class LocationViewController: BaseViewController {
                 cell.configureCell(item: item)
             }
             .disposed(by: disposeBag)
+                
+        output.storeCollectionViewDataSource
+            .bind(to: locationView.storeCollectionView.rx.items(cellIdentifier: "StoreCollectionViewCell", cellType: StoreCollectionViewCell.self)) {
+                index, item, cell in
+                cell.configureCell(item: item)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func bindAction() {
