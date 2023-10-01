@@ -59,14 +59,13 @@ class LocationView: BaseView {
         return button
     }()
     lazy var storeCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width * 0.7, height: 120)
-        layout.minimumInteritemSpacing = 15
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createStoreLayout())
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = .clear
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.alwaysBounceHorizontal = false
+        collectionView.alwaysBounceVertical = false
+        collectionView.register(StoreCollectionViewCell.self, forCellWithReuseIdentifier: "StoreCollectionViewCell")
         return collectionView
     }()
     
@@ -115,20 +114,18 @@ class LocationView: BaseView {
             make.centerX.equalToSuperview()
             make.height.equalTo(40)
         }
-        
+                
         userLocationButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(24)
             make.size.equalTo(42)
+            make.bottom.equalTo(storeCollectionView.snp.top).offset(-24)
         }
         
         storeCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(userLocationButton.snp.bottom).offset(24)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(24)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-24)
             make.height.equalTo(130)
         }
-        
-        
     }
     
     fileprivate func moveCamera(latitude: Double, longitude: Double) {
@@ -185,6 +182,34 @@ private extension LocationView {
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         layout.configuration = configuration
+        
+        return layout
+    }
+    
+    func createStoreLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .absolute(130))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 14
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.visibleItemsInvalidationHandler = { (visibleItems, offset, env) in
+            visibleItems.forEach { item in
+                let intersectedRect = item.frame.intersection(CGRect(x: offset.x, y: offset.y, width: env.container.contentSize.width, height: item.frame.height))
+                
+                let percentVisible = intersectedRect.width / item.frame.width
+                
+                let scale = 0.7 + (0.3 * percentVisible)
+                
+                item.transform = CGAffineTransform(scaleX: 0.98, y: scale)
+            }
+        }
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
         
         return layout
     }

@@ -24,6 +24,6 @@ class BaseCollectionViewCell: UICollectionViewCell, ViewSetupable {
     func setHierarchy() { }
     func setConstraints() { }
     func setLayout() {
-        self.backgroundColor = .white
+        self.backgroundColor = .clear
     }
 }
