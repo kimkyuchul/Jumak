@@ -36,6 +36,7 @@ class LocationViewModel: ViewModelType {
         let changeMapLocation: PublishRelay<CLLocationCoordinate2D>
         let didSelectRefreshButton: Observable<Void>
         let didSelectUserLocationButton: Observable<Void>
+        let didScrollStoreCollectionView: PublishRelay<Int?>
     }
     
     struct Output {
@@ -119,6 +120,17 @@ class LocationViewModel: ViewModelType {
             .bind(onNext: { owner, _ in
                 output.reSearchButtonHidden.accept(true)
                 owner.locationUseCase.startUpdatingLocation()
+            })
+            .disposed(by: disposeBag)
+        
+        input.didScrollStoreCollectionView
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind(onNext: { owner, percentVisible in
+                guard let index = percentVisible else { return }
+                let store = owner.storeList[index]
+                output.setCameraPosition.accept((store.y, store.x))
+                output.selectedMarkerIndex.accept(percentVisible)
             })
             .disposed(by: disposeBag)
         

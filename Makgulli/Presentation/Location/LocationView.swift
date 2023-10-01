@@ -71,6 +71,7 @@ class LocationView: BaseView {
     
     
     var locationOverlay: NMFLocationOverlay?
+    var visibleItemsRelay = PublishRelay<Int?>()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -114,7 +115,7 @@ class LocationView: BaseView {
             make.centerX.equalToSuperview()
             make.height.equalTo(40)
         }
-                
+        
         userLocationButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(24)
             make.size.equalTo(42)
@@ -197,18 +198,17 @@ private extension LocationView {
         section.interGroupSpacing = 14
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         section.orthogonalScrollingBehavior = .groupPagingCentered
-        section.visibleItemsInvalidationHandler = { (visibleItems, offset, env) in
+        section.visibleItemsInvalidationHandler = { [weak self] (visibleItems, offset, env) in
+            let currentIndex = visibleItems.last?.indexPath.row
+            self?.visibleItemsRelay.accept(currentIndex)
+            
             visibleItems.forEach { item in
                 let intersectedRect = item.frame.intersection(CGRect(x: offset.x, y: offset.y, width: env.container.contentSize.width, height: item.frame.height))
-                
                 let percentVisible = intersectedRect.width / item.frame.width
-                
                 let scale = 0.7 + (0.3 * percentVisible)
-                
                 item.transform = CGAffineTransform(scaleX: 0.98, y: scale)
             }
         }
-        
         let layout = UICollectionViewCompositionalLayout(section: section)
         
         return layout
