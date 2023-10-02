@@ -35,7 +35,7 @@ final class LocationViewController: BaseViewController {
                    didSelectMarker: selectMarkerRelay,
                    didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(2), scheduler: MainScheduler.asyncInstance), changeMapLocation: changeMapLocation,
                    didSelectRefreshButton: locationView.researchButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
-                   didSelectUserLocationButton: locationView.userLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance), didScrollStoreCollectionView: locationView.visibleItemsRelay)
+                   didSelectUserLocationButton: locationView.userLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance), didScrollStoreCollectionView: locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance))
         let output = viewModel.transform(input: input)
         
         output.storeList
@@ -46,6 +46,7 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.selectedMarkerIndex
+            .distinctUntilChanged()
             .withLatestFrom(output.storeList) { index, storeList in
                 return (index, storeList)
             }
@@ -61,12 +62,15 @@ final class LocationViewController: BaseViewController {
             .distinctUntilChanged()
             .withUnretained(self)
             .bind(onNext: { owner, index in
-                owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+                    owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
             })
             .disposed(by: disposeBag)
         
         output.setCameraPosition
             .asDriver(onErrorJustReturn: (LocationLiteral.longitude, LocationLiteral.latitude))
+            .distinctUntilChanged { (prevPosition, newPosition) -> Bool in
+                return prevPosition == newPosition
+            }
             .drive(self.locationView.rx.cameraPosition)
             .disposed(by: disposeBag)
         
@@ -113,6 +117,8 @@ final class LocationViewController: BaseViewController {
                 owner.present(QuestionViewController(), animated: true)
             }
             .disposed(by: disposeBag)
+        
+        locationView.categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
     }
     
     private func updateUserCurrentLocation(

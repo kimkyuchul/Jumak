@@ -36,7 +36,7 @@ class LocationViewModel: ViewModelType {
         let changeMapLocation: PublishRelay<CLLocationCoordinate2D>
         let didSelectRefreshButton: Observable<Void>
         let didSelectUserLocationButton: Observable<Void>
-        let didScrollStoreCollectionView: PublishRelay<Int?>
+        let didScrollStoreCollectionView: Observable<Int?>
     }
     
     struct Output {
@@ -69,9 +69,6 @@ class LocationViewModel: ViewModelType {
         didSelectMarker
             .bind(to: output.selectedMarkerIndex)
             .disposed(by: disposeBag)
-        
-        let setCameraPosition = output.setCameraPosition
-        
         
         didSelectMarker
             .withUnretained(self)
