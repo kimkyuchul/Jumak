@@ -190,22 +190,25 @@ private extension LocationView {
     func createStoreLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .absolute(130))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(130))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 14
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         section.orthogonalScrollingBehavior = .groupPagingCentered
+        
         section.visibleItemsInvalidationHandler = { [weak self] (visibleItems, offset, env) in
-            let currentIndex = visibleItems.last?.indexPath.row
-            self?.visibleItemsRelay.accept(currentIndex)
-            
             visibleItems.forEach { item in
                 let intersectedRect = item.frame.intersection(CGRect(x: offset.x, y: offset.y, width: env.container.contentSize.width, height: item.frame.height))
                 let percentVisible = intersectedRect.width / item.frame.width
-                let scale = 0.7 + (0.3 * percentVisible)
+                
+                if percentVisible >= 1.0 {
+                    if let currentIndex = visibleItems.last?.indexPath.row {
+                        self?.visibleItemsRelay.accept(currentIndex)
+                    }
+                }
+                
+                let scale = 0.5 + (0.5 * percentVisible)
                 item.transform = CGAffineTransform(scaleX: 0.98, y: scale)
             }
         }

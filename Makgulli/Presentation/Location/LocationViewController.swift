@@ -57,6 +57,14 @@ final class LocationViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        output.storeCollectionViewScrollToItem
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind(onNext: { owner, index in
+                owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+            })
+            .disposed(by: disposeBag)
+        
         output.setCameraPosition
             .asDriver(onErrorJustReturn: (LocationLiteral.longitude, LocationLiteral.latitude))
             .drive(self.locationView.rx.cameraPosition)
@@ -89,7 +97,7 @@ final class LocationViewController: BaseViewController {
                 cell.configureCell(item: item)
             }
             .disposed(by: disposeBag)
-                
+        
         output.storeCollectionViewDataSource
             .bind(to: locationView.storeCollectionView.rx.items(cellIdentifier: "StoreCollectionViewCell", cellType: StoreCollectionViewCell.self)) {
                 index, item, cell in

@@ -48,7 +48,7 @@ class LocationViewModel: ViewModelType {
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
         let reSearchButtonHidden = PublishRelay<Bool>()
         let storeCollectionViewDataSource = BehaviorRelay<[DocumentVO]>(value: [])
-        
+        let storeCollectionViewScrollToItem = PublishRelay<Int>()
     }
     
     func transform(input: Input) -> Output {
@@ -70,12 +70,16 @@ class LocationViewModel: ViewModelType {
             .bind(to: output.selectedMarkerIndex)
             .disposed(by: disposeBag)
         
+        let setCameraPosition = output.setCameraPosition
+        
+        
         didSelectMarker
             .withUnretained(self)
             .bind(onNext: { owner, index in
                 guard let index = index else { return  }
                 let store = owner.storeList[index]
                 output.setCameraPosition.accept((store.y, store.x))
+                output.storeCollectionViewScrollToItem.accept(index)
             })
             .disposed(by: disposeBag)
         
@@ -130,10 +134,10 @@ class LocationViewModel: ViewModelType {
                 guard let index = percentVisible else { return }
                 let store = owner.storeList[index]
                 output.setCameraPosition.accept((store.y, store.x))
-                output.selectedMarkerIndex.accept(percentVisible)
+                output.selectedMarkerIndex.accept(index)
             })
             .disposed(by: disposeBag)
-        
+    
         let userLocationAndCategoryType = Observable.zip(output.currentUserLocation, self.categoryType)
         
         self.locationUseCase.locationUpdateSubject
