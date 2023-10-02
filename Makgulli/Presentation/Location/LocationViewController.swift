@@ -37,7 +37,7 @@ final class LocationViewController: BaseViewController {
                    changeMapLocation: changeMapLocation,
                    didSelectRefreshButton: locationView.researchButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
                    didSelectUserLocationButton: locationView.userLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
-                   didScrollStoreCollectionView: locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance))
+                   didScrollStoreCollectionView: locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(250), scheduler: MainScheduler.asyncInstance))
         let output = viewModel.transform(input: input)
         
         output.storeList
@@ -57,17 +57,10 @@ final class LocationViewController: BaseViewController {
                 let (selectedIndex, storeList) = data
                 guard selectedIndex ?? 0 < storeList.count else { return }
                 owner.setUpMarker(selectedIndex: selectedIndex, storeList: storeList)
+                owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: selectedIndex ?? 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
             })
             .disposed(by: disposeBag)
-        
-        output.storeCollectionViewScrollToItem
-            .distinctUntilChanged()
-            .withUnretained(self)
-            .bind(onNext: { owner, index in
-                    owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-            })
-            .disposed(by: disposeBag)
-        
+                
         output.setCameraPosition
             .asDriver(onErrorJustReturn: (LocationLiteral.longitude, LocationLiteral.latitude))
             .distinctUntilChanged { (prevPosition, newPosition) -> Bool in
@@ -121,6 +114,13 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         locationView.categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+        
+        locationView.categoryCollectionView.rx.willDisplayCell
+            .subscribe(onNext: { cell, indexPath in
+                print("Cell will display at indexPath: \(indexPath)")
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     private func updateUserCurrentLocation(

@@ -9,9 +9,15 @@ import UIKit
 
 final class StoreCollectionViewCell: BaseCollectionViewCell {
     
+    override var isSelected: Bool {
+        didSet {
+            self.setSelected(isSelected: self.isSelected)
+        }
+    }
+    
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .pink
+        view.backgroundColor = .white
         return view
     }()
     
@@ -42,6 +48,16 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
         
         storeTitleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
+        }
+    }
+    
+    private func setSelected(isSelected: Bool) {
+        if isSelected {
+            containerView.backgroundColor = UIColor.brown
+            storeTitleLabel.textColor = .white
+        } else {
+            containerView.backgroundColor = .white
+            storeTitleLabel.textColor = .black
         }
     }
 }

@@ -48,7 +48,6 @@ final class LocationViewModel: ViewModelType {
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
         let reSearchButtonHidden = PublishRelay<Bool>()
         let storeCollectionViewDataSource = BehaviorRelay<[DocumentVO]>(value: [])
-        let storeCollectionViewScrollToItem = PublishRelay<Int>()
     }
     
     func transform(input: Input) -> Output {
@@ -76,7 +75,6 @@ final class LocationViewModel: ViewModelType {
                 guard let index = index else { return  }
                 let store = owner.storeList[index]
                 output.setCameraPosition.accept((store.y, store.x))
-                output.storeCollectionViewScrollToItem.accept(index)
             })
             .disposed(by: disposeBag)
         
