@@ -19,6 +19,8 @@ protocol LocationUseCase {
     func observeUserLocation()
     func checkAuthorization()
     func checkLocationAuthorization()
+    func startUpdatingLocation()
+    func reverseGeocodeLocation(location: CLLocation) -> Observable<String>
 }
 
 final class DefaultLocationUseCase: LocationUseCase {
@@ -58,5 +60,59 @@ final class DefaultLocationUseCase: LocationUseCase {
     
     func checkLocationAuthorization() {
         self.locationService.checkLocationAuthorization()
+    }
+    
+    func startUpdatingLocation() {
+        self.locationService.startUpdatingLocation()
+    }
+    
+    func reverseGeocodeLocation(location: CLLocation) -> Observable<String> {
+        let geocoder = CLGeocoder()
+        return Observable.create { emitter in
+             geocoder.reverseGeocodeLocation(location) { placemarks, error in
+                 if let error = error {
+                     emitter.onError(error)
+                     return
+                 }
+                 
+                 guard let placemark = placemarks?.first else {
+                     emitter.onError(error!)
+                     return
+                 }
+                 
+                 let formattedAddress = self.getAddressString(from: placemark)
+                 emitter.onNext(formattedAddress)
+                 emitter.onCompleted()
+             }
+             return Disposables.create()
+         }
+     }
+}
+
+private extension DefaultLocationUseCase {
+    func getAddressString(from placemark: CLPlacemark) -> String {
+        var addressString = ""
+        
+        if let locality = placemark.locality {
+            addressString += locality + " "
+        }
+        
+//        if let subLocality = placemark.subLocality {
+//            addressString += subLocality + " "
+//        }
+        
+        if let thoroughfare = placemark.thoroughfare {
+            addressString += thoroughfare + " "
+        }
+        
+        if let subThoroughfare = placemark.subThoroughfare {
+            addressString += subThoroughfare
+        }
+        
+        if let postalCode = placemark.postalCode {
+            addressString += ", " + postalCode
+        }
+        
+        return addressString
     }
 }

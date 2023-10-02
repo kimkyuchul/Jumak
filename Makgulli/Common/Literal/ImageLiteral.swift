@@ -14,6 +14,8 @@ enum ImageLiteral {
     
     //MARK: - logo icon
     static var makgulliLogo: UIImage { .load(named: "makgulliLogo") }
+    static var touchMarker: UIImage { .load(named: "TouchMarker") }
+    static var marker: UIImage { .load(named: "Marker") }
     
     //MARK: - Home
     
@@ -25,6 +27,14 @@ enum ImageLiteral {
     static var checkIcon: UIImage { .load(systemName: "checkmark")}
     static var bookMarkIcon: UIImage { .load(systemName: "bookmark") }
     static var fillBookMarkIcon: UIImage { .load(systemName: "bookmark.fill") }
+    static var rightCircleArrowIcon: UIImage { .load(systemName: "arrow.forward.circle") }
+    static var reSearchArrowIcon: UIImage { .load(systemName: "arrow.counterclockwise") }
+    static var userLocationIcon: UIImage { .load(systemName: "scope") }
+    static var mapQuestionIcon: UIImage { .load(systemName: "takeoutbag.and.cup.and.straw") }
+    static var makgulliCategoryIcon: UIImage { .load(systemName: "bolt.heart.fill") }
+    static var pajeonCategoryIcon: UIImage { .load(systemName: "cloud.sun.rain.fill") }
+    static var bossamCategoryIcon: UIImage { .load(systemName: "frying.pan.fill") }
+    static var koreaIcon: UIImage { .load(systemName: "k.circle.fill") }
 }
 
 extension UIImage {

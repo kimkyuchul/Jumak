@@ -15,8 +15,8 @@ protocol LocationService {
     var authorizationStatus: BehaviorRelay<CLAuthorizationStatus> { get set }
     var locationCoordinate: PublishRelay<CLLocationCoordinate2D> { get set }
     var locationUpdateSubject: PublishSubject<Void> { get set }
-    func start()
-    func stop()
+    func startUpdatingLocation()
+    func stopUpdatingLocation()
     func requestAuthorization()
     func checkLocationAuthorization()
 }
@@ -35,11 +35,11 @@ final class DefaultLocationManager: NSObject, LocationService {
         self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    func start() {
+    func startUpdatingLocation() {
         self.locationManager?.startUpdatingLocation()
     }
     
-    func stop() {
+    func stopUpdatingLocation() {
         self.locationManager?.stopUpdatingLocation()
     }
     
@@ -65,7 +65,7 @@ final class DefaultLocationManager: NSObject, LocationService {
                     self.authorizationStatus.accept(.denied)
                 case .authorizedWhenInUse, .authorizedAlways:
                     self.authorizationStatus.accept(.authorizedWhenInUse)
-                    self.start()
+                    self.startUpdatingLocation()
                 @unknown default:
                     break
                 }
@@ -83,7 +83,7 @@ extension DefaultLocationManager: CLLocationManagerDelegate {
         }
         
         locationUpdateSubject.onNext(())
-        stop()
+        stopUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

@@ -22,7 +22,7 @@ extension UIFont {
         case _20 = 20
     }
     
-    static func boldLineSeed(size: Size = ._20, family: Family = .bold) -> UIFont {
+    static func boldLineSeed(size: Size, family: Family = .bold) -> UIFont {
         return UIFont(name: "LINESeedSansKR-\(family)", size: size.rawValue) ?? UIFont.systemFont(ofSize: size.rawValue)
     }
     

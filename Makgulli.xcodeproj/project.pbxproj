@@ -57,6 +57,18 @@
 		5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */; };
 		5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21D2AC419D5006040D2 /* LocationView.swift */; };
 		5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21F2AC41A19006040D2 /* BaseView.swift */; };
+		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
+		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
+		5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */; };
+		5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */; };
+		5ADC00342AC5F2720024D7F8 /* CateroryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00332AC5F2720024D7F8 /* CateroryType.swift */; };
+		5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */; };
+		5ADC00392AC5F9370024D7F8 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */; };
+		5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */; };
+		5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */; };
+		5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */; };
+		5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */; };
+		5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC004C2ACA9DAE0024D7F8 /* LocationDetailViewController.swift */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
@@ -128,6 +140,18 @@
 		5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetupable.swift; sourceTree = "<group>"; };
 		5A9DA21D2AC419D5006040D2 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		5A9DA21F2AC41A19006040D2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
+		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
+		5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		5ADC00332AC5F2720024D7F8 /* CateroryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateroryType.swift; sourceTree = "<group>"; };
+		5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
+		5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		5ADC004C2ACA9DAE0024D7F8 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +292,8 @@
 		5A9DA1C32AC1903D006040D2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5ADC00322AC5F2590024D7F8 /* Enum */,
+				5A9DA2212AC57E20006040D2 /* UIComponent */,
 				5A9DA2182AC415B7006040D2 /* Base */,
 				5A9DA2152AC3F613006040D2 /* Service */,
 				5A9DA20D2AC3D72A006040D2 /* Protocal */,
@@ -281,9 +307,10 @@
 		5A9DA1C42AC19050006040D2 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				5A9DA21D2AC419D5006040D2 /* LocationView.swift */,
-				5A70BA622AC1788E00506846 /* LocationViewController.swift */,
-				5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */,
+				5ADC004B2ACA9D970024D7F8 /* LocationDetail */,
+				5ADC003C2AC869060024D7F8 /* Tabbar */,
+				5ADC003F2AC86D8A0024D7F8 /* Home */,
+				5ADC002E2AC5E2C60024D7F8 /* Location */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -309,6 +336,8 @@
 				5A9DA1D22AC19AFB006040D2 /* UIFont+.swift */,
 				5A9DA1D42AC19D30006040D2 /* UIColor+.swift */,
 				5A9DA1FD2AC3B070006040D2 /* Encodable+.swift */,
+				5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */,
+				5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -450,8 +479,79 @@
 			children = (
 				5A9DA2192AC415C5006040D2 /* BaseViewController.swift */,
 				5A9DA21F2AC41A19006040D2 /* BaseView.swift */,
+				5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		5A9DA2212AC57E20006040D2 /* UIComponent */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */,
+				5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */,
+			);
+			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		5ADC002E2AC5E2C60024D7F8 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC002F2AC5E2DA0024D7F8 /* View */,
+				5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */,
+				5A9DA21D2AC419D5006040D2 /* LocationView.swift */,
+				5A70BA622AC1788E00506846 /* LocationViewController.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		5ADC002F2AC5E2DA0024D7F8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC00372AC5F9270024D7F8 /* Cell */,
+				5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5ADC00322AC5F2590024D7F8 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC00332AC5F2720024D7F8 /* CateroryType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		5ADC00372AC5F9270024D7F8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */,
+				5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		5ADC003C2AC869060024D7F8 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		5ADC003F2AC86D8A0024D7F8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5ADC004B2ACA9D970024D7F8 /* LocationDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5ADC004C2ACA9DAE0024D7F8 /* LocationDetailViewController.swift */,
+			);
+			path = LocationDetail;
 			sourceTree = "<group>";
 		};
 		64AEBEDA30B71C9D4154194F /* Frameworks */ = {
@@ -727,6 +827,8 @@
 				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
 				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
 				5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */,
+				5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */,
+				5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */,
 				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
 				5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */,
 				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
@@ -740,14 +842,24 @@
 				5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */,
 				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
 				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
+				5ADC00392AC5F9370024D7F8 /* CategoryCollectionViewCell.swift in Sources */,
 				5A9DA1EB2AC2B74B006040D2 /* Task.swift in Sources */,
 				5A9DA20A2AC3CE9F006040D2 /* SearchLocationRepository.swift in Sources */,
+				5ADC00342AC5F2720024D7F8 /* CateroryType.swift in Sources */,
 				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
 				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
+				5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */,
+				5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
 				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
+				5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */,
+				5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */,
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
+				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
+				5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
+				5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */,
+				5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */,
 				5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */,
 				5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */,
 				5A9DA2172AC3F629006040D2 /* LocationService.swift in Sources */,

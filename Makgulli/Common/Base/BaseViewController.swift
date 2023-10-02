@@ -21,6 +21,7 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol, BaseBind
         setLayout()
         setNavigationBar()
         bind()
+        bindAction()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -32,6 +33,7 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol, BaseBind
     func setLayout() {
         self.view.backgroundColor = UIColor.white
     }
-    func setNavigationBar() {}
+    func setNavigationBar() { }
     func bind() { }
+    func bindAction() { }
 }
