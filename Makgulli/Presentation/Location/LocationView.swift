@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import NMapsMap
 
-class LocationView: BaseView {
+final class LocationView: BaseView {
     
     lazy var mapView: NMFMapView = {
         let mapView = NMFMapView()

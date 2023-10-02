@@ -11,7 +11,7 @@ import CoreLocation
 import RxSwift
 import RxRelay
 
-class LocationViewModel: ViewModelType {
+final class LocationViewModel: ViewModelType {
     var disposeBag: DisposeBag = .init()
     
     private let searchLocationUseCase: SearchLocationUseCase

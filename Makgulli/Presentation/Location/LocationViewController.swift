@@ -33,9 +33,11 @@ final class LocationViewController: BaseViewController {
         let input = LocationViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
                    didSelectMarker: selectMarkerRelay,
-                   didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(2), scheduler: MainScheduler.asyncInstance), changeMapLocation: changeMapLocation,
+                   didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(2), scheduler: MainScheduler.asyncInstance),
+                   changeMapLocation: changeMapLocation,
                    didSelectRefreshButton: locationView.researchButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
-                   didSelectUserLocationButton: locationView.userLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance), didScrollStoreCollectionView: locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance))
+                   didSelectUserLocationButton: locationView.userLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
+                   didScrollStoreCollectionView: locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance))
         let output = viewModel.transform(input: input)
         
         output.storeList
