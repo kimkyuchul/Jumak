@@ -31,6 +31,8 @@ final class LocationViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
+        let viewWillAppearEvent: Observable<Void>
+        let willDisplayCell: Observable<IndexPath>
         let didSelectMarker: PublishRelay<Int?>
         let didSelectCategoryCell: Observable<IndexPath>
         let changeMapLocation: PublishRelay<CLLocationCoordinate2D>
@@ -59,6 +61,19 @@ final class LocationViewModel: ViewModelType {
                 owner.locationUseCase.checkLocationAuthorization()
                 owner.locationUseCase.checkAuthorization()
                 owner.locationUseCase.observeUserLocation()
+            })
+            .disposed(by: disposeBag)
+        
+        input.viewWillAppearEvent
+            .withLatestFrom(input.willDisplayCell)
+            .bind(onNext: { indexPath in
+                print(indexPath)
+            })
+            .disposed(by: disposeBag)
+        
+        input.willDisplayCell
+            .bind(onNext: { indexPath in
+                print(indexPath)
             })
             .disposed(by: disposeBag)
         

@@ -32,6 +32,8 @@ final class LocationViewController: BaseViewController {
     override func bind() {
         let input = LocationViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
+                   viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
+                   willDisplayCell: locationView.storeCollectionView.rx.willDisplayCell.map { $0.at },
                    didSelectMarker: selectMarkerRelay,
                    didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(2), scheduler: MainScheduler.asyncInstance),
                    changeMapLocation: changeMapLocation,
@@ -114,13 +116,13 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         locationView.categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
-        
-        locationView.categoryCollectionView.rx.willDisplayCell
-            .subscribe(onNext: { cell, indexPath in
-                print("Cell will display at indexPath: \(indexPath)")
+                
+        locationView.storeCollectionView.rx.itemSelected
+            .withUnretained(self)
+            .bind(onNext: { owner, index in
+                print(index.item)
             })
             .disposed(by: disposeBag)
-        
     }
     
     private func updateUserCurrentLocation(
