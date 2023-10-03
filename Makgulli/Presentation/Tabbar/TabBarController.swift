@@ -28,7 +28,8 @@ final class TabBarController: UITabBarController {
 
 extension TabBarController {
     func setViewControllers() {
-        let locationViewController = LocationViewController()
+        let locationViewController = UINavigationController(rootViewController: LocationViewController())
+        locationViewController.navigationBar.isHidden = true
         locationViewController.tabBarItem = UITabBarItem(
             title: StringLiteral.location,
             image: ImageLiteral.koreaIcon,

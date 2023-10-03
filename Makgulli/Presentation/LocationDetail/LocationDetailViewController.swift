@@ -7,10 +7,16 @@
 
 import UIKit
 
+
 final class LocationDetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isHidden = false
+        self.view.backgroundColor = .pink
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
 }
