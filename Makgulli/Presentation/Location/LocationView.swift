@@ -68,6 +68,7 @@ final class LocationView: BaseView {
         collectionView.register(StoreCollectionViewCell.self, forCellWithReuseIdentifier: "StoreCollectionViewCell")
         return collectionView
     }()
+    fileprivate let storeEmptyView = StoreEmptyView()
     
     
     var locationOverlay: NMFLocationOverlay?
@@ -79,10 +80,12 @@ final class LocationView: BaseView {
         researchButton.dropShadow()
         userLocationButton.layer.cornerRadius = userLocationButton.frame.height / 2
         userLocationButton.dropShadow()
+        storeEmptyView.layer.cornerRadius = 23
+        storeEmptyView.dropShadow()
     }
     
     override func setHierarchy() {
-        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton, userLocationButton, storeCollectionView].forEach {
+        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton, userLocationButton, storeCollectionView, storeEmptyView].forEach {
             self.addSubview($0)
         }
     }
@@ -127,6 +130,12 @@ final class LocationView: BaseView {
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-24)
             make.height.equalTo(130)
         }
+        
+        storeEmptyView.snp.makeConstraints { make in
+            make.top.equalTo(storeCollectionView.snp.top)
+            make.leading.trailing.equalToSuperview().inset(48)
+            make.bottom.equalTo(storeCollectionView.snp.bottom)
+        }
     }
     
     fileprivate func moveCamera(latitude: Double, longitude: Double) {
@@ -161,6 +170,12 @@ extension Reactive where Base: LocationView {
     var handleResearchButtonVisibility: Binder<Bool> {
         return Binder(self.base) { view, isHidden in
             view.handleResearchButtonVisibility(isHidden: isHidden)
+        }
+    }
+    
+    var handleStoreEmptyViewVisibility: Binder<Bool> {
+        return Binder(self.base) { view, isHidden in
+            view.storeEmptyView.isHidden = isHidden
         }
     }
 }

@@ -50,6 +50,7 @@ final class LocationViewModel: ViewModelType {
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
         let reSearchButtonHidden = PublishRelay<Bool>()
         let storeCollectionViewDataSource = BehaviorRelay<[DocumentVO]>(value: [])
+        let storeEmptyViewHidden = PublishRelay<Bool>()
     }
     
     func transform(input: Input) -> Output {
@@ -162,6 +163,11 @@ final class LocationViewModel: ViewModelType {
         
         self.searchLocationUseCase.locationVO
             .subscribe(onNext: { locationVO in
+                if locationVO.documents.isEmpty {
+                    output.storeEmptyViewHidden.accept(false)
+                } else {
+                    output.storeEmptyViewHidden.accept(true)
+                }
                 output.storeList.accept(locationVO.documents)
             }) { error in
                 print(error)

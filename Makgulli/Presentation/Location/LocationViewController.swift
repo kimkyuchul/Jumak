@@ -105,6 +105,10 @@ final class LocationViewController: BaseViewController {
                 cell.configureCell(item: item)
             }
             .disposed(by: disposeBag)
+        
+        output.storeEmptyViewHidden
+            .bind(to: locationView.rx.handleStoreEmptyViewVisibility)
+            .disposed(by: disposeBag)
     }
     
     override func bindAction() {
