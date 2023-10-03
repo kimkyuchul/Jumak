@@ -76,7 +76,7 @@ final class DefaultLocationUseCase: LocationUseCase {
                  }
                  
                  guard let placemark = placemarks?.first else {
-                     emitter.onError(error!)
+                     emitter.onError(error.unsafelyUnwrapped)
                      return
                  }
                  

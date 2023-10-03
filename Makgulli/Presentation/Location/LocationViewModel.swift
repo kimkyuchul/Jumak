@@ -122,10 +122,13 @@ final class LocationViewModel: ViewModelType {
             .withLatestFrom(currentLocationAndCategoryType)
             .flatMap { [weak self] currentLocationAndCategoryType -> Observable<String> in
                 let (currentLocation, categoryType) = currentLocationAndCategoryType
-                
                 output.reSearchButtonHidden.accept(true)
                 self?.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: currentLocation.x, y: currentLocation.y, page: 1, display: 30)
-                return self?.locationUseCase.reverseGeocodeLocation(location: currentLocation.convertToCLLocation) ?? .empty()
+                
+                let reverseGeocodeObservable = self?.locationUseCase.reverseGeocodeLocation(location: currentLocation.convertToCLLocation)
+                    .catchAndReturn("알 수 없는 지역입니다.")
+                
+                return reverseGeocodeObservable ?? .empty()
             }
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
@@ -200,7 +203,9 @@ final class LocationViewModel: ViewModelType {
         locationCoordinate
             .withUnretained(self)
             .flatMapLatest { owner, location in
-                return owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
+                let reverseGeocodeObservable = owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
+                    .catchAndReturn("알 수 없는 지역입니다.")
+                return reverseGeocodeObservable
             }
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
