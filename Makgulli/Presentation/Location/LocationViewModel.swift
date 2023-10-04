@@ -98,13 +98,14 @@ final class LocationViewModel: ViewModelType {
             .withLatestFrom(currentLocation) { index, location in
                 return (index, location)
             }
-            .bind(onNext: { [weak self] indexLocation in
+            .withUnretained(self)
+            .bind(onNext: { owner, indexLocation in
                 let (indexPath, location) = indexLocation
                 let categoryType = CategoryType.allCases[indexPath.row]
                 
                 output.reSearchButtonHidden.accept(true)
-                self?.categoryType.accept(categoryType)
-                self?.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: location.x, y: location.y, page: 1, display: 30)
+                owner.categoryType.accept(categoryType)
+                owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: location.x, y: location.y, page: 1, display: 30)
             })
             .disposed(by: disposeBag)
         
@@ -120,15 +121,16 @@ final class LocationViewModel: ViewModelType {
     
         input.didSelectRefreshButton
             .withLatestFrom(currentLocationAndCategoryType)
-            .flatMap { [weak self] currentLocationAndCategoryType -> Observable<String> in
+            .withUnretained(self)
+            .flatMap { owner, currentLocationAndCategoryType -> Observable<String> in
                 let (currentLocation, categoryType) = currentLocationAndCategoryType
                 output.reSearchButtonHidden.accept(true)
-                self?.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: currentLocation.x, y: currentLocation.y, page: 1, display: 30)
+                owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: currentLocation.x, y: currentLocation.y, page: 1, display: 30)
                 
-                let reverseGeocodeObservable = self?.locationUseCase.reverseGeocodeLocation(location: currentLocation.convertToCLLocation)
+                let reverseGeocodeObservable = owner.locationUseCase.reverseGeocodeLocation(location: currentLocation.convertToCLLocation)
                     .catchAndReturn("알 수 없는 지역입니다.")
                 
-                return reverseGeocodeObservable ?? .empty()
+                return reverseGeocodeObservable
             }
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
