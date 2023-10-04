@@ -45,7 +45,8 @@ final class LocationViewController: BaseViewController {
         output.storeList
             .withUnretained(self)
             .bind(onNext: { owner, storeList in
-                owner.setUpMarker(storeList: storeList)
+                owner.setUpMarker(selectedIndex: 0, storeList: storeList)
+                owner.locationView.storeCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
             })
             .disposed(by: disposeBag)
         
@@ -105,7 +106,7 @@ final class LocationViewController: BaseViewController {
                 cell.configureCell(item: item)
             }
             .disposed(by: disposeBag)
-        
+            
         output.storeEmptyViewHidden
             .bind(to: locationView.rx.handleStoreEmptyViewVisibility)
             .disposed(by: disposeBag)

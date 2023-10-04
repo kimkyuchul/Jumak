@@ -74,7 +74,7 @@ final class LocationViewModel: ViewModelType {
         
         input.willDisplayCell
             .bind(onNext: { indexPath in
-                print(indexPath)
+//                print(indexPath)
             })
             .disposed(by: disposeBag)
         
@@ -177,8 +177,8 @@ final class LocationViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        let storeListObservable = output.storeList.asObservable()
-        
+        let storeListObservable = output.storeList
+
         storeListObservable
             .withUnretained(self)
             .subscribe(onNext: { owner, documentVO in
