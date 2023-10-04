@@ -124,7 +124,6 @@ final class LocationViewController: BaseViewController {
         locationView.storeCollectionView.rx.itemSelected
             .withUnretained(self)
             .bind(onNext: { owner, index in
-                print(index)
                 owner.navigationController?.pushViewController(LocationDetailViewController(), animated: true)
             })
             .disposed(by: disposeBag)

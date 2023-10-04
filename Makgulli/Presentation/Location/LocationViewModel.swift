@@ -152,7 +152,7 @@ final class LocationViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
     
-        let userLocationAndCategoryType = Observable.zip(output.currentUserLocation, self.categoryType)
+        let userLocationAndCategoryType = Observable.combineLatest(output.currentUserLocation, self.categoryType)
         
         self.locationUseCase.locationUpdateSubject
             .withLatestFrom(userLocationAndCategoryType)
