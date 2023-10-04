@@ -16,7 +16,7 @@ struct MetaVO {
     let is_end: Bool
 }
 
-struct DocumentVO {
+struct DocumentVO: Equatable {
     let placeName: String
     let distance: String
     let placeURL: String

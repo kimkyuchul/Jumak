@@ -43,6 +43,7 @@ final class LocationViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         output.storeList
+            .distinctUntilChanged()
             .withUnretained(self)
             .bind(onNext: { owner, storeList in
                 owner.setUpMarker(selectedIndex: 0, storeList: storeList)
