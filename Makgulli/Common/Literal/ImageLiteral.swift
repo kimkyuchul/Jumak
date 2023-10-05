@@ -36,6 +36,8 @@ enum ImageLiteral {
     static var bossamCategoryIcon: UIImage { .load(systemName: "frying.pan.fill") }
     static var koreaIcon: UIImage { .load(systemName: "k.circle.fill") }
     static var storeEmptyIcon: UIImage { .load(systemName: "location.slash.fill") }
+    static var starIcon: UIImage { .load(systemName: "star") }
+    static var fillStarIcon: UIImage { .load(systemName: "star.fill") }
 }
 
 extension UIImage {

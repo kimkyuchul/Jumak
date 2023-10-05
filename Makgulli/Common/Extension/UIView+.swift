@@ -31,6 +31,12 @@ extension UIView {
         layer.shadowOffset = CGSize(width: -2, height: 2)
         layer.shadowRadius = 3
     }
+    
+    func roundCorners(cornerRadius: CGFloat, maskedCorners: CACornerMask) {
+        clipsToBounds = true
+        layer.cornerRadius = cornerRadius
+        layer.maskedCorners = CACornerMask(arrayLiteral: maskedCorners)
+    }
 }
 
 
