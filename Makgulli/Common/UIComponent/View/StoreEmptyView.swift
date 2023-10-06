@@ -47,7 +47,6 @@ final class StoreEmptyView: BaseView {
             make.leading.equalToSuperview().inset(24)
             make.centerY.equalToSuperview()
             make.size.equalTo(50)
-            
         }
         
         emptyTitleLabel.snp.makeConstraints { make in
