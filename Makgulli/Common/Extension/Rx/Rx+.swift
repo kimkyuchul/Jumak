@@ -34,3 +34,12 @@ public extension Reactive where Base: UIViewController {
       return ControlEvent(events: source)
     }
 }
+
+extension Reactive where Base: UIButton {
+    var isSelected: ControlProperty<Bool> {
+        return base.rx.controlProperty(
+            editingEvents: [.touchUpInside],
+            getter: { $0.isSelected },
+            setter: { $0.isSelected = $1 })
+    }
+}
