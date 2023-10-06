@@ -31,13 +31,16 @@ enum ImageLiteral {
     static var reSearchArrowIcon: UIImage { .load(systemName: "arrow.counterclockwise") }
     static var userLocationIcon: UIImage { .load(systemName: "scope") }
     static var mapQuestionIcon: UIImage { .load(systemName: "takeoutbag.and.cup.and.straw") }
-    static var makgulliCategoryIcon: UIImage { .load(systemName: "bolt.heart.fill") }
+    static var boltHeartFillIcon: UIImage { .load(systemName: "bolt.heart.fill") }
+    static var boltHeartIcon: UIImage { .load(systemName: "bolt.heart") }
     static var pajeonCategoryIcon: UIImage { .load(systemName: "cloud.sun.rain.fill") }
     static var bossamCategoryIcon: UIImage { .load(systemName: "frying.pan.fill") }
     static var koreaIcon: UIImage { .load(systemName: "k.circle.fill") }
     static var storeEmptyIcon: UIImage { .load(systemName: "location.slash.fill") }
     static var starIcon: UIImage { .load(systemName: "star") }
     static var fillStarIcon: UIImage { .load(systemName: "star.fill") }
+    static var mapIcon: UIImage { .load(systemName: "map") }
+    static var copyIcon : UIImage { .load(systemName: "doc.on.doc") }
 }
 
 extension UIImage {

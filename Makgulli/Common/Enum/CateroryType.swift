@@ -26,7 +26,7 @@ enum CategoryType: String, CaseIterable {
     var image: UIImage {
         switch self {
         case .makgulli:
-            return ImageLiteral.makgulliCategoryIcon
+            return ImageLiteral.boltHeartFillIcon
         case .pajeon:
             return ImageLiteral.pajeonCategoryIcon
         case .bossam:

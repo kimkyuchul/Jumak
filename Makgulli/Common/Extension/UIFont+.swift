@@ -21,6 +21,7 @@ extension UIFont {
         case _16 = 16
         case _18 = 18
         case _20 = 20
+        case _24 = 24
     }
     
     static func boldLineSeed(size: Size, family: Family = .bold) -> UIFont {

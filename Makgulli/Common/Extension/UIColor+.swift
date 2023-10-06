@@ -12,8 +12,12 @@ extension UIColor {
         return UIColor(hex: "#D2D4D7")
     }
     
-    static var lightGray: UIColor {
+    static var deeplightGray: UIColor {
         return UIColor(hex: "#F5F5F5")
+    }
+    
+    static var lightGray: UIColor {
+        return UIColor(hex: "#ECECEC")
     }
     
     static var mediumGray: UIColor {
