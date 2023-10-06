@@ -128,7 +128,7 @@ final class LocationViewController: BaseViewController {
         
         locationView.categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         
-        Observable.zip(locationView.storeCollectionView.rx.modelSelected(DocumentVO.self), locationView.storeCollectionView.rx.itemSelected)
+        Observable.zip(locationView.storeCollectionView.rx.modelSelected(StoreVO.self), locationView.storeCollectionView.rx.itemSelected)
             .withUnretained(self)
             .bind(onNext: { data in
                 let detailVC = LocationDetailViewController()
@@ -157,7 +157,7 @@ final class LocationViewController: BaseViewController {
         locationOverlay.icon = NMFOverlayImage(name: "imgLocationDirection", in: Bundle.naverMapFramework())
     }
     
-    private func setUpMarker(selectedIndex: Int? = nil, storeList: [DocumentVO]) {
+    private func setUpMarker(selectedIndex: Int? = nil, storeList: [StoreVO]) {
         self.clearMarker()
         
         for (index, store) in storeList.enumerated() {

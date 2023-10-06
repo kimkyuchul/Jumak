@@ -9,23 +9,9 @@ import Foundation
 
 struct SearchLocationVO {
     let meta: MetaVO
-    let documents: [DocumentVO]
+    let stores: [StoreVO]
 }
 
 struct MetaVO {
     let is_end: Bool
-}
-
-struct DocumentVO: Equatable {
-    let placeName: String
-    let distance: String
-    let placeURL: String
-    let categoryName: String
-    let addressName: String
-    let roadAddressName: String
-    let id: String
-    let phone: String?
-    let x: Double
-    let y: Double
-    let categoryType: CategoryType
 }

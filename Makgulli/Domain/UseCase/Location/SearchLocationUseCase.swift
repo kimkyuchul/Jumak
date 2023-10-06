@@ -12,7 +12,7 @@ import RxRelay
 
 protocol SearchLocationUseCase {
     func fetchLocation(query: String, x: String, y: String, page: Int, display: Int)
-    var locationVO: PublishSubject<SearchLocationVO> { get }
+    var storeVO: PublishSubject<SearchLocationVO> { get }
 }
 
 final class DefaultSearchLocationUseCase: SearchLocationUseCase {
@@ -20,7 +20,7 @@ final class DefaultSearchLocationUseCase: SearchLocationUseCase {
     private let searchLocationRepository: SearchLocationRepository
     private let disposebag = DisposeBag()
     
-    var locationVO = PublishSubject<SearchLocationVO>()
+    var storeVO = PublishSubject<SearchLocationVO>()
     
     init(searchLocationRepository: SearchLocationRepository) {
         self.searchLocationRepository = searchLocationRepository
@@ -30,9 +30,9 @@ final class DefaultSearchLocationUseCase: SearchLocationUseCase {
     func fetchLocation(query: String, x: String, y: String, page: Int, display: Int) {
         searchLocationRepository.fetchLocation(query: query, x: x, y: y, page: page, display: display)
             .subscribe(with: self, onSuccess: { owner, response  in
-                owner.locationVO.onNext(response)
+                owner.storeVO.onNext(response)
             }, onFailure: { owner, error in
-                owner.locationVO.onError(error)
+                owner.storeVO.onError(error)
             })
             .disposed(by: disposebag)
     }

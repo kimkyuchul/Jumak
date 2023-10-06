@@ -16,7 +16,7 @@ final class LocationViewModel: ViewModelType {
     
     private let searchLocationUseCase: SearchLocationUseCase
     private let locationUseCase: LocationUseCase
-    private var storeList: [DocumentVO] = []
+    private var storeList: [StoreVO] = []
     private var categoryType = BehaviorRelay<CategoryType>(value: .makgulli)
     private var currentLocation = PublishRelay<CLLocationCoordinate2D>()
     
@@ -42,14 +42,14 @@ final class LocationViewModel: ViewModelType {
     }
     
     struct Output {
-        let storeList = PublishRelay<[DocumentVO]>()
+        let storeList = PublishRelay<[StoreVO]>()
         let selectedMarkerIndex = PublishRelay<Int?>()
         let setCameraPosition = PublishRelay<(Double, Double)>()
         let currentUserLocation = PublishRelay<CLLocationCoordinate2D>()
         let currentUserAddress = PublishRelay<String>()
         let authorizationAlertShouldShow = BehaviorRelay<Bool>(value: false)
         let reSearchButtonHidden = PublishRelay<Bool>()
-        let storeCollectionViewDataSource = BehaviorRelay<[DocumentVO]>(value: [])
+        let storeCollectionViewDataSource = BehaviorRelay<[StoreVO]>(value: [])
         let storeEmptyViewHidden = PublishRelay<Bool>()
     }
     
@@ -166,14 +166,14 @@ final class LocationViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        self.searchLocationUseCase.locationVO
-            .subscribe(onNext: { locationVO in
-                if locationVO.documents.isEmpty {
+        self.searchLocationUseCase.storeVO
+            .subscribe(onNext: { storeVO in
+                if storeVO.stores.isEmpty {
                     output.storeEmptyViewHidden.accept(false)
                 } else {
                     output.storeEmptyViewHidden.accept(true)
                 }
-                output.storeList.accept(locationVO.documents)
+                output.storeList.accept(storeVO.stores)
             }) { error in
                 print(error)
             }
@@ -183,8 +183,8 @@ final class LocationViewModel: ViewModelType {
 
         storeListObservable
             .withUnretained(self)
-            .subscribe(onNext: { owner, documentVO in
-                owner.storeList = documentVO
+            .subscribe(onNext: { owner, storeVO in
+                owner.storeList = storeVO
             })
             .disposed(by: disposeBag)
         
@@ -227,7 +227,7 @@ extension LocationViewModel {
         Observable.combineLatest(output.storeList, self.categoryType)
             .map { storeList, categoryType in
                 return storeList.map { store in
-                    return DocumentVO(
+                    return StoreVO(
                         placeName: store.placeName,
                         distance: store.distance,
                         placeURL: store.placeURL,

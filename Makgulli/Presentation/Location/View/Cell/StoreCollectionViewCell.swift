@@ -63,7 +63,7 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
 }
 
 extension StoreCollectionViewCell {
-    func configureCell(item: DocumentVO) {
+    func configureCell(item: StoreVO) {
         storeTitleLabel.text = item.placeName
     }
 }

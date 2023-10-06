@@ -23,6 +23,7 @@
 		5A6827882AD0509D00C37B17 /* DetailEpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827872AD0509D00C37B17 /* DetailEpisodeView.swift */; };
 		5A68278A2AD054A300C37B17 /* EpisodeVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827892AD054A300C37B17 /* EpisodeVO.swift */; };
 		5A68278C2AD060FA00C37B17 /* DetailBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68278B2AD060FA00C37B17 /* DetailBottomView.swift */; };
+		5A68278E2AD08A2A00C37B17 /* StoreVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68278D2AD08A2A00C37B17 /* StoreVO.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
@@ -124,6 +125,7 @@
 		5A6827872AD0509D00C37B17 /* DetailEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEpisodeView.swift; sourceTree = "<group>"; };
 		5A6827892AD054A300C37B17 /* EpisodeVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeVO.swift; sourceTree = "<group>"; };
 		5A68278B2AD060FA00C37B17 /* DetailBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBottomView.swift; sourceTree = "<group>"; };
+		5A68278D2AD08A2A00C37B17 /* StoreVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVO.swift; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA2002AC3C227006040D2 /* SearchLocationVO.swift */,
+				5A68278D2AD08A2A00C37B17 /* StoreVO.swift */,
 				5A6827892AD054A300C37B17 /* EpisodeVO.swift */,
 			);
 			path = VO;
@@ -953,6 +956,7 @@
 				5A6827752ACE9A1D00C37B17 /* DetailRateView.swift in Sources */,
 				5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */,
 				5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */,
+				5A68278E2AD08A2A00C37B17 /* StoreVO.swift in Sources */,
 				5A9DA2172AC3F629006040D2 /* LocationService.swift in Sources */,
 				5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */,
 				5A9DA21A2AC415C5006040D2 /* BaseViewController.swift in Sources */,
