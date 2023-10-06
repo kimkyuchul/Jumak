@@ -29,6 +29,11 @@ final class LocationViewController: BaseViewController {
         locationView.mapView.addCameraDelegate(delegate: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     override func bind() {
         let input = LocationViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
@@ -122,11 +127,14 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         locationView.categoryCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
-                
-        locationView.storeCollectionView.rx.itemSelected
+        
+        Observable.zip(locationView.storeCollectionView.rx.modelSelected(DocumentVO.self), locationView.storeCollectionView.rx.itemSelected)
             .withUnretained(self)
-            .bind(onNext: { owner, index in
-                owner.navigationController?.pushViewController(LocationDetailViewController(), animated: true)
+            .bind(onNext: { data in
+                let detailVC = LocationDetailViewController()
+                detailVC.data = data.1.0
+                detailVC.hidesBottomBarWhenPushed = true
+                data.0.navigationController?.pushViewController(detailVC, animated: true)
             })
             .disposed(by: disposeBag)
     }
