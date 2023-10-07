@@ -22,7 +22,6 @@ final class DetailTitleView: BaseView {
     }()
     fileprivate let storeTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "창원북면막걸리 금강신라대점 여기까지"
         label.textAlignment = .center
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
@@ -125,5 +124,18 @@ final class DetailTitleView: BaseView {
     }
 }
 
-
-// rx로 텍스트들 바인딩 시키기
+extension Reactive where Base: DetailTitleView {
+    var hashTag: Binder<String?> {
+        return base.hashTagLabel.rx.text
+    }
+    
+    var placeName: Binder<String?> {
+        return base.storeTitleLabel.rx.text
+    }
+    
+    var distance: Binder<String?> {
+        return Binder(self.base) { view, distance in
+            view.distanceLabel.text = "막걸리가 \(String(describing: distance)) 떨어져있어요!"
+        }
+    }
+}
