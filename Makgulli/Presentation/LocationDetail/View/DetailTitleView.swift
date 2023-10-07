@@ -136,8 +136,8 @@ extension Reactive where Base: DetailTitleView {
     var distance: Binder<String?> {
         return Binder(self.base) { view, distance in
             if let distance = distance, let distanceValue = distance.convertMetersToKilometers() {
-                if distanceValue > 20.0 {
-                    view.distanceLabel.text = "막걸리가 20KM 이상 떨어져있어요!"
+                if distanceValue > 15.0 {
+                    view.distanceLabel.text = "막걸리가 15KM 이상 떨어져있어요!"
                 } else {
                     view.distanceLabel.text = "막걸리가 \(distanceValue)KM 떨어져있어요!"
                 }

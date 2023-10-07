@@ -36,6 +36,7 @@ final class LocationDetailViewModel: ViewModelType {
         var address = PublishRelay<String>()
         var roadAddress = PublishRelay<String>()
         var phone = PublishRelay<String>()
+        var rate =  PublishRelay<Int>()
     }
     
     func transform(input: Input) -> Output {
@@ -81,6 +82,10 @@ final class LocationDetailViewModel: ViewModelType {
         
         locationDetailUseCase.phone
             .bind(to: output.phone)
+            .disposed(by: disposeBag)
+        
+        locationDetailUseCase.rate
+            .bind(to: output.rate)
             .disposed(by: disposeBag)
     }
     

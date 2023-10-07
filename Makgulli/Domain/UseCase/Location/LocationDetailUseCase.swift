@@ -21,6 +21,7 @@ final class LocationDetailUseCase {
     var address = PublishSubject<String>()
     var roadAddress = PublishSubject<String>()
     var phone = PublishSubject<String>()
+    var rate = PublishSubject<Int>()
     
     func fetchStoreDetail(store: StoreVO) {
         Observable.just(store)
@@ -34,6 +35,7 @@ final class LocationDetailUseCase {
                 owner.address.onNext(store.addressName)
                 owner.roadAddress.onNext(store.roadAddressName)
                 owner.phone.onNext(store.phone ?? "")
+                owner.rate.onNext(store.rate)
             })
             .disposed(by: disposebag)
 

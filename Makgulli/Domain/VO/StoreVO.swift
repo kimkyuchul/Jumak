@@ -19,4 +19,5 @@ struct StoreVO: Equatable {
     let x: Double
     let y: Double
     let categoryType: CategoryType
+    let rate: Int
 }

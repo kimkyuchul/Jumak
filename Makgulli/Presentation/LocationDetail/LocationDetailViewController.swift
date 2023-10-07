@@ -70,5 +70,12 @@ final class LocationDetailViewController: BaseViewController {
         output.phone
             .bind(to: locationDetailView.infoView.rx.phone)
             .disposed(by: disposeBag)
+        
+        output.rate
+            .withUnretained(self)
+            .bind(onNext: { owner, rate in
+                owner.locationDetailView.rateView.currentStar = rate
+            })
+            .disposed(by: disposeBag)
     }
 }
