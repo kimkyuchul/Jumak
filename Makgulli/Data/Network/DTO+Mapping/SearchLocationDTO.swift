@@ -67,6 +67,6 @@ extension MetaDTO {
 
 extension DocumentDTO {
     func toDomain() -> StoreVO {
-        return StoreVO(placeName: placeName, distance: distance, placeURL: placeURL, categoryName: categoryName, addressName: addressName, roadAddressName: roadAddressName, id: id, phone: phone ?? StringLiteral.noPhoneNumberMessage, x: Double(x) ?? LocationLiteral.latitude, y: Double(y) ?? LocationLiteral.longitude, categoryType: .makgulli, rate: 0)
+        return StoreVO(placeName: placeName, distance: distance, placeURL: placeURL, categoryName: categoryName, addressName: addressName, roadAddressName: roadAddressName, id: id, phone: phone ?? StringLiteral.noPhoneNumberMessage, x: Double(x) ?? LocationLiteral.latitude, y: Double(y) ?? LocationLiteral.longitude, categoryType: .makgulli, rate: 0, bookmark: false)
     }
 }

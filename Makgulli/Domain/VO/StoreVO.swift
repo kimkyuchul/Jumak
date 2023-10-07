@@ -20,4 +20,5 @@ struct StoreVO: Equatable {
     let y: Double
     let categoryType: CategoryType
     var rate: Int
+    var bookmark: Bool
 }
