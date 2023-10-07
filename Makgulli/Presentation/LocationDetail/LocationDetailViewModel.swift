@@ -26,6 +26,7 @@ final class LocationDetailViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
+        let viewDidDisappear: Observable<Void>
     }
     
     struct Output {
@@ -47,6 +48,13 @@ final class LocationDetailViewModel: ViewModelType {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { owner, _ in
                 owner.locationDetailUseCase.fetchStoreDetail(store: owner.storeVO)
+            })
+            .disposed(by: disposeBag)
+        
+        input.viewDidDisappear
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                owner.locationDetailUseCase.setBookmarkStore(store: owner.storeVO)
             })
             .disposed(by: disposeBag)
                 

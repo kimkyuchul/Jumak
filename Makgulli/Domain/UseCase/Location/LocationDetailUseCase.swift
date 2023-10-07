@@ -12,7 +12,12 @@ import RxRelay
 
 final class LocationDetailUseCase {
     
+    private let realmRepository: RealmRepository
     private let disposebag = DisposeBag()
+    
+    init(realmRepository: RealmRepository) {
+        self.realmRepository = realmRepository
+    }
     
     var hashTag = PublishSubject<String>()
     var placeName = PublishSubject<String>()
@@ -38,5 +43,17 @@ final class LocationDetailUseCase {
                 owner.rate.onNext(store.rate)
             })
             .disposed(by: disposebag)
+    }
+    
+    func setBookmarkStore(store: StoreVO) {
+        do {
+            if realmRepository.checkContainsStore(id: store.id) {
+                try realmRepository.saveBookmarkStore(store: store)
+            } else {
+                print("이미 존재")
+            }
+        } catch {
+            print("Error setting bookmark store: \(error.localizedDescription)")
+        }
     }
 }

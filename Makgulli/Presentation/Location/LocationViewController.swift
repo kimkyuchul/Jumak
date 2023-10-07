@@ -131,7 +131,7 @@ final class LocationViewController: BaseViewController {
         Observable.zip(locationView.storeCollectionView.rx.modelSelected(StoreVO.self), locationView.storeCollectionView.rx.itemSelected)
             .withUnretained(self)
             .bind(onNext: { data in
-                let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: data.1.0, locationDetailUseCase: LocationDetailUseCase()))
+                let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: data.1.0, locationDetailUseCase: LocationDetailUseCase(realmRepository: DefaultRealmRepository())))
                 detailVC.hidesBottomBarWhenPushed = true
                 data.0.navigationController?.pushViewController(detailVC, animated: true)
             })

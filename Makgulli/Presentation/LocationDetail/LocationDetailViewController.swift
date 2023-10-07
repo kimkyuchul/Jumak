@@ -40,7 +40,8 @@ final class LocationDetailViewController: BaseViewController {
     
     override func bind() {
         let input = LocationDetailViewModel
-            .Input(viewDidLoadEvent: Observable.just(()).asObservable())
+            .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
+                   viewDidDisappear: self.rx.viewDidDisappear.map { _ in })
         let output = viewModel.transform(input: input)
                      
         output.hashTag
@@ -62,7 +63,7 @@ final class LocationDetailViewController: BaseViewController {
         output.address
             .bind(to: locationDetailView.infoView.rx.address)
             .disposed(by: disposeBag)
-        
+
         output.roadAddress
             .bind(to: locationDetailView.infoView.rx.roadAddress)
             .disposed(by: disposeBag)

@@ -238,7 +238,8 @@ extension LocationViewModel {
                         phone: store.phone,
                         x: store.x,
                         y: store.y,
-                        categoryType: categoryType
+                        categoryType: categoryType,
+                        rate: store.rate
                     )
                 }
             }

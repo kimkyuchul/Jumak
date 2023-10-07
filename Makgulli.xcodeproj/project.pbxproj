@@ -26,7 +26,8 @@
 		5A68278E2AD08A2A00C37B17 /* StoreVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68278D2AD08A2A00C37B17 /* StoreVO.swift */; };
 		5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68278F2AD127EC00C37B17 /* LocationDetailUseCase.swift */; };
 		5A6827922AD14E0A00C37B17 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827912AD14E0A00C37B17 /* String+.swift */; };
-		5A6827962AD15EAA00C37B17 /* StoreObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827952AD15EAA00C37B17 /* StoreObject.swift */; };
+		5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827952AD15EAA00C37B17 /* StoreTable.swift */; };
+		5A6827992AD1646D00C37B17 /* DefaultRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
@@ -131,7 +132,8 @@
 		5A68278D2AD08A2A00C37B17 /* StoreVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVO.swift; sourceTree = "<group>"; };
 		5A68278F2AD127EC00C37B17 /* LocationDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailUseCase.swift; sourceTree = "<group>"; };
 		5A6827912AD14E0A00C37B17 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		5A6827952AD15EAA00C37B17 /* StoreObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObject.swift; sourceTree = "<group>"; };
+		5A6827952AD15EAA00C37B17 /* StoreTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTable.swift; sourceTree = "<group>"; };
+		5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRealmRepository.swift; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -291,17 +293,17 @@
 		5A6827932AD15DF400C37B17 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
-				5A6827942AD15E8800C37B17 /* Model */,
+				5A6827972AD1642500C37B17 /* Table+Mapping */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
 		};
-		5A6827942AD15E8800C37B17 /* Model */ = {
+		5A6827972AD1642500C37B17 /* Table+Mapping */ = {
 			isa = PBXGroup;
 			children = (
-				5A6827952AD15EAA00C37B17 /* StoreObject.swift */,
+				5A6827952AD15EAA00C37B17 /* StoreTable.swift */,
 			);
-			path = Model;
+			path = "Table+Mapping";
 			sourceTree = "<group>";
 		};
 		5A70BA262AC174E600506846 = {
@@ -368,7 +370,6 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA1FA2AC2FCB4006040D2 /* Repositories */,
-				5A9DA1F02AC2F378006040D2 /* DTO+Mapping */,
 				5A9DA1DF2AC1B0E7006040D2 /* Network */,
 				5A6827932AD15DF400C37B17 /* DataBase */,
 			);
@@ -466,6 +467,7 @@
 		5A9DA1DF2AC1B0E7006040D2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				5A9DA1F02AC2F378006040D2 /* DTO+Mapping */,
 				5A9DA1F32AC2F44D006040D2 /* API */,
 				5A9DA1E02AC1B0EF006040D2 /* Foundation */,
 			);
@@ -511,6 +513,7 @@
 		5A9DA1FA2AC2FCB4006040D2 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */,
 				5A9DA1FB2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift */,
 			);
 			path = Repositories;
@@ -948,7 +951,7 @@
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
-				5A6827962AD15EAA00C37B17 /* StoreObject.swift in Sources */,
+				5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */,
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
 				5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */,
 				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
@@ -972,6 +975,7 @@
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
 				5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */,
 				5A68277C2ACEC7A700C37B17 /* DetailTitleView.swift in Sources */,
+				5A6827992AD1646D00C37B17 /* DefaultRealmRepository.swift in Sources */,
 				5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */,
 				5A68278A2AD054A300C37B17 /* EpisodeVO.swift in Sources */,
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
