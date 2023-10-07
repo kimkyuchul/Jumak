@@ -42,7 +42,8 @@ final class LocationDetailViewController: BaseViewController {
         let input = LocationDetailViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
                    viewDidDisappear: self.rx.viewDidDisappear.map { _ in },
-                   didSelectRate: locationDetailView.rateView.currentStarSubject)
+                   didSelectRate: locationDetailView.rateView.currentStarSubject,
+                   didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable())
         let output = viewModel.transform(input: input)
                      
         output.hashTag
@@ -77,6 +78,20 @@ final class LocationDetailViewController: BaseViewController {
             .withUnretained(self)
             .bind(onNext: { owner, rate in
                 owner.locationDetailView.rateView.currentStar = rate
+            })
+            .disposed(by: disposeBag)
+        
+        output.showBookmarkToast
+            .withUnretained(self)
+            .bind(onNext: {owner, show in
+                print("\(show) 북마크 토스트 창 띄우기")
+            })
+            .disposed(by: disposeBag)
+        
+        output.showErrorAlert
+            .withUnretained(self)
+            .bind(onNext: {owner, error in
+                print("\(error.localizedDescription) 에러 모달 띄우기")
             })
             .disposed(by: disposeBag)
     }

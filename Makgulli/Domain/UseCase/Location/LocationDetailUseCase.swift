@@ -12,6 +12,10 @@ import RxRelay
 
 final class LocationDetailUseCase {
     
+    enum LocationDetailError: Error {
+        case createBookmark
+    }
+    
     private let realmRepository: RealmRepository
     private let disposebag = DisposeBag()
     
@@ -19,14 +23,16 @@ final class LocationDetailUseCase {
         self.realmRepository = realmRepository
     }
     
-    var hashTag = PublishSubject<String>()
-    var placeName = PublishSubject<String>()
-    var distance = PublishSubject<String>()
-    var type = PublishSubject<String>()
-    var address = PublishSubject<String>()
-    var roadAddress = PublishSubject<String>()
-    var phone = PublishSubject<String>()
-    var rate = PublishSubject<Int>()
+    let hashTag = PublishSubject<String>()
+    let placeName = PublishSubject<String>()
+    let distance = PublishSubject<String>()
+    let type = PublishSubject<String>()
+    let address = PublishSubject<String>()
+    let roadAddress = PublishSubject<String>()
+    let phone = PublishSubject<String>()
+    let rate = PublishSubject<Int>()
+    
+    let errorSubject = PublishSubject<Error>()
     
     func fetchStoreDetail(store: StoreVO) {
         Observable.just(store)
@@ -44,16 +50,26 @@ final class LocationDetailUseCase {
             })
             .disposed(by: disposebag)
     }
-    
-    func setBookmarkStore(store: StoreVO) {
-        do {
-            if realmRepository.checkContainsStore(id: store.id) {
-                try realmRepository.saveBookmarkStore(store: store)
-            } else {
-                print("이미 존재")
-            }
-        } catch {
-            print("Error setting bookmark store: \(error.localizedDescription)")
+        
+    func handleBookmark(_ store: StoreVO) {
+        if store.bookmark && !storeExists(store.id) {
+            createBookmark(store)
+                .subscribe(onCompleted: {
+                    dump("createBookmark")
+                }, onError: { [weak self] error in
+                    self?.errorSubject.onNext(LocationDetailError.createBookmark)
+                })
+                .disposed(by: disposebag)
         }
+    }
+}
+
+extension LocationDetailUseCase {
+    private func storeExists(_ id: String) -> Bool {
+        return realmRepository.checkContainsStore(id: id)
+    }
+    
+    private func createBookmark(_ store: StoreVO) -> Completable {
+        return realmRepository.createBookmark(store)
     }
 }

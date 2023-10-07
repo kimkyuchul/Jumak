@@ -28,17 +28,21 @@ final class LocationDetailViewModel: ViewModelType {
         let viewDidLoadEvent: Observable<Void>
         let viewDidDisappear: Observable<Void>
         let didSelectRate: PublishSubject<Int>
+        let didSelectBookmark: Observable<Bool>
     }
     
     struct Output {
         let hashTag = PublishRelay<String>()
         let placeName = PublishRelay<String>()
         let distance = PublishRelay<String>()
-        var type = PublishRelay<String>()
-        var address = PublishRelay<String>()
-        var roadAddress = PublishRelay<String>()
-        var phone = PublishRelay<String>()
-        var rate =  PublishRelay<Int>()
+        let type = PublishRelay<String>()
+        let address = PublishRelay<String>()
+        let roadAddress = PublishRelay<String>()
+        let phone = PublishRelay<String>()
+        let rate =  PublishRelay<Int>()
+        let showBookmarkToast = PublishRelay<Bool>()
+        let showErrorAlert = PublishRelay<Error>()
+        
     }
     
     func transform(input: Input) -> Output {
@@ -55,7 +59,7 @@ final class LocationDetailViewModel: ViewModelType {
         input.viewDidDisappear
             .withUnretained(self)
             .subscribe(onNext: { owner, _ in
-                owner.locationDetailUseCase.setBookmarkStore(store: owner.storeVO)
+                owner.locationDetailUseCase.handleBookmark(owner.storeVO)
             })
             .disposed(by: disposeBag)
         
@@ -65,6 +69,20 @@ final class LocationDetailViewModel: ViewModelType {
             .bind(onNext: { owner, rate in
                 owner.storeVO.rate = rate
             })
+            .disposed(by: disposeBag)
+        
+        let didSelectBookmark = input.didSelectBookmark
+            .share()
+        
+        didSelectBookmark
+            .withUnretained(self)
+            .bind(onNext: { owner, bookmark in
+                owner.storeVO.bookmark = bookmark
+            })
+            .disposed(by: disposeBag)
+        
+        didSelectBookmark
+            .bind(to: output.showBookmarkToast)
             .disposed(by: disposeBag)
                 
         createOutput(output: output)
@@ -104,7 +122,10 @@ final class LocationDetailViewModel: ViewModelType {
         locationDetailUseCase.rate
             .bind(to: output.rate)
             .disposed(by: disposeBag)
+        
+        locationDetailUseCase.errorSubject
+            .bind(to: output.showErrorAlert)
+            .disposed(by: disposeBag)
     }
-    
 }
 
