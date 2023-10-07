@@ -7,7 +7,9 @@
 
 import UIKit
 
-enum CategoryType: String, CaseIterable {
+import RealmSwift
+
+enum CategoryType: String, CaseIterable, PersistableEnum {
     case makgulli = "막걸리"
     case pajeon = "파전"
     case bossam = "보쌈"
