@@ -1,5 +1,5 @@
 //
-//  StoreObject.swift
+//  StoreTable.swift
 //  Makgulli
 //
 //  Created by 김규철 on 2023/10/07.
@@ -9,7 +9,7 @@ import Foundation
 
 import RealmSwift
 
-final class StoreObject: Object {
+final class StoreTable: Object {
     @Persisted(primaryKey: true) var id: String
     @Persisted var placeName: String
     @Persisted var distance: String
@@ -42,7 +42,7 @@ final class StoreObject: Object {
     }
 }
 
-extension StoreObject {
+extension StoreTable {
     func toDomain() -> StoreVO {
         return StoreVO(placeName: placeName, distance: distance, placeURL: placeURL, categoryName: categoryName, addressName: addressName, roadAddressName: roadAddressName, id: id, phone: phone ?? StringLiteral.noPhoneNumberMessage, x: x , y: y , categoryType: .makgulli, rate: rate)
     }
