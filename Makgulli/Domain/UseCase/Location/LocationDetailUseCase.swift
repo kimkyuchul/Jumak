@@ -38,6 +38,5 @@ final class LocationDetailUseCase {
                 owner.rate.onNext(store.rate)
             })
             .disposed(by: disposebag)
-
     }
 }
