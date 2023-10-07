@@ -41,7 +41,8 @@ final class LocationDetailViewController: BaseViewController {
     override func bind() {
         let input = LocationDetailViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
-                   viewDidDisappear: self.rx.viewDidDisappear.map { _ in })
+                   viewDidDisappear: self.rx.viewDidDisappear.map { _ in },
+                   didSelectRate: locationDetailView.rateView.currentStarSubject)
         let output = viewModel.transform(input: input)
                      
         output.hashTag
