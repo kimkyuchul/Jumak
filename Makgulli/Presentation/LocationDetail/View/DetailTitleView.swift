@@ -93,7 +93,7 @@ final class DetailTitleView: BaseView {
             make.leading.trailing.equalToSuperview().inset(10).priority(.high)
             make.centerX.equalToSuperview()
         }
-            
+        
         distanceLabel.snp.makeConstraints { make in
             make.top.equalTo(storeTitleLabel.snp.bottom).offset(5).priority(.high)
             make.centerX.equalToSuperview()
@@ -135,7 +135,13 @@ extension Reactive where Base: DetailTitleView {
     
     var distance: Binder<String?> {
         return Binder(self.base) { view, distance in
-            view.distanceLabel.text = "막걸리가 \(String(describing: distance)) 떨어져있어요!"
+            if let distance = distance, let distanceValue = distance.convertMetersToKilometers() {
+                if distanceValue > 20.0 {
+                    view.distanceLabel.text = "막걸리가 20KM 이상 떨어져있어요!"
+                } else {
+                    view.distanceLabel.text = "막걸리가 \(distanceValue)KM 떨어져있어요!"
+                }
+            }
         }
     }
 }

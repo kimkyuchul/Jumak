@@ -25,6 +25,7 @@
 		5A68278C2AD060FA00C37B17 /* DetailBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68278B2AD060FA00C37B17 /* DetailBottomView.swift */; };
 		5A68278E2AD08A2A00C37B17 /* StoreVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68278D2AD08A2A00C37B17 /* StoreVO.swift */; };
 		5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68278F2AD127EC00C37B17 /* LocationDetailUseCase.swift */; };
+		5A6827922AD14E0A00C37B17 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827912AD14E0A00C37B17 /* String+.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
@@ -128,6 +129,7 @@
 		5A68278B2AD060FA00C37B17 /* DetailBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBottomView.swift; sourceTree = "<group>"; };
 		5A68278D2AD08A2A00C37B17 /* StoreVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVO.swift; sourceTree = "<group>"; };
 		5A68278F2AD127EC00C37B17 /* LocationDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailUseCase.swift; sourceTree = "<group>"; };
+		5A6827912AD14E0A00C37B17 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */,
 				5A6827782ACEC68000C37B17 /* UILabel+.swift */,
 				5A6827832ACFEB6D00C37B17 /* UIStackView+.swift */,
+				5A6827912AD14E0A00C37B17 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -929,6 +932,7 @@
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
 				5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */,
 				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
+				5A6827922AD14E0A00C37B17 /* String+.swift in Sources */,
 				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
 				5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */,
 				5ADC00392AC5F9370024D7F8 /* CategoryCollectionViewCell.swift in Sources */,
