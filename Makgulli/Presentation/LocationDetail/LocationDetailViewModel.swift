@@ -32,6 +32,10 @@ final class LocationDetailViewModel: ViewModelType {
         let hashTag = PublishRelay<String>()
         let placeName = PublishRelay<String>()
         let distance = PublishRelay<String>()
+        var type = PublishRelay<String>()
+        var address = PublishRelay<String>()
+        var roadAddress = PublishRelay<String>()
+        var phone = PublishRelay<String>()
     }
     
     func transform(input: Input) -> Output {
@@ -62,6 +66,23 @@ final class LocationDetailViewModel: ViewModelType {
         locationDetailUseCase.distance
             .bind(to: output.distance)
             .disposed(by: disposeBag)
+        
+        locationDetailUseCase.type
+            .bind(to: output.type)
+            .disposed(by: disposeBag)
+        
+        locationDetailUseCase.address
+            .bind(to: output.address)
+            .disposed(by: disposeBag)
+        
+        locationDetailUseCase.roadAddress
+            .bind(to: output.roadAddress)
+            .disposed(by: disposeBag)
+        
+        locationDetailUseCase.phone
+            .bind(to: output.phone)
+            .disposed(by: disposeBag)
     }
+    
 }
 

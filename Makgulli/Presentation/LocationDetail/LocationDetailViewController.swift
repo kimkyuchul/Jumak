@@ -54,5 +54,21 @@ final class LocationDetailViewController: BaseViewController {
         output.distance
             .bind(to: locationDetailView.titleView.rx.distance)
             .disposed(by: disposeBag)
+        
+        output.type
+            .bind(to: locationDetailView.infoView.rx.type)
+            .disposed(by: disposeBag)
+        
+        output.address
+            .bind(to: locationDetailView.infoView.rx.address)
+            .disposed(by: disposeBag)
+        
+        output.roadAddress
+            .bind(to: locationDetailView.infoView.rx.roadAddress)
+            .disposed(by: disposeBag)
+        
+        output.phone
+            .bind(to: locationDetailView.infoView.rx.phone)
+            .disposed(by: disposeBag)
     }
 }

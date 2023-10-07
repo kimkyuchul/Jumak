@@ -40,9 +40,8 @@ final class DetailInfoView: BaseView {
         label.textAlignment = .left
         return label
     }()
-    private let typeLabel: UILabel = {
+    fileprivate let typeLabel: UILabel = {
         let label = UILabel()
-        label.text = "음식점 > 술집 > 호프,요리주점"
         label.font = UIFont.regularLineSeed(size: ._16)
         label.textColor = .black
         label.textAlignment = .left
@@ -64,14 +63,13 @@ final class DetailInfoView: BaseView {
         label.textAlignment = .left
         return label
     }()
-    private let addressLabel: UILabel = {
+    fileprivate let addressLabel: UILabel = {
         let label = UILabel()
-        label.text = "경기 용인시 처인구 모현읍 왕산리 506-7"
         label.font = UIFont.regularLineSeed(size: ._16)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.8
         label.textColor = .black
-        label.textAlignment = .left
+        label.textAlignment = .right
         label.numberOfLines = 1
         return label
     }()
@@ -91,9 +89,8 @@ final class DetailInfoView: BaseView {
         label.textAlignment = .left
         return label
     }()
-    private let roadAddressLabel: UILabel = {
+    fileprivate let roadAddressLabel: UILabel = {
         let label = UILabel()
-        label.text = "서울 동대문구 회기로21길 18111"
         label.font = UIFont.regularLineSeed(size: ._16)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.8
@@ -117,9 +114,8 @@ final class DetailInfoView: BaseView {
         label.textAlignment = .left
         return label
     }()
-    private let phoneLabel: UILabel = {
+    fileprivate let phoneLabel: UILabel = {
         let label = UILabel()
-        label.text = "전화번호 정보가 없어요."
         label.font = UIFont.regularLineSeed(size: ._16)
         label.textColor = .black
         label.textAlignment = .right
@@ -179,6 +175,30 @@ final class DetailInfoView: BaseView {
     
     override func setLayout() {
         backgroundColor = .clear
+    }
+}
+
+extension Reactive where Base: DetailInfoView {
+    var type: Binder<String?> {
+        return base.typeLabel.rx.text
+    }
+    
+    var address: Binder<String?> {
+        return base.addressLabel.rx.text
+    }
+    
+    var roadAddress: Binder<String?> {
+        return base.roadAddressLabel.rx.text
+    }
+        
+    var phone: Binder<String?> {
+        return Binder(self.base) { view, phone in
+            if let phone = phone, phone.isEmpty {
+                view.phoneLabel.text = "전화번호 정보가 없어요."
+            } else {
+                view.phoneLabel.text = phone
+            }
+        }
     }
 }
 

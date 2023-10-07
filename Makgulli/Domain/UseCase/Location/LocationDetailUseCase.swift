@@ -14,18 +14,26 @@ final class LocationDetailUseCase {
     
     private let disposebag = DisposeBag()
     
-    var hashTag = PublishRelay<String>()
-    var placeName = PublishRelay<String>()
-    var distance = PublishRelay<String>()
+    var hashTag = PublishSubject<String>()
+    var placeName = PublishSubject<String>()
+    var distance = PublishSubject<String>()
+    var type = PublishSubject<String>()
+    var address = PublishSubject<String>()
+    var roadAddress = PublishSubject<String>()
+    var phone = PublishSubject<String>()
     
     func fetchStoreDetail(store: StoreVO) {
         Observable.just(store)
             .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
             .withUnretained(self)
             .subscribe(onNext: { owner, store in
-                owner.hashTag.accept(store.categoryType.hashTag)
-                owner.placeName.accept(store.placeName)
-                owner.distance.accept(store.distance)
+                owner.hashTag.onNext(store.categoryType.hashTag)
+                owner.placeName.onNext(store.placeName)
+                owner.distance.onNext(store.distance)
+                owner.type.onNext(store.categoryName)
+                owner.address.onNext(store.addressName)
+                owner.roadAddress.onNext(store.roadAddressName)
+                owner.phone.onNext(store.phone ?? "")
             })
             .disposed(by: disposebag)
 
