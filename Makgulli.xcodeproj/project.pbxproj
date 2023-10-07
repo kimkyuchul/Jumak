@@ -78,7 +78,7 @@
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */; };
 		5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */; };
-		5ADC00342AC5F2720024D7F8 /* CateroryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00332AC5F2720024D7F8 /* CateroryType.swift */; };
+		5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00332AC5F2720024D7F8 /* CategoryType.swift */; };
 		5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */; };
 		5ADC00392AC5F9370024D7F8 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */; };
 		5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */; };
@@ -178,7 +178,7 @@
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
 		5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
-		5ADC00332AC5F2720024D7F8 /* CateroryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateroryType.swift; sourceTree = "<group>"; };
+		5ADC00332AC5F2720024D7F8 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
@@ -597,7 +597,7 @@
 		5ADC00322AC5F2590024D7F8 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				5ADC00332AC5F2720024D7F8 /* CateroryType.swift */,
+				5ADC00332AC5F2720024D7F8 /* CategoryType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -935,7 +935,7 @@
 				5A9DA1EB2AC2B74B006040D2 /* Task.swift in Sources */,
 				5A68277E2ACED01C00C37B17 /* BookmarkButton.swift in Sources */,
 				5A9DA20A2AC3CE9F006040D2 /* SearchLocationRepository.swift in Sources */,
-				5ADC00342AC5F2720024D7F8 /* CateroryType.swift in Sources */,
+				5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */,
 				5A6827842ACFEB6D00C37B17 /* UIStackView+.swift in Sources */,
 				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
 				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,

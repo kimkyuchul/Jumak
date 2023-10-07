@@ -1,5 +1,5 @@
 //
-//  CateroryType.swift
+//  CategoryType.swift
 //  Makgulli
 //
 //  Created by 김규철 on 2023/09/29.
@@ -31,6 +31,17 @@ enum CategoryType: String, CaseIterable {
             return ImageLiteral.pajeonCategoryIcon
         case .bossam:
             return ImageLiteral.bossamCategoryIcon
+        }
+    }
+    
+    var hashTag: String {
+        switch self {
+        case .makgulli:
+            return "#막걸리"
+        case .pajeon:
+            return "#파전"
+        case .bossam:
+            return "#보쌈"
         }
     }
 }
