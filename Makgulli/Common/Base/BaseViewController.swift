@@ -14,23 +14,23 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol, BaseBind
     
     var disposeBag: DisposeBag = .init()
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nil, bundle: nil)
-    }
+    init() {
+         super.init(nibName: nil, bundle: nil)
+     }
     
     @available(*, unavailable, message: "remove required init")
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+     required init?(coder: NSCoder) {
+         fatalError("init(coder:) has not been implemented")
+     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
+        bindAction()
         setHierarchy()
         setConstraints()
         setLayout()
         setNavigationBar()
-        bind()
-        bindAction()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
