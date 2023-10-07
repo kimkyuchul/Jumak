@@ -86,11 +86,13 @@ final class DetailRateView: BaseView {
     }
     
     private func updateStars() {
-        for index in 0..<starNumber {
-            if index < currentStar {
-                buttons[index].setImage(ImageLiteral.fillStarIcon, for: .normal)
-            } else {
-                buttons[index].setImage(ImageLiteral.starIcon, for: .normal)
+        DispatchQueue.main.async {
+            for index in 0..<self.starNumber {
+                if index < self.currentStar {
+                    self.buttons[index].setImage(ImageLiteral.fillStarIcon, for: .normal)
+                } else {
+                    self.buttons[index].setImage(ImageLiteral.starIcon, for: .normal)
+                }
             }
         }
     }
