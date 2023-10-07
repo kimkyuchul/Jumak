@@ -7,56 +7,63 @@
 
 import Foundation
 
+import RxSwift
 import RealmSwift
 
 protocol RealmRepository {
-    func saveBookmarkStore(store: StoreVO) throws
+    func createBookmark(_ store: StoreVO) -> Completable
     func checkContainsStore(id: String) -> Bool
 }
 
 final class DefaultRealmRepository: RealmRepository {
-    let realm = try? Realm()
+    private let realm: Realm
     
-    enum RealmError: Error {
-        case saveBookmarkStore(description: String)
-    }
-    
-    init() {
-        if let fileURL = realm?.configuration.fileURL {
+    init?() {
+        guard let realm = try? Realm() else { return nil }
+        self.realm = realm
+        
+        if let fileURL = realm.configuration.fileURL {
             print("Realm fileURL \(String(describing: fileURL))")
         }
     }
-    
-    func saveBookmarkStore(store: StoreVO) throws {
-        guard let realm else { return }
-        
-        let storeTable = StoreTable(id: store.id,
-                                    placeName: store.placeName,
-                                    distance: store.distance,
-                                    placeURL: store.placeURL,
-                                    categoryName: store.categoryName,
-                                    addressName: store.addressName,
-                                    roadAddressName: store.roadAddressName,
-                                    phone: store.phone,
-                                    x: store.x,
-                                    y: store.y,
-                                    categoryType: store.categoryType,
-                                    rate: store.rate)
-        do {
-            try realm.write {
-                realm.add(storeTable)
+
+    func createBookmark(_ store: StoreVO) -> Completable {
+        return Completable.create { completable in
+            do {
+                try self.realm.write {
+                    self.realm.add(store.makeStoreTable())
+                }
+                completable(.completed)
+            } catch let error {
+                completable(.error(error))
             }
-        } catch {
-            throw RealmError.saveBookmarkStore(description: error.localizedDescription)
+            return Disposables.create()
         }
     }
     
+    
     func checkContainsStore(id: String) -> Bool {
-        guard let realm else { return false }
-        
-        let result = realm.objects(StoreTable.self).where {
-            $0.id == id
-        }
-        return result.isEmpty
+        let result = realm.objects(StoreTable.self).filter("id == %@", id)
+        return !result.isEmpty
+    }
+}
+
+
+private extension StoreVO {
+    func makeStoreTable() -> StoreTable {
+        let storeTable = StoreTable(id: self.id,
+                                    placeName: self.placeName,
+                                    distance: self.distance,
+                                    placeURL: self.placeURL,
+                                    categoryName: self.categoryName,
+                                    addressName: self.addressName,
+                                    roadAddressName: self.roadAddressName,
+                                    phone: self.phone,
+                                    x: self.x,
+                                    y: self.y,
+                                    categoryType: self.categoryType,
+                                    rate: self.rate,
+                                    bookmark: self.bookmark)
+        return storeTable
     }
 }
