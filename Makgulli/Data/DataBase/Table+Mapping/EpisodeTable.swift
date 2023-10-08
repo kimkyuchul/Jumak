@@ -34,6 +34,6 @@ final class EpisodeTable: Object {
 
 extension EpisodeTable {
     func toDomain() -> EpisodeVO {
-        return EpisodeVO(date: date, title: title, content: content, imageURL: imageURL, alcohol: alcohol, mixedAlcohol: mixedAlcohol, drink: drink)
+        return EpisodeVO(id: _id.stringValue, date: date, title: title, content: content, imageURL: imageURL, alcohol: alcohol, mixedAlcohol: mixedAlcohol, drink: drink)
     }
 }

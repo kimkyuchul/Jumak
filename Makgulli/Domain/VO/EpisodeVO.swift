@@ -8,6 +8,7 @@
 import Foundation
 
 struct EpisodeVO: Hashable {
+    let id: String
     let uuid : String = UUID().uuidString
     let date: String
     let title: String
