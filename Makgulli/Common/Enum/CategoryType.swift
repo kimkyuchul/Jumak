@@ -36,6 +36,17 @@ enum CategoryType: String, CaseIterable, PersistableEnum {
         }
     }
     
+    var logoImage: UIImage {
+        switch self {
+        case .makgulli:
+            return ImageLiteral.makgulliLogo
+        case .pajeon:
+            return ImageLiteral.pajeonLogo
+        case .bossam:
+            return ImageLiteral.bossamCategoryIcon
+        }
+    }
+    
     var hashTag: String {
         switch self {
         case .makgulli:

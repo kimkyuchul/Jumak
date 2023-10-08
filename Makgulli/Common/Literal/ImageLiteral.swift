@@ -13,13 +13,14 @@ enum ImageLiteral {
     static var homeIcon: UIImage { .load(named: "homeIcon") }
     
     //MARK: - logo icon
-    static var makgulliLogo: UIImage { .load(named: "makgulliLogo") }
     static var touchMarker: UIImage { .load(named: "TouchMarker") }
     static var marker: UIImage { .load(named: "Marker") }
     
     //MARK: - Home
     
     //MARK: - Map
+    static var makgulliLogo: UIImage { .load(named: "Makgulli") }
+    static var pajeonLogo: UIImage { .load(named: "Pajeon") }
     
     //MARK: - Favorite
     
@@ -37,10 +38,13 @@ enum ImageLiteral {
     static var bossamCategoryIcon: UIImage { .load(systemName: "frying.pan.fill") }
     static var koreaIcon: UIImage { .load(systemName: "k.circle.fill") }
     static var storeEmptyIcon: UIImage { .load(systemName: "location.slash.fill") }
+    static var storeLocationIcon: UIImage { .load(systemName: "location.circle") }
     static var starIcon: UIImage { .load(systemName: "star") }
+    static var starCircleIcon: UIImage { .load(systemName: "star.circle") }
     static var fillStarIcon: UIImage { .load(systemName: "star.fill") }
     static var mapIcon: UIImage { .load(systemName: "map") }
     static var copyIcon : UIImage { .load(systemName: "doc.on.doc") }
+    static var swifeArrowIcon : UIImage { .load(systemName: "cursorarrow.motionlines") }
 }
 
 extension UIImage {
