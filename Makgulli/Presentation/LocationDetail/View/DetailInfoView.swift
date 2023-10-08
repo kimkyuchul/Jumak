@@ -43,6 +43,8 @@ final class DetailInfoView: BaseView {
     fileprivate let typeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.regularLineSeed(size: ._16)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.8
         label.textColor = .black
         label.textAlignment = .left
         return label
