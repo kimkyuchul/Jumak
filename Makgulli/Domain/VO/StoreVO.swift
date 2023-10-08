@@ -21,4 +21,5 @@ struct StoreVO: Equatable {
     let categoryType: CategoryType
     var rate: Int
     var bookmark: Bool
+    var episode: [EpisodeVO]
 }

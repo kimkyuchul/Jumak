@@ -240,7 +240,8 @@ extension LocationViewModel {
                         y: store.y,
                         categoryType: categoryType,
                         rate: store.rate,
-                        bookmark: store.bookmark
+                        bookmark: store.bookmark,
+                        episode: store.episode
                     )
                 }
             }

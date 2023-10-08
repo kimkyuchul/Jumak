@@ -24,6 +24,7 @@ final class StoreTable: Object {
     @Persisted var rate: Int
     @Persisted var date: Date
     @Persisted var bookmark: Bool
+    @Persisted var episode: List<EpisodeTable>
     
     convenience init(id: String, placeName: String, distance: String, placeURL: String, categoryName: String, addressName: String, roadAddressName: String, phone: String?, x: Double, y: Double, categoryType: CategoryType, rate: Int, bookmark: Bool) {
         self.init()
@@ -46,7 +47,7 @@ final class StoreTable: Object {
 
 extension StoreTable {
     func toDomain() -> StoreVO {
-        return StoreVO(placeName: placeName, distance: distance, placeURL: placeURL, categoryName: categoryName, addressName: addressName, roadAddressName: roadAddressName, id: id, phone: phone ?? StringLiteral.noPhoneNumberMessage, x: x , y: y , categoryType: .makgulli, rate: rate, bookmark: bookmark)
+        return StoreVO(placeName: placeName, distance: distance, placeURL: placeURL, categoryName: categoryName, addressName: addressName, roadAddressName: roadAddressName, id: id, phone: phone ?? StringLiteral.noPhoneNumberMessage, x: x , y: y , categoryType: .makgulli, rate: rate, bookmark: bookmark, episode: episode.map { $0.toDomain() })
     }
 }
 

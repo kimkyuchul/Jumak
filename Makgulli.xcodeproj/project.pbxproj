@@ -28,6 +28,7 @@
 		5A6827922AD14E0A00C37B17 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827912AD14E0A00C37B17 /* String+.swift */; };
 		5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827952AD15EAA00C37B17 /* StoreTable.swift */; };
 		5A6827992AD1646D00C37B17 /* DefaultRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */; };
+		5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
@@ -134,6 +135,7 @@
 		5A6827912AD14E0A00C37B17 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		5A6827952AD15EAA00C37B17 /* StoreTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTable.swift; sourceTree = "<group>"; };
 		5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRealmRepository.swift; sourceTree = "<group>"; };
+		5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTable.swift; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				5A6827952AD15EAA00C37B17 /* StoreTable.swift */,
+				5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */,
 			);
 			path = "Table+Mapping";
 			sourceTree = "<group>";
@@ -950,6 +953,7 @@
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
+				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
 				5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */,
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
