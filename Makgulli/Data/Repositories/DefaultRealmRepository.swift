@@ -11,8 +11,11 @@ import RxSwift
 import RealmSwift
 
 protocol RealmRepository {
-    func createBookmark(_ store: StoreVO) -> Completable
+    func createStore(_ store: StoreVO) -> Completable
+    func updateStore(_ store: StoreVO) -> Completable
+    func deleteStore(_ store: StoreVO) -> Completable
     func checkContainsStore(id: String) -> Bool
+    func shouldUpdateStore(_ store: StoreVO) -> Bool
 }
 
 final class DefaultRealmRepository: RealmRepository {
@@ -26,8 +29,8 @@ final class DefaultRealmRepository: RealmRepository {
             print("Realm fileURL \(String(describing: fileURL))")
         }
     }
-
-    func createBookmark(_ store: StoreVO) -> Completable {
+    
+    func createStore(_ store: StoreVO) -> Completable {
         return Completable.create { completable in
             do {
                 try self.realm.write {
@@ -41,9 +44,81 @@ final class DefaultRealmRepository: RealmRepository {
         }
     }
     
+    func updateStore(_ store: StoreVO) -> Completable {
+        guard let storeObject = realm.object(
+            ofType: StoreTable.self,
+            forPrimaryKey: store.id
+        ) else { return .empty() }
+        
+        return Completable.create { completable in
+            do {
+                try self.realm.write {
+                    storeObject.bookmark = store.bookmark
+                    storeObject.rate = store.rate
+                    storeObject.categoryType = store.categoryType
+                    
+                    storeObject.episode.removeAll()
+                    store.episode.forEach { episodeVO in
+                        let episodeTable = EpisodeTable(
+                            date: episodeVO.date,
+                            title: episodeVO.title,
+                            content: episodeVO.content,
+                            imageURL: episodeVO.imageURL,
+                            alcohol: episodeVO.alcohol,
+                            mixedAlcohol: episodeVO.mixedAlcohol,
+                            drink: episodeVO.drink
+                        )
+                        storeObject.episode.append(episodeTable)
+                    }
+                    
+                    self.realm.add(storeObject, update: .modified)
+                }
+                completable(.completed)
+            } catch let error {
+                completable(.error(error))
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func deleteStore(_ store: StoreVO) -> Completable {
+        guard let storeObject = realm.object(
+            ofType: StoreTable.self,
+            forPrimaryKey: store.id
+        ) else { return .empty() }
+        
+        return Completable.create { completable in
+            do {
+                try self.realm.write {
+                    self.realm.delete(storeObject)
+                }
+                completable(.completed)
+            } catch let error {
+                completable(.error(error))
+            }
+            return Disposables.create()
+        }
+    }
+    
     func checkContainsStore(id: String) -> Bool {
         let result = realm.objects(StoreTable.self).filter("id == %@", id)
         return !result.isEmpty
+    }
+    
+    func shouldUpdateStore(_ store: StoreVO) -> Bool {
+        guard let storeObject = realm.object(
+            ofType: StoreTable.self,
+            forPrimaryKey: store.id
+        ) else { return false }
+        
+        let storeEpisodeIds = Set(store.episode.map { $0.id })
+        let realmEpisodeIds = Set(storeObject.episode.map { $0._id.stringValue })
+
+        if store.rate != storeObject.rate || storeEpisodeIds != realmEpisodeIds {
+            return true
+        }
+
+        return false
     }
 }
 

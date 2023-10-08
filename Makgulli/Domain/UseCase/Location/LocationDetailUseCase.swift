@@ -13,7 +13,9 @@ import RxRelay
 final class LocationDetailUseCase {
     
     enum LocationDetailError: Error {
-        case createBookmark
+        case createStore
+        case updateStore
+        case deleteStore
     }
     
     private let realmRepository: RealmRepository
@@ -50,28 +52,71 @@ final class LocationDetailUseCase {
             })
             .disposed(by: disposebag)
     }
-    
-    func handleBookmark(_ store: StoreVO) {
-        if store.bookmark && !storeExists(store.id) {
+        
+    func  handleLocalStore(_ store: StoreVO) {
+        if !storeExists(store.id) && hasRatingOrEpisode(store) {
+            // Realm에 존재하지 않으면서, 평점 또는 에피소드, 북마크 중 하나라도 존재하는 경우
             createBookmark(store)
-        } else if !store.bookmark && storeExists(store.id) {
-            //update
+            
+        } else if storeExists(store.id) {
+            // Realm에 존재하는 경우
+            
+            if hasRatingOrEpisode(store) {
+                // 평점 또는 에피소드, 북마크 중 하나라도 존재하는 경우
+                
+                if shouldUpdateStore(store) {
+                    // 변경된 사항이 존재할 경우
+                    updateStoreBookmark(store)
+                }
+                
+            } else {
+                // Realm에 존재하는데, 평점, 에피소드, 북마크 모두 값이 없는 경우
+                deleteStoreBookmark(store)
+            }
         }
     }
 }
 
 extension LocationDetailUseCase {
+    private func createBookmark(_ store: StoreVO) {
+        realmRepository.createStore(store)
+            .subscribe(onCompleted: {
+                dump("createBookmark")
+            }, onError: { [weak self] error in
+                self?.errorSubject.onNext(LocationDetailError.createStore)
+            })
+            .disposed(by: disposebag)
+    }
+    
+    private func updateStoreBookmark(_ store: StoreVO) {
+        realmRepository.updateStore(store)
+            .subscribe(onCompleted: {
+                dump("updateStoreBookmark")
+            }, onError: { [weak self] error in
+                self?.errorSubject.onNext(LocationDetailError.updateStore)
+            })
+            .disposed(by: disposebag)
+    }
+    
+    private func deleteStoreBookmark(_ store: StoreVO) {
+        realmRepository.deleteStore(store)
+            .subscribe(onCompleted: {
+                dump("deleteStoreBookmark")
+            }, onError: { [weak self] error in
+                self?.errorSubject.onNext(LocationDetailError.deleteStore)
+            })
+            .disposed(by: disposebag)
+    }
+    
     private func storeExists(_ id: String) -> Bool {
         return realmRepository.checkContainsStore(id: id)
     }
     
-    private func createBookmark(_ store: StoreVO) {
-        realmRepository.createBookmark(store)
-            .subscribe(onCompleted: {
-                dump("createBookmark")
-            }, onError: { [weak self] error in
-                self?.errorSubject.onNext(LocationDetailError.createBookmark)
-            })
-            .disposed(by: disposebag)
+    private func shouldUpdateStore(_ store: StoreVO) -> Bool {
+        return realmRepository.shouldUpdateStore(store)
+    }
+    
+    private func hasRatingOrEpisode(_ store: StoreVO) -> Bool {
+        return store.rate > 0 || !store.episode.isEmpty || store.bookmark
     }
 }

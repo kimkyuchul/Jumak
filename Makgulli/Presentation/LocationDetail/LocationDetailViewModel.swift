@@ -59,7 +59,7 @@ final class LocationDetailViewModel: ViewModelType {
         input.viewDidDisappear
             .withUnretained(self)
             .subscribe(onNext: { owner, _ in
-                owner.locationDetailUseCase.handleBookmark(owner.storeVO)
+                owner.locationDetailUseCase.handleLocalStore(owner.storeVO)
             })
             .disposed(by: disposeBag)
         
