@@ -29,6 +29,8 @@
 		5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827952AD15EAA00C37B17 /* StoreTable.swift */; };
 		5A6827992AD1646D00C37B17 /* DefaultRealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */; };
 		5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */; };
+		5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */; };
+		5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
@@ -136,6 +138,8 @@
 		5A6827952AD15EAA00C37B17 /* StoreTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTable.swift; sourceTree = "<group>"; };
 		5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRealmRepository.swift; sourceTree = "<group>"; };
 		5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTable.swift; sourceTree = "<group>"; };
+		5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreBadge.swift; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 			children = (
 				5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */,
 				5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */,
+				5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 				5A6827782ACEC68000C37B17 /* UILabel+.swift */,
 				5A6827832ACFEB6D00C37B17 /* UIStackView+.swift */,
 				5A6827912AD14E0A00C37B17 /* String+.swift */,
+				5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -940,6 +946,7 @@
 				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
 				5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */,
 				5A6827772ACEA7B200C37B17 /* RateButton.swift in Sources */,
+				5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */,
 				5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */,
 				5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */,
 				5A6827882AD0509D00C37B17 /* DetailEpisodeView.swift in Sources */,
@@ -996,6 +1003,7 @@
 				5A9DA2172AC3F629006040D2 /* LocationService.swift in Sources */,
 				5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */,
 				5A9DA21A2AC415C5006040D2 /* BaseViewController.swift in Sources */,
+				5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */,
 				5A6827702ACE7A6C00C37B17 /* EpisodeCollectionViewCell.swift in Sources */,
 				5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */,
 			);
