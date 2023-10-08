@@ -50,16 +50,12 @@ final class LocationDetailUseCase {
             })
             .disposed(by: disposebag)
     }
-        
+    
     func handleBookmark(_ store: StoreVO) {
         if store.bookmark && !storeExists(store.id) {
             createBookmark(store)
-                .subscribe(onCompleted: {
-                    dump("createBookmark")
-                }, onError: { [weak self] error in
-                    self?.errorSubject.onNext(LocationDetailError.createBookmark)
-                })
-                .disposed(by: disposebag)
+        } else if !store.bookmark && storeExists(store.id) {
+            //update
         }
     }
 }
@@ -69,7 +65,13 @@ extension LocationDetailUseCase {
         return realmRepository.checkContainsStore(id: id)
     }
     
-    private func createBookmark(_ store: StoreVO) -> Completable {
-        return realmRepository.createBookmark(store)
+    private func createBookmark(_ store: StoreVO) {
+        realmRepository.createBookmark(store)
+            .subscribe(onCompleted: {
+                dump("createBookmark")
+            }, onError: { [weak self] error in
+                self?.errorSubject.onNext(LocationDetailError.createBookmark)
+            })
+            .disposed(by: disposebag)
     }
 }

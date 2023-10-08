@@ -41,13 +41,11 @@ final class DefaultRealmRepository: RealmRepository {
         }
     }
     
-    
     func checkContainsStore(id: String) -> Bool {
         let result = realm.objects(StoreTable.self).filter("id == %@", id)
         return !result.isEmpty
     }
 }
-
 
 private extension StoreVO {
     func makeStoreTable() -> StoreTable {
