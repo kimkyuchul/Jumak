@@ -97,6 +97,9 @@ final class DefaultRealmRepository: RealmRepository {
                     if let storeTable {
                         store.bookmark = storeTable.bookmark
                         store.rate = storeTable.rate
+                    } else {
+                        store.bookmark = false
+                        store.rate = 0
                     }
                 }
                 
