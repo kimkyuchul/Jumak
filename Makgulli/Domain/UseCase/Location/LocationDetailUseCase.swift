@@ -33,6 +33,7 @@ final class LocationDetailUseCase {
     let roadAddress = PublishSubject<String>()
     let phone = PublishSubject<String>()
     let rate = PublishSubject<Int>()
+    let bookmark =  PublishSubject<Bool>()
     
     let errorSubject = PublishSubject<Error>()
     
@@ -49,6 +50,7 @@ final class LocationDetailUseCase {
                 owner.roadAddress.onNext(store.roadAddressName)
                 owner.phone.onNext(store.phone ?? "")
                 owner.rate.onNext(store.rate)
+                owner.bookmark.onNext(store.bookmark)
             })
             .disposed(by: disposebag)
     }

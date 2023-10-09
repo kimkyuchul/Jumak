@@ -13,8 +13,8 @@ import RxSwift
 
 final class LocationDetailViewController: BaseViewController {
     
-//    let episodeData: [EpisodeVO] = [EpisodeVO(id: "aa", date: "2020", title: "모든 플레이어의 정답지가", content: "ㅁ", imageURL: "k.circle.fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5), EpisodeVO(date: "2020", title: "모든", id: "aa",  플레이어의 정답지가", content: "ㅁ", imageURL: "k.circle.fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5), EpisodeVO(date: "2020", title: "모든 플레이어의 정답지가", content: , "id: "aa", ㅁ", imageURL: "k.circle.fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5), EpisodeVO(date: "2020", title: "모든 플레이어의 정답지가", content: "ㅁ", imageURL: "k.circle.id: <#String#>, fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5)]
-
+    //    let episodeData: [EpisodeVO] = [EpisodeVO(id: "aa", date: "2020", title: "모든 플레이어의 정답지가", content: "ㅁ", imageURL: "k.circle.fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5), EpisodeVO(date: "2020", title: "모든", id: "aa",  플레이어의 정답지가", content: "ㅁ", imageURL: "k.circle.fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5), EpisodeVO(date: "2020", title: "모든 플레이어의 정답지가", content: , "id: "aa", ㅁ", imageURL: "k.circle.fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5), EpisodeVO(date: "2020", title: "모든 플레이어의 정답지가", content: "ㅁ", imageURL: "k.circle.id: <#String#>, fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5)]
+    
     private var locationDetailView = LocationDetailView()
     
     private let viewModel: LocationDetailViewModel
@@ -41,11 +41,11 @@ final class LocationDetailViewController: BaseViewController {
     override func bind() {
         let input = LocationDetailViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
-                   viewDidDisappear: self.rx.viewDidDisappear.map { _ in },
+                   viewWillDisappearEvent: self.rx.viewWillDisappear.map { _ in },
                    didSelectRate: locationDetailView.rateView.currentStarSubject,
                    didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable())
         let output = viewModel.transform(input: input)
-                     
+        
         output.hashTag
             .bind(to: locationDetailView.titleView.rx.hashTag)
             .disposed(by: disposeBag)
@@ -65,7 +65,7 @@ final class LocationDetailViewController: BaseViewController {
         output.address
             .bind(to: locationDetailView.infoView.rx.address)
             .disposed(by: disposeBag)
-
+        
         output.roadAddress
             .bind(to: locationDetailView.infoView.rx.roadAddress)
             .disposed(by: disposeBag)
@@ -79,6 +79,10 @@ final class LocationDetailViewController: BaseViewController {
             .bind(onNext: { owner, rate in
                 owner.locationDetailView.rateView.currentStar = rate
             })
+            .disposed(by: disposeBag)
+        
+        output.bookmark
+            .bind(to: locationDetailView.titleView.bookMarkButton.rx.isSelected)
             .disposed(by: disposeBag)
         
         output.showBookmarkToast

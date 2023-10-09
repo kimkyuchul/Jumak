@@ -26,7 +26,7 @@ final class LocationDetailViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
-        let viewDidDisappear: Observable<Void>
+        let viewWillDisappearEvent: Observable<Void>
         let didSelectRate: PublishSubject<Int>
         let didSelectBookmark: Observable<Bool>
     }
@@ -40,6 +40,7 @@ final class LocationDetailViewModel: ViewModelType {
         let roadAddress = PublishRelay<String>()
         let phone = PublishRelay<String>()
         let rate =  PublishRelay<Int>()
+        let bookmark = PublishRelay<Bool>()
         let showBookmarkToast = PublishRelay<Bool>()
         let showErrorAlert = PublishRelay<Error>()
         
@@ -56,7 +57,7 @@ final class LocationDetailViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        input.viewDidDisappear
+        input.viewWillDisappearEvent
             .withUnretained(self)
             .subscribe(onNext: { owner, _ in
                 owner.locationDetailUseCase.handleLocalStore(owner.storeVO)
@@ -75,6 +76,7 @@ final class LocationDetailViewModel: ViewModelType {
             .share()
         
         didSelectBookmark
+            .skip(1)
             .withUnretained(self)
             .bind(onNext: { owner, bookmark in
                 owner.storeVO.bookmark = bookmark
@@ -125,6 +127,10 @@ final class LocationDetailViewModel: ViewModelType {
         
         locationDetailUseCase.errorSubject
             .bind(to: output.showErrorAlert)
+            .disposed(by: disposeBag)
+        
+        locationDetailUseCase.bookmark
+            .bind(to: output.bookmark)
             .disposed(by: disposeBag)
     }
 }
