@@ -15,7 +15,7 @@ extension UIViewController {
         toastLabel.textColor = .white
         toastLabel.font = .boldLineSeed(size: ._14)
         toastLabel.backgroundColor = .black
-        toastLabel.alpha = 1.0
+        toastLabel.alpha = 0.0
         toastLabel.layer.cornerRadius = 10;
         toastLabel.clipsToBounds  =  true
         
@@ -26,11 +26,15 @@ extension UIViewController {
             make.centerX.equalTo(view.snp.centerX)
             make.bottom.equalToSuperview().inset(100)
         }
-                
-        UIView.animate(withDuration: 0.5, delay: 1.6, options: .curveEaseOut, animations: {
-            toastLabel.alpha = 0.0
-        }, completion: { _ in
-            toastLabel.removeFromSuperview()
-        })
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
+            toastLabel.alpha = 1.0
+        }) { _ in
+            UIView.animate(withDuration: 0.5, delay: 1.0, options: .curveEaseOut, animations: {
+                toastLabel.alpha = 0.0
+            }) { _ in
+                toastLabel.removeFromSuperview()
+            }
+        }
     }
 }
