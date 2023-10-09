@@ -124,7 +124,6 @@ final class DetailRateView: BaseView {
     
     override func setLayout() {
         backgroundColor = .clear
-        containerView.backgroundColor = .white
     }
 }
 

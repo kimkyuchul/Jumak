@@ -19,7 +19,7 @@ final class LocationDetailView: BaseView {
     private let contentView = UIView()
     private let topCornerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .tertiarySystemGroupedBackground
+        view.backgroundColor = .white
         view.roundCorners(cornerRadius: 23, maskedCorners: [.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
         return view
     }()
@@ -162,7 +162,8 @@ final class LocationDetailView: BaseView {
     }
     
     override func setLayout() {
-        backgroundColor = .lightGray
+        scrollView.bounces = false
+        scrollView.backgroundColor = .lightGray
         contentView.backgroundColor = .lightGray
     }
 }
