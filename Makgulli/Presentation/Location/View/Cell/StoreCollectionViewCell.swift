@@ -69,13 +69,13 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
         }
         
         storeTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(logoImageView.snp.top).offset(10)
+            make.top.equalTo(logoImageView.snp.top).offset(6)
             make.leading.equalTo(logoImageView.snp.trailing).offset(14)
             make.trailing.equalToSuperview().inset(10).priority(.high)
         }
         
         addressLabel.snp.makeConstraints { make in
-            make.top.equalTo(storeTitleLabel.snp.bottom).offset(4)
+            make.top.equalTo(storeTitleLabel.snp.bottom).offset(2).priority(.high)
             make.leading.equalTo(storeTitleLabel.snp.leading)
             make.trailing.equalTo(storeTitleLabel.snp.trailing)
         }
