@@ -31,6 +31,8 @@
 		5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */; };
 		5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */; };
 		5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */; };
+		5A6827A12AD446D700C37B17 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A02AD446D700C37B17 /* UIViewController+.swift */; };
+		5A6827A32AD44DD900C37B17 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A22AD44DD900C37B17 /* PaddingLabel.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
@@ -140,6 +142,8 @@
 		5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTable.swift; sourceTree = "<group>"; };
 		5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreBadge.swift; sourceTree = "<group>"; };
+		5A6827A02AD446D700C37B17 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		5A6827A22AD44DD900C37B17 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -314,6 +318,14 @@
 			path = "Table+Mapping";
 			sourceTree = "<group>";
 		};
+		5A6827A42AD44DDE00C37B17 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				5A6827A22AD44DD900C37B17 /* PaddingLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
 		5A70BA262AC174E600506846 = {
 			isa = PBXGroup;
 			children = (
@@ -448,6 +460,7 @@
 				5A6827832ACFEB6D00C37B17 /* UIStackView+.swift */,
 				5A6827912AD14E0A00C37B17 /* String+.swift */,
 				5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */,
+				5A6827A02AD446D700C37B17 /* UIViewController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -602,6 +615,7 @@
 		5A9DA2212AC57E20006040D2 /* UIComponent */ = {
 			isa = PBXGroup;
 			children = (
+				5A6827A42AD44DDE00C37B17 /* Label */,
 				5A6827862AD04DA100C37B17 /* View */,
 				5A6827852AD04D8800C37B17 /* Button */,
 			);
@@ -945,6 +959,7 @@
 				5A6827792ACEC68000C37B17 /* UILabel+.swift in Sources */,
 				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
 				5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */,
+				5A6827A12AD446D700C37B17 /* UIViewController+.swift in Sources */,
 				5A6827772ACEA7B200C37B17 /* RateButton.swift in Sources */,
 				5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */,
 				5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */,
@@ -977,6 +992,7 @@
 				5A6827842ACFEB6D00C37B17 /* UIStackView+.swift in Sources */,
 				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
 				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
+				5A6827A32AD44DD900C37B17 /* PaddingLabel.swift in Sources */,
 				5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */,
 				5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */,
 				5A68278C2AD060FA00C37B17 /* DetailBottomView.swift in Sources */,
