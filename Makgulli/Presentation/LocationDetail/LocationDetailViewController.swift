@@ -73,7 +73,7 @@ final class LocationDetailViewController: BaseViewController {
         output.phone
             .bind(to: locationDetailView.infoView.rx.phone)
             .disposed(by: disposeBag)
-        
+                
         output.rate
             .withUnretained(self)
             .bind(onNext: { owner, rate in
@@ -81,6 +81,10 @@ final class LocationDetailViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        output.convertRateLabelText
+            .bind(to: locationDetailView.rateView.rx.rate)
+            .disposed(by: disposeBag)
+
         output.bookmark
             .bind(to: locationDetailView.titleView.bookMarkButton.rx.isSelected)
             .disposed(by: disposeBag)

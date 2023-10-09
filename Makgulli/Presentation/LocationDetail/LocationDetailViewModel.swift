@@ -40,6 +40,7 @@ final class LocationDetailViewModel: ViewModelType {
         let roadAddress = PublishRelay<String>()
         let phone = PublishRelay<String>()
         let rate =  PublishRelay<Int>()
+        let convertRateLabelText = PublishRelay<Int>()
         let bookmark = PublishRelay<Bool>()
         let showBookmarkToast = PublishRelay<Bool>()
         let showErrorAlert = PublishRelay<Error>()
@@ -64,12 +65,19 @@ final class LocationDetailViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        input.didSelectRate
+        let didSelectRate = input.didSelectRate
+            .share()
+        
+        didSelectRate
             .observe(on: MainScheduler.asyncInstance)
             .withUnretained(self)
             .bind(onNext: { owner, rate in
                 owner.storeVO.rate = rate
             })
+            .disposed(by: disposeBag)
+        
+        didSelectRate
+            .bind(to: output.convertRateLabelText)
             .disposed(by: disposeBag)
         
         let didSelectBookmark = input.didSelectBookmark

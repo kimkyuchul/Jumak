@@ -18,7 +18,7 @@ final class DetailRateView: BaseView {
         view.layer.cornerRadius = 23
         return view
     }()
-    private let rateTitleLabel: UILabel = {
+    fileprivate let rateTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "막걸리 맛이 어떠셨나요 :)"
         label.textAlignment = .left
@@ -125,5 +125,27 @@ final class DetailRateView: BaseView {
     override func setLayout() {
         backgroundColor = .clear
         containerView.backgroundColor = .white
+    }
+}
+
+extension Reactive where Base: DetailRateView {
+    var rate: Binder<Int> {
+        return Binder(self.base) { view, rate in
+            UIView.transition(with: view.rateTitleLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                view.rateTitleLabel.text = self.rateTitle(for: rate)
+            }, completion: nil)
+        }
+    }
+    
+    private func rateTitle(for rate: Int) -> String {
+        switch rate {
+        case 0: return "막걸리 맛이 어떠셨나요 :)"
+        case 1: return "막걸리 맛이 최악이셨군요 :("
+        case 2: return "막걸리 맛이 별로셨군요 :/"
+        case 3: return "막걸리가 SoSo 하셨군요 :)"
+        case 4: return "막걸리를 먹고 흥겨우셨군요 ;)"
+        case 5: return "한병 더 가져와 막걸리 막걸리를 ~ :)"
+        default: return "막걸리 맛이 어떠셨나요 :)"
+        }
     }
 }
