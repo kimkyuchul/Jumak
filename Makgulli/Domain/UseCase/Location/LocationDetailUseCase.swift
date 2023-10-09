@@ -34,6 +34,7 @@ final class LocationDetailUseCase {
     let phone = PublishSubject<String>()
     let rate = PublishSubject<Int>()
     let bookmark =  PublishSubject<Bool>()
+    let locationCoordinate = PublishSubject<(Double, Double)>()
     
     let errorSubject = PublishSubject<Error>()
     
@@ -51,6 +52,7 @@ final class LocationDetailUseCase {
                 owner.phone.onNext(store.phone ?? "")
                 owner.rate.onNext(store.rate)
                 owner.bookmark.onNext(store.bookmark)
+                owner.locationCoordinate.onNext((store.y, store.x))
             })
             .disposed(by: disposebag)
     }

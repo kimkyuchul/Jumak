@@ -43,7 +43,8 @@ final class LocationDetailViewController: BaseViewController {
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
                    viewWillDisappearEvent: self.rx.viewWillDisappear.map { _ in },
                    didSelectRate: locationDetailView.rateView.currentStarSubject,
-                   didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable())
+                   didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable(),
+                   didSelectUserLocationButton: locationDetailView.storeLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance))
         let output = viewModel.transform(input: input)
         
         output.hashTag
@@ -98,6 +99,14 @@ final class LocationDetailViewController: BaseViewController {
                     owner.showToast(message: "즐겨찾기가 삭제 되었습니다.")
                 }
             })
+            .disposed(by: disposeBag)
+                
+        output.locationCoordinate
+            .bind(to: locationDetailView.rx.setUpMarker)
+            .disposed(by: disposeBag)
+        
+        output.setCameraPosition
+            .bind(to: locationDetailView.rx.storeCameraPosition)
             .disposed(by: disposeBag)
         
         output.showErrorAlert

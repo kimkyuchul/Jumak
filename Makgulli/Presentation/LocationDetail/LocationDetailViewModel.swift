@@ -29,6 +29,7 @@ final class LocationDetailViewModel: ViewModelType {
         let viewWillDisappearEvent: Observable<Void>
         let didSelectRate: PublishSubject<Int>
         let didSelectBookmark: Observable<Bool>
+        let didSelectUserLocationButton: Observable<Void>
     }
     
     struct Output {
@@ -43,8 +44,9 @@ final class LocationDetailViewModel: ViewModelType {
         let convertRateLabelText = PublishRelay<Int>()
         let bookmark = PublishRelay<Bool>()
         let showBookmarkToast = PublishRelay<Bool>()
+        let locationCoordinate = PublishRelay<(Double, Double)>()
+        let setCameraPosition = PublishRelay<(Double, Double)>()
         let showErrorAlert = PublishRelay<Error>()
-        
     }
     
     func transform(input: Input) -> Output {
@@ -97,6 +99,11 @@ final class LocationDetailViewModel: ViewModelType {
                 
         createOutput(output: output)
         
+        input.didSelectUserLocationButton
+            .withLatestFrom(output.locationCoordinate)
+            .bind(to: output.setCameraPosition)
+            .disposed(by: disposeBag)
+        
         return output
     }
     
@@ -139,6 +146,10 @@ final class LocationDetailViewModel: ViewModelType {
         
         locationDetailUseCase.bookmark
             .bind(to: output.bookmark)
+            .disposed(by: disposeBag)
+        
+        locationDetailUseCase.locationCoordinate
+            .bind(to: output.locationCoordinate)
             .disposed(by: disposeBag)
     }
 }
