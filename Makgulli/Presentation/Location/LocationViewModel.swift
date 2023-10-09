@@ -17,7 +17,7 @@ final class LocationViewModel: ViewModelType {
     private let searchLocationUseCase: SearchLocationUseCase
     private let locationUseCase: LocationUseCase
     private var storeList: [StoreVO] = []
-    private var categoryType = BehaviorRelay<CategoryType>(value: .makgulli)
+    var categoryType = BehaviorRelay<CategoryType>(value: .makgulli)
     private var currentLocation = PublishRelay<CLLocationCoordinate2D>()
     
     init(searchLocationUseCase: SearchLocationUseCase, locationUseCase: LocationUseCase) {
@@ -64,17 +64,12 @@ final class LocationViewModel: ViewModelType {
                 owner.locationUseCase.observeUserLocation()
             })
             .disposed(by: disposeBag)
-        
+            
         input.viewWillAppearEvent
             .withLatestFrom(input.willDisplayCell)
-            .bind(onNext: { indexPath in
-                print(indexPath)
-            })
-            .disposed(by: disposeBag)
-        
-        input.willDisplayCell
-            .bind(onNext: { indexPath in
-//                print(indexPath)
+            .withUnretained(self)
+            .bind(onNext: { owner, indexPath in
+                owner.searchLocationUseCase.updateStoreCellObservable(index: indexPath.row, storeList: owner.storeList)
             })
             .disposed(by: disposeBag)
         
@@ -216,14 +211,30 @@ final class LocationViewModel: ViewModelType {
             .bind(to: output.authorizationAlertShouldShow)
             .disposed(by: disposeBag)
         
-        transformCollectionViewDataSource(output: output)
+        self.searchLocationUseCase.updateStoreVO
+            .withLatestFrom(input.willDisplayCell) { storeVO, willDisplayCell in
+                return (storeVO, willDisplayCell)
+            }
+            .withUnretained(self)
+            .bind(onNext: { owner, visibleStore in
+                let (storeVO, willDisplayCell) = visibleStore
+                let visibleStore = owner.storeList[willDisplayCell.row]
+            
+                if owner.shouldUpdateStore(store: storeVO, visibleStore: visibleStore) {
+                        owner.storeList[willDisplayCell.row] = storeVO
+                        output.storeList.accept(owner.storeList)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        transformCollectionViewDataSource(input: input, output: output)
         
         return output
     }
 }
 
 extension LocationViewModel {
-    private func transformCollectionViewDataSource(output: LocationViewModel.Output) {
+    private func transformCollectionViewDataSource(input: LocationViewModel.Input, output: LocationViewModel.Output) {
         Observable.combineLatest(output.storeList, self.categoryType)
             .map { storeList, categoryType in
                 return storeList.map { store in
@@ -247,5 +258,15 @@ extension LocationViewModel {
             }
             .bind(to: output.storeCollectionViewDataSource)
             .disposed(by: disposeBag)
+    }
+    
+    private func shouldUpdateStore(store: StoreVO, visibleStore: StoreVO) -> Bool {
+        return store.rate != visibleStore.rate || store.bookmark != visibleStore.bookmark || store.episode != visibleStore.episode
+    }
+}
+
+extension LocationViewModel {
+    func updateStoreCell(_ store: StoreVO) -> StoreVO? {
+        return searchLocationUseCase.updateStoreCell(store)
     }
 }
