@@ -45,6 +45,7 @@ enum ImageLiteral {
     static var mapIcon: UIImage { .load(systemName: "map") }
     static var copyIcon : UIImage { .load(systemName: "doc.on.doc") }
     static var swifeArrowIcon : UIImage { .load(systemName: "cursorarrow.motionlines") }
+    static var circleHeart : UIImage { .load(systemName: "heart.circle") }
 }
 
 extension UIImage {
