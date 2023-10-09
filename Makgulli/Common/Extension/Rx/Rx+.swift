@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public extension Reactive where Base: UIViewController {
+extension Reactive where Base: UIViewController {
     var viewDidLoad: ControlEvent<Void> {
       let source = self.methodInvoked(#selector(Base.viewDidLoad)).map { _ in }
       return ControlEvent(events: source)
@@ -32,5 +32,14 @@ public extension Reactive where Base: UIViewController {
     var viewDidDisappear: ControlEvent<Bool> {
       let source = self.methodInvoked(#selector(Base.viewDidDisappear)).map { $0.first as? Bool ?? false }
       return ControlEvent(events: source)
+    }
+}
+
+extension Reactive where Base: UIButton {
+    var isSelected: ControlProperty<Bool> {
+        return base.rx.controlProperty(
+            editingEvents: [.touchUpInside],
+            getter: { $0.isSelected },
+            setter: { $0.isSelected = $1 })
     }
 }

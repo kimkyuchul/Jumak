@@ -7,7 +7,11 @@
 
 import UIKit
 
+import RxSwift
+
 class BaseView: UIView, ViewSetupable {
+    
+    var disposeBag: DisposeBag = .init()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

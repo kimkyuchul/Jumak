@@ -20,7 +20,6 @@ final class CategoryCollectionViewCell: BaseCollectionViewCell {
         view.backgroundColor = .white
         return view
     }()
-    
     private let categoryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
