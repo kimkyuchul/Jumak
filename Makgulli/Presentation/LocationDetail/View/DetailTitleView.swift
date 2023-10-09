@@ -50,7 +50,7 @@ final class DetailTitleView: BaseView {
         configuration.buttonSize = .large
         let attributedTitle = NSAttributedString(string: "길찾기",
                                                  attributes: [
-                                                    .font: UIFont.boldLineSeed(size: ._20),
+                                                    .font: UIFont.boldLineSeed(size: ._18),
                                                     .foregroundColor: UIColor.black
                                                  ])
         configuration.attributedTitle = AttributedString(attributedTitle)
