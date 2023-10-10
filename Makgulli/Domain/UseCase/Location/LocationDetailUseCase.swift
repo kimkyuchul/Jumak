@@ -35,6 +35,7 @@ final class LocationDetailUseCase {
     let rate = PublishSubject<Int>()
     let bookmark =  PublishSubject<Bool>()
     let locationCoordinate = PublishSubject<(Double, Double)>()
+    let episodeList = PublishSubject<[EpisodeVO]>()
     
     let errorSubject = PublishSubject<Error>()
     
@@ -53,10 +54,11 @@ final class LocationDetailUseCase {
                 owner.rate.onNext(store.rate)
                 owner.bookmark.onNext(store.bookmark)
                 owner.locationCoordinate.onNext((store.y, store.x))
+                owner.episodeList.onNext(store.episode)
             })
             .disposed(by: disposebag)
     }
-        
+            
     func  handleLocalStore(_ store: StoreVO) {
         if !storeExists(store.id) && hasRatingOrEpisode(store) {
             // Realm에 존재하지 않으면서, 평점 또는 에피소드, 북마크 중 하나라도 존재하는 경우
@@ -78,6 +80,11 @@ final class LocationDetailUseCase {
                 deleteStoreBookmark(store)
             }
         }
+    }
+    
+    // 에피소드 추가뷰에서 에피소드를 추가하고 Dismiss됐을 때 에피소드를 업데이트
+    func updateStoreEpisode(_ store: StoreVO) -> StoreVO? {
+        return realmRepository.updateStoreEpisode(store: store)
     }
 }
 
