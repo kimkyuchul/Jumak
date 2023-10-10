@@ -11,8 +11,7 @@ struct EpisodeVO: Hashable {
     let id: String
     let uuid : String = UUID().uuidString
     let date: String
-    let title: String
-    let content: String
+    let comment: String
     let imageURL: String
     let alcohol: String
     let mixedAlcohol: String

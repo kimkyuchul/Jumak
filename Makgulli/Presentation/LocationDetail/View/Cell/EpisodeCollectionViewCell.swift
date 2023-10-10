@@ -52,6 +52,6 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
 
 extension EpisodeCollectionViewCell {
     func configureCell(item: EpisodeVO) {
-        titleLabel.text = item.title
+        titleLabel.text = item.comment
     }
 }

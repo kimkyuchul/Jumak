@@ -63,8 +63,7 @@ final class DefaultRealmRepository: RealmRepository {
                     store.episode.forEach { episodeVO in
                         let episodeTable = EpisodeTable(
                             date: episodeVO.date,
-                            title: episodeVO.title,
-                            content: episodeVO.content,
+                            comment: episodeVO.comment,
                             imageURL: episodeVO.imageURL,
                             alcohol: episodeVO.alcohol,
                             mixedAlcohol: episodeVO.mixedAlcohol,
@@ -164,8 +163,7 @@ final class DefaultRealmRepository: RealmRepository {
             return EpisodeVO(
                 id: episodeObject._id.stringValue,
                 date: episodeObject.date,
-                title: episodeObject.title,
-                content: episodeObject.content,
+                comment: episodeObject.comment,
                 imageURL: episodeObject.imageURL,
                 alcohol: episodeObject.alcohol,
                 mixedAlcohol: episodeObject.mixedAlcohol,
