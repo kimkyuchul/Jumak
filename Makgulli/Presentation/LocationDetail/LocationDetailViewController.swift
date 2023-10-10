@@ -13,10 +13,7 @@ import RxSwift
 
 final class LocationDetailViewController: BaseViewController {
     
-    //    let episodeData: [EpisodeVO] = [EpisodeVO(id: "aa", date: "2020", title: "모든 플레이어의 정답지가", content: "ㅁ", imageURL: "k.circle.fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5), EpisodeVO(date: "2020", title: "모든", id: "aa",  플레이어의 정답지가", content: "ㅁ", imageURL: "k.circle.fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5), EpisodeVO(date: "2020", title: "모든 플레이어의 정답지가", content: , "id: "aa", ㅁ", imageURL: "k.circle.fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5), EpisodeVO(date: "2020", title: "모든 플레이어의 정답지가", content: "ㅁ", imageURL: "k.circle.id: <#String#>, fill", alcohol: "a", mixedAlcohol: "a", drink: 1.5)]
-    
-    private var locationDetailView = LocationDetailView()
-    
+    private let locationDetailView = LocationDetailView()
     private let viewModel: LocationDetailViewModel
     
     init(viewModel: LocationDetailViewModel) {
@@ -31,20 +28,33 @@ final class LocationDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        print("viewDidLoad", viewModel.storeVO.episode)
     }
-        
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear", viewModel.storeVO.episode)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear", viewModel.storeVO.episode)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController?.navigationBar.isHidden = true
+        //        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func bind() {
         let input = LocationDetailViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
+                   viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
                    viewWillDisappearEvent: self.rx.viewWillDisappear.map { _ in },
                    didSelectRate: locationDetailView.rateView.currentStarSubject,
                    didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable(),
-                   didSelectUserLocationButton: locationDetailView.storeLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance))
+                   didSelectUserLocationButton: locationDetailView.storeLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
+                   didSelectMakeEpisodeButton: locationDetailView.bottomView.rx.tapMakeEpisode.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
         
         output.hashTag
@@ -74,7 +84,7 @@ final class LocationDetailViewController: BaseViewController {
         output.phone
             .bind(to: locationDetailView.infoView.rx.phone)
             .disposed(by: disposeBag)
-                
+        
         output.rate
             .withUnretained(self)
             .bind(onNext: { owner, rate in
@@ -85,7 +95,7 @@ final class LocationDetailViewController: BaseViewController {
         output.convertRateLabelText
             .bind(to: locationDetailView.rateView.rx.rate)
             .disposed(by: disposeBag)
-
+        
         output.bookmark
             .bind(to: locationDetailView.titleView.bookMarkButton.rx.isSelected)
             .disposed(by: disposeBag)
@@ -100,7 +110,7 @@ final class LocationDetailViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
-                
+        
         output.locationCoordinate
             .bind(to: locationDetailView.rx.setUpMarker)
             .disposed(by: disposeBag)
@@ -115,16 +125,22 @@ final class LocationDetailViewController: BaseViewController {
                 print("\(error.localizedDescription) 에러 모달 띄우기")
             })
             .disposed(by: disposeBag)
-    }
-    
-    override func bindAction() {
-        self.locationDetailView.bottomView.rx.tapMakeEpisode
-            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+        
+        output.presentWriteEpisode
             .withUnretained(self)
-            .bind(onNext: { owner, _ in
-                let wirteViewController = WriteEpisodeViewController()
+            .bind(onNext: { owner, storeVO in
+                let wirteViewController = WriteEpisodeViewController(viewModel: WriteEpisodeViewModel(storeVO: storeVO, writeEpisodeUseCase: DefaultWriteEpisodeUseCase(realmRepository: DefaultRealmRepository()!)))
+                
                 wirteViewController.modalPresentationStyle = .fullScreen
-                owner.present(WriteEpisodeViewController(), animated: true)
+                owner.present(wirteViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        output.episodeList
+            .withUnretained(self)
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(onNext: { owner, episodeList in
+                owner.locationDetailView.applyCollectionViewDataSource(by: episodeList)
             })
             .disposed(by: disposeBag)
     }
