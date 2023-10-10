@@ -26,7 +26,7 @@ final class StoreTable: Object {
     @Persisted var bookmark: Bool
     @Persisted var episode: List<EpisodeTable>
     
-    convenience init(id: String, placeName: String, distance: String, placeURL: String, categoryName: String, addressName: String, roadAddressName: String, phone: String?, x: Double, y: Double, categoryType: CategoryType, rate: Int, bookmark: Bool) {
+    convenience init(id: String, placeName: String, distance: String, placeURL: String, categoryName: String, addressName: String, roadAddressName: String, phone: String?, x: Double, y: Double, categoryType: CategoryType, rate: Int, bookmark: Bool, episode: List<EpisodeTable>) {
         self.init()
         self.id = id
         self.placeName = placeName
@@ -42,6 +42,7 @@ final class StoreTable: Object {
         self.rate = rate
         self.date = Date()
         self.bookmark = bookmark
+        self.episode = episode
     }
 }
 
