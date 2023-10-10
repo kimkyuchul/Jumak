@@ -28,17 +28,17 @@ final class LocationDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
-        print("viewDidLoad", viewModel.storeVO.episode)
+        print(#function)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear", viewModel.storeVO.episode)
+        print(#function)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidAppear", viewModel.storeVO.episode)
+        print(#function)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

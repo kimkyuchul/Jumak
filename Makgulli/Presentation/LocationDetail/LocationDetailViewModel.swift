@@ -13,7 +13,7 @@ import RxRelay
 final class LocationDetailViewModel: ViewModelType {
     var disposeBag: DisposeBag = .init()
         
-    var storeVO : StoreVO
+    private var storeVO: StoreVO
     private let locationDetailUseCase: LocationDetailUseCase
     
     init(
@@ -26,10 +26,12 @@ final class LocationDetailViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
+        let viewWillAppearEvent: Observable<Void>
         let viewWillDisappearEvent: Observable<Void>
         let didSelectRate: PublishSubject<Int>
         let didSelectBookmark: Observable<Bool>
         let didSelectUserLocationButton: Observable<Void>
+        let didSelectMakeEpisodeButton: Observable<Void>
     }
     
     struct Output {
@@ -47,6 +49,8 @@ final class LocationDetailViewModel: ViewModelType {
         let locationCoordinate = PublishRelay<(Double, Double)>()
         let setCameraPosition = PublishRelay<(Double, Double)>()
         let showErrorAlert = PublishRelay<Error>()
+        let presentWriteEpisode = PublishRelay<StoreVO>()
+        let episodeList = PublishRelay<[EpisodeVO]>()
     }
     
     func transform(input: Input) -> Output {
@@ -57,6 +61,15 @@ final class LocationDetailViewModel: ViewModelType {
             .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { owner, _ in
                 owner.locationDetailUseCase.fetchStoreDetail(store: owner.storeVO)
+            })
+            .disposed(by: disposeBag)
+        
+        input.viewWillAppearEvent
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                let updatedStoreVO = owner.locationDetailUseCase.updateStoreEpisode(owner.storeVO)
+                owner.storeVO.episode = updatedStoreVO?.episode ?? []
+                output.episodeList.accept(owner.storeVO.episode)
             })
             .disposed(by: disposeBag)
         
@@ -102,6 +115,13 @@ final class LocationDetailViewModel: ViewModelType {
         input.didSelectUserLocationButton
             .withLatestFrom(output.locationCoordinate)
             .bind(to: output.setCameraPosition)
+            .disposed(by: disposeBag)
+        
+        input.didSelectMakeEpisodeButton
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                output.presentWriteEpisode.accept(owner.storeVO)
+            })
             .disposed(by: disposeBag)
         
         return output
@@ -150,6 +170,10 @@ final class LocationDetailViewModel: ViewModelType {
         
         locationDetailUseCase.locationCoordinate
             .bind(to: output.locationCoordinate)
+            .disposed(by: disposeBag)
+        
+        locationDetailUseCase.episodeList
+            .bind(to: output.episodeList)
             .disposed(by: disposeBag)
     }
 }
