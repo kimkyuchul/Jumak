@@ -34,6 +34,10 @@
 		5A6827A12AD446D700C37B17 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A02AD446D700C37B17 /* UIViewController+.swift */; };
 		5A6827A32AD44DD900C37B17 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A22AD44DD900C37B17 /* PaddingLabel.swift */; };
 		5A6827A72AD50D5600C37B17 /* WriteEpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A62AD50D5500C37B17 /* WriteEpisodeViewController.swift */; };
+		5A6827A92AD5221A00C37B17 /* WriteEpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */; };
+		5A6827AB2AD5265100C37B17 /* EpisodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827AA2AD5265100C37B17 /* EpisodeButton.swift */; };
+		5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827AC2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift */; };
+		5A6827B02AD56B1300C37B17 /* WriteEpisodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827AF2AD56B1300C37B17 /* WriteEpisodeUseCase.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
@@ -146,6 +150,10 @@
 		5A6827A02AD446D700C37B17 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		5A6827A22AD44DD900C37B17 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		5A6827A62AD50D5500C37B17 /* WriteEpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeViewController.swift; sourceTree = "<group>"; };
+		5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeView.swift; sourceTree = "<group>"; };
+		5A6827AA2AD5265100C37B17 /* EpisodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeButton.swift; sourceTree = "<group>"; };
+		5A6827AC2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeViewModel.swift; sourceTree = "<group>"; };
+		5A6827AF2AD56B1300C37B17 /* WriteEpisodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeUseCase.swift; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -289,6 +297,7 @@
 				5A6827762ACEA7B200C37B17 /* RateButton.swift */,
 				5A6827722ACE900F00C37B17 /* LocationButton.swift */,
 				5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */,
+				5A6827AA2AD5265100C37B17 /* EpisodeButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -331,7 +340,17 @@
 		5A6827A52AD50D3A00C37B17 /* Episode */ = {
 			isa = PBXGroup;
 			children = (
+				5A6827AC2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift */,
 				5A6827A62AD50D5500C37B17 /* WriteEpisodeViewController.swift */,
+				5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */,
+			);
+			path = Episode;
+			sourceTree = "<group>";
+		};
+		5A6827AE2AD56AD700C37B17 /* Episode */ = {
+			isa = PBXGroup;
+			children = (
+				5A6827AF2AD56B1300C37B17 /* WriteEpisodeUseCase.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -566,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA2032AC3C6AC006040D2 /* Location */,
+				5A6827AE2AD56AD700C37B17 /* Episode */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -976,6 +996,7 @@
 				5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */,
 				5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */,
 				5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */,
+				5A6827A92AD5221A00C37B17 /* WriteEpisodeView.swift in Sources */,
 				5A6827882AD0509D00C37B17 /* DetailEpisodeView.swift in Sources */,
 				5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */,
 				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
@@ -986,6 +1007,7 @@
 				5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */,
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
+				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
 				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
@@ -1003,9 +1025,11 @@
 				5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */,
 				5A6827842ACFEB6D00C37B17 /* UIStackView+.swift in Sources */,
 				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
+				5A6827B02AD56B1300C37B17 /* WriteEpisodeUseCase.swift in Sources */,
 				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
 				5A6827A32AD44DD900C37B17 /* PaddingLabel.swift in Sources */,
 				5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */,
+				5A6827AB2AD5265100C37B17 /* EpisodeButton.swift in Sources */,
 				5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */,
 				5A68278C2AD060FA00C37B17 /* DetailBottomView.swift in Sources */,
 				5A6827822ACFE3F100C37B17 /* DetailInfoView.swift in Sources */,

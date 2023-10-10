@@ -48,6 +48,7 @@ enum ImageLiteral {
     static var circleHeart : UIImage { .load(systemName: "heart.circle") }
     static var heartIcon : UIImage { .load(systemName: "heart") }
     static var fillHeartIcon : UIImage { .load(systemName: "heart.fill") }
+    static var xmarkIcon : UIImage { .load(systemName: "xmark") }
 }
 
 extension UIImage {
