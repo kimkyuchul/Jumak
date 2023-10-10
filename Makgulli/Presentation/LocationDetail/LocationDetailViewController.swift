@@ -116,4 +116,16 @@ final class LocationDetailViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    override func bindAction() {
+        self.locationDetailView.bottomView.rx.tapMakeEpisode
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                let wirteViewController = WriteEpisodeViewController()
+                wirteViewController.modalPresentationStyle = .fullScreen
+                owner.present(WriteEpisodeViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
 }
