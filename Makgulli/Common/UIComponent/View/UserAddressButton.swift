@@ -32,6 +32,7 @@ final class UserAddressButton: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .white
         clipsToBounds = true
     }
     

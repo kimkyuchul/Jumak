@@ -14,14 +14,14 @@ final class ImageSelectionView: BaseView {
         imageView.image = ImageLiteral.cameraIcon
             .withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFill
-        imageView.tintColor = UIColor.deepDarkGray
+        imageView.tintColor = UIColor.darkGray
         return imageView
     }()
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "카메라 텅텅 +"
         label.textAlignment = .center
-        label.textColor = UIColor.deepDarkGray
+        label.textColor = UIColor.darkGray
         label.font = UIFont.boldLineSeed(size: ._14)
         return label
     }()
@@ -35,7 +35,7 @@ final class ImageSelectionView: BaseView {
     override func setConstraints() {
         selectionImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-10)
             make.size.equalTo(50)
         }
         
