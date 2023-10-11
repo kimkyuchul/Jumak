@@ -22,16 +22,10 @@ final class EpisodeContentView: BaseView {
         return label
     }()
     private let commentTextField = EpisodeTextField(placeholderText: "그날의 한줄평을 기록해봐요.")
-    private let containerView: UIView = {
-        let view = UIView()
-        view.layer.borderWidth = 1.0
-        view.layer.borderColor = UIColor.gray.cgColor
-        return view
-    }()
+    private let imageSelectionView = ImageSelectionView()
     fileprivate let episodeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .brown
         return imageView
     }()
         
@@ -41,17 +35,15 @@ final class EpisodeContentView: BaseView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        containerView.layer.cornerRadius = 14
-        containerView.clipsToBounds = true
     }
     
     override func setHierarchy() {
-        [episodeTitleLabel, commentTextField, containerView].forEach {
+        [episodeTitleLabel, commentTextField, imageSelectionView].forEach {
             addSubview($0)
         }
         
         [episodeImageView].forEach {
-            containerView.addSubview($0)
+            imageSelectionView.addSubview($0)
         }
     }
     
@@ -65,7 +57,7 @@ final class EpisodeContentView: BaseView {
             make.leading.trailing.equalToSuperview()
         }
         
-        containerView.snp.makeConstraints { make in
+        imageSelectionView.snp.makeConstraints { make in
             make.top.equalTo(commentTextField.snp.bottom).offset(15)
             make.leading.equalToSuperview()
             make.bottom.equalToSuperview()
