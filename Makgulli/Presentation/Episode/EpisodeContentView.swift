@@ -9,6 +9,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxGesture
 
 final class EpisodeContentView: BaseView {
     
@@ -32,9 +33,7 @@ final class EpisodeContentView: BaseView {
         imageView.backgroundColor = .brown
         return imageView
     }()
-    
-    fileprivate let tapGesture = UITapGestureRecognizer()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -79,9 +78,7 @@ final class EpisodeContentView: BaseView {
 }
 
 extension Reactive where Base: EpisodeContentView {
-    var imageViewTapGesture: ControlEvent<UITapGestureRecognizer> {
-        let tapGestureRecognizer = UITapGestureRecognizer()
-        base.episodeImageView.addGestureRecognizer(tapGestureRecognizer)
-        return tapGestureRecognizer.rx.event
+    var imageViewTapGesture: Signal<Void> {
+        return base.episodeImageView.rx.tapGesture().when(.recognized).map { _ in }.asSignal(onErrorJustReturn: ())
     }
 }

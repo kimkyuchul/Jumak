@@ -65,7 +65,7 @@ final class WriteEpisodeViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         episodeView.episodeContentView.rx.imageViewTapGesture
-            .bind(onNext: { _ in
+            .emit(with: self, onNext: { owner, _ in
                 print("tap")
             })
             .disposed(by: disposeBag)
