@@ -20,7 +20,6 @@ final class DetailRateView: BaseView {
     }()
     fileprivate let rateTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "막걸리 맛이 어떠셨나요 :)"
         label.textAlignment = .left
         label.textColor = .black
         label.font = UIFont.boldLineSeed(size: ._20)
