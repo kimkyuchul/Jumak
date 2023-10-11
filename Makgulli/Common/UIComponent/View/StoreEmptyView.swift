@@ -63,7 +63,7 @@ final class StoreEmptyView: BaseView {
     }
     
     override func setLayout() {
-        super.setLayout()
+        backgroundColor = .white
     }
 }
 
