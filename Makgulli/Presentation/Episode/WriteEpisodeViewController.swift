@@ -9,12 +9,13 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-
+import PhotosUI
 
 final class WriteEpisodeViewController: BaseViewController {
     
     private let episodeView = WriteEpisodeView()
     private let viewModel: WriteEpisodeViewModel
+    private let episodehumbnailRelay = PublishRelay<UIImage>()
     
     init(viewModel: WriteEpisodeViewModel) {
         self.viewModel = viewModel
@@ -34,7 +35,9 @@ final class WriteEpisodeViewController: BaseViewController {
     
     override func bind() {
         let input = WriteEpisodeViewModel.Input(
-            viewDidLoadEvent: Observable.just(()).asObservable(), didSelectWriteButton: episodeView.rx.tapWrite.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance), didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable())
+            viewDidLoadEvent: Observable.just(()).asObservable(),
+            didSelectWriteButton: episodeView.rx.tapWrite.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
+            didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable())
         let output = viewModel.transform(input: input)
         
         output.placeName
@@ -66,8 +69,40 @@ final class WriteEpisodeViewController: BaseViewController {
         
         episodeView.episodeContentView.rx.imageViewTapGesture
             .emit(with: self, onNext: { owner, _ in
-                print("tap")
+                owner.showPhotoGallery()
             })
             .disposed(by: disposeBag)
+        
+        episodehumbnailRelay
+            .bind(to: episodeView.episodeContentView.rx.image)
+            .disposed(by: disposeBag)
+    }
+    
+    private func showPhotoGallery() {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .any(of: [.images])
+        let imagePicker = PHPickerViewController(configuration: configuration)
+        imagePicker.delegate = self
+        present(imagePicker, animated: true)
+        
+    }
+}
+
+extension WriteEpisodeViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
+                guard let image = image as? UIImage else { return }
+                DispatchQueue.main.async {
+                    image.preparingThumbnail(of: CGSize(width: 140, height: 140))
+                    self?.episodehumbnailRelay.accept(image)
+                }
+            }
+        }
     }
 }

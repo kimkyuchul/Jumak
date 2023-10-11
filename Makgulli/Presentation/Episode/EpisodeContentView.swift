@@ -30,6 +30,7 @@ final class EpisodeContentView: BaseView {
     }()
     fileprivate let episodeImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .brown
         return imageView
     }()
@@ -68,7 +69,7 @@ final class EpisodeContentView: BaseView {
             make.top.equalTo(commentTextField.snp.bottom).offset(15)
             make.leading.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.size.equalTo(120)
+            make.size.equalTo(140)
         }
         
         episodeImageView.snp.makeConstraints { make in
@@ -80,5 +81,9 @@ final class EpisodeContentView: BaseView {
 extension Reactive where Base: EpisodeContentView {
     var imageViewTapGesture: Signal<Void> {
         return base.episodeImageView.rx.tapGesture().when(.recognized).map { _ in }.asSignal(onErrorJustReturn: ())
+    }
+    
+    var image: Binder<UIImage?> {
+        return base.episodeImageView.rx.image
     }
 }
