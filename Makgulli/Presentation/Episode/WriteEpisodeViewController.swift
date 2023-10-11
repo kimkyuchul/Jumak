@@ -29,12 +29,24 @@ final class WriteEpisodeViewController: BaseViewController {
         super.viewDidLoad()
         self.title = "에피소드 기록하기"
         self.view.backgroundColor = .pink
+        print(#function)
     }
     
     override func bind() {
         let input = WriteEpisodeViewModel.Input(
-            didSelectWriteButton: episodeView.rx.tapWrite.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
+            viewDidLoadEvent: Observable.just(()).asObservable(), didSelectWriteButton: episodeView.rx.tapWrite.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance), didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable())
         let output = viewModel.transform(input: input)
+        
+        output.placeName
+            .bind(to: episodeView.rx.placeTitle)
+            .disposed(by: disposeBag)
+        
+        output.date
+            .withUnretained(self)
+            .bind(onNext: { owner, date in
+                print(date)
+            })
+            .disposed(by: disposeBag)
         
         output.updateStoreEpisode
             .withUnretained(self)
@@ -49,6 +61,12 @@ final class WriteEpisodeViewController: BaseViewController {
             .withUnretained(self)
             .bind(onNext: { owner, _ in
                 owner.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        episodeView.episodeContentView.rx.imageViewTapGesture
+            .bind(onNext: { _ in
+                print("tap")
             })
             .disposed(by: disposeBag)
     }

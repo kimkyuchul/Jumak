@@ -25,15 +25,27 @@ final class WriteEpisodeViewModel: ViewModelType {
     }
     
     struct Input {
+        let viewDidLoadEvent: Observable<Void>
         let didSelectWriteButton: Observable<Void>
+        let didSelectDatePicker: Observable<Date>
     }
     
     struct Output {
         let updateStoreEpisode = PublishRelay<Void>()
+        let placeName = PublishRelay<String>()
+        let date = BehaviorRelay<Date>(value: Date())
     }
     
     func transform(input: Input) -> Output {
         let output = Output()
+        
+        input.viewDidLoadEvent
+            .observe(on: MainScheduler.asyncInstance)
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                output.placeName.accept(owner.storeVO.placeName)
+            })
+            .disposed(by: disposeBag)
         
         input.didSelectWriteButton
             .withUnretained(self)
@@ -44,6 +56,11 @@ final class WriteEpisodeViewModel: ViewModelType {
                 output.updateStoreEpisode.accept(())
             })
             .disposed(by: disposeBag)
+        
+        input.didSelectDatePicker
+            .bind(to: output.date)
+            .disposed(by: disposeBag)
+            
         
         return output
     }
