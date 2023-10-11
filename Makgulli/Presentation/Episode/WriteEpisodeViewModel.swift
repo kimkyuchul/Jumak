@@ -28,6 +28,7 @@ final class WriteEpisodeViewModel: ViewModelType {
         let viewDidLoadEvent: Observable<Void>
         let didSelectWriteButton: Observable<Void>
         let didSelectDatePicker: Observable<Date>
+        let didSelectImage: Observable<Bool>
     }
     
     struct Output {
@@ -60,7 +61,13 @@ final class WriteEpisodeViewModel: ViewModelType {
         input.didSelectDatePicker
             .bind(to: output.date)
             .disposed(by: disposeBag)
-            
+        
+        input.didSelectImage
+            .skip(1)
+            .bind(onNext: { hasImage in
+                print("hasImage", hasImage)
+            })
+            .disposed(by: disposeBag)
         
         return output
     }

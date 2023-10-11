@@ -15,7 +15,7 @@ final class WriteEpisodeViewController: BaseViewController {
     
     private let episodeView = WriteEpisodeView()
     private let viewModel: WriteEpisodeViewModel
-    private let episodehumbnailRelay = PublishRelay<UIImage>()
+    private let episodeThumbnailRelay = PublishRelay<UIImage>()
     
     init(viewModel: WriteEpisodeViewModel) {
         self.viewModel = viewModel
@@ -37,7 +37,7 @@ final class WriteEpisodeViewController: BaseViewController {
         let input = WriteEpisodeViewModel.Input(
             viewDidLoadEvent: Observable.just(()).asObservable(),
             didSelectWriteButton: episodeView.rx.tapWrite.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
-            didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable())
+            didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable(), didSelectImage: episodeView.episodeContentView.rx.hasImage)
         let output = viewModel.transform(input: input)
         
         output.placeName
@@ -73,7 +73,7 @@ final class WriteEpisodeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        episodehumbnailRelay
+        episodeThumbnailRelay
             .bind(to: episodeView.episodeContentView.rx.image)
             .disposed(by: disposeBag)
     }
@@ -100,7 +100,7 @@ extension WriteEpisodeViewController: PHPickerViewControllerDelegate {
                 guard let image = image as? UIImage else { return }
                 DispatchQueue.main.async {
                     image.preparingThumbnail(of: CGSize(width: 140, height: 140))
-                    self?.episodehumbnailRelay.accept(image)
+                    self?.episodeThumbnailRelay.accept(image)
                 }
             }
         }

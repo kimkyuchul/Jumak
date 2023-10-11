@@ -78,4 +78,10 @@ extension Reactive where Base: EpisodeContentView {
     var image: Binder<UIImage?> {
         return base.episodeImageView.rx.image
     }
+    
+    var hasImage: Observable<Bool> {
+        return base.episodeImageView.rx.observe(UIImage.self, "image")
+            .map { $0 != nil }
+            .distinctUntilChanged()
+    }
 }
