@@ -143,5 +143,12 @@ final class LocationDetailViewController: BaseViewController {
                 owner.locationDetailView.applyCollectionViewDataSource(by: episodeList)
             })
             .disposed(by: disposeBag)
+        
+        output.episodeEmptyViewHidden
+            .withUnretained(self)
+            .bind(onNext: { owner, isHidden in
+                print(isHidden)
+            })
+            .disposed(by: disposeBag)
     }
 }

@@ -51,6 +51,7 @@ final class LocationDetailViewModel: ViewModelType {
         let showErrorAlert = PublishRelay<Error>()
         let presentWriteEpisode = PublishRelay<StoreVO>()
         let episodeList = PublishRelay<[EpisodeVO]>()
+        let episodeEmptyViewHidden = PublishRelay<Bool>()
     }
     
     func transform(input: Input) -> Output {
@@ -172,8 +173,21 @@ final class LocationDetailViewModel: ViewModelType {
             .bind(to: output.locationCoordinate)
             .disposed(by: disposeBag)
         
-        locationDetailUseCase.episodeList
+        let episodeList = locationDetailUseCase.episodeList
+            .share()
+        
+        episodeList
             .bind(to: output.episodeList)
+            .disposed(by: disposeBag)
+        
+        episodeList
+            .bind(onNext: { episodeList in
+                if episodeList.isEmpty {
+                    output.episodeEmptyViewHidden.accept(false)
+                } else {
+                    output.episodeEmptyViewHidden.accept(true)
+                }
+            })
             .disposed(by: disposeBag)
     }
 }
