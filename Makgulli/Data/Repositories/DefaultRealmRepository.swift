@@ -69,7 +69,7 @@ final class DefaultRealmRepository: RealmRepository {
             return Disposables.create()
         }
     }
-        
+    
     // willDisplayCell에서 그려질 셀에 대해 필터링을 진행하는 메서드 ex) 다른뷰 이동 후 다시 재진입 시
     func updateStoreCellObservable(index: Int, storeList: [StoreVO]) -> Single<StoreVO> {
         return Single.create { single in
@@ -155,8 +155,8 @@ final class DefaultRealmRepository: RealmRepository {
                             comment: storeObject.comment,
                             imageURL: storeObject.imageURL,
                             alcohol: storeObject.alcohol,
-                            mixedAlcohol: storeObject.mixedAlcohol,
-                            drink: storeObject.drink)
+                            drink: storeObject.drink,
+                            drinkQuantity: storeObject.drinkQuantity)
                         
                         return episodeVO
                     }
@@ -202,7 +202,7 @@ final class DefaultRealmRepository: RealmRepository {
             ofType: StoreTable.self,
             forPrimaryKey: store.id
         ) else { return false }
-                
+        
         if store.rate != storeObject.rate || store.bookmark != storeObject.bookmark {
             return true
         }
@@ -220,9 +220,9 @@ private extension StoreVO {
             episodeTable.comment = episodeVO.comment
             episodeTable.date = episodeVO.date
             episodeTable.alcohol = episodeVO.alcohol
-            episodeTable.mixedAlcohol = episodeVO.mixedAlcohol
             episodeTable.imageURL = episodeVO.imageURL
             episodeTable.drink = episodeVO.drink
+            episodeTable.drinkQuantity = episodeVO.drinkQuantity
             return episodeTable
         }
         
