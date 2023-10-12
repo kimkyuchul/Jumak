@@ -46,7 +46,7 @@ final class LocationDetailView: BaseView {
         snapshot.appendSections([.episode])
         snapshot.appendItems(viewModels, toSection: .episode)
         
-        episodeView.dataSource?.apply(snapshot)
+        episodeView.dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
     fileprivate func moveCamera(latitude: Double, longitude: Double) {
