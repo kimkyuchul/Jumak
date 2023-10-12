@@ -58,6 +58,11 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
         self.cellShadow(backView: containerView, radius: 23)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bookmarkImageView.image = nil
+    }
+    
     override func setHierarchy() {
         self.addSubview(containerView)
         
@@ -121,7 +126,7 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
 
 extension StoreCollectionViewCell {
     func configureCell(item: StoreVO) {
-        logoImageView.image = item.categoryType.logoImage.resize(newWidth: 100)
+        logoImageView.image = item.categoryType.logoImage.resize(newWidth: 50)
         storeTitleLabel.text = item.placeName
         addressLabel.text = item.addressName
         rateBadge.setBadgeTitle(text: "\(item.rate)점")
