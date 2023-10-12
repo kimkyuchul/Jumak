@@ -52,7 +52,6 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
         return imageView
     }()
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.cellShadow(backView: containerView, radius: 23)
@@ -60,7 +59,7 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        bookmarkImageView.image = nil
+        logoImageView.image = nil
     }
     
     override func setHierarchy() {
