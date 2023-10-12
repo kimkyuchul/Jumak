@@ -1,5 +1,5 @@
 //
-//  EpisodeDrinkView.swift
+//  EpisodeDrinkNameView.swift
 //  Makgulli
 //
 //  Created by 김규철 on 2023/10/11.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class EpisodeDrinkView: BaseView {
+final class EpisodeDrinkNameView: BaseView {
     
     private let episodeTitleLabel: UILabel = {
         let label = UILabel()
@@ -20,7 +20,7 @@ final class EpisodeDrinkView: BaseView {
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
-    private let commentTextField = EpisodeTextField(placeholderText: "먹은 술 이름을 기억해보세요.")
+    fileprivate let commentTextField = EpisodeTextField(placeholderText: "먹은 술 이름을 기억해보세요.")
     fileprivate let checkBoxButton = CheckBoxView(checkLabelText: "술이 기억이 안나요.")
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -50,7 +50,7 @@ final class EpisodeDrinkView: BaseView {
     }
 }
 
-extension Reactive where Base: EpisodeDrinkView {
+extension Reactive where Base: EpisodeDrinkNameView {
     var tapCheckButton: Observable<Bool> {
         return base.checkBoxButton.checkButton.rx.isSelected.asObservable()
     }
@@ -60,9 +60,13 @@ extension Reactive where Base: EpisodeDrinkView {
             if isForgetDrinkName {
                 view.checkBoxButton.checkButton.layer.borderColor = UIColor.black.cgColor
                 view.checkBoxButton.checkButton.setImage(ImageLiteral.checkIcon, for: .normal)
+                view.commentTextField.isEnabled = false
+                view.commentTextField.backgroundColor = .gray
             } else {
                 view.checkBoxButton.checkButton.layer.borderColor = UIColor.gray.cgColor
                 view.checkBoxButton.checkButton.setImage(nil, for: .normal)
+                view.commentTextField.isEnabled = true
+                view.commentTextField.backgroundColor = .white
             }
         }
     }
