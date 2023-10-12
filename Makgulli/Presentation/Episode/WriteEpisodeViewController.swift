@@ -39,6 +39,8 @@ final class WriteEpisodeViewController: BaseViewController {
             didSelectWriteButton: episodeView.rx.tapWrite.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
             didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable(),
             didSelectImage: episodeView.episodeContentView.rx.hasImage,
+            comment: episodeView.episodeContentView.rx.comment,
+            drinkName: episodeView.episodeDrinkNameView.rx.drinkName,
             didSelectDefaultDrinkCheckButton: episodeView.episodeDrinkNameView.rx.tapCheckButton,
             didSelectMinusDrinkCountButton: episodeView.episodeDrinkCountView.rx.tapMinus.asObservable(),
             didSelectPlusDrinkCountButton: episodeView.episodeDrinkCountView.rx.tapPlus.asObservable(),
@@ -62,6 +64,10 @@ final class WriteEpisodeViewController: BaseViewController {
         
         output.drinkCount
             .bind(to: episodeView.episodeDrinkCountView.rx.drinkCount)
+            .disposed(by: disposeBag)
+        
+        output.writeButtonIsEnabled
+            .bind(to: episodeView.rx.writeEnabled)
             .disposed(by: disposeBag)
         
         output.updateStoreEpisode

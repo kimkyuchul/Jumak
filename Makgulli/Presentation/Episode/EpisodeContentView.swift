@@ -21,7 +21,7 @@ final class EpisodeContentView: BaseView {
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
-    private let commentTextField = EpisodeTextField(placeholderText: "그날의 한줄평을 기록해봐요.")
+    fileprivate let commentTextField = EpisodeTextField(placeholderText: "그날의 한줄평을 기록해봐요.")
     private let imageSelectionView = ImageSelectionView()
     fileprivate let episodeImageView: UIImageView = {
         let imageView = UIImageView()
@@ -73,6 +73,10 @@ final class EpisodeContentView: BaseView {
 extension Reactive where Base: EpisodeContentView {
     var imageViewTapGesture: Signal<Void> {
         return base.episodeImageView.rx.tapGesture().when(.recognized).map { _ in }.asSignal(onErrorJustReturn: ())
+    }
+    
+    var comment: Observable<String> {
+        return base.commentTextField.rx.text.orEmpty.asObservable()
     }
     
     var image: Binder<UIImage?> {

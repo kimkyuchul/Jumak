@@ -11,6 +11,7 @@ import RxSwift
 
 protocol WriteEpisodeUseCase: AnyObject {
     func updateEpisodeList(_ store: StoreVO, episode: EpisodeTable)
+    func updateValidation(text: String) -> Bool
     
     var errorSubject: PublishSubject<Error> { get set }
 }
@@ -24,13 +25,12 @@ final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
     
     private let realmRepository: RealmRepository
     private let disposebag = DisposeBag()
-    
+    var errorSubject = PublishSubject<Error>()
+        
     init(realmRepository: RealmRepository) {
         self.realmRepository = realmRepository
     }
-    
-    var errorSubject = PublishSubject<Error>()
-    
+        
     func updateEpisodeList(_ store: StoreVO, episode: EpisodeTable) {
         // 가게가 렘에 추가되지 않은 상태
         if !storeExists(store.id) {
@@ -44,6 +44,14 @@ final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
             // 가게가 렘에 추가되어 있는 상태라면 해당 데이터에 updateEpisode
             updateEpisode(store.id, episode)
         }
+    }
+    
+    func updateValidation(text: String) -> Bool {
+        guard !text.isEmpty else {
+             return false
+         }
+        
+        return true
     }
 }
 

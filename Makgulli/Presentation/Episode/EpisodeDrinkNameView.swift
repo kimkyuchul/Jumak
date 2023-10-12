@@ -20,11 +20,11 @@ final class EpisodeDrinkNameView: BaseView {
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
-    fileprivate let commentTextField = EpisodeTextField(placeholderText: "먹은 술 이름을 기억해보세요.")
+    fileprivate let drinkNameTextField = EpisodeTextField(placeholderText: "먹은 술 이름을 기억해보세요.")
     fileprivate let checkBoxButton = CheckBoxView(checkLabelText: "술이 기억이 안나요.")
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.addArrangedSubviews(commentTextField, checkBoxButton)
+        stackView.addArrangedSubviews(drinkNameTextField, checkBoxButton)
         stackView.axis = .vertical
         stackView.spacing = 5
         stackView.distribution = .fill
@@ -55,18 +55,23 @@ extension Reactive where Base: EpisodeDrinkNameView {
         return base.checkBoxButton.checkButton.rx.isSelected.asObservable()
     }
     
+    var drinkName: Observable<String> {
+        return base.drinkNameTextField.rx.text.orEmpty.asObservable()
+    }
+    
     var isForgetDrinkName: Binder<Bool> {
         return Binder(self.base) { (view, isForgetDrinkName) in
             if isForgetDrinkName {
                 view.checkBoxButton.checkButton.layer.borderColor = UIColor.black.cgColor
                 view.checkBoxButton.checkButton.setImage(ImageLiteral.checkIcon, for: .normal)
-                view.commentTextField.isEnabled = false
-                view.commentTextField.backgroundColor = .gray
+                view.drinkNameTextField.text = ""
+                view.drinkNameTextField.isEnabled = false
+                view.drinkNameTextField.backgroundColor = .gray
             } else {
                 view.checkBoxButton.checkButton.layer.borderColor = UIColor.gray.cgColor
                 view.checkBoxButton.checkButton.setImage(nil, for: .normal)
-                view.commentTextField.isEnabled = true
-                view.commentTextField.backgroundColor = .white
+                view.drinkNameTextField.isEnabled = true
+                view.drinkNameTextField.backgroundColor = .white
             }
         }
     }
