@@ -34,6 +34,7 @@ final class WriteEpisodeViewModel: ViewModelType {
         let didSelectDefaultDrinkCheckButton: Observable<Bool>
         let didSelectMinusDrinkCountButton: Observable<Void>
         let didSelectPlusDrinkCountButton: Observable<Void>
+        let didSelectQuantity: Observable<QuantityType>
     }
     
     struct Output {
@@ -42,6 +43,7 @@ final class WriteEpisodeViewModel: ViewModelType {
         let date = BehaviorRelay<Date>(value: Date())
         let isForgetDrinkName = PublishRelay<Bool>()
         let drinkCount = BehaviorRelay<Double>(value: 1.0)
+        let quantity = BehaviorRelay<QuantityType>(value: .bottle)
     }
     
     func transform(input: Input) -> Output {
@@ -106,6 +108,10 @@ final class WriteEpisodeViewModel: ViewModelType {
             .bind(to: output.drinkCount)
             .disposed(by: disposeBag)
         
+        input.didSelectQuantity
+            .bind(to: output.quantity)
+            .disposed(by: disposeBag)
+    
         return output
     }
 }

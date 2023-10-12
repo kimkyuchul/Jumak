@@ -54,7 +54,7 @@ final class EpisodeDrinkCountView: BaseView {
         return stackView
     }()
     
-    private let quantitySubject = BehaviorSubject<QuantityType>(value: .bottle)
+    let quantitySubject = PublishSubject<QuantityType>()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

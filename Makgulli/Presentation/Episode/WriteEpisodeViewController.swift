@@ -41,7 +41,8 @@ final class WriteEpisodeViewController: BaseViewController {
             didSelectImage: episodeView.episodeContentView.rx.hasImage,
             didSelectDefaultDrinkCheckButton: episodeView.episodeDrinkNameView.rx.tapCheckButton,
             didSelectMinusDrinkCountButton: episodeView.episodeDrinkCountView.rx.tapMinus.asObservable(),
-            didSelectPlusDrinkCountButton: episodeView.episodeDrinkCountView.rx.tapPlus.asObservable())
+            didSelectPlusDrinkCountButton: episodeView.episodeDrinkCountView.rx.tapPlus.asObservable(),
+            didSelectQuantity: episodeView.episodeDrinkCountView.quantitySubject)
         let output = viewModel.transform(input: input)
         
         output.placeName
