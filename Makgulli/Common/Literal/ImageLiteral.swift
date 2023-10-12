@@ -51,6 +51,9 @@ enum ImageLiteral {
     static var xmarkIcon : UIImage { .load(systemName: "xmark") }
     static var calendarIcon : UIImage { .load(systemName: "calendar.badge.plus") }
     static var cameraIcon : UIImage { .load(systemName: "camera") }
+    static var plusIcon : UIImage { .load(systemName: "plus") }
+    static var minusIcon : UIImage { .load(systemName: "minus") }
+    static var arrowDownIcon : UIImage { .load(systemName: "chevron.down") }
 }
 
 extension UIImage {

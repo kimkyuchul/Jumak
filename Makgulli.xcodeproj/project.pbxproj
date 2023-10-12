@@ -44,7 +44,7 @@
 		5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827B82AD6AC4C00C37B17 /* EpisodeTextField.swift */; };
 		5A6827BC2AD6BDCE00C37B17 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 5A6827BB2AD6BDCE00C37B17 /* RxGesture */; };
 		5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */; };
-		5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkView.swift */; };
+		5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkNameView.swift */; };
 		5A6827C22AD6E59300C37B17 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
@@ -95,9 +95,11 @@
 		5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */; };
 		5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21D2AC419D5006040D2 /* LocationView.swift */; };
 		5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21F2AC41A19006040D2 /* BaseView.swift */; };
+		5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */; };
+		5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E692AD7F0FB005969FA /* QuantityType.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
-		5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */; };
+		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
 		5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */; };
 		5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00332AC5F2720024D7F8 /* CategoryType.swift */; };
 		5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */; };
@@ -167,7 +169,7 @@
 		5A6827B52AD69BF900C37B17 /* EpisodeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeContentView.swift; sourceTree = "<group>"; };
 		5A6827B82AD6AC4C00C37B17 /* EpisodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTextField.swift; sourceTree = "<group>"; };
 		5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionView.swift; sourceTree = "<group>"; };
-		5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDrinkView.swift; sourceTree = "<group>"; };
+		5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDrinkNameView.swift; sourceTree = "<group>"; };
 		5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -215,9 +217,11 @@
 		5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetupable.swift; sourceTree = "<group>"; };
 		5A9DA21D2AC419D5006040D2 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		5A9DA21F2AC41A19006040D2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDrinkCountView.swift; sourceTree = "<group>"; };
+		5AAB8E692AD7F0FB005969FA /* QuantityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityType.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
+		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
 		5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		5ADC00332AC5F2720024D7F8 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -312,7 +316,7 @@
 				5A68277D2ACED01C00C37B17 /* BookmarkButton.swift */,
 				5A6827762ACEA7B200C37B17 /* RateButton.swift */,
 				5A6827722ACE900F00C37B17 /* LocationButton.swift */,
-				5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */,
+				5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */,
 				5A6827AA2AD5265100C37B17 /* EpisodeButton.swift */,
 			);
 			path = Button;
@@ -358,7 +362,8 @@
 		5A6827A52AD50D3A00C37B17 /* Episode */ = {
 			isa = PBXGroup;
 			children = (
-				5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkView.swift */,
+				5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */,
+				5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkNameView.swift */,
 				5A6827B52AD69BF900C37B17 /* EpisodeContentView.swift */,
 				5A6827B12AD6760600C37B17 /* EpisodeDateView.swift */,
 				5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */,
@@ -708,6 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				5ADC00332AC5F2720024D7F8 /* CategoryType.swift */,
+				5AAB8E692AD7F0FB005969FA /* QuantityType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1040,7 +1046,9 @@
 				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
 				5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */,
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,
+				5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */,
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
+				5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */,
 				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
 				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
@@ -1074,11 +1082,11 @@
 				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
 				5A6827B62AD69BF900C37B17 /* EpisodeContentView.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
-				5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */,
+				5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */,
 				5A68277C2ACEC7A700C37B17 /* DetailTitleView.swift in Sources */,
 				5A6827992AD1646D00C37B17 /* DefaultRealmRepository.swift in Sources */,
 				5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */,
-				5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkView.swift in Sources */,
+				5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkNameView.swift in Sources */,
 				5A68278A2AD054A300C37B17 /* EpisodeVO.swift in Sources */,
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
 				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
