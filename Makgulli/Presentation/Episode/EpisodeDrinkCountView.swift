@@ -21,9 +21,9 @@ final class EpisodeDrinkCountView: BaseView {
         return label
     }()
     private let countContainerView = UIView()
-    private let episodeTextField = EpisodeTextField(height: 40)
-    private let minusDrinkCountButton = DefaultCircleButton(image: ImageLiteral.minusIcon, tintColor: .black, backgroundColor: .gray)
-    private let plusDrinkCountButton = DefaultCircleButton(image: ImageLiteral.plusIcon, tintColor: .black, backgroundColor: .darkGray)
+    fileprivate let drinkCountTextField = EpisodeTextField(height: 40)
+    fileprivate let minusCountButton = DefaultCircleButton(image: ImageLiteral.minusIcon, tintColor: .black, backgroundColor: .gray)
+    fileprivate let plusCountButton = DefaultCircleButton(image: ImageLiteral.plusIcon, tintColor: .black, backgroundColor: .darkGray)
     private let selectQuantityButton = {
         var configuration = UIButton.Configuration.plain()
         configuration.buttonSize = .small
@@ -67,7 +67,7 @@ final class EpisodeDrinkCountView: BaseView {
     }
     
     override func setHierarchy() {
-        [episodeTextField, minusDrinkCountButton, plusDrinkCountButton].forEach {
+        [drinkCountTextField, minusCountButton, plusCountButton].forEach {
             countContainerView.addSubview($0)
         }
         
@@ -87,16 +87,16 @@ final class EpisodeDrinkCountView: BaseView {
             make.leading.trailing.bottom.equalToSuperview()
         }
         
-        episodeTextField.snp.makeConstraints { make in
+        drinkCountTextField.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        minusDrinkCountButton.snp.makeConstraints { make in
+        minusCountButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(10)
             make.size.equalTo(34)
         }
-        plusDrinkCountButton.snp.makeConstraints { make in
+        plusCountButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(10)
             make.size.equalTo(34)
@@ -138,5 +138,21 @@ extension EpisodeDrinkCountView {
                                     .font: UIFont.boldLineSeed(size: ._14),
                                     .foregroundColor: UIColor.black
                                   ])
+    }
+}
+
+extension Reactive where Base: EpisodeDrinkCountView {
+    var drinkCount: Binder<Double> {
+        return Binder(self.base) { (view, drinkCount) in
+            view.drinkCountTextField.text = "\(drinkCount)"
+        }
+    }
+    
+    var tapMinus: ControlEvent<Void> {
+        return base.minusCountButton.rx.tap
+    }
+    
+    var tapPlus: ControlEvent<Void> {
+        return base.plusCountButton.rx.tap
     }
 }

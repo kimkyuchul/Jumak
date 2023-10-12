@@ -15,6 +15,8 @@ final class WriteEpisodeViewModel: ViewModelType {
     
     private let writeEpisodeUseCase: WriteEpisodeUseCase
     private var storeVO: StoreVO
+    private var defaultDrinkCount = 1.0
+    private var drinkCountSubject = BehaviorSubject<Double>(value: 1.0)
     
     init(
         storeVO: StoreVO,
@@ -30,6 +32,8 @@ final class WriteEpisodeViewModel: ViewModelType {
         let didSelectDatePicker: Observable<Date>
         let didSelectImage: Observable<Bool>
         let didSelectDefaultDrinkCheckButton: Observable<Bool>
+        let didSelectMinusDrinkCountButton: Observable<Void>
+        let didSelectPlusDrinkCountButton: Observable<Void>
     }
     
     struct Output {
@@ -37,6 +41,7 @@ final class WriteEpisodeViewModel: ViewModelType {
         let placeName = PublishRelay<String>()
         let date = BehaviorRelay<Date>(value: Date())
         let isForgetDrinkName = PublishRelay<Bool>()
+        let drinkCount = BehaviorRelay<Double>(value: 1.0)
     }
     
     func transform(input: Input) -> Output {
@@ -73,6 +78,32 @@ final class WriteEpisodeViewModel: ViewModelType {
         
         input.didSelectDefaultDrinkCheckButton
             .bind(to: output.isForgetDrinkName)
+            .disposed(by: disposeBag)
+                
+        input.didSelectMinusDrinkCountButton
+            .map { 0.5 }
+            .withUnretained(self)
+            .bind(onNext: { owner, minusDrink in
+                if owner.defaultDrinkCount > 0 {
+                    owner.defaultDrinkCount -= minusDrink
+                    owner.drinkCountSubject.onNext(owner.defaultDrinkCount)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        input.didSelectPlusDrinkCountButton
+            .map { 0.5 }
+            .withUnretained(self)
+            .bind(onNext: { owner, minusDrink in
+                if owner.defaultDrinkCount < 100 {
+                    owner.defaultDrinkCount += minusDrink
+                    owner.drinkCountSubject.onNext(owner.defaultDrinkCount)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        drinkCountSubject
+            .bind(to: output.drinkCount)
             .disposed(by: disposeBag)
         
         return output
