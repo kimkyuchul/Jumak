@@ -37,7 +37,7 @@ final class WriteEpisodeViewController: BaseViewController {
         let input = WriteEpisodeViewModel.Input(
             viewDidLoadEvent: Observable.just(()).asObservable(),
             didSelectWriteButton: episodeView.rx.tapWrite.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
-            didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable(), didSelectImage: episodeView.episodeContentView.rx.hasImage)
+            didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable(), didSelectImage: episodeView.episodeContentView.rx.hasImage, didSelectDefaultDrinkCheckButton: episodeView.episodeDrinkView.rx.tapCheckButton)
         let output = viewModel.transform(input: input)
         
         output.placeName
@@ -49,6 +49,10 @@ final class WriteEpisodeViewController: BaseViewController {
             .bind(onNext: { owner, date in
                 print(date)
             })
+            .disposed(by: disposeBag)
+        
+        output.isForgetDrinkName
+            .bind(to: episodeView.episodeDrinkView.rx.isForgetDrinkName)
             .disposed(by: disposeBag)
         
         output.updateStoreEpisode

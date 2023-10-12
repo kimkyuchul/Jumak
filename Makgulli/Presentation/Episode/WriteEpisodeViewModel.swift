@@ -29,12 +29,14 @@ final class WriteEpisodeViewModel: ViewModelType {
         let didSelectWriteButton: Observable<Void>
         let didSelectDatePicker: Observable<Date>
         let didSelectImage: Observable<Bool>
+        let didSelectDefaultDrinkCheckButton: Observable<Bool>
     }
     
     struct Output {
         let updateStoreEpisode = PublishRelay<Void>()
         let placeName = PublishRelay<String>()
         let date = BehaviorRelay<Date>(value: Date())
+        let isForgetDrinkName = PublishRelay<Bool>()
     }
     
     func transform(input: Input) -> Output {
@@ -67,6 +69,10 @@ final class WriteEpisodeViewModel: ViewModelType {
             .bind(onNext: { hasImage in
                 print("hasImage", hasImage)
             })
+            .disposed(by: disposeBag)
+        
+        input.didSelectDefaultDrinkCheckButton
+            .bind(to: output.isForgetDrinkName)
             .disposed(by: disposeBag)
         
         return output

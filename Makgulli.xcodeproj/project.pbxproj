@@ -44,6 +44,8 @@
 		5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827B82AD6AC4C00C37B17 /* EpisodeTextField.swift */; };
 		5A6827BC2AD6BDCE00C37B17 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 5A6827BB2AD6BDCE00C37B17 /* RxGesture */; };
 		5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */; };
+		5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkView.swift */; };
+		5A6827C22AD6E59300C37B17 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
@@ -165,6 +167,8 @@
 		5A6827B52AD69BF900C37B17 /* EpisodeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeContentView.swift; sourceTree = "<group>"; };
 		5A6827B82AD6AC4C00C37B17 /* EpisodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTextField.swift; sourceTree = "<group>"; };
 		5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionView.swift; sourceTree = "<group>"; };
+		5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDrinkView.swift; sourceTree = "<group>"; };
+		5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 				5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */,
 				5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */,
 				5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */,
+				5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 		5A6827A52AD50D3A00C37B17 /* Episode */ = {
 			isa = PBXGroup;
 			children = (
+				5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkView.swift */,
 				5A6827B52AD69BF900C37B17 /* EpisodeContentView.swift */,
 				5A6827B12AD6760600C37B17 /* EpisodeDateView.swift */,
 				5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */,
@@ -1072,11 +1078,13 @@
 				5A68277C2ACEC7A700C37B17 /* DetailTitleView.swift in Sources */,
 				5A6827992AD1646D00C37B17 /* DefaultRealmRepository.swift in Sources */,
 				5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */,
+				5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkView.swift in Sources */,
 				5A68278A2AD054A300C37B17 /* EpisodeVO.swift in Sources */,
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
 				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
 				5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
+				5A6827C22AD6E59300C37B17 /* CheckBoxView.swift in Sources */,
 				5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */,
 				5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */,
 				5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */,
