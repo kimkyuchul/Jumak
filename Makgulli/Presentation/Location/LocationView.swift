@@ -22,7 +22,7 @@ final class LocationView: BaseView {
         self.locationOverlay = mapView.locationOverlay
         return mapView
     }()
-    let questionButton = QuestionButton()
+    let questionButton = DefaultCircleButton(image: ImageLiteral.mapQuestionIcon, tintColor: .brown, backgroundColor: .white)
     let userAddressButton = UserAddressButton()
     lazy var categoryCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createCategoryLayout())
@@ -99,6 +99,7 @@ final class LocationView: BaseView {
         questionButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(24)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(9)
+            make.size.equalTo(46)
         }
         
         userAddressButton.snp.makeConstraints { make in
