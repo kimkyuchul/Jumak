@@ -28,7 +28,6 @@ final class CheckBoxView: BaseView {
         return label
     }()
 
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         bind()

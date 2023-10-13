@@ -234,6 +234,12 @@ final class LocationViewModel: ViewModelType {
 }
 
 extension LocationViewModel {
+    func updateStoreCell(_ store: StoreVO) -> StoreVO? {
+        return searchLocationUseCase.updateStoreCell(store)
+    }
+}
+
+extension LocationViewModel {
     private func transformCollectionViewDataSource(input: LocationViewModel.Input, output: LocationViewModel.Output) {
         Observable.combineLatest(output.storeList, self.categoryType)
             .map { storeList, categoryType in
@@ -262,11 +268,5 @@ extension LocationViewModel {
     
     private func shouldUpdateStore(store: StoreVO, visibleStore: StoreVO) -> Bool {
         return store.rate != visibleStore.rate || store.bookmark != visibleStore.bookmark || store.episode != visibleStore.episode
-    }
-}
-
-extension LocationViewModel {
-    func updateStoreCell(_ store: StoreVO) -> StoreVO? {
-        return searchLocationUseCase.updateStoreCell(store)
     }
 }

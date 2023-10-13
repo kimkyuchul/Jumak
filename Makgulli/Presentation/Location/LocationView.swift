@@ -70,9 +70,28 @@ final class LocationView: BaseView {
     }()
     fileprivate let storeEmptyView = StoreEmptyView()
     
-    
     var locationOverlay: NMFLocationOverlay?
     var visibleItemsRelay = PublishRelay<Int?>()
+    
+    fileprivate func moveCamera(latitude: Double, longitude: Double) {
+        let cameraPosition = NMFCameraPosition(
+            NMGLatLng(lat: latitude,lng: longitude),
+            zoom: self.mapView.zoomLevel
+        )
+        let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
+        
+        cameraUpdate.animation = .easeIn
+        self.mapView.moveCamera(cameraUpdate)
+    }
+    
+    fileprivate func handleResearchButtonVisibility(isHidden: Bool) {
+        UIView.transition(
+            with: self.researchButton,
+            duration: 0.8,
+            options: .curveEaseOut) { [weak self] in
+                self?.researchButton.alpha = isHidden ? 0.0 : 1.0
+            }
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -138,26 +157,6 @@ final class LocationView: BaseView {
             make.bottom.equalTo(storeCollectionView.snp.bottom)
         }
     }
-    
-    fileprivate func moveCamera(latitude: Double, longitude: Double) {
-        let cameraPosition = NMFCameraPosition(
-            NMGLatLng(lat: latitude,lng: longitude),
-            zoom: self.mapView.zoomLevel
-        )
-        let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
-        
-        cameraUpdate.animation = .easeIn
-        self.mapView.moveCamera(cameraUpdate)
-    }
-    
-    fileprivate func handleResearchButtonVisibility(isHidden: Bool) {
-        UIView.transition(
-            with: self.researchButton,
-            duration: 0.8,
-            options: .curveEaseOut) { [weak self] in
-                self?.researchButton.alpha = isHidden ? 0.0 : 1.0
-            }
-    }
 }
 
 extension Reactive where Base: LocationView {
@@ -180,7 +179,6 @@ extension Reactive where Base: LocationView {
         }
     }
 }
-
 
 private extension LocationView {
     func createCategoryLayout() -> UICollectionViewLayout {
