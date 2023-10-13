@@ -28,19 +28,18 @@ final class WriteEpisodeViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
-        let didSelectWriteButton: Observable<Void>
         let didSelectDatePicker: Observable<Date>
+        let commentTextFieldDidEditEvent: Observable<String>
         let didSelectImage: Observable<Bool>
-        let comment: Observable<String>
-        let drinkName: Observable<String>
+        let drinkNameTextFieldDidEditEvent: Observable<String>
         let didSelectDefaultDrinkCheckButton: Observable<Bool>
         let didSelectMinusDrinkCountButton: Observable<Void>
         let didSelectPlusDrinkCountButton: Observable<Void>
         let didSelectQuantity: Observable<QuantityType>
+        let didSelectWriteButton: Observable<Void>
     }
     
     struct Output {
-        let updateStoreEpisode = PublishRelay<Void>()
         let placeName = PublishRelay<String>()
         let date = BehaviorRelay<Date>(value: Date())
         let drinkCount = BehaviorRelay<Double>(value: 1.0)
@@ -50,11 +49,20 @@ final class WriteEpisodeViewModel: ViewModelType {
         let isDrinkNameValid = PublishRelay<Bool>()
         let isSelectImageValid = PublishRelay<Bool>()
         let writeButtonIsEnabled = BehaviorRelay<Bool>(value: false)
+        let updateStoreEpisode = PublishRelay<Void>()
     }
     
     func transform(input: Input) -> Output {
         let output = Output()
-        let isAllInputValid = Observable.combineLatest(output.isCommentValid, output.isDrinkNameValid, output.isSelectImageValid, resultSelector: { $0 && $1 && $2 })
+        let isAllInputValid = Observable
+            .combineLatest(
+                output.isCommentValid,
+                output.isDrinkNameValid,
+                output.isSelectImageValid,
+                resultSelector: {
+                    $0 && $1 && $2
+                }
+            )
         
         input.viewDidLoadEvent
             .observe(on: MainScheduler.asyncInstance)
@@ -63,21 +71,12 @@ final class WriteEpisodeViewModel: ViewModelType {
                 output.placeName.accept(owner.storeVO.placeName)
             })
             .disposed(by: disposeBag)
-        
-        input.didSelectWriteButton
-            .withLatestFrom(transformUpdateEpisode(input: input, output: output))
-            .withUnretained(self)
-            .bind(onNext: { owner, episodeTable in
-                owner.writeEpisodeUseCase.updateEpisodeList(owner.storeVO, episode: episodeTable)
-                output.updateStoreEpisode.accept(())
-            })
-            .disposed(by: disposeBag)
-        
+                
         input.didSelectDatePicker
             .bind(to: output.date)
             .disposed(by: disposeBag)
         
-        input.comment
+        input.commentTextFieldDidEditEvent
             .distinctUntilChanged()
             .withUnretained(self)
             .map { owner, comment in
@@ -93,7 +92,7 @@ final class WriteEpisodeViewModel: ViewModelType {
             .bind(to: output.isSelectImageValid)
             .disposed(by: disposeBag)
         
-        input.drinkName
+        input.drinkNameTextFieldDidEditEvent
             .distinctUntilChanged()
             .withUnretained(self)
             .map { owner, drinkName in
@@ -149,13 +148,22 @@ final class WriteEpisodeViewModel: ViewModelType {
             .bind(to: output.writeButtonIsEnabled)
             .disposed(by: disposeBag)
         
+        input.didSelectWriteButton
+            .withLatestFrom(transformUpdateEpisode(input: input, output: output))
+            .withUnretained(self)
+            .bind(onNext: { owner, episodeTable in
+                owner.writeEpisodeUseCase.updateEpisodeList(owner.storeVO, episode: episodeTable)
+                output.updateStoreEpisode.accept(())
+            })
+            .disposed(by: disposeBag)
+        
         return output
     }
 }
 
 extension WriteEpisodeViewModel {
     private func transformUpdateEpisode(input: WriteEpisodeViewModel.Input, output: WriteEpisodeViewModel.Output) -> Observable<EpisodeTable> {
-        return Observable.combineLatest(output.date, input.comment, input.drinkName, output.drinkCount, output.quantity)
+        return Observable.combineLatest(output.date, input.commentTextFieldDidEditEvent, input.drinkNameTextFieldDidEditEvent, output.drinkCount, output.quantity)
             .map { date, comment, drinkName, drinkCount, drinkQuantity in
                 return EpisodeTable(date: date,
                                     comment: comment,

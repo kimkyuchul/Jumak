@@ -48,7 +48,20 @@ final class StoreTable: Object {
 
 extension StoreTable {
     func toDomain() -> StoreVO {
-        return StoreVO(placeName: placeName, distance: distance, placeURL: placeURL, categoryName: categoryName, addressName: addressName, roadAddressName: roadAddressName, id: id, phone: phone ?? StringLiteral.noPhoneNumberMessage, x: x , y: y , categoryType: .makgulli, rate: rate, bookmark: bookmark, episode: episode.map { $0.toDomain() })
+        return StoreVO(placeName: placeName,
+                       distance: distance,
+                       placeURL: placeURL,
+                       categoryName: categoryName,
+                       addressName: addressName,
+                       roadAddressName: roadAddressName,
+                       id: id,
+                       phone: phone ?? StringLiteral.noPhoneNumberMessage,
+                       x: x ,
+                       y: y ,
+                       categoryType: .makgulli,
+                       rate: rate,
+                       bookmark: bookmark,
+                       episode: episode.map { $0.toDomain() })
     }
 }
 

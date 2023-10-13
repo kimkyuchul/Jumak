@@ -35,7 +35,6 @@ final class EpisodeDrinkNameView: BaseView {
         [episodeTitleLabel, stackView].forEach {
             addSubview($0)
         }
-        
     }
     
     override func setConstraints() {

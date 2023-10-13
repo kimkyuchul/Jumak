@@ -30,34 +30,26 @@ final class WriteEpisodeViewController: BaseViewController {
         super.viewDidLoad()
         self.title = "에피소드 기록하기"
         self.view.backgroundColor = .pink
-        print(#function)
     }
     
     override func bind() {
         let input = WriteEpisodeViewModel.Input(
             viewDidLoadEvent: Observable.just(()).asObservable(),
-            didSelectWriteButton: episodeView.rx.tapWrite.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
             didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable(),
+            commentTextFieldDidEditEvent: episodeView.episodeContentView.rx.comment,
             didSelectImage: episodeView.episodeContentView.rx.hasImage,
-            comment: episodeView.episodeContentView.rx.comment,
-            drinkName: episodeView.episodeDrinkNameView.rx.drinkName,
+            drinkNameTextFieldDidEditEvent: episodeView.episodeDrinkNameView.rx.drinkName,
             didSelectDefaultDrinkCheckButton: episodeView.episodeDrinkNameView.rx.tapCheckButton,
             didSelectMinusDrinkCountButton: episodeView.episodeDrinkCountView.rx.tapMinus.asObservable(),
             didSelectPlusDrinkCountButton: episodeView.episodeDrinkCountView.rx.tapPlus.asObservable(),
-            didSelectQuantity: episodeView.episodeDrinkCountView.quantitySubject)
+            didSelectQuantity: episodeView.episodeDrinkCountView.quantitySubject,
+            didSelectWriteButton: episodeView.rx.tapWrite.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
         
         output.placeName
             .bind(to: episodeView.rx.placeTitle)
             .disposed(by: disposeBag)
-        
-        output.date
-            .withUnretained(self)
-            .bind(onNext: { owner, date in
-                print(date)
-            })
-            .disposed(by: disposeBag)
-        
+                
         output.isForgetDrinkName
             .bind(to: episodeView.episodeDrinkNameView.rx.isForgetDrinkName)
             .disposed(by: disposeBag)

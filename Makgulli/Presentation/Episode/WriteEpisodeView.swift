@@ -42,7 +42,6 @@ final class WriteEpisodeView: BaseView {
     let episodeDrinkCountView = EpisodeDrinkCountView()
     
     
-    
     override func setHierarchy() {
         [dismissButton, titleLabel, placeLabel, episodeDateView, episodeContentView, episodeDrinkNameView, episodeDrinkCountView, writeButton].forEach {
             addSubview($0)

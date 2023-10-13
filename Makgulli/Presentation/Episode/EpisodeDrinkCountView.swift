@@ -142,17 +142,17 @@ extension EpisodeDrinkCountView {
 }
 
 extension Reactive where Base: EpisodeDrinkCountView {
-    var drinkCount: Binder<Double> {
-        return Binder(self.base) { (view, drinkCount) in
-            view.drinkCountTextField.text = "\(drinkCount)"
-        }
-    }
-    
     var tapMinus: ControlEvent<Void> {
         return base.minusCountButton.rx.tap
     }
     
     var tapPlus: ControlEvent<Void> {
         return base.plusCountButton.rx.tap
+    }
+    
+    var drinkCount: Binder<Double> {
+        return Binder(self.base) { (view, drinkCount) in
+            view.drinkCountTextField.text = "\(drinkCount)"
+        }
     }
 }

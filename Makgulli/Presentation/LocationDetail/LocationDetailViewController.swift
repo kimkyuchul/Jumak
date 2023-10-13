@@ -43,7 +43,6 @@ final class LocationDetailViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        //        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func bind() {

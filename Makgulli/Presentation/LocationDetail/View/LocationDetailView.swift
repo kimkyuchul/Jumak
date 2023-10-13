@@ -12,9 +12,7 @@ import RxSwift
 import RxCocoa
 
 final class LocationDetailView: BaseView {
-    
-    private var storemarker = NMFMarker()
-    
+
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let topCornerView: UIView = {
@@ -37,6 +35,8 @@ final class LocationDetailView: BaseView {
     let infoView = DetailInfoView()
     let episodeView = DetailEpisodeView()
     let bottomView = DetailBottomView()
+    
+    private var storemarker = NMFMarker()
     
     func applyCollectionViewDataSource(
         by viewModels: [EpisodeVO]

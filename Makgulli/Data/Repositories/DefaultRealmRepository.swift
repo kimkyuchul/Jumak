@@ -13,11 +13,11 @@ import RealmSwift
 protocol RealmRepository {
     func createStore(_ store: StoreVO) -> Completable
     func updateStore(_ store: StoreVO) -> Completable
-    func deleteStore(_ store: StoreVO) -> Completable
     func updateEpisode(id: String, episode: EpisodeTable) -> Completable
     func updateStoreEpisode(store: StoreVO) -> StoreVO?
     func updateStoreCellObservable(index: Int, storeList: [StoreVO]) -> Single<StoreVO>
     func updateStoreCell(store: StoreVO) -> StoreVO?
+    func deleteStore(_ store: StoreVO) -> Completable
     func checkContainsStore(id: String) -> Bool
     func shouldUpdateStore(_ store: StoreVO) -> Bool
 }
@@ -228,7 +228,6 @@ private extension StoreVO {
         
         episodeList.append(objectsIn: episodeTableArray)
         
-        
         let storeTable = StoreTable(id: self.id,
                                     placeName: self.placeName,
                                     distance: self.distance,
@@ -242,8 +241,7 @@ private extension StoreVO {
                                     categoryType: self.categoryType,
                                     rate: self.rate,
                                     bookmark: self.bookmark,
-                                    episode: episodeList
-        )
+                                    episode: episodeList)
         return storeTable
     }
 }
