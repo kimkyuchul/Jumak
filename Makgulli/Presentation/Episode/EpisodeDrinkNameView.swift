@@ -63,7 +63,6 @@ extension Reactive where Base: EpisodeDrinkNameView {
             if isForgetDrinkName {
                 view.checkBoxButton.checkButton.layer.borderColor = UIColor.black.cgColor
                 view.checkBoxButton.checkButton.setImage(ImageLiteral.checkIcon, for: .normal)
-                view.drinkNameTextField.text = ""
                 view.drinkNameTextField.isEnabled = false
                 view.drinkNameTextField.backgroundColor = .gray
             } else {

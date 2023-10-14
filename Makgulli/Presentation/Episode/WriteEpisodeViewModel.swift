@@ -116,7 +116,20 @@ final class WriteEpisodeViewModel: ViewModelType {
             .share()
         
         didSelectDefaultDrinkCheckButton
-            .bind(to: output.isDrinkNameValid)
+            .skip(1)
+            .withLatestFrom(input.drinkNameTextFieldDidEditEvent) { isSeleted, drinkName in
+                return (isSeleted, drinkName.isEmpty)
+            }
+            .withUnretained(self)
+            .bind(onNext: { owner, drinkNameValid in
+                let (isSeleted, drinkName) = drinkNameValid
+                
+                if isSeleted || !drinkName {
+                    output.isDrinkNameValid.accept(true)
+                } else {
+                    output.isDrinkNameValid.accept(false)
+                }
+            })
             .disposed(by: disposeBag)
         
         didSelectDefaultDrinkCheckButton
@@ -180,12 +193,12 @@ final class WriteEpisodeViewModel: ViewModelType {
 
 extension WriteEpisodeViewModel {
     private func transformUpdateEpisode(input: WriteEpisodeViewModel.Input, output: WriteEpisodeViewModel.Output) -> Observable<EpisodeTable> {
-        return Observable.combineLatest(output.date, input.commentTextFieldDidEditEvent, input.drinkNameTextFieldDidEditEvent, output.drinkCount, output.quantity)
-            .map { date, comment, drinkName, drinkCount, drinkQuantity in
+        return Observable.combineLatest(output.date, input.commentTextFieldDidEditEvent, input.drinkNameTextFieldDidEditEvent, input.didSelectDefaultDrinkCheckButton, output.drinkCount, output.quantity)
+            .map { date, comment, drinkName, isForgetDrinkName, drinkCount, drinkQuantity in
                 return EpisodeTable(date: date,
                                     comment: comment,
                                     imageURL: "",
-                                    alcohol: drinkName,
+                                    alcohol: isForgetDrinkName ? "술 이름이 기억나지 않아요" : drinkName,
                                     drink: drinkCount,
                                     drinkQuantity: drinkQuantity)
             }
