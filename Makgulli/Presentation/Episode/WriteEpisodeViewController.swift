@@ -16,6 +16,7 @@ final class WriteEpisodeViewController: BaseViewController {
     private let episodeView = WriteEpisodeView()
     private let viewModel: WriteEpisodeViewModel
     private let episodeThumbnailRelay = PublishRelay<UIImage>()
+    private let episodeThumbnailDataSubject = PublishSubject<Data>()
     
     init(viewModel: WriteEpisodeViewModel) {
         self.viewModel = viewModel
@@ -38,6 +39,7 @@ final class WriteEpisodeViewController: BaseViewController {
             didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable(),
             commentTextFieldDidEditEvent: episodeView.episodeContentView.rx.comment,
             didSelectImage: episodeView.episodeContentView.rx.hasImage,
+            episodeImageData: episodeThumbnailDataSubject.asObserver(),
             drinkNameTextFieldDidEditEvent: episodeView.episodeDrinkNameView.rx.drinkName,
             didSelectDefaultDrinkCheckButton: episodeView.episodeDrinkNameView.rx.tapCheckButton,
             didSelectMinusDrinkCountButton: episodeView.episodeDrinkCountView.rx.tapMinus.asObservable(),
@@ -109,9 +111,12 @@ extension WriteEpisodeViewController: PHPickerViewControllerDelegate {
         if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
                 guard let image = image as? UIImage else { return }
+                let resizeImage = image.resize(newWidth: 50)
+                let imageData = resizeImage.jpegData(compressionQuality: 0.5)
+                
                 DispatchQueue.main.async {
-                    image.preparingThumbnail(of: CGSize(width: 140, height: 140))
-                    self?.episodeThumbnailRelay.accept(image)
+                    self?.episodeThumbnailRelay.accept(resizeImage)
+                    self?.episodeThumbnailDataSubject.onNext(imageData ?? Data())
                 }
             }
         }

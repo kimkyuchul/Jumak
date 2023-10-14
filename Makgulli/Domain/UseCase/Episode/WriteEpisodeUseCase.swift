@@ -11,9 +11,12 @@ import RxSwift
 
 protocol WriteEpisodeUseCase: AnyObject {
     func updateEpisodeList(_ store: StoreVO, episode: EpisodeTable)
+    func saveEpisodeImage(fileName: String, imageData: Data)
     func updateValidation(text: String) -> Bool
     
     var errorSubject: PublishSubject<Error> { get set }
+    var updateEpisodeListState: PublishSubject<Void> { get set }
+    var saveEpisodeImageState: PublishSubject<Void> { get set }
 }
 
 final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
@@ -24,13 +27,21 @@ final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
     }
     
     private let realmRepository: RealmRepository
+    private let writeEpisodeRepository: WriteEpisodeRepository
     private let disposebag = DisposeBag()
+    
     var errorSubject = PublishSubject<Error>()
-        
-    init(realmRepository: RealmRepository) {
+    var updateEpisodeListState = PublishSubject<Void>()
+    var saveEpisodeImageState = PublishSubject<Void>()
+    
+    
+    init(realmRepository: RealmRepository,
+         writeEpisodeRepository: WriteEpisodeRepository
+    ) {
         self.realmRepository = realmRepository
+        self.writeEpisodeRepository = writeEpisodeRepository
     }
-        
+    
     func updateEpisodeList(_ store: StoreVO, episode: EpisodeTable) {
         // 가게가 렘에 추가되지 않은 상태
         if !storeExists(store.id) {
@@ -44,12 +55,27 @@ final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
             // 가게가 렘에 추가되어 있는 상태라면 해당 데이터에 updateEpisode
             updateEpisode(store.id, episode)
         }
+        
+        updateEpisodeListState.onNext(Void())
+    }
+        
+    func saveEpisodeImage(fileName: String, imageData: Data) {
+        writeEpisodeRepository.saveImage(fileName: fileName, imageData: imageData)
+            .subscribe { [weak self] completable in
+                switch completable {
+                case .completed:
+                    self?.saveEpisodeImageState.onNext(Void())
+                case .error(let error):
+                    self?.errorSubject.onNext(error)
+                }
+            }
+            .disposed(by: disposebag)
     }
     
     func updateValidation(text: String) -> Bool {
         guard !text.isEmpty else {
-             return false
-         }
+            return false
+        }
         
         return true
     }

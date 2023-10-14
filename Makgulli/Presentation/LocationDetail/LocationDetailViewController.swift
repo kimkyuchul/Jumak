@@ -128,7 +128,7 @@ final class LocationDetailViewController: BaseViewController {
         output.presentWriteEpisode
             .withUnretained(self)
             .bind(onNext: { owner, storeVO in
-                let wirteViewController = WriteEpisodeViewController(viewModel: WriteEpisodeViewModel(storeVO: storeVO, writeEpisodeUseCase: DefaultWriteEpisodeUseCase(realmRepository: DefaultRealmRepository()!)))
+                let wirteViewController = WriteEpisodeViewController(viewModel: WriteEpisodeViewModel(storeVO: storeVO, writeEpisodeUseCase: DefaultWriteEpisodeUseCase(realmRepository: DefaultRealmRepository()!, writeEpisodeRepository: DefaultWriteEpisodeRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())))))
                 
                 wirteViewController.modalPresentationStyle = .fullScreen
                 owner.present(wirteViewController, animated: true)

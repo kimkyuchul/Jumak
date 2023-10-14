@@ -97,6 +97,9 @@
 		5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21F2AC41A19006040D2 /* BaseView.swift */; };
 		5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */; };
 		5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E692AD7F0FB005969FA /* QuantityType.swift */; };
+		5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */; };
+		5AAB8E712AD99388005969FA /* DefaultWriteEpisodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */; };
+		5AAB8E732AD9948E005969FA /* WriteEpisodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -219,6 +222,9 @@
 		5A9DA21F2AC41A19006040D2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDrinkCountView.swift; sourceTree = "<group>"; };
 		5AAB8E692AD7F0FB005969FA /* QuantityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityType.swift; sourceTree = "<group>"; };
+		5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorage.swift; sourceTree = "<group>"; };
+		5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWriteEpisodeRepository.swift; sourceTree = "<group>"; };
+		5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeRepository.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -452,6 +458,7 @@
 		5A9DA1C12AC19030006040D2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8E6D2AD958E5005969FA /* PersistentStorage */,
 				5A9DA1FA2AC2FCB4006040D2 /* Repositories */,
 				5A9DA1DF2AC1B0E7006040D2 /* Network */,
 				5A6827932AD15DF400C37B17 /* DataBase */,
@@ -602,6 +609,7 @@
 			children = (
 				5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */,
 				5A9DA1FB2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift */,
+				5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -639,6 +647,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA2092AC3CE9F006040D2 /* SearchLocationRepository.swift */,
+				5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -687,6 +696,14 @@
 				5A6827852AD04D8800C37B17 /* Button */,
 			);
 			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		5AAB8E6D2AD958E5005969FA /* PersistentStorage */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */,
+			);
+			path = PersistentStorage;
 			sourceTree = "<group>";
 		};
 		5ADC002E2AC5E2C60024D7F8 /* Location */ = {
@@ -1042,6 +1059,7 @@
 				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
 				5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */,
 				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
+				5AAB8E732AD9948E005969FA /* WriteEpisodeRepository.swift in Sources */,
 				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
 				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
 				5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */,
@@ -1050,6 +1068,7 @@
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
 				5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */,
 				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
+				5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
 				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
@@ -1079,6 +1098,7 @@
 				5A68278C2AD060FA00C37B17 /* DetailBottomView.swift in Sources */,
 				5A6827822ACFE3F100C37B17 /* DetailInfoView.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
+				5AAB8E712AD99388005969FA /* DefaultWriteEpisodeRepository.swift in Sources */,
 				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
 				5A6827B62AD69BF900C37B17 /* EpisodeContentView.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,

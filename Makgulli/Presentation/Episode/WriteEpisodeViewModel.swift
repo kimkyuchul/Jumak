@@ -17,6 +17,7 @@ final class WriteEpisodeViewModel: ViewModelType {
     private var storeVO: StoreVO
     private var defaultDrinkCount = 1.0
     private let drinkCountSubject = BehaviorSubject<Double>(value: 1.0)
+    private var imageData = Data()
     
     init(
         storeVO: StoreVO,
@@ -31,6 +32,7 @@ final class WriteEpisodeViewModel: ViewModelType {
         let didSelectDatePicker: Observable<Date>
         let commentTextFieldDidEditEvent: Observable<String>
         let didSelectImage: Observable<Bool>
+        let episodeImageData: Observable<Data>
         let drinkNameTextFieldDidEditEvent: Observable<String>
         let didSelectDefaultDrinkCheckButton: Observable<Bool>
         let didSelectMinusDrinkCountButton: Observable<Void>
@@ -71,7 +73,7 @@ final class WriteEpisodeViewModel: ViewModelType {
                 output.placeName.accept(owner.storeVO.placeName)
             })
             .disposed(by: disposeBag)
-                
+        
         input.didSelectDatePicker
             .bind(to: output.date)
             .disposed(by: disposeBag)
@@ -90,6 +92,13 @@ final class WriteEpisodeViewModel: ViewModelType {
         input.didSelectImage
             .skip(1)
             .bind(to: output.isSelectImageValid)
+            .disposed(by: disposeBag)
+        
+        input.episodeImageData
+            .withUnretained(self)
+            .bind(onNext: { owner, imageData in
+                owner.imageData = imageData
+            })
             .disposed(by: disposeBag)
         
         input.drinkNameTextFieldDidEditEvent
@@ -153,11 +162,19 @@ final class WriteEpisodeViewModel: ViewModelType {
             .withUnretained(self)
             .bind(onNext: { owner, episodeTable in
                 owner.writeEpisodeUseCase.updateEpisodeList(owner.storeVO, episode: episodeTable)
-                output.updateStoreEpisode.accept(())
+                owner.writeEpisodeUseCase.saveEpisodeImage(fileName: "\(episodeTable).jpg", imageData: owner.imageData)
             })
             .disposed(by: disposeBag)
         
+        createOutput(output: output)
+        
         return output
+    }
+    
+    private func createOutput(output: Output) {
+        Observable.merge(writeEpisodeUseCase.updateEpisodeListState, writeEpisodeUseCase.saveEpisodeImageState)
+            .bind(to: output.updateStoreEpisode)
+            .disposed(by: disposeBag)
     }
 }
 
