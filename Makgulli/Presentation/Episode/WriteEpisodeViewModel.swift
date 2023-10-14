@@ -122,9 +122,9 @@ final class WriteEpisodeViewModel: ViewModelType {
             }
             .withUnretained(self)
             .bind(onNext: { owner, drinkNameValid in
-                let (isSeleted, drinkName) = drinkNameValid
+                let (isSelected, drinkName) = drinkNameValid
                 
-                if isSeleted || !drinkName {
+                if isSelected || !drinkName {
                     output.isDrinkNameValid.accept(true)
                 } else {
                     output.isDrinkNameValid.accept(false)
