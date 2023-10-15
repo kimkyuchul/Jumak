@@ -11,6 +11,7 @@ import RxSwift
 import RealmSwift
 
 protocol RealmRepository {
+    func createStoreTable(_ store: StoreTable) -> Completable
     func createStore(_ store: StoreVO) -> Completable
     func updateStore(_ store: StoreVO) -> Completable
     func updateEpisode(id: String, episode: EpisodeTable) -> Completable
@@ -39,6 +40,20 @@ final class DefaultRealmRepository: RealmRepository {
             do {
                 try self.realm.write {
                     self.realm.add(store.makeStoreTable())
+                }
+                completable(.completed)
+            } catch let error {
+                completable(.error(error))
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func createStoreTable(_ store: StoreTable) -> Completable {
+        return Completable.create { completable in
+            do {
+                try self.realm.write {
+                    self.realm.add(store)
                 }
                 completable(.completed)
             } catch let error {
@@ -211,7 +226,7 @@ final class DefaultRealmRepository: RealmRepository {
     }
 }
 
-private extension StoreVO {
+extension StoreVO {
     func makeStoreTable() -> StoreTable {
         let episodeList = List<EpisodeTable>()
         
@@ -243,5 +258,17 @@ private extension StoreVO {
                                     bookmark: self.bookmark,
                                     episode: episodeList)
         return storeTable
+    }
+}
+
+extension EpisodeVO {
+    func makeEpisodeTable() -> EpisodeTable {
+        let episodeTable = EpisodeTable(date: self.date,
+                                        comment: self.comment,
+                                        imageURL: self.imageURL,
+                                        alcohol: self.alcohol,
+                                        drink: self.drink,
+                                        drinkQuantity: self.drinkQuantity)
+        return episodeTable
     }
 }
