@@ -56,7 +56,6 @@ final class UserAddressButton: BaseView {
         addressButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(10)
             make.centerY.equalToSuperview()
-            
         }
         
         rightImageView.snp.makeConstraints { make in
