@@ -372,11 +372,7 @@
 		5A6827A52AD50D3A00C37B17 /* Episode */ = {
 			isa = PBXGroup;
 			children = (
-				5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */,
-				5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkNameView.swift */,
-				5A6827B52AD69BF900C37B17 /* EpisodeContentView.swift */,
-				5A6827B12AD6760600C37B17 /* EpisodeDateView.swift */,
-				5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */,
+				5AAB8E7D2ADBE246005969FA /* View */,
 				5A6827AC2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift */,
 				5A6827A62AD50D5500C37B17 /* WriteEpisodeViewController.swift */,
 			);
