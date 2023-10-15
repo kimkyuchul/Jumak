@@ -100,6 +100,8 @@
 		5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */; };
 		5AAB8E712AD99388005969FA /* DefaultWriteEpisodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */; };
 		5AAB8E732AD9948E005969FA /* WriteEpisodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */; };
+		5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */; };
+		5AAB8E772ADA7107005969FA /* LocationDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -225,6 +227,8 @@
 		5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorage.swift; sourceTree = "<group>"; };
 		5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWriteEpisodeRepository.swift; sourceTree = "<group>"; };
 		5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeRepository.swift; sourceTree = "<group>"; };
+		5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationDetailRepository.swift; sourceTree = "<group>"; };
+		5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailRepository.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -609,6 +613,7 @@
 			children = (
 				5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */,
 				5A9DA1FB2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift */,
+				5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */,
 				5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */,
 			);
 			path = Repositories;
@@ -647,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA2092AC3CE9F006040D2 /* SearchLocationRepository.swift */,
+				5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */,
 				5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */,
 			);
 			path = RepositoryInterface;
@@ -1073,9 +1079,11 @@
 				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
 				5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */,
+				5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */,
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
 				5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */,
 				5A6827B22AD6760600C37B17 /* EpisodeDateView.swift in Sources */,
+				5AAB8E772ADA7107005969FA /* LocationDetailRepository.swift in Sources */,
 				5A6827B42AD6906700C37B17 /* Date+.swift in Sources */,
 				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
 				5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */,
