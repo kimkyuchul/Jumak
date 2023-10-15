@@ -37,6 +37,11 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
         self.cellShadow(backView: containerView, radius: 23)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        episodeImageView.image = nil
+    }
+    
     override func setHierarchy() {
         contentView.addSubview(containerView)
         
