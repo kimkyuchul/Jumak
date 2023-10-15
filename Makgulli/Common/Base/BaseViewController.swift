@@ -39,9 +39,7 @@ class BaseViewController: UIViewController, BaseViewControllerProtocol, BaseBind
     
     func setHierarchy() { }
     func setConstraints() { }
-    func setLayout() {
-        self.view.backgroundColor = UIColor.white
-    }
+    func setLayout() { }
     func setNavigationBar() { }
     func bind() { }
     func bindAction() { }

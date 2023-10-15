@@ -55,6 +55,7 @@ enum ImageLiteral {
     static var minusIcon : UIImage { .load(systemName: "minus") }
     static var arrowDownIcon : UIImage { .load(systemName: "chevron.down") }
     static var episodeDefaultImage : UIImage { .load(systemName: "party.popper.fill") }
+    static var deleteEpisodeIcon : UIImage { .load(systemName: "trash.fill") }
 }
 
 extension UIImage {
