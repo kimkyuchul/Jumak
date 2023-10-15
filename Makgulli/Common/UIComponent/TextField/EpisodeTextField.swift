@@ -32,11 +32,8 @@ final class EpisodeTextField: UITextField {
         self.snp.remakeConstraints { make in
             make.height.equalTo(height)
         }
-        
-        textAlignment = .center
-        isUserInteractionEnabled = false
     }
-    
+        
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = 14

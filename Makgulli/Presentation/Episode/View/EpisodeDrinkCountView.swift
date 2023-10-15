@@ -21,7 +21,12 @@ final class EpisodeDrinkCountView: BaseView {
         return label
     }()
     private let countContainerView = UIView()
-    fileprivate let drinkCountTextField = EpisodeTextField(height: 40)
+    fileprivate let drinkCountTextField: EpisodeTextField = {
+        let episodeTextField = EpisodeTextField(height: 40)
+        episodeTextField.textAlignment = .center
+        episodeTextField.isUserInteractionEnabled = false
+        return episodeTextField
+    }()
     fileprivate let minusCountButton = DefaultCircleButton(image: ImageLiteral.minusIcon, tintColor: .black, backgroundColor: .gray)
     fileprivate let plusCountButton = DefaultCircleButton(image: ImageLiteral.plusIcon, tintColor: .black, backgroundColor: .darkGray)
     private let selectQuantityButton = {
