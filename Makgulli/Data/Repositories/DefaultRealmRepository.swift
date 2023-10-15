@@ -19,6 +19,7 @@ protocol RealmRepository {
     func updateStoreCellObservable(index: Int, storeList: [StoreVO]) -> Single<StoreVO>
     func updateStoreCell(store: StoreVO) -> StoreVO?
     func deleteStore(_ store: StoreVO) -> Completable
+    func deleteEpisode(id: String, episode: EpisodeTable) -> Completable
     func checkContainsStore(id: String) -> Bool
     func shouldUpdateStore(_ store: StoreVO) -> Bool
 }
@@ -185,6 +186,28 @@ final class DefaultRealmRepository: RealmRepository {
         } catch {
             print("Error updating store item: \(error)")
             return nil
+        }
+    }
+    
+    func deleteEpisode(id: String, episode: EpisodeTable) -> Completable {
+        guard let storeObject = realm.object(
+            ofType: StoreTable.self,
+            forPrimaryKey: id
+        ) else { return .empty() }
+        
+        return Completable.create { completable in
+            do {
+                try self.realm.write {
+                    if let index = storeObject.episode.firstIndex(of: episode) {
+                        storeObject.episode.remove(at: index)
+                        self.realm.add(storeObject, update: .modified)
+                    }
+                }
+                completable(.completed)
+            } catch let error {
+                completable(.error(error))
+            }
+            return Disposables.create()
         }
     }
     
