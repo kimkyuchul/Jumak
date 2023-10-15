@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct EpisodeVO: Hashable {
+struct EpisodeVO: Equatable {
     let id: String
-    let uuid : String = UUID().uuidString
     let date: Date
     let comment: String
     let imageURL: String
