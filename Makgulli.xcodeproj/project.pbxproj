@@ -102,6 +102,9 @@
 		5AAB8E732AD9948E005969FA /* WriteEpisodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */; };
 		5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */; };
 		5AAB8E772ADA7107005969FA /* LocationDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */; };
+		5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E792ADBE171005969FA /* EpisodeDetailViewController.swift */; };
+		5AAB8E7C2ADBE22D005969FA /* EpisodeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E7B2ADBE22D005969FA /* EpisodeDetailViewModel.swift */; };
+		5AAB8E7F2ADBEEAE005969FA /* EpisodeDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E7E2ADBEEAE005969FA /* EpisodeDetailUseCase.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -229,6 +232,9 @@
 		5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeRepository.swift; sourceTree = "<group>"; };
 		5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationDetailRepository.swift; sourceTree = "<group>"; };
 		5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailRepository.swift; sourceTree = "<group>"; };
+		5AAB8E792ADBE171005969FA /* EpisodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailViewController.swift; sourceTree = "<group>"; };
+		5AAB8E7B2ADBE22D005969FA /* EpisodeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailViewModel.swift; sourceTree = "<group>"; };
+		5AAB8E7E2ADBEEAE005969FA /* EpisodeDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailUseCase.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -383,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				5A6827AF2AD56B1300C37B17 /* WriteEpisodeUseCase.swift */,
+				5AAB8E7E2ADBEEAE005969FA /* EpisodeDetailUseCase.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -495,6 +502,7 @@
 		5A9DA1C42AC19050006040D2 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8E782ADBE152005969FA /* EpisodeDetail */,
 				5A6827A52AD50D3A00C37B17 /* Episode */,
 				5ADC004B2ACA9D970024D7F8 /* LocationDetail */,
 				5ADC003C2AC869060024D7F8 /* Tabbar */,
@@ -706,6 +714,27 @@
 				5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */,
 			);
 			path = PersistentStorage;
+			sourceTree = "<group>";
+		};
+		5AAB8E782ADBE152005969FA /* EpisodeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E792ADBE171005969FA /* EpisodeDetailViewController.swift */,
+				5AAB8E7B2ADBE22D005969FA /* EpisodeDetailViewModel.swift */,
+			);
+			path = EpisodeDetail;
+			sourceTree = "<group>";
+		};
+		5AAB8E7D2ADBE246005969FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5A6827B12AD6760600C37B17 /* EpisodeDateView.swift */,
+				5A6827B52AD69BF900C37B17 /* EpisodeContentView.swift */,
+				5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkNameView.swift */,
+				5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */,
+				5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		5ADC002E2AC5E2C60024D7F8 /* Location */ = {
@@ -1101,10 +1130,12 @@
 				5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */,
 				5A68278C2AD060FA00C37B17 /* DetailBottomView.swift in Sources */,
 				5A6827822ACFE3F100C37B17 /* DetailInfoView.swift in Sources */,
+				5AAB8E7C2ADBE22D005969FA /* EpisodeDetailViewModel.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
 				5AAB8E712AD99388005969FA /* DefaultWriteEpisodeRepository.swift in Sources */,
 				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
 				5A6827B62AD69BF900C37B17 /* EpisodeContentView.swift in Sources */,
+				5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
 				5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */,
 				5A68277C2ACEC7A700C37B17 /* DetailTitleView.swift in Sources */,
@@ -1129,6 +1160,7 @@
 				5A9DA21A2AC415C5006040D2 /* BaseViewController.swift in Sources */,
 				5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */,
 				5A6827702ACE7A6C00C37B17 /* EpisodeCollectionViewCell.swift in Sources */,
+				5AAB8E7F2ADBEEAE005969FA /* EpisodeDetailUseCase.swift in Sources */,
 				5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
