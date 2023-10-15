@@ -111,7 +111,7 @@ extension WriteEpisodeViewController: PHPickerViewControllerDelegate {
         if let itemProvider = itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { [weak self] (image, error) in
                 guard let image = image as? UIImage else { return }
-                let resizeImage = image.resize(newWidth: 50)
+                let resizeImage = image.resize(newWidth: 200)
                 let imageData = resizeImage.jpegData(compressionQuality: 0.5)
                 
                 DispatchQueue.main.async {
