@@ -22,6 +22,11 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
         label.font = UIFont.boldLineSeed(size: ._20)
         return label
     }()
+    private let episodeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,10 +38,11 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func setHierarchy() {
-        [containerView].forEach {
-            self.addSubview($0)
+        contentView.addSubview(containerView)
+        
+        [titleLabel, episodeImageView].forEach {
+            containerView.addSubview($0)
         }
-        containerView.addSubview(titleLabel)
     }
     
     override func setConstraints() {
@@ -44,14 +50,26 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
             make.edges.equalToSuperview()
         }
         
+        episodeImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(15)
+            make.centerY.equalToSuperview()
+        }
+        
         titleLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.trailing.equalToSuperview().inset(15)
+            make.centerY.equalToSuperview()
         }
     }
 }
 
 extension EpisodeCollectionViewCell {
-    func configureCell(item: EpisodeVO) {
-        titleLabel.text = item.comment
+    func configureCell(item: Episode) {
+        titleLabel.text = item.id
+        
+        if !item.imageData.isEmpty {
+            episodeImageView.image = UIImage(data: item.imageData)
+        } else {
+            episodeImageView.image = ImageLiteral.episodeDefaultImage
+        }
     }
 }
