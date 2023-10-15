@@ -13,6 +13,7 @@ protocol ImageStorage {
     func saveImageDataToDocument(fileName: String, imageData: Data) -> Completable
     func loadImageFromDocument(fileName: String) -> Single<Data>
     func loadDataSourceImageFromDocument(fileName: String) -> Data?
+    func removeImageFromDocument(fileName: String) -> Completable
 }
 
 
@@ -97,6 +98,30 @@ final class DefaultImageStorage: ImageStorage  {
             
         } else {
             return nil
+        }
+    }
+    
+    func removeImageFromDocument(fileName: String) -> Completable {
+        return Completable.create { completable in
+            guard let documentDirectory = self.fileManager.urls(
+                for: .documentDirectory,
+                in: .userDomainMask
+            ).first else {
+                completable(.error(FileManagerError.documentDirectoryNotFound))
+                return Disposables.create()
+            }
+            
+            let fileURL = documentDirectory.appendingPathComponent(fileName)
+            
+            do {
+                try self.fileManager.removeItem(at: fileURL)
+                completable(.completed)
+            } catch let error {
+                print("image File remove error", error)
+                completable(.error(error))
+            }
+            
+            return Disposables.create()
         }
     }
 }
