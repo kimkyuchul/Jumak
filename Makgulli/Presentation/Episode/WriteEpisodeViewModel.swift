@@ -174,8 +174,7 @@ final class WriteEpisodeViewModel: ViewModelType {
             .withLatestFrom(transformUpdateEpisode(input: input, output: output))
             .withUnretained(self)
             .bind(onNext: { owner, episodeTable in
-                owner.writeEpisodeUseCase.updateEpisodeList(owner.storeVO, episode: episodeTable)
-                owner.writeEpisodeUseCase.saveEpisodeImage(fileName: "\(episodeTable).jpg", imageData: owner.imageData)
+                owner.writeEpisodeUseCase.updateEpisodeList(owner.storeVO, episode: episodeTable.toDomain(), imageData: owner.imageData)
             })
             .disposed(by: disposeBag)
         
