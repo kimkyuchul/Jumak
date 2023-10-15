@@ -67,7 +67,8 @@ final class EpisodeDetailViewModel: ViewModelType {
             .bind(to: output.episode)
             .disposed(by: disposeBag)
         
-        Observable.merge(episodeDetailUseCase.deleteEpisodeState, episodeDetailUseCase.deleteEpisodeImageState)
+        Observable.combineLatest(episodeDetailUseCase.deleteEpisodeState, episodeDetailUseCase.deleteEpisodeImageState)
+            .map { _, _ in () }
             .bind(to: output.deleteStoreEpisodeState)
             .disposed(by: disposeBag)
     }

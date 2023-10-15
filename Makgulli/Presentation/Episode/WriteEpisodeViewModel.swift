@@ -184,7 +184,8 @@ final class WriteEpisodeViewModel: ViewModelType {
     }
     
     private func createOutput(output: Output) {
-        Observable.merge(writeEpisodeUseCase.updateEpisodeListState, writeEpisodeUseCase.saveEpisodeImageState)
+        Observable.combineLatest(writeEpisodeUseCase.updateEpisodeListState, writeEpisodeUseCase.saveEpisodeImageState)
+            .map { _, _ in () }
             .bind(to: output.updateStoreEpisode)
             .disposed(by: disposeBag)
     }
@@ -192,7 +193,11 @@ final class WriteEpisodeViewModel: ViewModelType {
 
 extension WriteEpisodeViewModel {
     private func transformUpdateEpisode(input: WriteEpisodeViewModel.Input, output: WriteEpisodeViewModel.Output) -> Observable<EpisodeTable> {
-        return Observable.combineLatest(output.date, input.commentTextFieldDidEditEvent, input.drinkNameTextFieldDidEditEvent, input.didSelectDefaultDrinkCheckButton, output.drinkCount, output.quantity)
+        return Observable.combineLatest(output.date,
+                                        input.commentTextFieldDidEditEvent,
+                                        input.drinkNameTextFieldDidEditEvent,
+                                        input.didSelectDefaultDrinkCheckButton,
+                                        output.drinkCount, output.quantity)
             .map { date, comment, drinkName, isForgetDrinkName, drinkCount, drinkQuantity in
                 return EpisodeTable(date: date,
                                     comment: comment,
