@@ -39,16 +39,20 @@ final class LocationDetailView: BaseView {
     private var storemarker = NMFMarker()
     
     func applyCollectionViewDataSource(
-        by viewModels: [EpisodeVO]
+        by viewModels: [Episode]
     ) {
         var snapshot = DetailEpisodeView.Snapshot()
         
         snapshot.appendSections([.episode])
         snapshot.appendItems(viewModels, toSection: .episode)
         
-        episodeView.dataSource?.apply(snapshot, animatingDifferences: true)
+        episodeView.dataSource?.apply(snapshot, animatingDifferences: true) { [weak self] in
+            let lastItemIndex = viewModels.count - 1
+            let indexPath = IndexPath(item: lastItemIndex, section: 0)
+            self?.episodeView.episodeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
     }
-    
+        
     fileprivate func moveCamera(latitude: Double, longitude: Double) {
         let cameraPosition = NMFCameraPosition(
             NMGLatLng(lat: latitude,lng: longitude),
