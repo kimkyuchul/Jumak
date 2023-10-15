@@ -29,10 +29,12 @@ final class EpisodeDetailViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
+        let didSeletDeleteBarButton: Observable<Void>
     }
     
     struct Output {
         let episode = PublishRelay<Episode>()
+        let deleteStoreEpisodeState = PublishRelay<Void>()
     }
     
     func transform(input: Input) -> Output {
@@ -44,6 +46,10 @@ final class EpisodeDetailViewModel: ViewModelType {
             .subscribe(onNext: { owner, _ in
                 owner.episodeDetailUseCase.fetchEpisodeDetail(episode: owner.episode)
             })
+            .disposed(by: disposeBag)
+        
+        input.didSeletDeleteBarButton
+            .bind(to: output.deleteStoreEpisodeState)
             .disposed(by: disposeBag)
         
         createOutput(output: output)

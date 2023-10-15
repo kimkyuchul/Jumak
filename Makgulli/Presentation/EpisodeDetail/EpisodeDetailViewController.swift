@@ -13,6 +13,7 @@ import RxSwift
 final class EpisodeDetailViewController: BaseViewController {
     
     private let viewModel: EpisodeDetailViewModel
+    private let episodeDeleteBarButtonItem = UIBarButtonItem(image: ImageLiteral.bookMarkIcon, style: .plain, target: EpisodeDetailViewController.self, action: nil)
     
     init(viewModel: EpisodeDetailViewModel) {
         self.viewModel = viewModel
@@ -27,7 +28,8 @@ final class EpisodeDetailViewController: BaseViewController {
     
     override func bind() {
         let input = EpisodeDetailViewModel.Input(
-            viewDidLoadEvent: Observable.just(()).asObservable())
+            viewDidLoadEvent: Observable.just(()).asObservable(),
+            didSeletDeleteBarButton: episodeDeleteBarButtonItem.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         
         output.episode
@@ -36,5 +38,17 @@ final class EpisodeDetailViewController: BaseViewController {
                 print(episode)
             })
             .disposed(by: disposeBag)
+        
+        output.deleteStoreEpisodeState
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    override func setNavigationBar() {
+        episodeDeleteBarButtonItem.tintColor = .black
+        self.navigationItem.rightBarButtonItem = episodeDeleteBarButtonItem
     }
 }
