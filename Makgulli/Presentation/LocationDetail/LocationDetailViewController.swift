@@ -27,6 +27,7 @@ final class LocationDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = false
         print(#function)
     }
@@ -145,6 +146,10 @@ final class LocationDetailViewController: BaseViewController {
                 let episodes = episodeList.map { episodeVO -> Episode in
                     return Episode(id: episodeVO.id,
                                    date: episodeVO.date,
+                                   comment: episodeVO.comment,
+                                   alcohol: episodeVO.alcohol,
+                                   drink: episodeVO.drink,
+                                   drinkQuantity: episodeVO.drinkQuantity,
                                    imageData: owner.viewModel.loadDataSourceImage("\(episodeVO.id).jpg".trimmingWhitespace()) ?? Data())
                 }
                 return episodes
