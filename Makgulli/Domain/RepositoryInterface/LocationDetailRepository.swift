@@ -7,8 +7,6 @@
 
 import Foundation
 
-import RxSwift
-
 protocol LocationDetailRepository {
     func loadDataSourceImage(fileName: String) -> Data? 
 }

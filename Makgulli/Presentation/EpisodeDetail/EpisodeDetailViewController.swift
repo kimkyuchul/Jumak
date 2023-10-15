@@ -23,7 +23,6 @@ final class EpisodeDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .pink
-        print("storedID", viewModel.storedID)
     }
     
     override func bind() {
