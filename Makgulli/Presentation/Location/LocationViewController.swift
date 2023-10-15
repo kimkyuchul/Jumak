@@ -152,7 +152,7 @@ final class LocationViewController: BaseViewController {
                 guard let realmRepository = DefaultRealmRepository() else { return }
                 
                 if let updatedItem = self?.viewModel.updateStoreCell(data.1.0) {
-                    let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: updatedItem, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository)))
+                    let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: updatedItem, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())))))
                     detailVC.hidesBottomBarWhenPushed = true
                     data.0.navigationController?.pushViewController(detailVC, animated: true)
                 }
