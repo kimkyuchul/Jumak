@@ -13,17 +13,23 @@ final class EpisodeDetailUseCase {
     
     enum EpisodeDetailUseError: Error {
         case deleteEpisode
+        case deleteEpisodeImage
     }
     
     private let realmRepository: RealmRepository
+    private let episodeDetailRepository: EpisodeDetailRepository
     private let disposebag = DisposeBag()
     
-    init(realmRepository: RealmRepository) {
+    init(realmRepository: RealmRepository,
+         episodeDetailRepository: EpisodeDetailRepository
+    ) {
         self.realmRepository = realmRepository
+        self.episodeDetailRepository = episodeDetailRepository
     }
     
     let episodeDiffableItem = PublishSubject<Episode>()
     let deleteEpisodeState = PublishSubject<Void>()
+    let deleteEpisodeImageState = PublishSubject<Void>()
     let errorSubject = PublishSubject<Error>()
     
     func fetchEpisodeDetail(episode: Episode) {
@@ -44,6 +50,20 @@ final class EpisodeDetailUseCase {
                 case .error(let error):
                     dump(error)
                     self?.errorSubject.onNext(EpisodeDetailUseError.deleteEpisode)
+                }
+            }
+            .disposed(by: disposebag)
+    }
+    
+    func deleteEpisodeImage(fileName: String) {
+        episodeDetailRepository.removeImage(fileName: fileName)
+            .subscribe { [weak self] completable in
+                switch completable {
+                case .completed:
+                    self?.deleteEpisodeImageState.onNext(Void())
+                case .error(let error):
+                    dump(error)
+                    self?.errorSubject.onNext(EpisodeDetailUseError.deleteEpisodeImage)
                 }
             }
             .disposed(by: disposebag)

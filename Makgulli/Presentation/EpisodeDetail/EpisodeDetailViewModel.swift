@@ -15,7 +15,7 @@ final class EpisodeDetailViewModel: ViewModelType {
     
     private let episodeDetailUseCase: EpisodeDetailUseCase
     private var episode: Episode
-    var storeId: String
+    private var storeId: String
     
     init(
         episode: Episode,
@@ -51,6 +51,7 @@ final class EpisodeDetailViewModel: ViewModelType {
         input.didSeletDeleteBarButton
             .withUnretained(self)
             .bind(onNext: { owner, _ in
+                owner.episodeDetailUseCase.deleteEpisodeImage(fileName: "\(owner.episode.id).jpg".trimmingWhitespace())
                 owner.episodeDetailUseCase.deleteEpisode(storeId: owner.storeId, episodeId: owner.episode.id)
             })
             .disposed(by: disposeBag)
@@ -66,7 +67,7 @@ final class EpisodeDetailViewModel: ViewModelType {
             .bind(to: output.episode)
             .disposed(by: disposeBag)
         
-        episodeDetailUseCase.deleteEpisodeState
+        Observable.merge(episodeDetailUseCase.deleteEpisodeState, episodeDetailUseCase.deleteEpisodeImageState)
             .bind(to: output.deleteStoreEpisodeState)
             .disposed(by: disposeBag)
     }

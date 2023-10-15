@@ -172,7 +172,7 @@ final class LocationDetailViewController: BaseViewController {
             .withUnretained(self)
              .subscribe(onNext: { owner, indexPath in
                  guard let episode = owner.locationDetailView.itemIdentifier(for: indexPath) else { return }
-                 let episodeDetailViewController = EpisodeDetailViewController(viewModel: EpisodeDetailViewModel(episode: episode, storeId: owner.viewModel.storeVO.id, episodeDetailUseCase: EpisodeDetailUseCase(realmRepository: DefaultRealmRepository()!)))
+                 let episodeDetailViewController = EpisodeDetailViewController(viewModel: EpisodeDetailViewModel(episode: episode, storeId: owner.viewModel.storeVO.id, episodeDetailUseCase: EpisodeDetailUseCase(realmRepository: DefaultRealmRepository()!, episodeDetailRepository: DefaultEpisodeDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())))))
                  owner.navigationController?.pushViewController(episodeDetailViewController, animated: true)
              })
              .disposed(by: disposeBag)
