@@ -19,7 +19,7 @@ struct Episode: Hashable {
 final class LocationDetailViewModel: ViewModelType {
     var disposeBag: DisposeBag = .init()
     
-    private var storeVO: StoreVO
+    var storeVO: StoreVO
     private let locationDetailUseCase: LocationDetailUseCase
     
     init(
@@ -57,8 +57,6 @@ final class LocationDetailViewModel: ViewModelType {
         let showErrorAlert = PublishRelay<Error>()
         let presentWriteEpisode = PublishRelay<StoreVO>()
         let episodeList = PublishRelay<[EpisodeVO]>()
-        let episodeEmptyViewHidden = PublishRelay<Bool>()
-        let episodeDataSource = PublishRelay<[Episode]>()
     }
     
     func transform(input: Input) -> Output {
@@ -118,8 +116,6 @@ final class LocationDetailViewModel: ViewModelType {
             .bind(to: output.showBookmarkToast)
             .disposed(by: disposeBag)
         
-        createOutput(output: output)
-        
         input.didSelectUserLocationButton
             .withLatestFrom(output.locationCoordinate)
             .bind(to: output.setCameraPosition)
@@ -131,6 +127,8 @@ final class LocationDetailViewModel: ViewModelType {
                 output.presentWriteEpisode.accept(owner.storeVO)
             })
             .disposed(by: disposeBag)
+        
+        createOutput(output: output)
         
         return output
     }

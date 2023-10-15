@@ -166,4 +166,15 @@ final class LocationDetailViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    override func bindAction() {
+        locationDetailView.rx.selectedItem
+            .withUnretained(self)
+             .subscribe(onNext: { owner, indexPath in
+                 guard let episode = owner.locationDetailView.itemIdentifier(for: indexPath) else { return }
+                 let episodeDetailViewController = EpisodeDetailViewController(viewModel: EpisodeDetailViewModel(episode: episode, storedID: owner.viewModel.storeVO.id, episodeDetailUseCase: EpisodeDetailUseCase(realmRepository: DefaultRealmRepository()!)))
+                 owner.navigationController?.pushViewController(episodeDetailViewController, animated: true)
+             })
+             .disposed(by: disposeBag)
+    }
 }

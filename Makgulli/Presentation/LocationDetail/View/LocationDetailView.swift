@@ -52,6 +52,10 @@ final class LocationDetailView: BaseView {
             self?.episodeView.episodeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
     }
+    
+    func itemIdentifier(for indexPath: IndexPath) -> Episode? {
+        return episodeView.dataSource?.itemIdentifier(for: indexPath)
+    }
         
     fileprivate func moveCamera(latitude: Double, longitude: Double) {
         let cameraPosition = NMFCameraPosition(
@@ -173,6 +177,10 @@ final class LocationDetailView: BaseView {
 }
 
 extension Reactive where Base: LocationDetailView {
+    var selectedItem: ControlEvent<IndexPath> {
+        return self.base.episodeView.episodeCollectionView.rx.itemSelected
+     }
+    
     var storeCameraPosition: Binder<(Double, Double)> {
         return Binder(self.base) { view, cameraPosition in
             let (latitude, longitude) = cameraPosition
