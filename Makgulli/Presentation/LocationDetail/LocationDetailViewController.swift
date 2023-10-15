@@ -50,7 +50,7 @@ final class LocationDetailViewController: BaseViewController {
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
                    viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
                    viewWillDisappearEvent: self.rx.viewWillDisappear.map { _ in },
-                   didSelectRate: locationDetailView.rateView.currentStarSubject,
+                   didSelectRate: locationDetailView.rateView.currentStarSubject.asObserver(),
                    didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable(),
                    didSelectUserLocationButton: locationDetailView.storeLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
                    didSelectMakeEpisodeButton: locationDetailView.bottomView.rx.tapMakeEpisode.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
@@ -135,18 +135,34 @@ final class LocationDetailViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        output.episodeList
+        let episodeList = output.episodeList
+            .share()
+        
+        episodeList
+            .distinctUntilChanged()
             .withUnretained(self)
-            .observe(on: MainScheduler.asyncInstance)
+            .map { owner, episodeList in
+                let episodes = episodeList.map { episodeVO -> Episode in
+                    return Episode(id: episodeVO.id,
+                                   date: episodeVO.date,
+                                   imageData: owner.viewModel.loadDataSourceImage("\(episodeVO.id).jpg".trimmingWhitespace()) ?? Data())
+                }
+                return episodes
+            }
+            .withUnretained(self)
             .bind(onNext: { owner, episodeList in
                 owner.locationDetailView.applyCollectionViewDataSource(by: episodeList)
             })
             .disposed(by: disposeBag)
         
-        output.episodeEmptyViewHidden
-            .withUnretained(self)
-            .bind(onNext: { owner, isHidden in
-                print(isHidden)
+        episodeList
+            .distinctUntilChanged()
+            .bind(onNext: { episodeList in
+                if episodeList.isEmpty {
+                    
+                } else {
+                    
+                }
             })
             .disposed(by: disposeBag)
     }

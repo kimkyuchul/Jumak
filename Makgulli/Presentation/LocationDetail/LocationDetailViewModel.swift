@@ -10,9 +10,15 @@ import Foundation
 import RxSwift
 import RxRelay
 
+struct Episode: Hashable {
+    let id: String
+    let date: Date
+    let imageData: Data
+}
+
 final class LocationDetailViewModel: ViewModelType {
     var disposeBag: DisposeBag = .init()
-        
+    
     private var storeVO: StoreVO
     private let locationDetailUseCase: LocationDetailUseCase
     
@@ -28,7 +34,7 @@ final class LocationDetailViewModel: ViewModelType {
         let viewDidLoadEvent: Observable<Void>
         let viewWillAppearEvent: Observable<Void>
         let viewWillDisappearEvent: Observable<Void>
-        let didSelectRate: PublishSubject<Int>
+        let didSelectRate: Observable<Int>
         let didSelectBookmark: Observable<Bool>
         let didSelectUserLocationButton: Observable<Void>
         let didSelectMakeEpisodeButton: Observable<Void>
@@ -52,6 +58,7 @@ final class LocationDetailViewModel: ViewModelType {
         let presentWriteEpisode = PublishRelay<StoreVO>()
         let episodeList = PublishRelay<[EpisodeVO]>()
         let episodeEmptyViewHidden = PublishRelay<Bool>()
+        let episodeDataSource = PublishRelay<[Episode]>()
     }
     
     func transform(input: Input) -> Output {
@@ -110,7 +117,7 @@ final class LocationDetailViewModel: ViewModelType {
         didSelectBookmark
             .bind(to: output.showBookmarkToast)
             .disposed(by: disposeBag)
-                
+        
         createOutput(output: output)
         
         input.didSelectUserLocationButton
@@ -132,7 +139,7 @@ final class LocationDetailViewModel: ViewModelType {
         locationDetailUseCase.hashTag
             .bind(to: output.hashTag)
             .disposed(by: disposeBag)
-                
+        
         locationDetailUseCase.placeName
             .bind(to: output.placeName)
             .disposed(by: disposeBag)
@@ -172,23 +179,16 @@ final class LocationDetailViewModel: ViewModelType {
         locationDetailUseCase.locationCoordinate
             .bind(to: output.locationCoordinate)
             .disposed(by: disposeBag)
-        
-        let episodeList = locationDetailUseCase.episodeList
-            .share()
-        
-        episodeList
+                        
+        locationDetailUseCase.episodeList
             .bind(to: output.episodeList)
             .disposed(by: disposeBag)
-        
-        episodeList
-            .bind(onNext: { episodeList in
-                if episodeList.isEmpty {
-                    output.episodeEmptyViewHidden.accept(false)
-                } else {
-                    output.episodeEmptyViewHidden.accept(true)
-                }
-            })
-            .disposed(by: disposeBag)
+    }
+}
+
+extension LocationDetailViewModel {
+    func loadDataSourceImage(_ fileName: String) -> Data? {
+        locationDetailUseCase.loadDataSourceImage(fileName)
     }
 }
 
