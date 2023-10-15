@@ -12,17 +12,21 @@ import RxSwift
 
 final class EpisodeDetailViewController: BaseViewController {
     
+    private let detailView = EpisodeDetailView()
     private let viewModel: EpisodeDetailViewModel
-    private let episodeDeleteBarButtonItem = UIBarButtonItem(image: ImageLiteral.bookMarkIcon, style: .plain, target: EpisodeDetailViewController.self, action: nil)
+    private let episodeDeleteBarButtonItem = UIBarButtonItem(image: ImageLiteral.deleteEpisodeIcon, style: .plain, target: EpisodeDetailViewController.self, action: nil)
     
     init(viewModel: EpisodeDetailViewModel) {
         self.viewModel = viewModel
         super.init()
     }
     
+    override func loadView() {
+        self.view = detailView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .pink
     }
     
     override func bind() {
@@ -32,10 +36,7 @@ final class EpisodeDetailViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         output.episode
-            .withUnretained(self)
-            .bind(onNext: { owner, episode in
-                print(episode)
-            })
+            .bind(to: detailView.rx.episode)
             .disposed(by: disposeBag)
         
         output.deleteStoreEpisodeState
