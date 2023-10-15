@@ -12,22 +12,21 @@ import RxSwift
 import RxCocoa
 
 final class LocationDetailView: BaseView {
-    
+
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let topCornerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .tertiarySystemGroupedBackground
+        view.backgroundColor = .white
         view.roundCorners(cornerRadius: 23, maskedCorners: [.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
         return view
     }()
-    lazy var mapView: NMFMapView = {
+    private lazy var mapView: NMFMapView = {
         let mapView = NMFMapView()
         mapView.allowsZooming = true
         mapView.logoInteractionEnabled = false
         mapView.positionMode = .direction
-        mapView.zoomLevel = 15
-        self.locationOverlay = mapView.locationOverlay
+        mapView.zoomLevel = 13
         return mapView
     }()
     let storeLocationButton = LocationButton()
@@ -37,17 +36,53 @@ final class LocationDetailView: BaseView {
     let episodeView = DetailEpisodeView()
     let bottomView = DetailBottomView()
     
-    var locationOverlay: NMFLocationOverlay?
-        
+    private var storemarker = NMFMarker()
+    
     func applyCollectionViewDataSource(
-        by viewModels: [EpisodeVO]
+        by viewModels: [Episode]
     ) {
         var snapshot = DetailEpisodeView.Snapshot()
         
         snapshot.appendSections([.episode])
         snapshot.appendItems(viewModels, toSection: .episode)
         
-        episodeView.dataSource?.apply(snapshot)
+        episodeView.dataSource?.apply(snapshot, animatingDifferences: true) { [weak self] in
+            let lastItemIndex = viewModels.count - 1
+            let indexPath = IndexPath(item: lastItemIndex, section: 0)
+            self?.episodeView.episodeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+    }
+    
+    func itemIdentifier(for indexPath: IndexPath) -> Episode? {
+        return episodeView.dataSource?.itemIdentifier(for: indexPath)
+    }
+        
+    fileprivate func moveCamera(latitude: Double, longitude: Double) {
+        let cameraPosition = NMFCameraPosition(
+            NMGLatLng(lat: latitude,lng: longitude),
+            zoom: self.mapView.zoomLevel
+        )
+        let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
+        
+        cameraUpdate.animation = .easeIn
+        self.mapView.moveCamera(cameraUpdate)
+    }
+    
+    fileprivate func setUpMarker(latitude: Double, longitude: Double) {
+        self.storemarker.mapView = nil
+        
+        let position = NMGLatLng(lat: latitude, lng: longitude)
+        let markerIcon = NMFOverlayImage(image: ImageLiteral.touchMarker)
+        
+        self.storemarker = NMFMarker(position: position, iconImage: markerIcon)
+        self.storemarker.width = DesignLiteral.touchMarkerWidth
+        self.storemarker.height = DesignLiteral.touchMarkerheight
+        
+        let cameraUpdate = NMFCameraUpdate(scrollTo: position)
+        cameraUpdate.animation = .easeIn
+        
+        self.mapView.moveCamera(cameraUpdate)
+        self.storemarker.mapView = self.mapView
     }
     
     override func layoutSubviews() {
@@ -90,7 +125,7 @@ final class LocationDetailView: BaseView {
         topCornerView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(self.snp.height).multipliedBy(0.05)
+            make.height.equalTo(self.snp.height).multipliedBy(0.03)
         }
         
         mapView.snp.makeConstraints { make in
@@ -135,6 +170,28 @@ final class LocationDetailView: BaseView {
     }
     
     override func setLayout() {
+        scrollView.bounces = false
+        scrollView.backgroundColor = .lightGray
         contentView.backgroundColor = .lightGray
+    }
+}
+
+extension Reactive where Base: LocationDetailView {
+    var selectedItem: ControlEvent<IndexPath> {
+        return self.base.episodeView.episodeCollectionView.rx.itemSelected
+     }
+    
+    var storeCameraPosition: Binder<(Double, Double)> {
+        return Binder(self.base) { view, cameraPosition in
+            let (latitude, longitude) = cameraPosition
+            view.moveCamera(latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    var setUpMarker: Binder<(Double, Double)> {
+        return Binder(self.base) { view, position in
+            let (latitude, longitude) = position
+            view.setUpMarker(latitude: latitude, longitude: longitude)
+        }
     }
 }

@@ -33,10 +33,10 @@ final class BookmarkButton: UIButton {
         let attributedTitle = NSAttributedString(string: "즐겨찾기",
                                                  attributes: [
                                                     .font: UIFont.boldLineSeed(size: ._18),
-                                                    .foregroundColor: UIColor.brown
+                                                    .foregroundColor: UIColor.pink
                                                  ])
         configuration.attributedTitle = AttributedString(attributedTitle)
-        configuration.baseForegroundColor = UIColor.brown
+        configuration.baseForegroundColor = UIColor.pink
         configuration.imagePadding = 5
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
         configuration.imagePlacement = .leading
@@ -47,10 +47,10 @@ final class BookmarkButton: UIButton {
         self.configurationUpdateHandler = { button in
             switch button.state {
             case .selected:
-                button.configuration?.image = ImageLiteral.koreaIcon
+                button.configuration?.image = ImageLiteral.fillHeartIcon
                 button.configuration?.baseBackgroundColor = .clear
             case .normal:
-                button.configuration?.image = ImageLiteral.boltHeartIcon
+                button.configuration?.image = ImageLiteral.heartIcon
             default:
                 break
             }

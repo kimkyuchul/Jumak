@@ -25,6 +25,8 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
         let label = UILabel()
         label.font = UIFont.boldLineSeed(size: ._18)
         label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.9
         return label
     }()
     private let addressLabel: UILabel = {
@@ -42,17 +44,28 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
         stackView.distribution = .fill
         return stackView
     }()
-    
+    private let bookmarkImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiteral.circleHeart
+        imageView.contentMode = .scaleToFill
+        imageView.tintColor = .gray
+        return imageView
+    }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.cellShadow(backView: containerView, radius: 23)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        logoImageView.image = nil
+    }
+    
     override func setHierarchy() {
         self.addSubview(containerView)
         
-        [logoImageView, storeTitleLabel, addressLabel, badgeStackView].forEach {
+        [logoImageView, storeTitleLabel, addressLabel, badgeStackView, bookmarkImageView].forEach {
             containerView.addSubview($0)
         }
     }
@@ -69,13 +82,13 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
         }
         
         storeTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(logoImageView.snp.top).offset(10)
+            make.top.equalTo(logoImageView.snp.top).offset(6)
             make.leading.equalTo(logoImageView.snp.trailing).offset(14)
             make.trailing.equalToSuperview().inset(10).priority(.high)
         }
         
         addressLabel.snp.makeConstraints { make in
-            make.top.equalTo(storeTitleLabel.snp.bottom).offset(4)
+            make.top.equalTo(storeTitleLabel.snp.bottom).offset(2).priority(.high)
             make.leading.equalTo(storeTitleLabel.snp.leading)
             make.trailing.equalTo(storeTitleLabel.snp.trailing)
         }
@@ -84,6 +97,12 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
             make.top.equalTo(addressLabel.snp.bottom).offset(5).priority(.low)
             make.leading.equalTo(storeTitleLabel.snp.leading)
             make.bottom.equalToSuperview().inset(18)
+        }
+        
+        bookmarkImageView.snp.makeConstraints { make in
+            make.size.equalTo(38)
+            make.trailing.equalToSuperview().inset(10)
+            make.bottom.equalTo(badgeStackView.snp.bottom).offset(2)
         }
     }
     
@@ -106,10 +125,11 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
 
 extension StoreCollectionViewCell {
     func configureCell(item: StoreVO) {
-        logoImageView.image = item.categoryType.logoImage.resize(newWidth: 100)
+        logoImageView.image = item.categoryType.logoImage.resize(newWidth: 50)
         storeTitleLabel.text = item.placeName
         addressLabel.text = item.addressName
         rateBadge.setBadgeTitle(text: "\(item.rate)점")
         distanceBadge.setBadgeTitle(text: "\(item.distance)M")
+        bookmarkImageView.tintColor = item.bookmark ? .pink : .gray
     }
 }

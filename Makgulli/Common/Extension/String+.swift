@@ -11,8 +11,13 @@ extension String {
     func convertMetersToKilometers() -> Double? {
         if let meters = Double(self) {
             let kilometers = meters / 1000.0
-            return (kilometers * 10).rounded() / 10 
+            return (kilometers * 10).rounded() / 10
         }
         return nil
     }
+    
+    func trimmingWhitespace() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
 }

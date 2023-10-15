@@ -31,6 +31,21 @@
 		5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */; };
 		5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */; };
 		5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */; };
+		5A6827A12AD446D700C37B17 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A02AD446D700C37B17 /* UIViewController+.swift */; };
+		5A6827A32AD44DD900C37B17 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A22AD44DD900C37B17 /* PaddingLabel.swift */; };
+		5A6827A72AD50D5600C37B17 /* WriteEpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A62AD50D5500C37B17 /* WriteEpisodeViewController.swift */; };
+		5A6827A92AD5221A00C37B17 /* WriteEpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */; };
+		5A6827AB2AD5265100C37B17 /* EpisodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827AA2AD5265100C37B17 /* EpisodeButton.swift */; };
+		5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827AC2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift */; };
+		5A6827B02AD56B1300C37B17 /* WriteEpisodeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827AF2AD56B1300C37B17 /* WriteEpisodeUseCase.swift */; };
+		5A6827B22AD6760600C37B17 /* EpisodeDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827B12AD6760600C37B17 /* EpisodeDateView.swift */; };
+		5A6827B42AD6906700C37B17 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827B32AD6906700C37B17 /* Date+.swift */; };
+		5A6827B62AD69BF900C37B17 /* EpisodeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827B52AD69BF900C37B17 /* EpisodeContentView.swift */; };
+		5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827B82AD6AC4C00C37B17 /* EpisodeTextField.swift */; };
+		5A6827BC2AD6BDCE00C37B17 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 5A6827BB2AD6BDCE00C37B17 /* RxGesture */; };
+		5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */; };
+		5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkNameView.swift */; };
+		5A6827C22AD6E59300C37B17 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */; };
 		5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA322AC174E600506846 /* AppDelegate.swift */; };
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
@@ -80,9 +95,23 @@
 		5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */; };
 		5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21D2AC419D5006040D2 /* LocationView.swift */; };
 		5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21F2AC41A19006040D2 /* BaseView.swift */; };
+		5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */; };
+		5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E692AD7F0FB005969FA /* QuantityType.swift */; };
+		5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */; };
+		5AAB8E712AD99388005969FA /* DefaultWriteEpisodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */; };
+		5AAB8E732AD9948E005969FA /* WriteEpisodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */; };
+		5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */; };
+		5AAB8E772ADA7107005969FA /* LocationDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */; };
+		5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E792ADBE171005969FA /* EpisodeDetailViewController.swift */; };
+		5AAB8E7C2ADBE22D005969FA /* EpisodeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E7B2ADBE22D005969FA /* EpisodeDetailViewModel.swift */; };
+		5AAB8E7F2ADBEEAE005969FA /* EpisodeDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E7E2ADBEEAE005969FA /* EpisodeDetailUseCase.swift */; };
+		5AAB8E822ADC0418005969FA /* BaseAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E812ADC0418005969FA /* BaseAlert.swift */; };
+		5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */; };
+		5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */; };
+		5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
-		5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */; };
+		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
 		5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */; };
 		5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00332AC5F2720024D7F8 /* CategoryType.swift */; };
 		5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */; };
@@ -140,6 +169,20 @@
 		5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTable.swift; sourceTree = "<group>"; };
 		5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreBadge.swift; sourceTree = "<group>"; };
+		5A6827A02AD446D700C37B17 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		5A6827A22AD44DD900C37B17 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		5A6827A62AD50D5500C37B17 /* WriteEpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeViewController.swift; sourceTree = "<group>"; };
+		5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeView.swift; sourceTree = "<group>"; };
+		5A6827AA2AD5265100C37B17 /* EpisodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeButton.swift; sourceTree = "<group>"; };
+		5A6827AC2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeViewModel.swift; sourceTree = "<group>"; };
+		5A6827AF2AD56B1300C37B17 /* WriteEpisodeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeUseCase.swift; sourceTree = "<group>"; };
+		5A6827B12AD6760600C37B17 /* EpisodeDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDateView.swift; sourceTree = "<group>"; };
+		5A6827B32AD6906700C37B17 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		5A6827B52AD69BF900C37B17 /* EpisodeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeContentView.swift; sourceTree = "<group>"; };
+		5A6827B82AD6AC4C00C37B17 /* EpisodeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTextField.swift; sourceTree = "<group>"; };
+		5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectionView.swift; sourceTree = "<group>"; };
+		5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDrinkNameView.swift; sourceTree = "<group>"; };
+		5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		5A70BA2F2AC174E600506846 /* Makgulli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Makgulli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA322AC174E600506846 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A70BA342AC174E600506846 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,9 +229,23 @@
 		5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetupable.swift; sourceTree = "<group>"; };
 		5A9DA21D2AC419D5006040D2 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		5A9DA21F2AC41A19006040D2 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDrinkCountView.swift; sourceTree = "<group>"; };
+		5AAB8E692AD7F0FB005969FA /* QuantityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityType.swift; sourceTree = "<group>"; };
+		5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorage.swift; sourceTree = "<group>"; };
+		5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWriteEpisodeRepository.swift; sourceTree = "<group>"; };
+		5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeRepository.swift; sourceTree = "<group>"; };
+		5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationDetailRepository.swift; sourceTree = "<group>"; };
+		5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailRepository.swift; sourceTree = "<group>"; };
+		5AAB8E792ADBE171005969FA /* EpisodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailViewController.swift; sourceTree = "<group>"; };
+		5AAB8E7B2ADBE22D005969FA /* EpisodeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailViewModel.swift; sourceTree = "<group>"; };
+		5AAB8E7E2ADBEEAE005969FA /* EpisodeDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailUseCase.swift; sourceTree = "<group>"; };
+		5AAB8E812ADC0418005969FA /* BaseAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAlert.swift; sourceTree = "<group>"; };
+		5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEpisodeDetailRepository.swift; sourceTree = "<group>"; };
+		5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailRepository.swift; sourceTree = "<group>"; };
+		5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailView.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
-		5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionButton.swift; sourceTree = "<group>"; };
+		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
 		5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		5ADC00332AC5F2720024D7F8 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -212,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A70BA722AC179A500506846 /* RealmSwift in Frameworks */,
+				5A6827BC2AD6BDCE00C37B17 /* RxGesture in Frameworks */,
 				5A9DA1E52AC2B4DF006040D2 /* Alamofire in Frameworks */,
 				5A70BA6B2AC1795600506846 /* RxRelay in Frameworks */,
 				5A70BA692AC1795600506846 /* RxCocoa in Frameworks */,
@@ -282,7 +340,8 @@
 				5A68277D2ACED01C00C37B17 /* BookmarkButton.swift */,
 				5A6827762ACEA7B200C37B17 /* RateButton.swift */,
 				5A6827722ACE900F00C37B17 /* LocationButton.swift */,
-				5ADC002C2AC5DEA70024D7F8 /* QuestionButton.swift */,
+				5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */,
+				5A6827AA2AD5265100C37B17 /* EpisodeButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -293,6 +352,8 @@
 				5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */,
 				5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */,
 				5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */,
+				5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */,
+				5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -312,6 +373,41 @@
 				5A68279A2AD26A8400C37B17 /* EpisodeTable.swift */,
 			);
 			path = "Table+Mapping";
+			sourceTree = "<group>";
+		};
+		5A6827A42AD44DDE00C37B17 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				5A6827A22AD44DD900C37B17 /* PaddingLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		5A6827A52AD50D3A00C37B17 /* Episode */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E7D2ADBE246005969FA /* View */,
+				5A6827AC2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift */,
+				5A6827A62AD50D5500C37B17 /* WriteEpisodeViewController.swift */,
+			);
+			path = Episode;
+			sourceTree = "<group>";
+		};
+		5A6827AE2AD56AD700C37B17 /* Episode */ = {
+			isa = PBXGroup;
+			children = (
+				5A6827AF2AD56B1300C37B17 /* WriteEpisodeUseCase.swift */,
+				5AAB8E7E2ADBEEAE005969FA /* EpisodeDetailUseCase.swift */,
+			);
+			path = Episode;
+			sourceTree = "<group>";
+		};
+		5A6827B72AD6AC3B00C37B17 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				5A6827B82AD6AC4C00C37B17 /* EpisodeTextField.swift */,
+			);
+			path = TextField;
 			sourceTree = "<group>";
 		};
 		5A70BA262AC174E600506846 = {
@@ -377,6 +473,7 @@
 		5A9DA1C12AC19030006040D2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8E6D2AD958E5005969FA /* PersistentStorage */,
 				5A9DA1FA2AC2FCB4006040D2 /* Repositories */,
 				5A9DA1DF2AC1B0E7006040D2 /* Network */,
 				5A6827932AD15DF400C37B17 /* DataBase */,
@@ -413,6 +510,8 @@
 		5A9DA1C42AC19050006040D2 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8E782ADBE152005969FA /* EpisodeDetail */,
+				5A6827A52AD50D3A00C37B17 /* Episode */,
 				5ADC004B2ACA9D970024D7F8 /* LocationDetail */,
 				5ADC003C2AC869060024D7F8 /* Tabbar */,
 				5ADC003F2AC86D8A0024D7F8 /* Home */,
@@ -448,6 +547,8 @@
 				5A6827832ACFEB6D00C37B17 /* UIStackView+.swift */,
 				5A6827912AD14E0A00C37B17 /* String+.swift */,
 				5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */,
+				5A6827A02AD446D700C37B17 /* UIViewController+.swift */,
+				5A6827B32AD6906700C37B17 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -524,6 +625,9 @@
 			children = (
 				5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */,
 				5A9DA1FB2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift */,
+				5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */,
+				5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */,
+				5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -542,6 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA2032AC3C6AC006040D2 /* Location */,
+				5A6827AE2AD56AD700C37B17 /* Episode */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -560,6 +665,9 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA2092AC3CE9F006040D2 /* SearchLocationRepository.swift */,
+				5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */,
+				5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */,
+				5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -602,10 +710,51 @@
 		5A9DA2212AC57E20006040D2 /* UIComponent */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8E802ADC034B005969FA /* Alert */,
+				5A6827B72AD6AC3B00C37B17 /* TextField */,
+				5A6827A42AD44DDE00C37B17 /* Label */,
 				5A6827862AD04DA100C37B17 /* View */,
 				5A6827852AD04D8800C37B17 /* Button */,
 			);
 			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		5AAB8E6D2AD958E5005969FA /* PersistentStorage */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */,
+			);
+			path = PersistentStorage;
+			sourceTree = "<group>";
+		};
+		5AAB8E782ADBE152005969FA /* EpisodeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E792ADBE171005969FA /* EpisodeDetailViewController.swift */,
+				5AAB8E7B2ADBE22D005969FA /* EpisodeDetailViewModel.swift */,
+				5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */,
+			);
+			path = EpisodeDetail;
+			sourceTree = "<group>";
+		};
+		5AAB8E7D2ADBE246005969FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5A6827B12AD6760600C37B17 /* EpisodeDateView.swift */,
+				5A6827B52AD69BF900C37B17 /* EpisodeContentView.swift */,
+				5A6827BF2AD6DEFB00C37B17 /* EpisodeDrinkNameView.swift */,
+				5AAB8E652AD7CCEC005969FA /* EpisodeDrinkCountView.swift */,
+				5A6827A82AD5221A00C37B17 /* WriteEpisodeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AAB8E802ADC034B005969FA /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E812ADC0418005969FA /* BaseAlert.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		5ADC002E2AC5E2C60024D7F8 /* Location */ = {
@@ -632,6 +781,7 @@
 			isa = PBXGroup;
 			children = (
 				5ADC00332AC5F2720024D7F8 /* CategoryType.swift */,
+				5AAB8E692AD7F0FB005969FA /* QuantityType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -707,6 +857,7 @@
 				5A70BA6F2AC179A500506846 /* Realm */,
 				5A70BA712AC179A500506846 /* RealmSwift */,
 				5A9DA1E42AC2B4DF006040D2 /* Alamofire */,
+				5A6827BB2AD6BDCE00C37B17 /* RxGesture */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -788,6 +939,7 @@
 				5A70BA672AC1795600506846 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -941,31 +1093,47 @@
 			files = (
 				5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */,
 				5A9DA2012AC3C227006040D2 /* SearchLocationVO.swift in Sources */,
+				5A6827A72AD50D5600C37B17 /* WriteEpisodeViewController.swift in Sources */,
 				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
 				5A6827792ACEC68000C37B17 /* UILabel+.swift in Sources */,
 				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
 				5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */,
+				5A6827A12AD446D700C37B17 /* UIViewController+.swift in Sources */,
+				5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */,
 				5A6827772ACEA7B200C37B17 /* RateButton.swift in Sources */,
 				5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */,
 				5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */,
 				5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */,
+				5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */,
+				5A6827A92AD5221A00C37B17 /* WriteEpisodeView.swift in Sources */,
 				5A6827882AD0509D00C37B17 /* DetailEpisodeView.swift in Sources */,
 				5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */,
 				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
 				5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */,
 				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
+				5AAB8E732AD9948E005969FA /* WriteEpisodeRepository.swift in Sources */,
 				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
 				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
 				5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */,
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,
+				5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */,
+				5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */,
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
+				5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */,
+				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
+				5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
 				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
 				5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */,
+				5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */,
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
 				5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */,
+				5A6827B22AD6760600C37B17 /* EpisodeDateView.swift in Sources */,
+				5AAB8E772ADA7107005969FA /* LocationDetailRepository.swift in Sources */,
+				5A6827B42AD6906700C37B17 /* Date+.swift in Sources */,
 				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
+				5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */,
 				5A6827922AD14E0A00C37B17 /* String+.swift in Sources */,
 				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
 				5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */,
@@ -976,27 +1144,38 @@
 				5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */,
 				5A6827842ACFEB6D00C37B17 /* UIStackView+.swift in Sources */,
 				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
+				5A6827B02AD56B1300C37B17 /* WriteEpisodeUseCase.swift in Sources */,
 				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
+				5A6827A32AD44DD900C37B17 /* PaddingLabel.swift in Sources */,
 				5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */,
+				5A6827AB2AD5265100C37B17 /* EpisodeButton.swift in Sources */,
 				5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */,
 				5A68278C2AD060FA00C37B17 /* DetailBottomView.swift in Sources */,
 				5A6827822ACFE3F100C37B17 /* DetailInfoView.swift in Sources */,
+				5AAB8E7C2ADBE22D005969FA /* EpisodeDetailViewModel.swift in Sources */,
 				5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */,
+				5AAB8E712AD99388005969FA /* DefaultWriteEpisodeRepository.swift in Sources */,
 				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
+				5A6827B62AD69BF900C37B17 /* EpisodeContentView.swift in Sources */,
+				5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
-				5ADC002D2AC5DEA70024D7F8 /* QuestionButton.swift in Sources */,
+				5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */,
 				5A68277C2ACEC7A700C37B17 /* DetailTitleView.swift in Sources */,
 				5A6827992AD1646D00C37B17 /* DefaultRealmRepository.swift in Sources */,
 				5ADC00312AC5E31C0024D7F8 /* QuestionViewController.swift in Sources */,
+				5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkNameView.swift in Sources */,
 				5A68278A2AD054A300C37B17 /* EpisodeVO.swift in Sources */,
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
 				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
 				5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
+				5A6827C22AD6E59300C37B17 /* CheckBoxView.swift in Sources */,
 				5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */,
 				5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */,
 				5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */,
 				5A6827752ACE9A1D00C37B17 /* DetailRateView.swift in Sources */,
+				5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */,
+				5AAB8E822ADC0418005969FA /* BaseAlert.swift in Sources */,
 				5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */,
 				5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */,
 				5A68278E2AD08A2A00C37B17 /* StoreVO.swift in Sources */,
@@ -1005,6 +1184,7 @@
 				5A9DA21A2AC415C5006040D2 /* BaseViewController.swift in Sources */,
 				5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */,
 				5A6827702ACE7A6C00C37B17 /* EpisodeCollectionViewCell.swift in Sources */,
+				5AAB8E7F2ADBEEAE005969FA /* EpisodeDetailUseCase.swift in Sources */,
 				5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1357,6 +1537,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -1392,6 +1580,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5A6827BB2AD6BDCE00C37B17 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
+		};
 		5A70BA652AC178E600506846 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */;

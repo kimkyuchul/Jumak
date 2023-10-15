@@ -64,7 +64,7 @@ final class LocationViewModel: ViewModelType {
                 owner.locationUseCase.observeUserLocation()
             })
             .disposed(by: disposeBag)
-            
+        
         input.viewWillAppearEvent
             .withLatestFrom(input.willDisplayCell)
             .withUnretained(self)
@@ -113,7 +113,7 @@ final class LocationViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         let currentLocationAndCategoryType = Observable.combineLatest(self.currentLocation, self.categoryType)
-    
+        
         input.didSelectRefreshButton
             .withLatestFrom(currentLocationAndCategoryType)
             .withUnretained(self)
@@ -148,7 +148,7 @@ final class LocationViewModel: ViewModelType {
                 output.selectedMarkerIndex.accept(index)
             })
             .disposed(by: disposeBag)
-    
+        
         let userLocationAndCategoryType = Observable.combineLatest(output.currentUserLocation, self.categoryType)
         
         self.locationUseCase.locationUpdateSubject
@@ -175,7 +175,7 @@ final class LocationViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         let storeListObservable = output.storeList
-
+        
         storeListObservable
             .withUnretained(self)
             .subscribe(onNext: { owner, storeVO in
@@ -219,10 +219,10 @@ final class LocationViewModel: ViewModelType {
             .bind(onNext: { owner, visibleStore in
                 let (storeVO, willDisplayCell) = visibleStore
                 let visibleStore = owner.storeList[willDisplayCell.row]
-            
+                
                 if owner.shouldUpdateStore(store: storeVO, visibleStore: visibleStore) {
-                        owner.storeList[willDisplayCell.row] = storeVO
-                        output.storeList.accept(owner.storeList)
+                    owner.storeList[willDisplayCell.row] = storeVO
+                    output.storeList.accept(owner.storeList)
                 }
             })
             .disposed(by: disposeBag)
@@ -230,6 +230,12 @@ final class LocationViewModel: ViewModelType {
         transformCollectionViewDataSource(input: input, output: output)
         
         return output
+    }
+}
+
+extension LocationViewModel {
+    func updateStoreCell(_ store: StoreVO) -> StoreVO? {
+        return searchLocationUseCase.updateStoreCell(store)
     }
 }
 
@@ -262,11 +268,5 @@ extension LocationViewModel {
     
     private func shouldUpdateStore(store: StoreVO, visibleStore: StoreVO) -> Bool {
         return store.rate != visibleStore.rate || store.bookmark != visibleStore.bookmark || store.episode != visibleStore.episode
-    }
-}
-
-extension LocationViewModel {
-    func updateStoreCell(_ store: StoreVO) -> StoreVO? {
-        return searchLocationUseCase.updateStoreCell(store)
     }
 }

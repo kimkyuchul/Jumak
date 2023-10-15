@@ -32,6 +32,7 @@ final class UserAddressButton: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .white
         clipsToBounds = true
     }
     
@@ -55,7 +56,6 @@ final class UserAddressButton: BaseView {
         addressButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(10)
             make.centerY.equalToSuperview()
-            
         }
         
         rightImageView.snp.makeConstraints { make in

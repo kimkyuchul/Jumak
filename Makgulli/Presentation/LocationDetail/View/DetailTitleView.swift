@@ -14,7 +14,6 @@ final class DetailTitleView: BaseView {
     
     fileprivate let hashTagLabel: UILabel = {
         let label = UILabel()
-        label.text = "#막걸리"
         label.textAlignment = .center
         label.textColor = .darkGray
         label.font = UIFont.thinLineSeed(size: ._14)
@@ -32,8 +31,6 @@ final class DetailTitleView: BaseView {
     }()
     fileprivate let distanceLabel: UILabel = {
         let label = UILabel()
-        label.text = "막걸리가 1.2KM 떨어져있어요!"
-        label.applyColor(to: "1.2KM", with: .pink)
         label.textAlignment = .center
         label.textColor = .deepDarkGray
         label.font = UIFont.regularLineSeed(size: ._14)
@@ -50,7 +47,7 @@ final class DetailTitleView: BaseView {
         configuration.buttonSize = .large
         let attributedTitle = NSAttributedString(string: "길찾기",
                                                  attributes: [
-                                                    .font: UIFont.boldLineSeed(size: ._20),
+                                                    .font: UIFont.boldLineSeed(size: ._18),
                                                     .foregroundColor: UIColor.black
                                                  ])
         configuration.attributedTitle = AttributedString(attributedTitle)

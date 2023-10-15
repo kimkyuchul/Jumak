@@ -7,14 +7,12 @@
 
 import Foundation
 
-struct EpisodeVO: Hashable {
+struct EpisodeVO: Equatable {
     let id: String
-    let uuid : String = UUID().uuidString
-    let date: String
-    let title: String
-    let content: String
+    let date: Date
+    let comment: String
     let imageURL: String
     let alcohol: String
-    let mixedAlcohol: String
     let drink: Double
+    let drinkQuantity: QuantityType
 }

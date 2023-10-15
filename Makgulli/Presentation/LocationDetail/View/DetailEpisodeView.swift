@@ -13,9 +13,9 @@ final class DetailEpisodeView: BaseView {
         case episode
     }
         
-    typealias EpisodeCollectionViewCellRegistration = UICollectionView.CellRegistration<EpisodeCollectionViewCell, EpisodeVO>
-    typealias DiffableDataSource = UICollectionViewDiffableDataSource<EpisodeSection, EpisodeVO>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<EpisodeSection, EpisodeVO>
+    typealias EpisodeCollectionViewCellRegistration = UICollectionView.CellRegistration<EpisodeCollectionViewCell, Episode>
+    typealias DiffableDataSource = UICollectionViewDiffableDataSource<EpisodeSection, Episode>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<EpisodeSection, Episode>
     var dataSource: DiffableDataSource?
     
     private let episodeTitleLabel: UILabel = {
@@ -56,16 +56,16 @@ final class DetailEpisodeView: BaseView {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .absolute(120))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .absolute(120))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.orthogonalScrollingBehavior = .groupPagingCentered
         
         section.visibleItemsInvalidationHandler = { (visibleItems, offset, env) in
             visibleItems.forEach { item in
                 let intersectedRect = item.frame.intersection(CGRect(x: offset.x, y: offset.y, width: env.container.contentSize.width, height: item.frame.height))
                 let percentVisible = intersectedRect.width / item.frame.width
-                let scale = 0.8 + (0.2 * percentVisible)
+                let scale = 0.7 + (0.3 * percentVisible)
                 item.transform = CGAffineTransform(scaleX: 0.98, y: scale)
             }
         }

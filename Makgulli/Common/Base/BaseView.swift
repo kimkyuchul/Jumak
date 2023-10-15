@@ -28,6 +28,6 @@ class BaseView: UIView, ViewSetupable {
     func setHierarchy() {}
     func setConstraints() {}
     func setLayout() {
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = .clear
     }
 }

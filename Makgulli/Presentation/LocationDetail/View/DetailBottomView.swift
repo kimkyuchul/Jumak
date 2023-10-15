@@ -7,6 +7,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 final class DetailBottomView: BaseView {
     fileprivate let bookmarkButton: UIButton = {
         let button = UIButton()
@@ -57,5 +60,11 @@ final class DetailBottomView: BaseView {
             make.top.equalTo(self.makeEpisodeButton).offset(8).priority(.high)
             make.bottom.equalTo(self.makeEpisodeButton).offset(safeAreaInsetsBottom).priority(.high)
         }
+    }
+}
+
+extension Reactive where Base: DetailBottomView {
+    var tapMakeEpisode: ControlEvent<Void> {
+        return base.makeEpisodeButton.rx.tap
     }
 }

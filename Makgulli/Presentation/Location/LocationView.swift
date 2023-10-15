@@ -22,7 +22,7 @@ final class LocationView: BaseView {
         self.locationOverlay = mapView.locationOverlay
         return mapView
     }()
-    let questionButton = QuestionButton()
+    let questionButton = DefaultCircleButton(image: ImageLiteral.mapQuestionIcon, tintColor: .brown, backgroundColor: .white)
     let userAddressButton = UserAddressButton()
     lazy var categoryCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createCategoryLayout())
@@ -70,9 +70,28 @@ final class LocationView: BaseView {
     }()
     fileprivate let storeEmptyView = StoreEmptyView()
     
-    
     var locationOverlay: NMFLocationOverlay?
     var visibleItemsRelay = PublishRelay<Int?>()
+    
+    fileprivate func moveCamera(latitude: Double, longitude: Double) {
+        let cameraPosition = NMFCameraPosition(
+            NMGLatLng(lat: latitude,lng: longitude),
+            zoom: self.mapView.zoomLevel
+        )
+        let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
+        
+        cameraUpdate.animation = .easeIn
+        self.mapView.moveCamera(cameraUpdate)
+    }
+    
+    fileprivate func handleResearchButtonVisibility(isHidden: Bool) {
+        UIView.transition(
+            with: self.researchButton,
+            duration: 0.8,
+            options: .curveEaseOut) { [weak self] in
+                self?.researchButton.alpha = isHidden ? 0.0 : 1.0
+            }
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -99,6 +118,7 @@ final class LocationView: BaseView {
         questionButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(24)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(9)
+            make.size.equalTo(46)
         }
         
         userAddressButton.snp.makeConstraints { make in
@@ -137,26 +157,6 @@ final class LocationView: BaseView {
             make.bottom.equalTo(storeCollectionView.snp.bottom)
         }
     }
-    
-    fileprivate func moveCamera(latitude: Double, longitude: Double) {
-        let cameraPosition = NMFCameraPosition(
-            NMGLatLng(lat: latitude,lng: longitude),
-            zoom: self.mapView.zoomLevel
-        )
-        let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
-        
-        cameraUpdate.animation = .easeIn
-        self.mapView.moveCamera(cameraUpdate)
-    }
-    
-    fileprivate func handleResearchButtonVisibility(isHidden: Bool) {
-        UIView.transition(
-            with: self.researchButton,
-            duration: 0.8,
-            options: .curveEaseOut) { [weak self] in
-                self?.researchButton.alpha = isHidden ? 0.0 : 1.0
-            }
-    }
 }
 
 extension Reactive where Base: LocationView {
@@ -179,7 +179,6 @@ extension Reactive where Base: LocationView {
         }
     }
 }
-
 
 private extension LocationView {
     func createCategoryLayout() -> UICollectionViewLayout {
