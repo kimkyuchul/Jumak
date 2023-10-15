@@ -15,15 +15,15 @@ final class EpisodeDetailViewModel: ViewModelType {
     
     private let episodeDetailUseCase: EpisodeDetailUseCase
     private var episode: Episode
-    var storedID: String
+    var storeId: String
     
     init(
         episode: Episode,
-        storedID: String,
+        storeId: String,
         episodeDetailUseCase: EpisodeDetailUseCase
     ) {
         self.episode = episode
-        self.storedID = storedID
+        self.storeId = storeId
         self.episodeDetailUseCase = episodeDetailUseCase
     }
     
@@ -49,8 +49,12 @@ final class EpisodeDetailViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         input.didSeletDeleteBarButton
-            .bind(to: output.deleteStoreEpisodeState)
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.episodeDetailUseCase.deleteEpisode(storeId: owner.storeId, episodeId: owner.episode.id)
+            })
             .disposed(by: disposeBag)
+ 
         
         createOutput(output: output)
         
@@ -60,6 +64,10 @@ final class EpisodeDetailViewModel: ViewModelType {
     private func createOutput(output: Output) {
         episodeDetailUseCase.episodeDiffableItem
             .bind(to: output.episode)
+            .disposed(by: disposeBag)
+        
+        episodeDetailUseCase.deleteEpisodeState
+            .bind(to: output.deleteStoreEpisodeState)
             .disposed(by: disposeBag)
     }
 }

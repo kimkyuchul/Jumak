@@ -19,7 +19,7 @@ protocol RealmRepository {
     func updateStoreCellObservable(index: Int, storeList: [StoreVO]) -> Single<StoreVO>
     func updateStoreCell(store: StoreVO) -> StoreVO?
     func deleteStore(_ store: StoreVO) -> Completable
-    func deleteEpisode(id: String, episode: EpisodeTable) -> Completable
+    func deleteEpisode(id: String, episodeId: String) -> Completable
     func checkContainsStore(id: String) -> Bool
     func shouldUpdateStore(_ store: StoreVO) -> Bool
 }
@@ -189,7 +189,7 @@ final class DefaultRealmRepository: RealmRepository {
         }
     }
     
-    func deleteEpisode(id: String, episode: EpisodeTable) -> Completable {
+    func deleteEpisode(id: String, episodeId: String) -> Completable {
         guard let storeObject = realm.object(
             ofType: StoreTable.self,
             forPrimaryKey: id
@@ -198,9 +198,11 @@ final class DefaultRealmRepository: RealmRepository {
         return Completable.create { completable in
             do {
                 try self.realm.write {
-                    if let index = storeObject.episode.firstIndex(of: episode) {
-                        storeObject.episode.remove(at: index)
-                        self.realm.add(storeObject, update: .modified)
+                    if let objectId = try? ObjectId(string: episodeId), let episodeTable = self.realm.objects(EpisodeTable.self).filter("_id == %@", objectId).first {
+                        if let index = storeObject.episode.firstIndex(of: episodeTable) {
+                            storeObject.episode.remove(at: index)
+                            self.realm.add(storeObject, update: .modified)
+                        }
                     }
                 }
                 completable(.completed)
