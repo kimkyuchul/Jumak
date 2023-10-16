@@ -23,13 +23,13 @@ final class WriteEpisodeView: BaseView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "에피소드 쓰기"
-        label.font = UIFont.boldLineSeed(size: ._18)
+        label.font = UIFont.boldLineSeed(size: ._16)
         label.textColor = .white
         return label
     }()
     fileprivate let placeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldLineSeed(size: ._20)
+        label.font = UIFont.boldLineSeed(size: ._18)
         label.numberOfLines = 2
         label.textAlignment = .left
         label.textColor = .white
@@ -50,7 +50,7 @@ final class WriteEpisodeView: BaseView {
     
     override func setConstraints() {
         dismissButton.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(10)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(6)
             make.leading.equalToSuperview().inset(10)
             make.size.equalTo(40)
         }
@@ -61,38 +61,39 @@ final class WriteEpisodeView: BaseView {
         }
         
         placeLabel.snp.makeConstraints { make in
-            make.top.equalTo(dismissButton.snp.bottom).offset(10)
+            make.top.equalTo(dismissButton.snp.bottom).offset(8)
             make.leading.equalToSuperview().inset(18)
             make.trailing.equalToSuperview().inset(10).priority(.high)
         }
         
         episodeDateView.snp.makeConstraints { make in
-            make.top.equalTo(placeLabel.snp.bottom).offset(10)
+            make.top.equalTo(placeLabel.snp.bottom).offset(8)
             make.leading.equalTo(placeLabel.snp.leading)
             make.trailing.equalToSuperview().inset(50)
         }
         
         episodeContentView.snp.makeConstraints { make in
-            make.top.equalTo(episodeDateView.snp.bottom).offset(10)
+            make.top.equalTo(episodeDateView.snp.bottom).offset(8)
             make.leading.equalTo(placeLabel.snp.leading)
             make.trailing.equalToSuperview().inset(18)
         }
         
         episodeDrinkNameView.snp.makeConstraints { make in
-            make.top.equalTo(episodeContentView.snp.bottom).offset(10)
+            make.top.equalTo(episodeContentView.snp.bottom).offset(8)
             make.leading.equalTo(placeLabel.snp.leading)
             make.trailing.equalTo(episodeContentView.snp.trailing)
         }
         
         episodeDrinkCountView.snp.makeConstraints { make in
-            make.top.equalTo(episodeDrinkNameView.snp.bottom).offset(10)
+            make.top.equalTo(episodeDrinkNameView.snp.bottom).offset(8)
             make.leading.equalTo(placeLabel.snp.leading)
             make.trailing.equalTo(episodeContentView.snp.trailing)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(15).priority(.low)
         }
         
         writeButton.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(30)
-            make.bottom.equalToSuperview().inset(40)
+            make.leading.trailing.equalToSuperview().inset(65)
+            make.bottom.equalTo(self.keyboardLayoutGuide.snp.top).offset(-8)
         }
     }
 }

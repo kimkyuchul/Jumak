@@ -12,10 +12,10 @@ final class EpisodeButton: UIButton {
     override var isEnabled: Bool {
         didSet {
             if self.isEnabled {
-                self.backgroundColor = .gray
+                self.backgroundColor = .brown
             }
             else {
-                self.backgroundColor = .brown
+                self.backgroundColor = .gray
             }
         }
     }
@@ -37,14 +37,15 @@ final class EpisodeButton: UIButton {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.cornerRadius = 6
+        self.layer.cornerRadius = 20
     }
     
     private func setUp() {
-        heightAnchor.constraint(equalToConstant: 52).isActive = true
+        heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
     
     private func setLayout() {
+        self.titleLabel?.textAlignment = .center
         self.setTitleColor(.white, for: .normal)
         self.titleLabel?.textAlignment = .center
         self.titleLabel?.font = .boldLineSeed(size: ._18)
