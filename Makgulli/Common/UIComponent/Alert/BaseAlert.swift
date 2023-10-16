@@ -48,6 +48,7 @@ final class BaseAlert: UIViewController {
         v.setTitleColor(.white, for: .normal)
         v.backgroundColor = .brown
         v.titleLabel?.font = UIFont.boldLineSeed(size: ._16)
+        v.roundCorners(cornerRadius: 20, maskedCorners: .layerMaxXMinYCorner)
         return v
     }()
     private let rightButton: UIButton = {
