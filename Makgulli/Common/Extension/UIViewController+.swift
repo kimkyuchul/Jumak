@@ -37,4 +37,14 @@ extension UIViewController {
             }
         }
     }
+    
+    func presentAlert(type: AlertType,
+                      leftButtonAction: ButtonAction? = nil,
+                      rightButtonAction: ButtonAction? = nil) {
+        let alertPresenter = BaseAlert(alertType: type)
+        alertPresenter.present(on: self,
+                               alertType: type,
+                               leftButtonAction: leftButtonAction,
+                               rightButtonAction: rightButtonAction)
+    }
 }
