@@ -173,6 +173,13 @@ final class LocationDetailViewController: BaseViewController {
     }
     
     override func bindAction() {
+        locationDetailView.titleView.rx.tapFindRoute.throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                
+            })
+            .disposed(by: disposeBag)
+        
         locationDetailView.rx.selectedItem
             .withUnretained(self)
              .subscribe(onNext: { owner, indexPath in
