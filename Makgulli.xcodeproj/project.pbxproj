@@ -109,6 +109,7 @@
 		5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */; };
 		5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */; };
 		5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */; };
+		5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E892ADCFC2E005969FA /* AlertType.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -243,6 +244,7 @@
 		5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEpisodeDetailRepository.swift; sourceTree = "<group>"; };
 		5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailRepository.swift; sourceTree = "<group>"; };
 		5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailView.swift; sourceTree = "<group>"; };
+		5AAB8E892ADCFC2E005969FA /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -782,6 +784,7 @@
 			children = (
 				5ADC00332AC5F2720024D7F8 /* CategoryType.swift */,
 				5AAB8E692AD7F0FB005969FA /* QuantityType.swift */,
+				5AAB8E892ADCFC2E005969FA /* AlertType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1159,6 +1162,7 @@
 				5A6827B62AD69BF900C37B17 /* EpisodeContentView.swift in Sources */,
 				5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
+				5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */,
 				5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */,
 				5A68277C2ACEC7A700C37B17 /* DetailTitleView.swift in Sources */,
 				5A6827992AD1646D00C37B17 /* DefaultRealmRepository.swift in Sources */,
