@@ -32,7 +32,7 @@ final class BookmarkButton: UIButton {
         configuration.buttonSize = .large
         let attributedTitle = NSAttributedString(string: "즐겨찾기",
                                                  attributes: [
-                                                    .font: UIFont.boldLineSeed(size: ._18),
+                                                    .font: UIFont.boldLineSeed(size: ._16),
                                                     .foregroundColor: UIColor.pink
                                                  ])
         configuration.attributedTitle = AttributedString(attributedTitle)

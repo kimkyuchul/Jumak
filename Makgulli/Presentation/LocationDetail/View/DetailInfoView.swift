@@ -17,7 +17,7 @@ final class DetailInfoView: BaseView {
         label.text = "가게 상세 정보"
         label.textAlignment = .left
         label.textColor = .black
-        label.font = UIFont.boldLineSeed(size: ._20)
+        label.font = UIFont.boldLineSeed(size: ._18)
         return label
     }()
     private let copyAddressButton: UIButton = {
@@ -136,7 +136,7 @@ final class DetailInfoView: BaseView {
         stackView.addArrangedSubviews(typeStackView, addressStackView, roadAddressStackView, phoneStackView)
         stackView.spacing = 15
         stackView.axis = .vertical
-        stackView.distribution = .fill
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -167,6 +167,7 @@ final class DetailInfoView: BaseView {
         containerView.snp.makeConstraints { make in
             make.top.equalTo(rateTitleLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
+            make.height.equalToSuperview().offset(-42)
             make.bottom.equalToSuperview()
         }
         
