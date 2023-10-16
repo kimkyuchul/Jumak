@@ -97,7 +97,7 @@ final class BaseAlert: UIViewController {
     }
     
     
-    private func present(
+    func present(
         on viewController: UIViewController,
         alertType: AlertType,
         leftButtonAction: ButtonAction? = nil,
@@ -108,7 +108,7 @@ final class BaseAlert: UIViewController {
 
         
         viewController.present(self, animated: false) { [weak self] in
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: 0.4, animations: {
                 self?.contentView.alpha = 1
                 self?.view.alpha = 1
             })
@@ -116,7 +116,7 @@ final class BaseAlert: UIViewController {
     }
         
     private func dismiss() {
-        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+        UIView.animate(withDuration: 0.4, animations: { [weak self] in
             self?.contentView.alpha = 0
             self?.view.alpha = 0
         }, completion: { [weak self] flag in
