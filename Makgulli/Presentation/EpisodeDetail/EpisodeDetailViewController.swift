@@ -13,8 +13,9 @@ import RxSwift
 final class EpisodeDetailViewController: BaseViewController {
     
     private let detailView = EpisodeDetailView()
-    private let viewModel: EpisodeDetailViewModel
     private let episodeDeleteBarButtonItem = UIBarButtonItem(image: ImageLiteral.deleteEpisodeIcon, style: .plain, target: EpisodeDetailViewController.self, action: nil)
+    private let viewModel: EpisodeDetailViewModel
+    private let deleteButtonAction = PublishRelay<Void>()
     
     init(viewModel: EpisodeDetailViewModel) {
         self.viewModel = viewModel
@@ -32,7 +33,7 @@ final class EpisodeDetailViewController: BaseViewController {
     override func bind() {
         let input = EpisodeDetailViewModel.Input(
             viewDidLoadEvent: Observable.just(()).asObservable(),
-            didSeletDeleteBarButton: episodeDeleteBarButtonItem.rx.tap.asObservable())
+            didSeletDeleteButton: deleteButtonAction.asObservable())
         let output = viewModel.transform(input: input)
         
         output.episode
@@ -43,6 +44,17 @@ final class EpisodeDetailViewController: BaseViewController {
             .withUnretained(self)
             .bind(onNext: { owner, _ in
                 owner.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    override func bindAction() {
+        episodeDeleteBarButtonItem.rx.tap.throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.presentAlert(type: .deleteEpisode, leftButtonAction: nil) { [weak self] in
+                    self?.deleteButtonAction.accept(Void())
+                }
             })
             .disposed(by: disposeBag)
     }
