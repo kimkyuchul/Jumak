@@ -14,15 +14,15 @@ final class CheckBoxView: BaseView {
 
     let checkButton: UIButton = {
         let button = UIButton()
-        button.tintColor = UIColor.black
+        button.tintColor = .darkGray
         button.layer.borderWidth = 0.8
-        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.cornerRadius = 5
         return button
     }()
     private let checkLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .darkGray
         label.font = UIFont.regularLineSeed(size: ._14)
         label.textAlignment = .left
         return label
@@ -51,13 +51,13 @@ final class CheckBoxView: BaseView {
 
     override func setConstraints() {
         self.snp.makeConstraints { make in
-            make.height.equalTo(25)
+            make.height.equalTo(24)
         }
         
         checkButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview()
-            make.size.equalTo(25)
+            make.size.equalTo(24)
         }
 
         checkLabel.snp.makeConstraints { make in

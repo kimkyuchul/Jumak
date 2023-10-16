@@ -15,7 +15,7 @@ final class WriteEpisodeView: BaseView {
     fileprivate let dismissButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiteral.xmarkIcon.withRenderingMode(.alwaysTemplate), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .black
         button.imageView?.contentMode = .scaleToFill
         button.backgroundColor = .clear
         return button
@@ -24,7 +24,7 @@ final class WriteEpisodeView: BaseView {
         let label = UILabel()
         label.text = "에피소드 쓰기"
         label.font = UIFont.boldLineSeed(size: ._16)
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     fileprivate let placeLabel: UILabel = {
@@ -32,7 +32,7 @@ final class WriteEpisodeView: BaseView {
         label.font = UIFont.boldLineSeed(size: ._18)
         label.numberOfLines = 2
         label.textAlignment = .left
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     fileprivate let writeButton = EpisodeButton(title: "에피소드 작성 완료")
@@ -52,7 +52,7 @@ final class WriteEpisodeView: BaseView {
         dismissButton.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(6)
             make.leading.equalToSuperview().inset(10)
-            make.size.equalTo(40)
+            make.size.equalTo(30)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -61,7 +61,7 @@ final class WriteEpisodeView: BaseView {
         }
         
         placeLabel.snp.makeConstraints { make in
-            make.top.equalTo(dismissButton.snp.bottom).offset(8)
+            make.top.equalTo(dismissButton.snp.bottom).offset(6)
             make.leading.equalToSuperview().inset(18)
             make.trailing.equalToSuperview().inset(10).priority(.high)
         }
@@ -96,6 +96,11 @@ final class WriteEpisodeView: BaseView {
             make.bottom.equalTo(self.keyboardLayoutGuide.snp.top).offset(-8)
         }
     }
+    
+    override func setLayout() {
+        self.backgroundColor = .lightGray
+    }
+    
 }
 
 extension Reactive where Base: WriteEpisodeView {

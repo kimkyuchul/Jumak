@@ -16,7 +16,7 @@ final class EpisodeDrinkCountView: BaseView {
         let label = UILabel()
         label.text = "얼마나 많이 마셨어요?"
         label.textAlignment = .left
-        label.textColor = .white
+        label.textColor = .black
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()

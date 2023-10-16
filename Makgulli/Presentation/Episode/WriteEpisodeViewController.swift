@@ -30,7 +30,6 @@ final class WriteEpisodeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "에피소드 기록하기"
-        self.view.backgroundColor = .pink
     }
     
     override func bind() {

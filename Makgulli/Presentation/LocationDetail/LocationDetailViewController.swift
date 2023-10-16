@@ -27,6 +27,7 @@ final class LocationDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "상세 정보"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = false
         print(#function)

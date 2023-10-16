@@ -16,7 +16,7 @@ final class EpisodeDrinkNameView: BaseView {
         let label = UILabel()
         label.text = "어떤 종류의 술을 먹었나요?"
         label.textAlignment = .left
-        label.textColor = .white
+        label.textColor = .black
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
@@ -61,12 +61,10 @@ extension Reactive where Base: EpisodeDrinkNameView {
     var isForgetDrinkName: Binder<Bool> {
         return Binder(self.base) { (view, isForgetDrinkName) in
             if isForgetDrinkName {
-                view.checkBoxButton.checkButton.layer.borderColor = UIColor.black.cgColor
                 view.checkBoxButton.checkButton.setImage(ImageLiteral.checkIcon, for: .normal)
                 view.drinkNameTextField.isEnabled = false
-                view.drinkNameTextField.backgroundColor = .gray
+                view.drinkNameTextField.backgroundColor = .lightGray
             } else {
-                view.checkBoxButton.checkButton.layer.borderColor = UIColor.gray.cgColor
                 view.checkBoxButton.checkButton.setImage(nil, for: .normal)
                 view.drinkNameTextField.isEnabled = true
                 view.drinkNameTextField.backgroundColor = .white
