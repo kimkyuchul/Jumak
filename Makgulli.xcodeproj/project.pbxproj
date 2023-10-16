@@ -110,6 +110,7 @@
 		5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */; };
 		5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */; };
 		5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E892ADCFC2E005969FA /* AlertType.swift */; };
+		5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 5AAB8E8C2ADD780E005969FA /* RxKeyboard */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -279,6 +280,7 @@
 				5A70BA662AC178E600506846 /* SnapKit in Frameworks */,
 				5A70BA702AC179A500506846 /* Realm in Frameworks */,
 				D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */,
+				5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,6 +863,7 @@
 				5A70BA712AC179A500506846 /* RealmSwift */,
 				5A9DA1E42AC2B4DF006040D2 /* Alamofire */,
 				5A6827BB2AD6BDCE00C37B17 /* RxGesture */,
+				5AAB8E8C2ADD780E005969FA /* RxKeyboard */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -943,6 +946,7 @@
 				5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -1581,6 +1585,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1623,6 +1635,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		5AAB8E8C2ADD780E005969FA /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
