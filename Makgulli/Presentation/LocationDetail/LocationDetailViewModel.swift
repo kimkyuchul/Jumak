@@ -12,7 +12,7 @@ import RxRelay
 
 struct Episode: Hashable {
     let id: String
-    let uuid : String = UUID().uuidString
+    let uuid: String = UUID().uuidString
     let date: Date
     let comment: String
     let alcohol: String
