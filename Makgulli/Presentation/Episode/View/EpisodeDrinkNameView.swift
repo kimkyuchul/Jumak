@@ -58,6 +58,14 @@ extension Reactive where Base: EpisodeDrinkNameView {
         return base.drinkNameTextField.rx.text.orEmpty.asObservable()
     }
     
+    var drinkNameEditingDidBegin: ControlEvent<Void> {
+        return base.drinkNameTextField.rx.controlEvent(.editingDidBegin)
+    }
+    
+    var drinkNameEditingDidEnd: ControlEvent<Void> {
+        return base.drinkNameTextField.rx.controlEvent(.editingDidEnd)
+    }
+    
     var isForgetDrinkName: Binder<Bool> {
         return Binder(self.base) { (view, isForgetDrinkName) in
             if isForgetDrinkName {
