@@ -87,7 +87,7 @@ final class WriteEpisodeView: BaseView {
         }
         
         dismissButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(6)
+            make.top.equalToSuperview().inset(8)
             make.leading.equalToSuperview().inset(10)
             make.size.equalTo(30)
         }
@@ -98,13 +98,13 @@ final class WriteEpisodeView: BaseView {
         }
         
         placeLabel.snp.makeConstraints { make in
-            make.top.equalTo(dismissButton.snp.bottom).offset(6)
+            make.top.equalTo(dismissButton.snp.bottom).offset(8)
             make.leading.equalToSuperview().inset(18)
             make.trailing.equalToSuperview().inset(10).priority(.high)
         }
         
         episodeDateView.snp.makeConstraints { make in
-            make.top.equalTo(placeLabel.snp.bottom).offset(8)
+            make.top.equalTo(placeLabel.snp.bottom).offset(10)
             make.leading.equalTo(placeLabel.snp.leading)
             make.trailing.equalToSuperview().inset(50)
         }
