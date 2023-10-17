@@ -112,6 +112,8 @@
 		5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E892ADCFC2E005969FA /* AlertType.swift */; };
 		5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 5AAB8E8C2ADD780E005969FA /* RxKeyboard */; };
 		5AAB8E8F2ADE1F97005969FA /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */; };
+		5AAB8E932ADE7A6C005969FA /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E922ADE7A6B005969FA /* FavoriteView.swift */; };
+		5AAB8E952ADE824F005969FA /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -248,6 +250,8 @@
 		5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailView.swift; sourceTree = "<group>"; };
 		5AAB8E892ADCFC2E005969FA /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		5AAB8E922ADE7A6B005969FA /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -813,6 +817,8 @@
 		5ADC003F2AC86D8A0024D7F8 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */,
+				5AAB8E922ADE7A6B005969FA /* FavoriteView.swift */,
 				5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */,
 				5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */,
 			);
@@ -1117,6 +1123,7 @@
 				5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */,
 				5A6827A92AD5221A00C37B17 /* WriteEpisodeView.swift in Sources */,
 				5A6827882AD0509D00C37B17 /* DetailEpisodeView.swift in Sources */,
+				5AAB8E932ADE7A6C005969FA /* FavoriteView.swift in Sources */,
 				5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */,
 				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
 				5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */,
@@ -1151,6 +1158,7 @@
 				5A9DA1EB2AC2B74B006040D2 /* Task.swift in Sources */,
 				5A68277E2ACED01C00C37B17 /* BookmarkButton.swift in Sources */,
 				5A9DA20A2AC3CE9F006040D2 /* SearchLocationRepository.swift in Sources */,
+				5AAB8E952ADE824F005969FA /* FilterHeaderView.swift in Sources */,
 				5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */,
 				5A6827842ACFEB6D00C37B17 /* UIStackView+.swift in Sources */,
 				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
