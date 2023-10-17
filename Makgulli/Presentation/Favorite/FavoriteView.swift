@@ -100,6 +100,7 @@ final class FavoriteView: BaseView {
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
         let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        headerSupplementary.pinToVisibleBounds = true
         
         section.boundarySupplementaryItems = [headerSupplementary]
         section.orthogonalScrollingBehavior = .none

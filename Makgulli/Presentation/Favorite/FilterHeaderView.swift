@@ -7,9 +7,6 @@
 
 import UIKit
 
-import RxCocoa
-import RxSwift
-
 final class FilterHeaderView: UICollectionReusableView {
     
     fileprivate let storeCountLabel: UILabel = {
@@ -41,6 +38,7 @@ final class FilterHeaderView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
         setHierarchy()
         setConstraints()
     }
