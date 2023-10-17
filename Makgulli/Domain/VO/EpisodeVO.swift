@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EpisodeVO: Equatable {
+struct EpisodeVO: Equatable, Hashable {
     let id: String
     let date: Date
     let comment: String
