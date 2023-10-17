@@ -12,7 +12,7 @@ import RxSwift
 
 typealias ButtonAction = () -> Void?
 
-final class BaseAlert: UIViewController {
+final class BaseAlert: BaseViewController {
     
     private let contentView: UIView = {
         let v = UIView()
@@ -58,21 +58,16 @@ final class BaseAlert: UIViewController {
         return v
     }()
     
-    private let disposeBag: DisposeBag = .init()
     private var leftButtonAction: ButtonAction?
     private var rightButtonAction: ButtonAction?
     private var alertType: AlertType
     
     init(alertType: AlertType) {
         self.alertType = alertType
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         self.modalPresentationStyle = .overFullScreen
     }
-        
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+            
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()

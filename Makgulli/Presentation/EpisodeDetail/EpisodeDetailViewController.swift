@@ -13,13 +13,17 @@ import RxSwift
 final class EpisodeDetailViewController: BaseViewController {
     
     private let detailView = EpisodeDetailView()
-    private let episodeDeleteBarButtonItem = UIBarButtonItem(image: ImageLiteral.deleteEpisodeIcon, style: .plain, target: EpisodeDetailViewController.self, action: nil)
+    private lazy var episodeDeleteBarButtonItem = UIBarButtonItem(image: ImageLiteral.deleteEpisodeIcon, style: .plain, target: self, action: nil)
     private let viewModel: EpisodeDetailViewModel
     private let deleteButtonAction = PublishRelay<Void>()
     
     init(viewModel: EpisodeDetailViewModel) {
         self.viewModel = viewModel
         super.init()
+    }
+    
+    deinit {
+        print("deinit")
     }
     
     override func loadView() {
@@ -52,8 +56,8 @@ final class EpisodeDetailViewController: BaseViewController {
         episodeDeleteBarButtonItem.rx.tap.throttle(.milliseconds(300), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind(onNext: { owner, _ in
-                owner.presentAlert(type: .deleteEpisode, leftButtonAction: nil) { [weak self] in
-                    self?.deleteButtonAction.accept(Void())
+                owner.presentAlert(type: .deleteEpisode, leftButtonAction: nil) {
+                    owner.deleteButtonAction.accept(Void())
                 }
             })
             .disposed(by: disposeBag)
