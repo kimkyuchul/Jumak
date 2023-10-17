@@ -34,7 +34,7 @@ extension TabBarController {
             image: ImageLiteral.koreaIcon,
             selectedImage: nil)
         
-        let favoriteViewController = UINavigationController(rootViewController: FavoriteViewController())
+        let favoriteViewController = UINavigationController(rootViewController: FavoriteViewController(viewModel: FavoriteViewModel()))
         favoriteViewController.tabBarItem = UITabBarItem(
             title: StringLiteral.Favorite,
             image: ImageLiteral.koreaIcon,
