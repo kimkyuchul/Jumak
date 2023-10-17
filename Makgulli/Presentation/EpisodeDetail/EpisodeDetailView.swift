@@ -97,38 +97,38 @@ final class EpisodeDetailView: BaseView {
         episodeImageView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(15)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.trailing.equalToSuperview().inset(24)
             make.height.equalToSuperview().multipliedBy(0.3)
         }
         
         commentTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(episodeImageView.snp.bottom).offset(15)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         commentTextField.snp.makeConstraints { make in
             make.top.equalTo(commentTitleLabel.snp.bottom).offset(8)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         drinkNmaeTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(commentTextField.snp.bottom).offset(15)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         drinkNameTextField.snp.makeConstraints { make in
             make.top.equalTo(drinkNmaeTitleLabel.snp.bottom).offset(8)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         drinkCountTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(drinkNameTextField.snp.bottom).offset(15)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalTo(titleLabel.snp.trailing)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         drinkCountTextField.snp.makeConstraints { make in
