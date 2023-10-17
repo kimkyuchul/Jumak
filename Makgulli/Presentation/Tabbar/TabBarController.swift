@@ -34,15 +34,15 @@ extension TabBarController {
             image: ImageLiteral.koreaIcon,
             selectedImage: nil)
         
-        let homeViewController = UINavigationController(rootViewController: HomeViewController())
-        homeViewController.tabBarItem = UITabBarItem(
-            title: StringLiteral.home,
+        let favoriteViewController = UINavigationController(rootViewController: FavoriteViewController())
+        favoriteViewController.tabBarItem = UITabBarItem(
+            title: StringLiteral.Favorite,
             image: ImageLiteral.koreaIcon,
             selectedImage: nil)
         
         super.setViewControllers([
             locationViewController,
-            homeViewController
+            favoriteViewController
         ], animated: true)
     }
 }

@@ -111,6 +111,7 @@
 		5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */; };
 		5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E892ADCFC2E005969FA /* AlertType.swift */; };
 		5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 5AAB8E8C2ADD780E005969FA /* RxKeyboard */; };
+		5AAB8E8F2ADE1F97005969FA /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -120,7 +121,7 @@
 		5ADC00392AC5F9370024D7F8 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */; };
 		5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */; };
 		5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */; };
-		5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */; };
+		5ADC00412AC86DA00024D7F8 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */; };
 		5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */; };
 		5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC004C2ACA9DAE0024D7F8 /* LocationDetailViewController.swift */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
@@ -246,6 +247,7 @@
 		5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailRepository.swift; sourceTree = "<group>"; };
 		5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailView.swift; sourceTree = "<group>"; };
 		5AAB8E892ADCFC2E005969FA /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -255,7 +257,7 @@
 		5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		5ADC004C2ACA9DAE0024D7F8 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -518,7 +520,7 @@
 				5A6827A52AD50D3A00C37B17 /* Episode */,
 				5ADC004B2ACA9D970024D7F8 /* LocationDetail */,
 				5ADC003C2AC869060024D7F8 /* Tabbar */,
-				5ADC003F2AC86D8A0024D7F8 /* Home */,
+				5ADC003F2AC86D8A0024D7F8 /* Favorite */,
 				5ADC002E2AC5E2C60024D7F8 /* Location */,
 			);
 			path = Presentation;
@@ -808,12 +810,13 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
-		5ADC003F2AC86D8A0024D7F8 /* Home */ = {
+		5ADC003F2AC86D8A0024D7F8 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
-				5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */,
+				5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */,
+				5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */,
 			);
-			path = Home;
+			path = Favorite;
 			sourceTree = "<group>";
 		};
 		5ADC004B2ACA9D970024D7F8 /* LocationDetail */ = {
@@ -1109,7 +1112,7 @@
 				5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */,
 				5A6827772ACEA7B200C37B17 /* RateButton.swift in Sources */,
 				5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */,
-				5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */,
+				5ADC00412AC86DA00024D7F8 /* FavoriteViewController.swift in Sources */,
 				5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */,
 				5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */,
 				5A6827A92AD5221A00C37B17 /* WriteEpisodeView.swift in Sources */,
@@ -1174,6 +1177,7 @@
 				5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkNameView.swift in Sources */,
 				5A68278A2AD054A300C37B17 /* EpisodeVO.swift in Sources */,
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
+				5AAB8E8F2ADE1F97005969FA /* FavoriteViewModel.swift in Sources */,
 				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
 				5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
