@@ -9,8 +9,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol showFilterBottomSheetDelegate: AnyObject {
+protocol ShowFilterBottomSheetDelegate: AnyObject {
     func filterButtonTapped()
+}
+
+protocol FilterReverseDelegate: AnyObject {
+    func filterReverseButtonTapped(_ isSelected: Bool)
 }
 
 final class FilterHeaderView: UICollectionReusableView {
@@ -23,7 +27,7 @@ final class FilterHeaderView: UICollectionReusableView {
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
-    fileprivate let filterButton: UIButton = {
+    private let filterButton: UIButton = {
         var configuration = UIButton.Configuration.plain()
         configuration.buttonSize = .mini
         let attributedTitle = NSAttributedString(string: "최근에 담은 순",
@@ -41,8 +45,16 @@ final class FilterHeaderView: UICollectionReusableView {
         button.backgroundColor = .clear
         return button
     }()
+    private let filterReverseButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("필터", for: .normal)
+        button.titleLabel?.font = UIFont.regularLineSeed(size: ._16)
+        button.setTitleColor(.pink, for: .normal)
+        return button
+    }()
     
-    weak var delegate: showFilterBottomSheetDelegate?
+    weak var bottomSheetDelegate: ShowFilterBottomSheetDelegate?
+    weak var filterReverseDelegate: FilterReverseDelegate?
     var disposeBag: DisposeBag = .init()
     
     override init(frame: CGRect) {
@@ -54,7 +66,23 @@ final class FilterHeaderView: UICollectionReusableView {
         filterButton.rx.tap
             .withUnretained(self)
             .bind(onNext: { owner, event in
-                owner.delegate?.filterButtonTapped()
+                owner.bottomSheetDelegate?.filterButtonTapped()
+            })
+            .disposed(by: disposeBag)
+        
+        let tapFilterReverseButton = filterReverseButton.rx.tap
+            .share()
+        
+        tapFilterReverseButton
+            .withUnretained(self)
+            .map { !$0.0.filterReverseButton.isSelected }
+            .bind(to: filterReverseButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        tapFilterReverseButton
+            .withUnretained(self)
+            .bind(onNext: { owner, event in
+                owner.filterReverseDelegate?.filterReverseButtonTapped(owner.filterReverseButton.isSelected)
             })
             .disposed(by: disposeBag)
     }
@@ -63,8 +91,16 @@ final class FilterHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setNSAttributedString(_ title: String) -> NSAttributedString {
+        return NSAttributedString(string: title,
+                                  attributes: [
+                                    .font: UIFont.boldLineSeed(size: ._14),
+                                    .foregroundColor: UIColor.black
+                                  ])
+    }
+    
     private func setHierarchy() {
-        [storeCountLabel, filterButton].forEach {
+        [storeCountLabel, filterButton, filterReverseButton].forEach {
             addSubview($0)
         }
     }
@@ -76,6 +112,11 @@ final class FilterHeaderView: UICollectionReusableView {
         }
         
         filterButton.snp.makeConstraints { make in
+            make.trailing.equalTo(filterReverseButton.snp.leading).offset(5)
+            make.centerY.equalTo(storeCountLabel.snp.centerY)
+        }
+        
+        filterReverseButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(18)
             make.centerY.equalTo(storeCountLabel.snp.centerY)
         }
@@ -83,7 +124,9 @@ final class FilterHeaderView: UICollectionReusableView {
 }
 
 extension FilterHeaderView {
-    func configure(countTile: Int) {
+    func configure(countTile: Int, filterType: FilterType) {
         storeCountLabel.text = "총 \(countTile)개"
+        let attributedTitle = self.setNSAttributedString(filterType.title)
+        filterButton.configuration?.attributedTitle = AttributedString(attributedTitle)
     }
 }
