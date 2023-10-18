@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
+protocol showFilterBottomSheetDelegate: AnyObject {
+    func filterButtonTapped()
+}
 
 final class FilterHeaderView: UICollectionReusableView {
     
-    fileprivate let storeCountLabel: UILabel = {
+    private let storeCountLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 1
@@ -17,9 +23,9 @@ final class FilterHeaderView: UICollectionReusableView {
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
-    private let filterButton: UIButton = {
+    fileprivate let filterButton: UIButton = {
         var configuration = UIButton.Configuration.plain()
-        configuration.buttonSize = .small
+        configuration.buttonSize = .mini
         let attributedTitle = NSAttributedString(string: "최근에 담은 순",
                                                  attributes: [
                                                     .font: UIFont.boldLineSeed(size: ._14),
@@ -28,7 +34,7 @@ final class FilterHeaderView: UICollectionReusableView {
         configuration.attributedTitle = AttributedString(attributedTitle)
         configuration.image = ImageLiteral.arrowDownIcon
         configuration.baseForegroundColor = .black
-        configuration.imagePadding = 8
+        configuration.imagePadding = 4
         configuration.imagePlacement = .trailing
         let button = UIButton()
         button.configuration = configuration
@@ -36,11 +42,21 @@ final class FilterHeaderView: UICollectionReusableView {
         return button
     }()
     
+    weak var delegate: showFilterBottomSheetDelegate?
+    var disposeBag: DisposeBag = .init()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         setHierarchy()
         setConstraints()
+        
+        filterButton.rx.tap
+            .withUnretained(self)
+            .bind(onNext: { owner, event in
+                owner.delegate?.filterButtonTapped()
+            })
+            .disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {
