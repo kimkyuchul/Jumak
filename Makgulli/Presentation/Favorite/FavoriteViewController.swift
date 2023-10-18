@@ -22,6 +22,7 @@ final class FavoriteViewController: BaseViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<FavoriteSection, StoreVO>
     private var dataSource: DiffableDataSource?
     private let viewModel: FavoriteViewModel
+    private let didSelectReverseFilterButton = PublishRelay<ReverseFilterType>()
     
     private let categoryButton = {
         var configuration = UIButton.Configuration.plain()
@@ -59,34 +60,36 @@ final class FavoriteViewController: BaseViewController {
         self.view.backgroundColor = .pink
         self.navigationController?.navigationBar.isHidden = true
         configureCellRegistrationAndDataSource()
+        print(#function)
     }
     
     override func bind() {
-        let input = FavoriteViewModel.Input(viewDidLoadEvent: Observable.just(()).asObservable(),
-                                            viewWillAppearEvent: self.rx.viewWillAppear.map { _ in })
+        let input = FavoriteViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
+                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable())
         let output = viewModel.transform(input: input)
         
         output.storeList
             .withUnretained(self)
-            .bind(onNext: { owner, storeList in
-                print(storeList.count)
-                owner.applyCollectionViewDataSource(by: storeList, countTitle: storeList.count)
+            .bind(onNext: { owner, storeListAndFilterType in
+                let (storeList, filterType, reverseFilterType) = storeListAndFilterType
+                
+                owner.applyCollectionViewDataSource(by: storeList, countTitle: storeList.count, filterType: filterType)
             })
             .disposed(by: disposeBag)
     }
     
     func applyCollectionViewDataSource(
-        by viewModels: [StoreVO], countTitle: Int
+        by viewModels: [StoreVO], countTitle: Int, filterType: FilterType
     ) {
         var snapshot = Snapshot()
         
         snapshot.appendSections([.favorite])
         snapshot.appendItems(viewModels, toSection: .favorite)
         snapshot.reconfigureItems(viewModels)
-        configureHeader(countTitle: countTitle)
+        configureHeader(countTitle: countTitle, filterType: filterType)
         
-        dataSource?.apply(snapshot, animatingDifferences: false)
-//        dataSource?.applySnapshotUsingReloadData(snapshot)
+//        dataSource?.apply(snapshot, animatingDifferences: false)
+        dataSource?.applySnapshotUsingReloadData(snapshot)
     }
     
     private func configureCellRegistrationAndDataSource() {
@@ -100,10 +103,11 @@ final class FavoriteViewController: BaseViewController {
         })
     }
     
-    private func configureHeader(countTitle: Int) {
+    private func configureHeader(countTitle: Int, filterType: FilterType) {
         let headerRegistration = SectionHeaderRegistration<FilterHeaderView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, _ ,_ in
-            supplementaryView.configure(countTile: countTitle)
-            supplementaryView.delegate = self
+            supplementaryView.configure(countTile: countTitle, filterType: filterType)
+            supplementaryView.bottomSheetDelegate = self
+            supplementaryView.filterReverseDelegate = self
         }
         
         dataSource?.supplementaryViewProvider = { [weak self] _, _, indexPath in
@@ -157,9 +161,15 @@ final class FavoriteViewController: BaseViewController {
     }
 }
 
-extension FavoriteViewController: showFilterBottomSheetDelegate {
+extension FavoriteViewController: ShowFilterBottomSheetDelegate {
     func filterButtonTapped() {
-        let navigationController = UINavigationController(rootViewController: FilterBottomSheetViewController())
+        let navigationController = FilterBottomSheetViewController()
         present(navigationController, animated: true, completion: nil)
+    }
+}
+
+extension FavoriteViewController: FilterReverseDelegate {
+    func filterReverseButtonTapped(_ isSelected: Bool) {
+        isSelected ? didSelectReverseFilterButton.accept(.reverse) : didSelectReverseFilterButton.accept(.none)
     }
 }
