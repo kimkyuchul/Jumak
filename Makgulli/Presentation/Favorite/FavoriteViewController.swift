@@ -159,6 +159,7 @@ final class FavoriteViewController: BaseViewController {
 
 extension FavoriteViewController: showFilterBottomSheetDelegate {
     func filterButtonTapped() {
-        print("filterButtonTappedfilterButtonTappedfilterButtonTapped")
+        let navigationController = UINavigationController(rootViewController: FilterBottomSheetViewController())
+        present(navigationController, animated: true, completion: nil)
     }
 }

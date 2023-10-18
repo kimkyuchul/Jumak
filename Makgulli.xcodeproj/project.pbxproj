@@ -113,6 +113,7 @@
 		5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 5AAB8E8C2ADD780E005969FA /* RxKeyboard */; };
 		5AAB8E8F2ADE1F97005969FA /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */; };
 		5AAB8E952ADE824F005969FA /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */; };
+		5AAB8E982ADFC203005969FA /* FilterBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -250,6 +251,7 @@
 		5AAB8E892ADCFC2E005969FA /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
+		5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBottomSheetViewController.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -826,6 +828,7 @@
 				5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */,
 				5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */,
 				5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */,
+				5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -1116,6 +1119,7 @@
 				5A9DA2012AC3C227006040D2 /* SearchLocationVO.swift in Sources */,
 				5A6827A72AD50D5600C37B17 /* WriteEpisodeViewController.swift in Sources */,
 				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
+				5AAB8E982ADFC203005969FA /* FilterBottomSheetViewController.swift in Sources */,
 				5A6827792ACEC68000C37B17 /* UILabel+.swift in Sources */,
 				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
 				5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */,
