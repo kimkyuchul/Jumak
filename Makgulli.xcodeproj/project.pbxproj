@@ -655,6 +655,7 @@
 		5A9DA2022AC3C44B006040D2 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8E962ADF65DA005969FA /* Favorite */,
 				5A9DA2032AC3C6AC006040D2 /* Location */,
 				5A6827AE2AD56AD700C37B17 /* Episode */,
 			);
@@ -765,6 +766,13 @@
 				5AAB8E812ADC0418005969FA /* BaseAlert.swift */,
 			);
 			path = Alert;
+			sourceTree = "<group>";
+		};
+		5AAB8E962ADF65DA005969FA /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favorite;
 			sourceTree = "<group>";
 		};
 		5ADC002E2AC5E2C60024D7F8 /* Location */ = {

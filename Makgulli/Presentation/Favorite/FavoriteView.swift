@@ -22,6 +22,8 @@ final class FavoriteView: BaseView {
     typealias Snapshot = NSDiffableDataSourceSnapshot<FavoriteSection, StoreVO>
     var dataSource: DiffableDataSource?
     
+    private var store: [Int: StoreVO] = .init()
+    
     private let categoryButton = {
         var configuration = UIButton.Configuration.plain()
         configuration.buttonSize = .small
@@ -33,7 +35,7 @@ final class FavoriteView: BaseView {
         configuration.attributedTitle = AttributedString(attributedTitle)
         configuration.image = ImageLiteral.titleArrowDownIcon
         configuration.baseForegroundColor = .black
-        configuration.imagePadding = 8
+        configuration.imagePadding = 6
         configuration.imagePlacement = .trailing
         let button = UIButton()
         button.configuration = configuration
@@ -60,8 +62,11 @@ final class FavoriteView: BaseView {
         
         snapshot.appendSections([.favorite])
         snapshot.appendItems(viewModels, toSection: .favorite)
+        snapshot.reconfigureItems(viewModels)
         configureHeader(countTitle: countTitle)
-        dataSource?.apply(snapshot, animatingDifferences: true)
+        
+        dataSource?.apply(snapshot, animatingDifferences: false)
+//        dataSource?.applySnapshotUsingReloadData(snapshot)
     }
     
     private func configureCellRegistrationAndDataSource() {
@@ -125,7 +130,7 @@ final class FavoriteView: BaseView {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(categoryButton.snp.bottom).offset(10)
+            make.top.equalTo(categoryButton.snp.bottom).offset(15)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
