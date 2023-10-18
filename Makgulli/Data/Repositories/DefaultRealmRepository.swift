@@ -11,6 +11,7 @@ import RxSwift
 import RealmSwift
 
 protocol RealmRepository {
+    func fetchStore() -> Single<[StoreVO]>
     func createStoreTable(_ store: StoreTable) -> Completable
     func createStore(_ store: StoreVO) -> Completable
     func updateStore(_ store: StoreVO) -> Completable
@@ -33,6 +34,14 @@ final class DefaultRealmRepository: RealmRepository {
         
         if let fileURL = realm.configuration.fileURL {
             print("Realm fileURL \(String(describing: fileURL))")
+        }
+    }
+    
+    func fetchStore() -> Single<[StoreVO]> {
+        return Single.create { single in
+            let storeValue = self.realm.objects(StoreTable.self).sorted(byKeyPath: "date", ascending: false).map { $0.toDomain() } as [StoreVO]
+            single(.success(storeValue))
+            return Disposables.create()
         }
     }
     
