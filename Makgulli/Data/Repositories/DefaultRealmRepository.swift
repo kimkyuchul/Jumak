@@ -15,6 +15,8 @@ protocol RealmRepository {
     func fetchBookmarkStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]>
     func fetchStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]>
     func fetchStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]>
+    func fetchBookmarkStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]>
+    func fetchStoreSortedByName(sortAscending: Bool) -> Single<[StoreVO]>
     func createStoreTable(_ store: StoreTable) -> Completable
     func createStore(_ store: StoreVO) -> Completable
     func updateStore(_ store: StoreVO) -> Completable
@@ -97,6 +99,39 @@ final class DefaultRealmRepository: RealmRepository {
                         return episodeCount1 > episodeCount2
                     }
                 }
+                .map { $0.toDomain() } as [StoreVO]
+            
+            single(.success(storeValue))
+            return Disposables.create()
+        }
+    }
+    
+    func fetchBookmarkStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]> {
+        return Single.create { single in
+            let storeValue = self.realm.objects(StoreTable.self)
+                .sorted(byKeyPath: "date", ascending: false)
+                .filter("bookmark == %@", true)
+                .sorted { (store1, store2) in
+                    let episodeCount1 = store1.episode.count
+                    let episodeCount2 = store2.episode.count
+                    
+                    if sortAscending {
+                        return episodeCount1 < episodeCount2
+                    } else {
+                        return episodeCount1 > episodeCount2
+                    }
+                }
+                .map { $0.toDomain() } as [StoreVO]
+            
+            single(.success(storeValue))
+            return Disposables.create()
+        }
+    }
+    
+    func fetchStoreSortedByName(sortAscending: Bool) -> Single<[StoreVO]> {
+        return Single.create { single in
+            let storeValue = self.realm.objects(StoreTable.self)
+                .sorted(byKeyPath: "placeName", ascending: sortAscending)
                 .map { $0.toDomain() } as [StoreVO]
             
             single(.success(storeValue))
