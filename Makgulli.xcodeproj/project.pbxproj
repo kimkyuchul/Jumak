@@ -114,6 +114,12 @@
 		5AAB8E8F2ADE1F97005969FA /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */; };
 		5AAB8E952ADE824F005969FA /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */; };
 		5AAB8E982ADFC203005969FA /* FilterBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */; };
+		5AAB8E9A2ADFD1C6005969FA /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */; };
+		5AAB8E9C2ADFD225005969FA /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E9B2ADFD225005969FA /* FilterType.swift */; };
+		5AAB8E9E2ADFD4EC005969FA /* AllFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E9D2ADFD4EC005969FA /* AllFilterType.swift */; };
+		5AAB8EA02ADFE75E005969FA /* FilterBottomSheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */; };
+		5AAB8EA22ADFEB85005969FA /* NotificationCenterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */; };
+		5AAB8EA42ADFF1B1005969FA /* FavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -252,6 +258,12 @@
 		5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBottomSheetViewController.swift; sourceTree = "<group>"; };
+		5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		5AAB8E9B2ADFD225005969FA /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
+		5AAB8E9D2ADFD4EC005969FA /* AllFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFilterType.swift; sourceTree = "<group>"; };
+		5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBottomSheetHeaderView.swift; sourceTree = "<group>"; };
+		5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterHandler.swift; sourceTree = "<group>"; };
+		5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUseCase.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -696,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA2112AC3DB5E006040D2 /* Rx+.swift */,
+				5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -771,6 +784,7 @@
 		5AAB8E962ADF65DA005969FA /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -801,6 +815,8 @@
 				5ADC00332AC5F2720024D7F8 /* CategoryType.swift */,
 				5AAB8E692AD7F0FB005969FA /* QuantityType.swift */,
 				5AAB8E892ADCFC2E005969FA /* AlertType.swift */,
+				5AAB8E9B2ADFD225005969FA /* FilterType.swift */,
+				5AAB8E9D2ADFD4EC005969FA /* AllFilterType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -829,6 +845,8 @@
 				5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */,
 				5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */,
 				5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */,
+				5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */,
+				5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -1123,6 +1141,7 @@
 				5A6827792ACEC68000C37B17 /* UILabel+.swift in Sources */,
 				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
 				5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */,
+				5AAB8EA22ADFEB85005969FA /* NotificationCenterHandler.swift in Sources */,
 				5A6827A12AD446D700C37B17 /* UIViewController+.swift in Sources */,
 				5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */,
 				5A6827772ACEA7B200C37B17 /* RateButton.swift in Sources */,
@@ -1140,13 +1159,16 @@
 				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
 				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
 				5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */,
+				5AAB8E9E2ADFD4EC005969FA /* AllFilterType.swift in Sources */,
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,
+				5AAB8EA42ADFF1B1005969FA /* FavoriteUseCase.swift in Sources */,
 				5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */,
 				5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */,
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
 				5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */,
 				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
 				5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */,
+				5AAB8E9C2ADFD225005969FA /* FilterType.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
 				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
@@ -1159,6 +1181,7 @@
 				5A6827B42AD6906700C37B17 /* Date+.swift in Sources */,
 				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
 				5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */,
+				5AAB8EA02ADFE75E005969FA /* FilterBottomSheetHeaderView.swift in Sources */,
 				5A6827922AD14E0A00C37B17 /* String+.swift in Sources */,
 				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
 				5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */,
@@ -1184,6 +1207,7 @@
 				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
 				5A6827B62AD69BF900C37B17 /* EpisodeContentView.swift in Sources */,
 				5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */,
+				5AAB8E9A2ADFD1C6005969FA /* FilterTableViewCell.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
 				5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */,
 				5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */,
