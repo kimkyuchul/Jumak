@@ -58,9 +58,12 @@ final class FavoriteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .pink
-        self.navigationController?.navigationBar.isHidden = true
         configureCellRegistrationAndDataSource()
-        print(#function)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func bind() {
