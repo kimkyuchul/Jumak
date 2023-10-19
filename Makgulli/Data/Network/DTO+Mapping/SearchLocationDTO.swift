@@ -81,6 +81,7 @@ extension DocumentDTO {
                        categoryType: .makgulli,
                        rate: 0,
                        bookmark: false,
+                       bookmarkDate: nil,
                        episode: [])
     }
 }

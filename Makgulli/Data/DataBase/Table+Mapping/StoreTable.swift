@@ -24,9 +24,10 @@ final class StoreTable: Object {
     @Persisted var rate: Int
     @Persisted var date: Date
     @Persisted var bookmark: Bool
+    @Persisted var bookmarkDate: Date?
     @Persisted var episode: List<EpisodeTable>
     
-    convenience init(id: String, placeName: String, distance: String, placeURL: String, categoryName: String, addressName: String, roadAddressName: String, phone: String?, x: Double, y: Double, categoryType: CategoryType, rate: Int, bookmark: Bool, episode: List<EpisodeTable>) {
+    convenience init(id: String, placeName: String, distance: String, placeURL: String, categoryName: String, addressName: String, roadAddressName: String, phone: String?, x: Double, y: Double, categoryType: CategoryType, rate: Int, bookmark: Bool, episode: List<EpisodeTable>, bookmarkDate: Date?) {
         self.init()
         self.id = id
         self.placeName = placeName
@@ -43,6 +44,7 @@ final class StoreTable: Object {
         self.date = Date()
         self.bookmark = bookmark
         self.episode = episode
+        self.bookmarkDate = bookmarkDate
     }
 }
 
@@ -61,8 +63,7 @@ extension StoreTable {
                        categoryType: .makgulli,
                        rate: rate,
                        bookmark: bookmark,
+                       bookmarkDate: bookmarkDate ?? Date(),
                        episode: episode.map { $0.toDomain() })
     }
 }
-
-

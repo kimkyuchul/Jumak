@@ -45,7 +45,7 @@ final class DefaultRealmRepository: RealmRepository {
     func fetchBookmarkStore() -> Single<[StoreVO]> {
         return Single.create { single in
             let storeValue = self.realm.objects(StoreTable.self)
-                .sorted(byKeyPath: "date", ascending: false)
+                .sorted(byKeyPath: "bookmarkDate", ascending: false)
                 .filter("bookmark == %@", true)
                 .map { $0.toDomain() } as [StoreVO]
             
@@ -177,6 +177,7 @@ final class DefaultRealmRepository: RealmRepository {
             do {
                 try self.realm.write {
                     storeObject.bookmark = store.bookmark
+                    storeObject.bookmarkDate = store.bookmarkDate
                     storeObject.rate = store.rate
                     storeObject.categoryType = store.categoryType
                     self.realm.add(storeObject, update: .modified)
@@ -384,7 +385,8 @@ extension StoreVO {
                                     categoryType: self.categoryType,
                                     rate: self.rate,
                                     bookmark: self.bookmark,
-                                    episode: episodeList)
+                                    episode: episodeList,
+                                    bookmarkDate: self.bookmarkDate)
         return storeTable
     }
 }

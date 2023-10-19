@@ -21,5 +21,6 @@ struct StoreVO: Equatable, Hashable {
     let categoryType: CategoryType
     var rate: Int
     var bookmark: Bool
+    var bookmarkDate: Date?
     var episode: [EpisodeVO]
 }
