@@ -11,7 +11,7 @@ import RxSwift
 import RealmSwift
 
 protocol RealmRepository {
-    func fetchBookmarkStore() -> Single<[StoreVO]>
+    func fetchBookmarkStore(sortAscending: Bool) -> Single<[StoreVO]>
     func fetchBookmarkStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]>
     func fetchStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]>
     func fetchStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]>
@@ -42,10 +42,10 @@ final class DefaultRealmRepository: RealmRepository {
         }
     }
     
-    func fetchBookmarkStore() -> Single<[StoreVO]> {
+    func fetchBookmarkStore(sortAscending: Bool) -> Single<[StoreVO]> {
         return Single.create { single in
             let storeValue = self.realm.objects(StoreTable.self)
-                .sorted(byKeyPath: "bookmarkDate", ascending: false)
+                .sorted(byKeyPath: "bookmarkDate", ascending: sortAscending)
                 .filter("bookmark == %@", true)
                 .map { $0.toDomain() } as [StoreVO]
             

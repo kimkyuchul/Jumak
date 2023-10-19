@@ -43,7 +43,7 @@ final class DefaultFavoriteUseCase {
 
         switch filterType {
         case .recentlyAddedBookmark:
-            return realmRepository.fetchBookmarkStore()
+            return realmRepository.fetchBookmarkStore(sortAscending: isReversed)
 
         case .sortByUpRating:
             return realmRepository.fetchStoreSortedByRating(sortAscending: isReversed)
