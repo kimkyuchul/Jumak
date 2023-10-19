@@ -22,7 +22,7 @@ final class FavoriteViewController: BaseViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<FavoriteSection, StoreVO>
     private var dataSource: DiffableDataSource?
     private let viewModel: FavoriteViewModel
-    private let didSelectReverseFilterButton = PublishRelay<ReverseFilterType>()
+    private let didSelectReverseFilterButton = PublishRelay<Void>()
     
     private let categoryButton = {
         var configuration = UIButton.Configuration.plain()
@@ -75,7 +75,7 @@ final class FavoriteViewController: BaseViewController {
             .withUnretained(self)
             .bind(onNext: { owner, storeListAndFilterType in
                 let (storeList, filterType, reverseFilterType) = storeListAndFilterType
-                
+            
                 owner.applyCollectionViewDataSource(by: storeList, countTitle: storeList.count, filterType: filterType, reverseFilterType: reverseFilterType)
             })
             .disposed(by: disposeBag)
@@ -96,8 +96,10 @@ final class FavoriteViewController: BaseViewController {
     }
     
     private func applyCollectionViewDataSource(
-        by viewModels: [StoreVO], countTitle: Int, filterType: FilterType, reverseFilterType: ReverseFilterType
+        by viewModels: [StoreVO], countTitle: Int, filterType: FilterType, reverseFilterType: Bool
     ) {
+        print(#function)
+        
         var snapshot = Snapshot()
         
         snapshot.appendSections([.favorite])
@@ -124,7 +126,7 @@ final class FavoriteViewController: BaseViewController {
         })
     }
     
-    private func configureHeader(countTitle: Int, filterType: FilterType, reverseFilter: ReverseFilterType) {
+    private func configureHeader(countTitle: Int, filterType: FilterType, reverseFilter: Bool) {
         let headerRegistration = SectionHeaderRegistration<FilterHeaderView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, _ ,_ in
             supplementaryView.configure(countTile: countTitle, filterType: filterType, reverseFilter: reverseFilter)
             supplementaryView.bottomSheetDelegate = self
@@ -190,7 +192,7 @@ extension FavoriteViewController: ShowFilterBottomSheetDelegate {
 }
 
 extension FavoriteViewController: FilterReverseDelegate {
-    func filterReverseButtonTapped(_ bool: Bool) {
-        bool ? didSelectReverseFilterButton.accept(.reverse) : didSelectReverseFilterButton.accept(.none)
+    func filterReverseButtonTapped(_ void: Void) {
+        self.didSelectReverseFilterButton.accept(void)
     }
 }

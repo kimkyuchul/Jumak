@@ -15,52 +15,36 @@ final class FavoriteViewModel: ViewModelType {
     
     var defaultRealmRepository = DefaultRealmRepository()
     private lazy var defaultFavoriteUseCase = DefaultFavoriteUseCase(realmRepository: defaultRealmRepository!)
-    
+        
     struct Input {
         let viewWillAppearEvent: Observable<Void>
-        let didSelectReverseFilterButton: Observable<ReverseFilterType>
+        let didSelectReverseFilterButton: Observable<Void>
     }
     
     struct Output {
-        let storeList = PublishRelay<([StoreVO], FilterType, ReverseFilterType)>()
+        let storeList = PublishRelay<([StoreVO], FilterType, Bool)>()
         let filterType = BehaviorRelay<FilterType>(value: .recentlyAddedBookmark)
-        let reverseFilterType = BehaviorRelay<ReverseFilterType>(value: .none)
     }
 
     func transform(input: Input) -> Output {
         let output = Output()
-        
-        let filterTypes = Observable.combineLatest(output.filterType, output.reverseFilterType)
 
-        // 리펙토링 필요 -> viewWillAppear마다 fetch 불리는건 매우 안좋음
         input.viewWillAppearEvent
-            .withLatestFrom(filterTypes)
+            .withLatestFrom(output.filterType)
             .withUnretained(self)
             .subscribe(onNext: { owner, filterType in
-                let (filterType, reverseFilterType) = filterType
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: reverseFilterType)
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
             })
             .disposed(by: disposeBag)
         
-        let didSelectReverseFilterButton = input.didSelectReverseFilterButton
-            .share()
-            .distinctUntilChanged()
-        
-        didSelectReverseFilterButton
-            .bind(to: output.reverseFilterType)
-            .disposed(by: disposeBag)
-        
-        didSelectReverseFilterButton
-            .withLatestFrom(output.filterType) { reverseFilterType, filterType in
-                return (reverseFilterType, filterType)
-            }
+        input.didSelectReverseFilterButton
+            .withLatestFrom(output.filterType)
             .withUnretained(self)
-            .bind(onNext: { owner, filterTypes in
-                let (reverseFilterType, filterType) = filterTypes
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: reverseFilterType)
+            .bind(onNext: { owner, filterType in
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
             })
             .disposed(by: disposeBag)
-        
+            
         createOutput(output: output)
         
         return output
@@ -72,7 +56,7 @@ final class FavoriteViewModel: ViewModelType {
             .withUnretained(self)
             .bind(onNext: { owner, filterType in
                 output.filterType.accept(filterType)
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: .none)
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
             })
             .disposed(by: disposeBag)
         
@@ -81,4 +65,3 @@ final class FavoriteViewModel: ViewModelType {
             .disposed(by: disposeBag)
     }
 }
-
