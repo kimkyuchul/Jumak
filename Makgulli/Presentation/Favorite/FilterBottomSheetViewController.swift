@@ -51,6 +51,7 @@ final class FilterBottomSheetViewController: BaseViewController {
             .withUnretained(self)
             .bind(onNext: { owner, _ in
                 NotificationCenterManager.filterStore.post(object: owner.filterType)
+                NotificationCenterManager.reverseFilter.post(object: false)
                 owner.dismiss(animated: true)
             })
             .disposed(by: disposeBag)

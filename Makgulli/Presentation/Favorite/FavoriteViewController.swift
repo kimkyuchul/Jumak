@@ -67,26 +67,26 @@ final class FavoriteViewController: BaseViewController {
         let input = FavoriteViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
                                             didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable())
         let output = viewModel.transform(input: input)
-        
+                
         output.storeList
             .withUnretained(self)
             .bind(onNext: { owner, storeListAndFilterType in
                 let (storeList, filterType, reverseFilterType) = storeListAndFilterType
                 
-                owner.applyCollectionViewDataSource(by: storeList, countTitle: storeList.count, filterType: filterType)
+                owner.applyCollectionViewDataSource(by: storeList, countTitle: storeList.count, filterType: filterType, reverseFilterType: reverseFilterType)
             })
             .disposed(by: disposeBag)
     }
     
     func applyCollectionViewDataSource(
-        by viewModels: [StoreVO], countTitle: Int, filterType: FilterType
+        by viewModels: [StoreVO], countTitle: Int, filterType: FilterType, reverseFilterType: ReverseFilterType
     ) {
         var snapshot = Snapshot()
         
         snapshot.appendSections([.favorite])
         snapshot.appendItems(viewModels, toSection: .favorite)
         snapshot.reconfigureItems(viewModels)
-        configureHeader(countTitle: countTitle, filterType: filterType)
+        configureHeader(countTitle: countTitle, filterType: filterType, reverseFilter: reverseFilterType)
         
 //        dataSource?.apply(snapshot, animatingDifferences: false)
         dataSource?.applySnapshotUsingReloadData(snapshot)
@@ -103,9 +103,9 @@ final class FavoriteViewController: BaseViewController {
         })
     }
     
-    private func configureHeader(countTitle: Int, filterType: FilterType) {
+    private func configureHeader(countTitle: Int, filterType: FilterType, reverseFilter: ReverseFilterType) {
         let headerRegistration = SectionHeaderRegistration<FilterHeaderView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, _ ,_ in
-            supplementaryView.configure(countTile: countTitle, filterType: filterType)
+            supplementaryView.configure(countTile: countTitle, filterType: filterType, reverseFilter: reverseFilter)
             supplementaryView.bottomSheetDelegate = self
             supplementaryView.filterReverseDelegate = self
         }
@@ -169,7 +169,7 @@ extension FavoriteViewController: ShowFilterBottomSheetDelegate {
 }
 
 extension FavoriteViewController: FilterReverseDelegate {
-    func filterReverseButtonTapped(_ isSelected: Bool) {
-        isSelected ? didSelectReverseFilterButton.accept(.reverse) : didSelectReverseFilterButton.accept(.none)
+    func filterReverseButtonTapped(_ bool: Bool) {
+        bool ? didSelectReverseFilterButton.accept(.reverse) : didSelectReverseFilterButton.accept(.none)
     }
 }

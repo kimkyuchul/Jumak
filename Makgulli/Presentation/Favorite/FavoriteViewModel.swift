@@ -69,15 +69,10 @@ final class FavoriteViewModel: ViewModelType {
     private func createOutput(output: Output) {
         NotificationCenterManager.filterStore.addObserver()
             .compactMap { $0 as? FilterType }
-            .withLatestFrom(output.reverseFilterType) { filterType, reverseFilterType in
-                return (filterType, reverseFilterType)
-            }
             .withUnretained(self)
-            .bind(onNext: { owner, filterTypes in
-                let (filterType, reverseFilterType) = filterTypes
-                
+            .bind(onNext: { owner, filterType in
                 output.filterType.accept(filterType)
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: reverseFilterType)
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: .none)
             })
             .disposed(by: disposeBag)
         

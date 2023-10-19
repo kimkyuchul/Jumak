@@ -14,7 +14,7 @@ protocol ShowFilterBottomSheetDelegate: AnyObject {
 }
 
 protocol FilterReverseDelegate: AnyObject {
-    func filterReverseButtonTapped(_ isSelected: Bool)
+    func filterReverseButtonTapped(_ bool: Bool)
 }
 
 final class FilterHeaderView: UICollectionReusableView {
@@ -55,7 +55,7 @@ final class FilterHeaderView: UICollectionReusableView {
     
     weak var bottomSheetDelegate: ShowFilterBottomSheetDelegate?
     weak var filterReverseDelegate: FilterReverseDelegate?
-    var disposeBag: DisposeBag = .init()
+    private var disposeBag: DisposeBag = .init()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -83,6 +83,14 @@ final class FilterHeaderView: UICollectionReusableView {
             .withUnretained(self)
             .bind(onNext: { owner, event in
                 owner.filterReverseDelegate?.filterReverseButtonTapped(owner.filterReverseButton.isSelected)
+            })
+            .disposed(by: disposeBag)
+        
+        NotificationCenterManager.reverseFilter.addObserver()
+            .compactMap { $0 as? Bool }
+            .withUnretained(self)
+            .bind(onNext: { owner, falseTrigger in
+                owner.filterReverseDelegate?.filterReverseButtonTapped(falseTrigger)
             })
             .disposed(by: disposeBag)
     }
@@ -124,9 +132,15 @@ final class FilterHeaderView: UICollectionReusableView {
 }
 
 extension FilterHeaderView {
-    func configure(countTile: Int, filterType: FilterType) {
+    func configure(countTile: Int, filterType: FilterType, reverseFilter: ReverseFilterType) {
         storeCountLabel.text = "총 \(countTile)개"
         let attributedTitle = self.setNSAttributedString(filterType.title)
         filterButton.configuration?.attributedTitle = AttributedString(attributedTitle)
+        
+        if reverseFilter == .none {
+            filterReverseButton.setTitle("정방향이다.", for: .normal)
+        } else {
+            filterReverseButton.setTitle("역순이다.", for: .normal)
+        }
     }
 }
