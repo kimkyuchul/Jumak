@@ -78,7 +78,21 @@ final class FavoriteViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    func applyCollectionViewDataSource(
+    override func bindAction() {
+        collectionView.rx.itemSelected
+            .withUnretained(self)
+             .subscribe(onNext: { owner, indexPath in
+                 guard let storeVO = owner.itemIdentifier(for: indexPath) else { return }
+                 
+                 guard let realmRepository = DefaultRealmRepository() else { return }
+                     let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: storeVO, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())))))
+                     detailVC.hidesBottomBarWhenPushed = true
+                     owner.navigationController?.pushViewController(detailVC, animated: true)
+             })
+             .disposed(by: disposeBag)
+    }
+    
+    private func applyCollectionViewDataSource(
         by viewModels: [StoreVO], countTitle: Int, filterType: FilterType, reverseFilterType: ReverseFilterType
     ) {
         var snapshot = Snapshot()
@@ -90,6 +104,10 @@ final class FavoriteViewController: BaseViewController {
         
 //        dataSource?.apply(snapshot, animatingDifferences: false)
         dataSource?.applySnapshotUsingReloadData(snapshot)
+    }
+    
+    private func itemIdentifier(for indexPath: IndexPath) -> StoreVO? {
+        return dataSource?.itemIdentifier(for: indexPath)
     }
     
     private func configureCellRegistrationAndDataSource() {
