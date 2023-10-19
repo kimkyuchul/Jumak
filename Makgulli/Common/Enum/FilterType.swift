@@ -38,15 +38,15 @@ enum FilterType: CaseIterable {
           } else {
               switch self {
               case .recentlyAddedBookmark:
-                  return "모든 순"
+                  return "과거 즐겨찾기 순"
               case .sortByUpRating:
                   return "평점 낮은 순"
               case .bookmarkSortByUpRating:
-                  return "즐겨찾기 평점 낮은 순"
+                  return "평점 낮은 즐겨찾기 순"
               case .sortByDescendingEpisodeCount:
-                  return "에피소드 수 적은 순"
+                  return "에피소드 적은 순"
               case .bookmarkSortByDescendingEpisodeCount:
-                  return "즐겨찾기 에피소드 수 적은 순"
+                  return "에피소드 적은 즐겨찾기 순"
               case .sortByName:
                   return "가나다 역순"
               }
