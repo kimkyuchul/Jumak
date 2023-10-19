@@ -24,11 +24,14 @@ extension NotificationCenterHandler {
 
 enum NotificationCenterManager: NotificationCenterHandler {
     case filterStore
+    case reverseFilter
 
     var name: Notification.Name {
         switch self {
         case .filterStore:
             return Notification.Name("NotificationCenterManager.filterStore")
+        case .reverseFilter:
+            return Notification.Name("NotificationCenterManager.reverseFilter")
         }
     }
 }
