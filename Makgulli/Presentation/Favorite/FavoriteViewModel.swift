@@ -13,7 +13,7 @@ import RxSwift
 final class FavoriteViewModel: ViewModelType {
     var disposeBag: DisposeBag = .init()
     
-    var defaultRealmRepository = DefaultRealmRepository()
+    private var defaultRealmRepository = DefaultRealmRepository()
     private lazy var defaultFavoriteUseCase = DefaultFavoriteUseCase(realmRepository: defaultRealmRepository!)
         
     struct Input {

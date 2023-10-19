@@ -55,6 +55,7 @@ final class LocationDetailViewController: BaseViewController {
                    didSelectRate: locationDetailView.rateView.currentStarSubject.asObserver(),
                    didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable(),
                    didSelectUserLocationButton: locationDetailView.storeLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
+                   didSelectCopyAddressButton: locationDetailView.infoView.rx.tapCopyAddress.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
                    didSelectMakeEpisodeButton: locationDetailView.bottomView.rx.tapMakeEpisode.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
         
@@ -109,6 +110,13 @@ final class LocationDetailViewController: BaseViewController {
                 } else {
                     owner.showToast(message: "즐겨찾기가 삭제 되었습니다.")
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        output.addressPasteboardToast
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.showToast(message: "주소가 복사되었습니다.")
             })
             .disposed(by: disposeBag)
         

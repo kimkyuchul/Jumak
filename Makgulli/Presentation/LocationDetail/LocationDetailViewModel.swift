@@ -42,6 +42,7 @@ final class LocationDetailViewModel: ViewModelType {
         let didSelectRate: Observable<Int>
         let didSelectBookmark: Observable<Bool>
         let didSelectUserLocationButton: Observable<Void>
+        let didSelectCopyAddressButton : Observable<Void>
         let didSelectMakeEpisodeButton: Observable<Void>
     }
     
@@ -57,6 +58,7 @@ final class LocationDetailViewModel: ViewModelType {
         let convertRateLabelText = PublishRelay<Int>()
         let bookmark = PublishRelay<Bool>()
         let showBookmarkToast = PublishRelay<Bool>()
+        let addressPasteboardToast = PublishRelay<Void>()
         let locationCoordinate = PublishRelay<(Double, Double)>()
         let setCameraPosition = PublishRelay<(Double, Double)>()
         let showErrorAlert = PublishRelay<Error>()
@@ -128,6 +130,15 @@ final class LocationDetailViewModel: ViewModelType {
         input.didSelectUserLocationButton
             .withLatestFrom(output.locationCoordinate)
             .bind(to: output.setCameraPosition)
+            .disposed(by: disposeBag)
+        
+        input.didSelectCopyAddressButton
+            .withLatestFrom(output.address)
+            .withUnretained(self)
+            .flatMap { owner, adress in
+                return owner.locationDetailUseCase.addressPasteboard(adress)
+            }
+            .bind(to: output.addressPasteboardToast)
             .disposed(by: disposeBag)
         
         input.didSelectMakeEpisodeButton

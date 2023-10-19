@@ -20,7 +20,7 @@ final class DetailInfoView: BaseView {
         label.font = UIFont.boldLineSeed(size: ._18)
         return label
     }()
-    private let copyAddressButton: UIButton = {
+    fileprivate let copyAddressButton: UIButton = {
         let button = UIButton()
         button.setImage(ImageLiteral.copyIcon, for: .normal)
         button.tintColor = .deepDarkGray
@@ -182,6 +182,10 @@ final class DetailInfoView: BaseView {
 }
 
 extension Reactive where Base: DetailInfoView {
+    var tapCopyAddress: ControlEvent<Void> {
+        return base.copyAddressButton.rx.tap
+    }
+    
     var type: Binder<String?> {
         return base.typeLabel.rx.text
     }

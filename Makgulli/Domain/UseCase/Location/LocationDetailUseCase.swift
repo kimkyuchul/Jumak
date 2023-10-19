@@ -19,13 +19,16 @@ final class LocationDetailUseCase {
     
     private let realmRepository: RealmRepository
     private let locationDetailRepository: LocationDetailRepository
+    private let pasteboardService: PasteboardService
     private let disposebag = DisposeBag()
     
     init(realmRepository: RealmRepository,
-         locationDetailRepository: LocationDetailRepository
+         locationDetailRepository: LocationDetailRepository,
+         pasteboardService: PasteboardService
     ) {
         self.realmRepository = realmRepository
         self.locationDetailRepository = locationDetailRepository
+        self.pasteboardService = pasteboardService
     }
     
     let hashTag = PublishSubject<String>()
@@ -92,6 +95,15 @@ final class LocationDetailUseCase {
     // 에피소드 콜렉션뷰의 셀 이미지를 load
     func loadDataSourceImage(_ fileName: String) -> Data? {
         locationDetailRepository.loadDataSourceImage(fileName: fileName)
+    }
+    
+    func addressPasteboard(_ address: String) -> Observable<Void> {
+        return Observable.create { [weak self] emitter in
+            self?.pasteboardService.addressPasteboard(address: address)
+            emitter.onNext(Void())
+            emitter.onCompleted()
+            return Disposables.create()
+        }
     }
 }
 
