@@ -114,8 +114,8 @@ final class FavoriteViewController: BaseViewController {
     }
     
     private func configureCellRegistrationAndDataSource() {
-        let registration = FavoriteCollectionViewCellRegistration { cell, _, episode in
-            cell.configureCell(item: episode)
+        let registration = FavoriteCollectionViewCellRegistration { cell, _, store in
+            cell.configureCell(item: store)
         }
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
