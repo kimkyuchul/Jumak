@@ -14,7 +14,6 @@ final class DefaultFavoriteUseCase {
     private let realmRepository: RealmRepository
     private let disposebag = DisposeBag()
     
-    var updateEpisodeListState = PublishSubject<Void>()
     var errorSubject = PublishSubject<Error>()
     var filterStore = PublishSubject<([StoreVO], FilterType, ReverseFilterType)>()
     
@@ -32,7 +31,7 @@ final class DefaultFavoriteUseCase {
                 case .success(let storeList):
                     self?.filterStore.onNext((storeList, filterType, reverseFilter))
                 case .failure(let error):
-                    print(error)
+                    self?.errorSubject.onNext(error)
                 }
             }
             .disposed(by: disposebag)
