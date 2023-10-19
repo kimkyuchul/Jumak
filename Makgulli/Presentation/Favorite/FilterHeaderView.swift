@@ -14,7 +14,7 @@ protocol ShowFilterBottomSheetDelegate: AnyObject {
 }
 
 protocol FilterReverseDelegate: AnyObject {
-    func filterReverseButtonTapped(_ bool: Bool)
+    func filterReverseButtonTapped(_ void: Void)
 }
 
 final class FilterHeaderView: UICollectionReusableView {
@@ -60,6 +60,7 @@ final class FilterHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
+        bind()
         setHierarchy()
         setConstraints()
         
@@ -70,33 +71,26 @@ final class FilterHeaderView: UICollectionReusableView {
             })
             .disposed(by: disposeBag)
         
-        let tapFilterReverseButton = filterReverseButton.rx.tap
-            .share()
-        
-        tapFilterReverseButton
-            .withUnretained(self)
-            .map { !$0.0.filterReverseButton.isSelected }
-            .bind(to: filterReverseButton.rx.isSelected)
-            .disposed(by: disposeBag)
-        
-        tapFilterReverseButton
+        filterReverseButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind(onNext: { owner, event in
-                owner.filterReverseDelegate?.filterReverseButtonTapped(owner.filterReverseButton.isSelected)
-            })
-            .disposed(by: disposeBag)
-        
-        NotificationCenterManager.reverseFilter.addObserver()
-            .compactMap { $0 as? Bool }
-            .withUnretained(self)
-            .bind(onNext: { owner, falseTrigger in
-                owner.filterReverseDelegate?.filterReverseButtonTapped(falseTrigger)
+                UserDefaultHandler.reverseFilter.toggle()
+                owner.filterReverseDelegate?.filterReverseButtonTapped(())
             })
             .disposed(by: disposeBag)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func bind() {
+        filterReverseButton.rx.tap
+            .withUnretained(self)
+            .map { !$0.0.filterReverseButton.isSelected }
+            .bind(to: filterReverseButton.rx.isSelected)
+            .disposed(by: disposeBag)
     }
     
     private func setNSAttributedString(_ title: String) -> NSAttributedString {
@@ -132,23 +126,23 @@ final class FilterHeaderView: UICollectionReusableView {
 }
 
 extension FilterHeaderView {
-    func configure(countTile: Int, filterType: FilterType, reverseFilter: ReverseFilterType) {
+    func configure(countTile: Int, filterType: FilterType, reverseFilter: Bool) {
         storeCountLabel.text = "총 \(countTile)개"
-
+        
         var attributedTitle: NSAttributedString
-
-        if reverseFilter == .none {
-            attributedTitle = self.setNSAttributedString(filterType.titleForReverse(filter: .none))
+        
+        if reverseFilter {
+            attributedTitle = self.setNSAttributedString(filterType.titleForReverse(filter: true))
         } else {
-            attributedTitle = self.setNSAttributedString(filterType.titleForReverse(filter: .reverse))
+            attributedTitle = self.setNSAttributedString(filterType.titleForReverse(filter: false))
         }
-
+        
         filterButton.configuration?.attributedTitle = AttributedString(attributedTitle)
         
-        if reverseFilter == .none {
-            filterReverseButton.setTitle("정방향이다.", for: .normal)
-        } else {
+        if reverseFilter {
             filterReverseButton.setTitle("역순이다.", for: .normal)
+        } else {
+            filterReverseButton.setTitle("정방향이다..", for: .normal)
         }
     }
 }
