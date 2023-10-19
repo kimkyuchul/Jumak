@@ -134,7 +134,15 @@ final class FilterHeaderView: UICollectionReusableView {
 extension FilterHeaderView {
     func configure(countTile: Int, filterType: FilterType, reverseFilter: ReverseFilterType) {
         storeCountLabel.text = "총 \(countTile)개"
-        let attributedTitle = self.setNSAttributedString(filterType.title)
+
+        var attributedTitle: NSAttributedString
+
+        if reverseFilter == .none {
+            attributedTitle = self.setNSAttributedString(filterType.titleForReverse(filter: .none))
+        } else {
+            attributedTitle = self.setNSAttributedString(filterType.titleForReverse(filter: .reverse))
+        }
+
         filterButton.configuration?.attributedTitle = AttributedString(attributedTitle)
         
         if reverseFilter == .none {

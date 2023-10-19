@@ -116,7 +116,6 @@
 		5AAB8E982ADFC203005969FA /* FilterBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */; };
 		5AAB8E9A2ADFD1C6005969FA /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */; };
 		5AAB8E9C2ADFD225005969FA /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E9B2ADFD225005969FA /* FilterType.swift */; };
-		5AAB8E9E2ADFD4EC005969FA /* AllFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E9D2ADFD4EC005969FA /* AllFilterType.swift */; };
 		5AAB8EA02ADFE75E005969FA /* FilterBottomSheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */; };
 		5AAB8EA22ADFEB85005969FA /* NotificationCenterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */; };
 		5AAB8EA42ADFF1B1005969FA /* FavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */; };
@@ -260,7 +259,6 @@
 		5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBottomSheetViewController.swift; sourceTree = "<group>"; };
 		5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		5AAB8E9B2ADFD225005969FA /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
-		5AAB8E9D2ADFD4EC005969FA /* AllFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFilterType.swift; sourceTree = "<group>"; };
 		5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBottomSheetHeaderView.swift; sourceTree = "<group>"; };
 		5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterHandler.swift; sourceTree = "<group>"; };
 		5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUseCase.swift; sourceTree = "<group>"; };
@@ -816,7 +814,6 @@
 				5AAB8E692AD7F0FB005969FA /* QuantityType.swift */,
 				5AAB8E892ADCFC2E005969FA /* AlertType.swift */,
 				5AAB8E9B2ADFD225005969FA /* FilterType.swift */,
-				5AAB8E9D2ADFD4EC005969FA /* AllFilterType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1159,7 +1156,6 @@
 				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
 				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
 				5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */,
-				5AAB8E9E2ADFD4EC005969FA /* AllFilterType.swift in Sources */,
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,
 				5AAB8EA42ADFF1B1005969FA /* FavoriteUseCase.swift in Sources */,
 				5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */,
