@@ -46,10 +46,10 @@ final class DefaultFavoriteUseCase {
             return realmRepository.fetchBookmarkStore()
 
         case .sortByUpRating:
-            return realmRepository.fetchStoreSortedByRating(sortAscending: !isReversed)
+            return realmRepository.fetchStoreSortedByRating(sortAscending: isReversed)
 
         case .bookmarkSortByUpRating:
-            return realmRepository.fetchBookmarkStoreSortedByRating(sortAscending: !isReversed)
+            return realmRepository.fetchBookmarkStoreSortedByRating(sortAscending: isReversed)
 
         case .sortByDescendingEpisodeCount:
             return realmRepository.fetchStoreSortedByEpisodeCount(sortAscending: isReversed)
