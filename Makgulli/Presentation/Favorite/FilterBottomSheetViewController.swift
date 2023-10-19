@@ -50,8 +50,8 @@ final class FilterBottomSheetViewController: BaseViewController {
             .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind(onNext: { owner, _ in
+                UserDefaultHandler.reverseFilter = false
                 NotificationCenterManager.filterStore.post(object: owner.filterType)
-                NotificationCenterManager.reverseFilter.post(object: false)
                 owner.dismiss(animated: true)
             })
             .disposed(by: disposeBag)

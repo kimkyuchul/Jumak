@@ -32,30 +32,26 @@ enum FilterType: CaseIterable {
         }
     }
     
-    func titleForReverse(filter: ReverseFilterType) -> String {
-        if filter == .none {
-              return self.title
-          } else {
-              switch self {
-              case .recentlyAddedBookmark:
-                  return "과거 즐겨찾기 순"
-              case .sortByUpRating:
-                  return "평점 낮은 순"
-              case .bookmarkSortByUpRating:
-                  return "평점 낮은 즐겨찾기 순"
-              case .sortByDescendingEpisodeCount:
-                  return "에피소드 적은 순"
-              case .bookmarkSortByDescendingEpisodeCount:
-                  return "에피소드 적은 즐겨찾기 순"
-              case .sortByName:
-                  return "가나다 역순"
-              }
-          }
-      }
+    func titleForReverse(filter: Bool) -> String {
+        if !filter {
+            return self.title
+        } else {
+            switch self {
+            case .recentlyAddedBookmark:
+                return "과거 즐겨찾기 순"
+            case .sortByUpRating:
+                return "평점 낮은 순"
+            case .bookmarkSortByUpRating:
+                return "평점 낮은 즐겨찾기 순"
+            case .sortByDescendingEpisodeCount:
+                return "에피소드 적은 순"
+            case .bookmarkSortByDescendingEpisodeCount:
+                return "에피소드 적은 즐겨찾기 순"
+            case .sortByName:
+                return "가나다 역순"
+            }
+        }
+    }
 }
 
-enum ReverseFilterType {
-    case none
-    case reverse
-}
 

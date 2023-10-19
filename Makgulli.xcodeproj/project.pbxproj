@@ -119,6 +119,8 @@
 		5AAB8EA02ADFE75E005969FA /* FilterBottomSheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */; };
 		5AAB8EA22ADFEB85005969FA /* NotificationCenterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */; };
 		5AAB8EA42ADFF1B1005969FA /* FavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */; };
+		5AAB8EA72AE145F0005969FA /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA62AE145F0005969FA /* UserDefault.swift */; };
+		5AAB8EA92AE14607005969FA /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -262,6 +264,8 @@
 		5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBottomSheetHeaderView.swift; sourceTree = "<group>"; };
 		5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterHandler.swift; sourceTree = "<group>"; };
 		5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUseCase.swift; sourceTree = "<group>"; };
+		5AAB8EA62AE145F0005969FA /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -515,6 +519,7 @@
 		5A9DA1C32AC1903D006040D2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8EA52AE145DA005969FA /* Util */,
 				5ADC00322AC5F2590024D7F8 /* Enum */,
 				5A9DA2212AC57E20006040D2 /* UIComponent */,
 				5A9DA2182AC415B7006040D2 /* Base */,
@@ -785,6 +790,15 @@
 				5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */,
 			);
 			path = Favorite;
+			sourceTree = "<group>";
+		};
+		5AAB8EA52AE145DA005969FA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8EA62AE145F0005969FA /* UserDefault.swift */,
+				5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		5ADC002E2AC5E2C60024D7F8 /* Location */ = {
@@ -1185,6 +1199,7 @@
 				5A9DA1EB2AC2B74B006040D2 /* Task.swift in Sources */,
 				5A68277E2ACED01C00C37B17 /* BookmarkButton.swift in Sources */,
 				5A9DA20A2AC3CE9F006040D2 /* SearchLocationRepository.swift in Sources */,
+				5AAB8EA92AE14607005969FA /* UserDefaultHandler.swift in Sources */,
 				5AAB8E952ADE824F005969FA /* FilterHeaderView.swift in Sources */,
 				5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */,
 				5A6827842ACFEB6D00C37B17 /* UIStackView+.swift in Sources */,
@@ -1222,6 +1237,7 @@
 				5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */,
 				5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */,
 				5A6827752ACE9A1D00C37B17 /* DetailRateView.swift in Sources */,
+				5AAB8EA72AE145F0005969FA /* UserDefault.swift in Sources */,
 				5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */,
 				5AAB8E822ADC0418005969FA /* BaseAlert.swift in Sources */,
 				5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */,
