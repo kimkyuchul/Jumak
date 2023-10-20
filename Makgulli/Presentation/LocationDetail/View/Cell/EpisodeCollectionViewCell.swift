@@ -9,11 +9,6 @@ import UIKit
 
 final class EpisodeCollectionViewCell: BaseCollectionViewCell {
     
-    private let containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
     private let episodeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -51,7 +46,7 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.cellShadow(backView: containerView, radius: 23)
+        self.layer.cornerRadius = 23
         episodeImageView.layer.cornerRadius = 23
     }
     
@@ -61,18 +56,12 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func setHierarchy() {
-        contentView.addSubview(containerView)
-        
         [episodeImageView, titleLabel, dateLabel, episodeBadge].forEach {
-            containerView.addSubview($0)
+            self.addSubview($0)
         }
     }
     
     override func setConstraints() {
-        containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
         episodeImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
             make.centerY.equalToSuperview().inset(14)
@@ -94,6 +83,11 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
             make.trailing.equalToSuperview().inset(15)
             make.size.equalTo(40)
         }
+    }
+    
+    override func setLayout() {
+        clipsToBounds = true
+        backgroundColor = .white
     }
 }
 
