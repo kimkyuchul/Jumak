@@ -159,7 +159,8 @@ final class LocationDetailViewController: BaseViewController {
                                    alcohol: episodeVO.alcohol,
                                    drink: episodeVO.drink,
                                    drinkQuantity: episodeVO.drinkQuantity,
-                                   imageData: owner.viewModel.loadDataSourceImage("\(episodeVO.id).jpg".trimmingWhitespace()) ?? Data())
+                                   imageData: owner.viewModel.loadDataSourceImage("\(episodeVO.id).jpg".trimmingWhitespace()) ?? Data(),
+                                   episodeNumber: episodeList.count)
                 }
                 return episodes
             }

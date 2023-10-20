@@ -48,7 +48,7 @@ final class EpisodeEmptyView: BaseView {
     
     override func setConstraints() {
         emptyImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(30)
+            make.top.equalToSuperview().inset(28)
             make.centerX.equalToSuperview()
             make.size.equalTo(70)
         }
