@@ -60,7 +60,7 @@ extension StoreTable {
                        phone: phone ?? StringLiteral.noPhoneNumberMessage,
                        x: x ,
                        y: y ,
-                       categoryType: .makgulli,
+                       categoryType: categoryType,
                        rate: rate,
                        bookmark: bookmark,
                        bookmarkDate: bookmarkDate ?? Date(),
