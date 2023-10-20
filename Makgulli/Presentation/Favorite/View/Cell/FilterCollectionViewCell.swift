@@ -14,18 +14,25 @@ final class FilterCollectionViewCell: BaseCollectionViewCell {
         view.backgroundColor = .white
         return view
     }()
-    private let logoImageView = UIImageView()
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.backgroundColor = .lightGray
+        return imageView
+    }()
     private let storeTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldLineSeed(size: ._18)
         label.numberOfLines = 2
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.9
+        label.textColor = .black
         return label
     }()
     private let addressLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldLineSeed(size: ._14)
+        label.font = UIFont.regularLineSeed(size: ._12)
+        label.numberOfLines = 1
+        label.textColor = .darkGray
         return label
     }()
     private let rateBadge = StoreBadge(image: ImageLiteral.starCircleIcon)
@@ -45,10 +52,15 @@ final class FilterCollectionViewCell: BaseCollectionViewCell {
         imageView.tintColor = .gray
         return imageView
     }()
+    private let lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.cellShadow(backView: containerView, radius: 23)
+        logoImageView.layer.cornerRadius = 14
     }
     
     override func prepareForReuse() {
@@ -59,7 +71,7 @@ final class FilterCollectionViewCell: BaseCollectionViewCell {
     override func setHierarchy() {
         self.addSubview(containerView)
         
-        [logoImageView, storeTitleLabel, addressLabel, badgeStackView, bookmarkImageView].forEach {
+        [logoImageView, storeTitleLabel, addressLabel, badgeStackView, bookmarkImageView, lineView].forEach {
             containerView.addSubview($0)
         }
     }
@@ -70,15 +82,15 @@ final class FilterCollectionViewCell: BaseCollectionViewCell {
         }
         
         logoImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(14)
-            make.leading.equalToSuperview().inset(14)
-            make.size.equalTo(80)
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().inset(15)
+            make.size.equalTo(110)
         }
         
         storeTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(logoImageView.snp.top).offset(6)
-            make.leading.equalTo(logoImageView.snp.trailing).offset(14)
-            make.trailing.equalToSuperview().inset(10).priority(.high)
+            make.top.equalTo(logoImageView.snp.top).offset(5)
+            make.leading.equalTo(logoImageView.snp.trailing).offset(12)
+            make.trailing.equalToSuperview().inset(15).priority(.high)
         }
         
         addressLabel.snp.makeConstraints { make in
@@ -97,6 +109,12 @@ final class FilterCollectionViewCell: BaseCollectionViewCell {
             make.size.equalTo(38)
             make.trailing.equalToSuperview().inset(10)
             make.bottom.equalTo(badgeStackView.snp.bottom).offset(2)
+        }
+        
+        lineView.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.leading.trailing.equalToSuperview().inset(30)
+            make.bottom.equalToSuperview()
         }
     }
     
