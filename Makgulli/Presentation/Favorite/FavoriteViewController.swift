@@ -61,14 +61,13 @@ final class FavoriteViewController: BaseViewController {
         configureCellRegistrationAndDataSource()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.isHidden = true
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func bind() {
         let input = FavoriteViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
-                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable())
+                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable(), viewDidAppearEvent: self.rx.viewDidAppear.map { _ in })
         let output = viewModel.transform(input: input)
                 
         output.storeList

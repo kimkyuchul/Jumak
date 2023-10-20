@@ -19,6 +19,7 @@ final class FavoriteViewModel: ViewModelType {
     struct Input {
         let viewWillAppearEvent: Observable<Void>
         let didSelectReverseFilterButton: Observable<Void>
+        let viewDidAppearEvent: Observable<Void>
     }
     
     struct Output {
@@ -30,6 +31,16 @@ final class FavoriteViewModel: ViewModelType {
         let output = Output()
 
         input.viewWillAppearEvent
+            .take(1)
+            .withLatestFrom(output.filterType)
+            .withUnretained(self)
+            .subscribe(onNext: { owner, filterType in
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
+            })
+            .disposed(by: disposeBag)
+        
+        input.viewDidAppearEvent
+            .skip(1)
             .withLatestFrom(output.filterType)
             .withUnretained(self)
             .subscribe(onNext: { owner, filterType in
