@@ -21,6 +21,7 @@ final class EpisodeEmptyView: BaseView {
         let label = UILabel()
         label.text = "아직 에피소드가 한개도 없네요."
         label.textColor = .black
+        label.textAlignment = .center
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
@@ -28,6 +29,8 @@ final class EpisodeEmptyView: BaseView {
         let label = UILabel()
         label.text = "하단에 에피소드 추가하기를 통해 추억을 남기세요."
         label.textColor = .gray
+        label.textAlignment = .center
+        label.numberOfLines = 2
         label.font = UIFont.boldLineSeed(size: ._14)
         return label
     }()
@@ -45,21 +48,19 @@ final class EpisodeEmptyView: BaseView {
     
     override func setConstraints() {
         emptyImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(24)
-            make.centerY.equalToSuperview()
-            make.size.equalTo(100)
+            make.top.equalToSuperview().inset(30)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(70)
         }
         
         emptyTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyImageView.snp.top)
-            make.leading.equalTo(emptyImageView.snp.trailing).offset(16)
-            make.trailing.equalToSuperview().priority(.high)
+            make.top.equalTo(emptyImageView.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(10).priority(.high)
         }
         
         emptySubLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyTitleLabel.snp.bottom).offset(10)
-            make.leading.equalTo(emptyTitleLabel.snp.leading)
-            make.trailing.equalTo(emptyTitleLabel.snp.trailing)
+            make.top.equalTo(emptyTitleLabel.snp.bottom).offset(8)
+            make.leading.trailing.equalToSuperview().inset(10).priority(.high)
         }
     }
     

@@ -147,9 +147,9 @@ final class LocationDetailViewController: BaseViewController {
         
         let episodeList = output.episodeList
             .share()
+            .distinctUntilChanged()
         
         episodeList
-            .distinctUntilChanged()
             .withUnretained(self)
             .map { owner, episodeList in
                 let episodes = episodeList.map { episodeVO -> Episode in
@@ -170,8 +170,7 @@ final class LocationDetailViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         episodeList
-            .distinctUntilChanged()
-            .map { $0.isEmpty }
+            .map { !$0.isEmpty }
             .bind(to: locationDetailView.episodeView.rx.handleEpisodeEmptyViewVisibility)
             .disposed(by: disposeBag)
     }

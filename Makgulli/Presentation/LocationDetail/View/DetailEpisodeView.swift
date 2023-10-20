@@ -96,7 +96,10 @@ final class DetailEpisodeView: BaseView {
         }
         
         episodeEmptyView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(episodeTitleLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(30)
+            make.height.equalTo(episodeCollectionView.snp.height)
+            make.bottom.equalToSuperview()
         }
     }
 }
