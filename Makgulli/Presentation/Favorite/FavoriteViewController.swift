@@ -17,7 +17,7 @@ final class FavoriteViewController: BaseViewController {
     }
     
     typealias SectionHeaderRegistration<Header: UICollectionReusableView> = UICollectionView.SupplementaryRegistration<FilterHeaderView>
-    typealias FavoriteCollectionViewCellRegistration = UICollectionView.CellRegistration<StoreCollectionViewCell, StoreVO>
+    typealias FavoriteCollectionViewCellRegistration = UICollectionView.CellRegistration<FilterCollectionViewCell, StoreVO>
     typealias DiffableDataSource = UICollectionViewDiffableDataSource<FavoriteSection, StoreVO>
     typealias Snapshot = NSDiffableDataSourceSnapshot<FavoriteSection, StoreVO>
     private var dataSource: DiffableDataSource?
@@ -46,7 +46,7 @@ final class FavoriteViewController: BaseViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .clear
-        collectionView.register(StoreCollectionViewCell.self, forCellWithReuseIdentifier: "StoreCollectionViewCell")
+        collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCollectionViewCell")
         return collectionView
     }()
         
@@ -157,7 +157,7 @@ final class FavoriteViewController: BaseViewController {
         
         section.boundarySupplementaryItems = [headerSupplementary]
         section.orthogonalScrollingBehavior = .none
-        section.contentInsets = .init(top: 6, leading: 10, bottom: 6, trailing: 10)
+        section.contentInsets = .init(top: 12, leading: 0, bottom: 12, trailing: 0)
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         layout.configuration.scrollDirection = .vertical
