@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxSwift
+
 final class DetailEpisodeView: BaseView {
     
     enum EpisodeSection {
@@ -33,6 +35,7 @@ final class DetailEpisodeView: BaseView {
         collectionView.register(EpisodeCollectionViewCell.self, forCellWithReuseIdentifier: "EpisodeCollectionViewCell")
         return collectionView
     }()
+    fileprivate let episodeEmptyView = EpisodeEmptyView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,7 +77,7 @@ final class DetailEpisodeView: BaseView {
     }
     
     override func setHierarchy() {
-        [episodeTitleLabel, episodeCollectionView].forEach {
+        [episodeTitleLabel, episodeCollectionView, episodeEmptyView].forEach {
             self.addSubview($0)
         }
     }
@@ -90,6 +93,18 @@ final class DetailEpisodeView: BaseView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
             make.height.equalToSuperview().offset(-42)
+        }
+        
+        episodeEmptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+}
+
+extension Reactive where Base: DetailEpisodeView {
+    var handleEpisodeEmptyViewVisibility: Binder<Bool> {
+        return Binder(self.base) { view, isHidden in
+            view.episodeEmptyView.isHidden = isHidden
         }
     }
 }

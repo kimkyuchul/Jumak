@@ -171,13 +171,8 @@ final class LocationDetailViewController: BaseViewController {
         
         episodeList
             .distinctUntilChanged()
-            .bind(onNext: { episodeList in
-                if episodeList.isEmpty {
-                    
-                } else {
-                    
-                }
-            })
+            .map { $0.isEmpty }
+            .bind(to: locationDetailView.episodeView.rx.handleEpisodeEmptyViewVisibility)
             .disposed(by: disposeBag)
     }
     

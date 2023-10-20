@@ -1,17 +1,17 @@
 //
-//  StoreEmptyView.swift
+//  EpisodeEmptyView.swift
 //  Makgulli
 //
-//  Created by 김규철 on 2023/10/03.
+//  Created by 김규철 on 2023/10/19.
 //
 
 import UIKit
 
-final class StoreEmptyView: BaseView {
+final class EpisodeEmptyView: BaseView {
     
     private let emptyImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiteral.storeEmptyIcon
+        imageView.image = ImageLiteral.episodeDefaultImage
             .withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = UIColor.gray
@@ -19,18 +19,23 @@ final class StoreEmptyView: BaseView {
     }()
     private let emptyTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "주변에 막걸리가 없네요."
+        label.text = "아직 에피소드가 한개도 없네요."
         label.textColor = .black
-        label.font = UIFont.boldLineSeed(size: ._14)
+        label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
     private let emptySubLabel: UILabel = {
         let label = UILabel()
-        label.text = "다른 지역에서 검색해보세요."
+        label.text = "하단에 에피소드 추가하기를 통해 추억을 남기세요."
         label.textColor = .gray
-        label.font = UIFont.boldLineSeed(size: ._12)
+        label.font = UIFont.boldLineSeed(size: ._14)
         return label
     }()
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = 23
+    }
         
     override func setHierarchy() {
         [emptyImageView, emptyTitleLabel, emptySubLabel].forEach {
@@ -39,14 +44,10 @@ final class StoreEmptyView: BaseView {
     }
     
     override func setConstraints() {
-        self.snp.makeConstraints { make in
-            make.height.equalTo(130)
-        }
-        
         emptyImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(24)
             make.centerY.equalToSuperview()
-            make.size.equalTo(50)
+            make.size.equalTo(100)
         }
         
         emptyTitleLabel.snp.makeConstraints { make in
@@ -63,8 +64,7 @@ final class StoreEmptyView: BaseView {
     }
     
     override func setLayout() {
+        clipsToBounds = true
         backgroundColor = .white
     }
 }
-
-

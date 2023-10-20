@@ -122,6 +122,7 @@
 		5AAB8EA72AE145F0005969FA /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA62AE145F0005969FA /* UserDefault.swift */; };
 		5AAB8EA92AE14607005969FA /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */; };
 		5AAB8EAB2AE15CC7005969FA /* PasteboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EAA2AE15CC7005969FA /* PasteboardService.swift */; };
+		5AAB8EAD2AE1645F005969FA /* EpisodeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EAC2AE1645E005969FA /* EpisodeEmptyView.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -268,6 +269,7 @@
 		5AAB8EA62AE145F0005969FA /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
 		5AAB8EAA2AE15CC7005969FA /* PasteboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardService.swift; sourceTree = "<group>"; };
+		5AAB8EAC2AE1645E005969FA /* EpisodeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEmptyView.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 			children = (
 				5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */,
 				5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */,
+				5AAB8EAC2AE1645E005969FA /* EpisodeEmptyView.swift */,
 				5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */,
 				5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */,
 				5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */,
@@ -1235,6 +1238,7 @@
 				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
 				5AAB8EAB2AE15CC7005969FA /* PasteboardService.swift in Sources */,
 				5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */,
+				5AAB8EAD2AE1645F005969FA /* EpisodeEmptyView.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
 				5A6827C22AD6E59300C37B17 /* CheckBoxView.swift in Sources */,
 				5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */,
