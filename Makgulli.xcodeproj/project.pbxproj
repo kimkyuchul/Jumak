@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		506CA1E64669FE0853F40A90 /* libPods-Makgulli-MakgulliUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */; };
+		5A0A982D2AE265A400545939 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -160,6 +161,7 @@
 		1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli-MakgulliUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		463D854F776FDADD2658D9BD /* Pods-Makgulli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli.release.xcconfig"; path = "Target Support Files/Pods-Makgulli/Pods-Makgulli.release.xcconfig"; sourceTree = "<group>"; };
 		51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakgulliTests.release.xcconfig"; path = "Target Support Files/Pods-MakgulliTests/Pods-MakgulliTests.release.xcconfig"; sourceTree = "<group>"; };
+		5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreEmptyView.swift; sourceTree = "<group>"; };
 		5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -338,6 +340,23 @@
 				51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		5A0A982A2AE2657000545939 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */,
+				5A0A982B2AE2657600545939 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5A0A982B2AE2657600545939 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5A6827712ACE7CC200C37B17 /* Cell */ = {
@@ -858,7 +877,7 @@
 		5ADC003F2AC86D8A0024D7F8 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
-				5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */,
+				5A0A982A2AE2657000545939 /* View */,
 				5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */,
 				5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */,
 				5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */,
@@ -1191,6 +1210,7 @@
 				5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */,
 				5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */,
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
+				5A0A982D2AE265A400545939 /* FilterCollectionViewCell.swift in Sources */,
 				5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */,
 				5A6827B22AD6760600C37B17 /* EpisodeDateView.swift in Sources */,
 				5AAB8E772ADA7107005969FA /* LocationDetailRepository.swift in Sources */,
