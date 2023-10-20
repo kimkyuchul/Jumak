@@ -54,7 +54,7 @@ final class EpisodeEmptyView: BaseView {
         }
         
         emptyTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyImageView.snp.bottom).offset(8)
+            make.top.equalTo(emptyImageView.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(10).priority(.high)
         }
         

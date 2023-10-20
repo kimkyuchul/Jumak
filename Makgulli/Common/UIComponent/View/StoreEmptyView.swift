@@ -40,7 +40,7 @@ final class StoreEmptyView: BaseView {
     
     override func setConstraints() {
         self.snp.makeConstraints { make in
-            make.height.equalTo(130)
+            make.height.equalTo(135)
         }
         
         emptyImageView.snp.makeConstraints { make in
