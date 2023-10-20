@@ -226,6 +226,7 @@ final class DefaultRealmRepository: RealmRepository {
             try realm.write {
                 if let storeTable = realm.objects(StoreTable.self).filter("id == %@", updatedStore.id).first {
                     updatedStore.bookmark = storeTable.bookmark
+                    updatedStore.bookmarkDate = storeTable.bookmarkDate
                     updatedStore.rate = storeTable.rate
                 }
             }
@@ -347,7 +348,7 @@ final class DefaultRealmRepository: RealmRepository {
             forPrimaryKey: store.id
         ) else { return false }
         
-        if store.rate != storeObject.rate || store.bookmark != storeObject.bookmark {
+        if store.rate != storeObject.rate || store.bookmark != storeObject.bookmark || store.bookmarkDate != storeObject.bookmarkDate {
             return true
         }
         

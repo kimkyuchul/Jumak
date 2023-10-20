@@ -116,9 +116,11 @@ final class LocationDetailViewModel: ViewModelType {
             .withUnretained(self)
             .bind(onNext: { owner, bookmark in
                 owner.storeVO.bookmark = bookmark
-    
+                
                 if bookmark {
                     owner.storeVO.bookmarkDate = Date()
+                } else {
+                    owner.storeVO.bookmarkDate = nil
                 }
             })
             .disposed(by: disposeBag)
