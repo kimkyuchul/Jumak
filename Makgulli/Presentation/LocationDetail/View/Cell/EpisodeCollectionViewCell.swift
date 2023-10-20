@@ -98,14 +98,14 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
 }
 
 extension EpisodeCollectionViewCell {
-    func configureCell(item: Episode) {
+    func configureCell(item: Episode, episodeIndex: Int) {
         if !item.imageData.isEmpty {
             episodeImageView.image = UIImage(data: item.imageData)
         } else {
             episodeImageView.image = ImageLiteral.episodeDefaultImage
         }
         
-        titleLabel.text = "\(item.episodeNumber)번째\nLegendary\nEpisode"
+        titleLabel.text = "\(episodeIndex)번째\nLegendary\nEpisode"
         dateLabel.text = item.date.formattedDate()
     }
 }

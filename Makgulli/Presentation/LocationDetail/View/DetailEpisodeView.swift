@@ -44,8 +44,8 @@ final class DetailEpisodeView: BaseView {
     }
     
     private func configureCellRegistrationAndDataSource() {
-        let registration = EpisodeCollectionViewCellRegistration { cell, _, episode in
-            cell.configureCell(item: episode)
+        let registration = EpisodeCollectionViewCellRegistration { cell, indexPath, episode in
+            cell.configureCell(item: episode, episodeIndex: indexPath.item + 1)
         }
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: episodeCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in

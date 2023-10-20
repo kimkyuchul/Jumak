@@ -19,7 +19,6 @@ struct Episode: Hashable {
     let drink: Double
     let drinkQuantity: QuantityType
     let imageData: Data
-    let episodeNumber: Int
 }
 
 final class LocationDetailViewModel: ViewModelType {
