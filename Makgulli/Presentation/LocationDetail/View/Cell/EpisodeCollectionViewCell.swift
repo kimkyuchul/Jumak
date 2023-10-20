@@ -26,14 +26,14 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
         label.numberOfLines = 3
         label.textAlignment = .left
         label.textColor = .black
-        label.font = UIFont.boldLineSeed(size: ._18)
+        label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = .gray
-        label.font = UIFont.boldLineSeed(size: ._16)
+        label.font = UIFont.boldLineSeed(size: ._14)
         return label
     }()
     private let episodeBadge: UIImageView = {
@@ -75,7 +75,7 @@ final class EpisodeCollectionViewCell: BaseCollectionViewCell {
         
         episodeImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(20)
-            make.centerY.equalToSuperview().inset(10)
+            make.centerY.equalToSuperview().inset(14)
             make.size.equalTo(self.snp.width).multipliedBy(0.5)
         }
         
