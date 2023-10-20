@@ -29,7 +29,7 @@ final class EpisodeDetailViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
-        let didSeletDeleteBarButton: Observable<Void>
+        let didSeletDeleteButton: Observable<Void>
     }
     
     struct Output {
@@ -48,7 +48,7 @@ final class EpisodeDetailViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        input.didSeletDeleteBarButton
+        input.didSeletDeleteButton
             .withUnretained(self)
             .bind(onNext: { owner, _ in
                 owner.episodeDetailUseCase.deleteEpisodeImage(fileName: "\(owner.episode.id).jpg".trimmingWhitespace())

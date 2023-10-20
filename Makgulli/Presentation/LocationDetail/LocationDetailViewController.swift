@@ -27,6 +27,7 @@ final class LocationDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "상세 정보"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = false
         print(#function)
@@ -54,6 +55,7 @@ final class LocationDetailViewController: BaseViewController {
                    didSelectRate: locationDetailView.rateView.currentStarSubject.asObserver(),
                    didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable(),
                    didSelectUserLocationButton: locationDetailView.storeLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
+                   didSelectCopyAddressButton: locationDetailView.infoView.rx.tapCopyAddress.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
                    didSelectMakeEpisodeButton: locationDetailView.bottomView.rx.tapMakeEpisode.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
         
@@ -111,6 +113,13 @@ final class LocationDetailViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        output.addressPasteboardToast
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.showToast(message: "주소가 복사되었습니다.")
+            })
+            .disposed(by: disposeBag)
+        
         output.locationCoordinate
             .bind(to: locationDetailView.rx.setUpMarker)
             .disposed(by: disposeBag)
@@ -162,17 +171,19 @@ final class LocationDetailViewController: BaseViewController {
         
         episodeList
             .distinctUntilChanged()
-            .bind(onNext: { episodeList in
-                if episodeList.isEmpty {
-                    
-                } else {
-                    
-                }
-            })
+            .map { $0.isEmpty }
+            .bind(to: locationDetailView.episodeView.rx.handleEpisodeEmptyViewVisibility)
             .disposed(by: disposeBag)
     }
     
     override func bindAction() {
+        locationDetailView.titleView.rx.tapFindRoute.throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                
+            })
+            .disposed(by: disposeBag)
+        
         locationDetailView.rx.selectedItem
             .withUnretained(self)
              .subscribe(onNext: { owner, indexPath in

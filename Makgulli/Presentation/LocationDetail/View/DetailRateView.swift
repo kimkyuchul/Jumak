@@ -22,7 +22,7 @@ final class DetailRateView: BaseView {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = .black
-        label.font = UIFont.boldLineSeed(size: ._20)
+        label.font = UIFont.boldLineSeed(size: ._18)
         return label
     }()
     private lazy var stackView: UIStackView = {
@@ -112,7 +112,7 @@ final class DetailRateView: BaseView {
         containerView.snp.makeConstraints { make in
             make.top.equalTo(rateTitleLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(60)
+            make.height.equalToSuperview().offset(-42)
             make.bottom.equalToSuperview()
         }
         

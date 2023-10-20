@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StoreVO: Equatable {
+struct StoreVO: Equatable, Hashable {
     let placeName: String
     let distance: String
     let placeURL: String
@@ -21,5 +21,6 @@ struct StoreVO: Equatable {
     let categoryType: CategoryType
     var rate: Int
     var bookmark: Bool
+    var bookmarkDate: Date?
     var episode: [EpisodeVO]
 }

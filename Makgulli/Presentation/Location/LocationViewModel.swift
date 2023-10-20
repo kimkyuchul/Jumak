@@ -149,6 +149,13 @@ final class LocationViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
+        createOutput(input: input, output: output)
+        transformCollectionViewDataSource(input: input, output: output)
+        
+        return output
+    }
+    
+    private func createOutput(input: Input, output: Output) {
         let userLocationAndCategoryType = Observable.combineLatest(output.currentUserLocation, self.categoryType)
         
         self.locationUseCase.locationUpdateSubject
@@ -226,16 +233,6 @@ final class LocationViewModel: ViewModelType {
                 }
             })
             .disposed(by: disposeBag)
-        
-        transformCollectionViewDataSource(input: input, output: output)
-        
-        return output
-    }
-}
-
-extension LocationViewModel {
-    func updateStoreCell(_ store: StoreVO) -> StoreVO? {
-        return searchLocationUseCase.updateStoreCell(store)
     }
 }
 
@@ -258,12 +255,19 @@ extension LocationViewModel {
                         categoryType: categoryType,
                         rate: store.rate,
                         bookmark: store.bookmark,
+                        bookmarkDate: store.bookmarkDate,
                         episode: store.episode
                     )
                 }
             }
             .bind(to: output.storeCollectionViewDataSource)
             .disposed(by: disposeBag)
+    }
+}
+
+extension LocationViewModel {
+    func updateStoreCell(_ store: StoreVO) -> StoreVO? {
+        return searchLocationUseCase.updateStoreCell(store)
     }
     
     private func shouldUpdateStore(store: StoreVO, visibleStore: StoreVO) -> Bool {

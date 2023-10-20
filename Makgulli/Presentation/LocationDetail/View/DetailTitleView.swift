@@ -42,12 +42,12 @@ final class DetailTitleView: BaseView {
         view.backgroundColor = .gray
         return view
     }()
-    fileprivate let mapButton = {
+    fileprivate let findRouteButton = {
         var configuration = UIButton.Configuration.plain()
         configuration.buttonSize = .large
         let attributedTitle = NSAttributedString(string: "길찾기",
                                                  attributes: [
-                                                    .font: UIFont.boldLineSeed(size: ._18),
+                                                    .font: UIFont.boldLineSeed(size: ._16),
                                                     .foregroundColor: UIColor.black
                                                  ])
         configuration.attributedTitle = AttributedString(attributedTitle)
@@ -73,7 +73,7 @@ final class DetailTitleView: BaseView {
     }
     
     override func setHierarchy() {
-        [hashTagLabel, storeTitleLabel, distanceLabel, bookMarkButton, lineView, mapButton].forEach {
+        [hashTagLabel, storeTitleLabel, distanceLabel, bookMarkButton, lineView, findRouteButton].forEach {
             self.addSubview($0)
         }
     }
@@ -99,7 +99,7 @@ final class DetailTitleView: BaseView {
         bookMarkButton.snp.makeConstraints { make in
             make.top.equalTo(distanceLabel.snp.bottom).offset(10).priority(.low)
             make.leading.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(18)
             make.height.equalTo(30)
         }
         
@@ -111,17 +111,21 @@ final class DetailTitleView: BaseView {
             make.bottom.equalTo(bookMarkButton.snp.bottom)
         }
         
-        mapButton.snp.makeConstraints { make in
+        findRouteButton.snp.makeConstraints { make in
             make.centerY.equalTo(bookMarkButton.snp.centerY)
             make.leading.equalTo(lineView.snp.trailing).offset(20)
             make.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(18)
             make.height.equalTo(30)
         }
     }
 }
 
 extension Reactive where Base: DetailTitleView {
+    var tapFindRoute: ControlEvent<Void> {
+        return base.findRouteButton.rx.tap
+    }
+    
     var hashTag: Binder<String?> {
         return base.hashTagLabel.rx.text
     }

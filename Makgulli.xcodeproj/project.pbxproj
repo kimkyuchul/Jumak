@@ -109,6 +109,20 @@
 		5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */; };
 		5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */; };
 		5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */; };
+		5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E892ADCFC2E005969FA /* AlertType.swift */; };
+		5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = 5AAB8E8C2ADD780E005969FA /* RxKeyboard */; };
+		5AAB8E8F2ADE1F97005969FA /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */; };
+		5AAB8E952ADE824F005969FA /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */; };
+		5AAB8E982ADFC203005969FA /* FilterBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */; };
+		5AAB8E9A2ADFD1C6005969FA /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */; };
+		5AAB8E9C2ADFD225005969FA /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E9B2ADFD225005969FA /* FilterType.swift */; };
+		5AAB8EA02ADFE75E005969FA /* FilterBottomSheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */; };
+		5AAB8EA22ADFEB85005969FA /* NotificationCenterHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */; };
+		5AAB8EA42ADFF1B1005969FA /* FavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */; };
+		5AAB8EA72AE145F0005969FA /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA62AE145F0005969FA /* UserDefault.swift */; };
+		5AAB8EA92AE14607005969FA /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */; };
+		5AAB8EAB2AE15CC7005969FA /* PasteboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EAA2AE15CC7005969FA /* PasteboardService.swift */; };
+		5AAB8EAD2AE1645F005969FA /* EpisodeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EAC2AE1645E005969FA /* EpisodeEmptyView.swift */; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -118,7 +132,7 @@
 		5ADC00392AC5F9370024D7F8 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */; };
 		5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */; };
 		5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */; };
-		5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */; };
+		5ADC00412AC86DA00024D7F8 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */; };
 		5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */; };
 		5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC004C2ACA9DAE0024D7F8 /* LocationDetailViewController.swift */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
@@ -243,6 +257,19 @@
 		5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEpisodeDetailRepository.swift; sourceTree = "<group>"; };
 		5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailRepository.swift; sourceTree = "<group>"; };
 		5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailView.swift; sourceTree = "<group>"; };
+		5AAB8E892ADCFC2E005969FA /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
+		5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBottomSheetViewController.swift; sourceTree = "<group>"; };
+		5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		5AAB8E9B2ADFD225005969FA /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
+		5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterBottomSheetHeaderView.swift; sourceTree = "<group>"; };
+		5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterHandler.swift; sourceTree = "<group>"; };
+		5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUseCase.swift; sourceTree = "<group>"; };
+		5AAB8EA62AE145F0005969FA /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHandler.swift; sourceTree = "<group>"; };
+		5AAB8EAA2AE15CC7005969FA /* PasteboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardService.swift; sourceTree = "<group>"; };
+		5AAB8EAC2AE1645E005969FA /* EpisodeEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEmptyView.swift; sourceTree = "<group>"; };
 		5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressButton.swift; sourceTree = "<group>"; };
 		5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCircleButton.swift; sourceTree = "<group>"; };
@@ -252,7 +279,7 @@
 		5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+.swift"; sourceTree = "<group>"; };
 		5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		5ADC004C2ACA9DAE0024D7F8 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -277,6 +304,7 @@
 				5A70BA662AC178E600506846 /* SnapKit in Frameworks */,
 				5A70BA702AC179A500506846 /* Realm in Frameworks */,
 				D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */,
+				5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +379,7 @@
 			children = (
 				5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */,
 				5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */,
+				5AAB8EAC2AE1645E005969FA /* EpisodeEmptyView.swift */,
 				5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */,
 				5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */,
 				5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */,
@@ -495,6 +524,7 @@
 		5A9DA1C32AC1903D006040D2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8EA52AE145DA005969FA /* Util */,
 				5ADC00322AC5F2590024D7F8 /* Enum */,
 				5A9DA2212AC57E20006040D2 /* UIComponent */,
 				5A9DA2182AC415B7006040D2 /* Base */,
@@ -514,7 +544,7 @@
 				5A6827A52AD50D3A00C37B17 /* Episode */,
 				5ADC004B2ACA9D970024D7F8 /* LocationDetail */,
 				5ADC003C2AC869060024D7F8 /* Tabbar */,
-				5ADC003F2AC86D8A0024D7F8 /* Home */,
+				5ADC003F2AC86D8A0024D7F8 /* Favorite */,
 				5ADC002E2AC5E2C60024D7F8 /* Location */,
 			);
 			path = Presentation;
@@ -645,6 +675,7 @@
 		5A9DA2022AC3C44B006040D2 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8E962ADF65DA005969FA /* Favorite */,
 				5A9DA2032AC3C6AC006040D2 /* Location */,
 				5A6827AE2AD56AD700C37B17 /* Episode */,
 			);
@@ -685,6 +716,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA2112AC3DB5E006040D2 /* Rx+.swift */,
+				5AAB8EA12ADFEB85005969FA /* NotificationCenterHandler.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -693,6 +725,7 @@
 			isa = PBXGroup;
 			children = (
 				5A9DA2162AC3F629006040D2 /* LocationService.swift */,
+				5AAB8EAA2AE15CC7005969FA /* PasteboardService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -757,6 +790,23 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		5AAB8E962ADF65DA005969FA /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8EA32ADFF1B1005969FA /* FavoriteUseCase.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		5AAB8EA52AE145DA005969FA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8EA62AE145F0005969FA /* UserDefault.swift */,
+				5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		5ADC002E2AC5E2C60024D7F8 /* Location */ = {
 			isa = PBXGroup;
 			children = (
@@ -782,6 +832,8 @@
 			children = (
 				5ADC00332AC5F2720024D7F8 /* CategoryType.swift */,
 				5AAB8E692AD7F0FB005969FA /* QuantityType.swift */,
+				5AAB8E892ADCFC2E005969FA /* AlertType.swift */,
+				5AAB8E9B2ADFD225005969FA /* FilterType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -803,12 +855,17 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
-		5ADC003F2AC86D8A0024D7F8 /* Home */ = {
+		5ADC003F2AC86D8A0024D7F8 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
-				5ADC00402AC86DA00024D7F8 /* HomeViewController.swift */,
+				5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */,
+				5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */,
+				5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */,
+				5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */,
+				5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */,
+				5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */,
 			);
-			path = Home;
+			path = Favorite;
 			sourceTree = "<group>";
 		};
 		5ADC004B2ACA9D970024D7F8 /* LocationDetail */ = {
@@ -858,6 +915,7 @@
 				5A70BA712AC179A500506846 /* RealmSwift */,
 				5A9DA1E42AC2B4DF006040D2 /* Alamofire */,
 				5A6827BB2AD6BDCE00C37B17 /* RxGesture */,
+				5AAB8E8C2ADD780E005969FA /* RxKeyboard */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -940,6 +998,7 @@
 				5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -1095,14 +1154,16 @@
 				5A9DA2012AC3C227006040D2 /* SearchLocationVO.swift in Sources */,
 				5A6827A72AD50D5600C37B17 /* WriteEpisodeViewController.swift in Sources */,
 				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
+				5AAB8E982ADFC203005969FA /* FilterBottomSheetViewController.swift in Sources */,
 				5A6827792ACEC68000C37B17 /* UILabel+.swift in Sources */,
 				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
 				5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */,
+				5AAB8EA22ADFEB85005969FA /* NotificationCenterHandler.swift in Sources */,
 				5A6827A12AD446D700C37B17 /* UIViewController+.swift in Sources */,
 				5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */,
 				5A6827772ACEA7B200C37B17 /* RateButton.swift in Sources */,
 				5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */,
-				5ADC00412AC86DA00024D7F8 /* HomeViewController.swift in Sources */,
+				5ADC00412AC86DA00024D7F8 /* FavoriteViewController.swift in Sources */,
 				5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */,
 				5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */,
 				5A6827A92AD5221A00C37B17 /* WriteEpisodeView.swift in Sources */,
@@ -1116,12 +1177,14 @@
 				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
 				5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */,
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,
+				5AAB8EA42ADFF1B1005969FA /* FavoriteUseCase.swift in Sources */,
 				5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */,
 				5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */,
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
 				5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */,
 				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
 				5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */,
+				5AAB8E9C2ADFD225005969FA /* FilterType.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
 				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
@@ -1134,6 +1197,7 @@
 				5A6827B42AD6906700C37B17 /* Date+.swift in Sources */,
 				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
 				5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */,
+				5AAB8EA02ADFE75E005969FA /* FilterBottomSheetHeaderView.swift in Sources */,
 				5A6827922AD14E0A00C37B17 /* String+.swift in Sources */,
 				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
 				5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */,
@@ -1141,6 +1205,8 @@
 				5A9DA1EB2AC2B74B006040D2 /* Task.swift in Sources */,
 				5A68277E2ACED01C00C37B17 /* BookmarkButton.swift in Sources */,
 				5A9DA20A2AC3CE9F006040D2 /* SearchLocationRepository.swift in Sources */,
+				5AAB8EA92AE14607005969FA /* UserDefaultHandler.swift in Sources */,
+				5AAB8E952ADE824F005969FA /* FilterHeaderView.swift in Sources */,
 				5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */,
 				5A6827842ACFEB6D00C37B17 /* UIStackView+.swift in Sources */,
 				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
@@ -1158,7 +1224,9 @@
 				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
 				5A6827B62AD69BF900C37B17 /* EpisodeContentView.swift in Sources */,
 				5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */,
+				5AAB8E9A2ADFD1C6005969FA /* FilterTableViewCell.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
+				5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */,
 				5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */,
 				5A68277C2ACEC7A700C37B17 /* DetailTitleView.swift in Sources */,
 				5A6827992AD1646D00C37B17 /* DefaultRealmRepository.swift in Sources */,
@@ -1166,14 +1234,18 @@
 				5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkNameView.swift in Sources */,
 				5A68278A2AD054A300C37B17 /* EpisodeVO.swift in Sources */,
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
+				5AAB8E8F2ADE1F97005969FA /* FavoriteViewModel.swift in Sources */,
 				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
+				5AAB8EAB2AE15CC7005969FA /* PasteboardService.swift in Sources */,
 				5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */,
+				5AAB8EAD2AE1645F005969FA /* EpisodeEmptyView.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
 				5A6827C22AD6E59300C37B17 /* CheckBoxView.swift in Sources */,
 				5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */,
 				5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */,
 				5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */,
 				5A6827752ACE9A1D00C37B17 /* DetailRateView.swift in Sources */,
+				5AAB8EA72AE145F0005969FA /* UserDefault.swift in Sources */,
 				5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */,
 				5AAB8E822ADC0418005969FA /* BaseAlert.swift in Sources */,
 				5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */,
@@ -1577,6 +1649,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1619,6 +1699,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		5AAB8E8C2ADD780E005969FA /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -16,7 +16,7 @@ final class EpisodeDateView: BaseView {
         let label = UILabel()
         label.text = "전설적인 그날"
         label.textAlignment = .left
-        label.textColor = .white
+        label.textColor = .black
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()

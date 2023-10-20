@@ -84,7 +84,7 @@ final class EpisodeDetailView: BaseView {
     override func setConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(20)
-            make.leading.equalToSuperview().inset(18)
+            make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24).priority(.high)
         }
         
@@ -97,44 +97,45 @@ final class EpisodeDetailView: BaseView {
         episodeImageView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(15)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalToSuperview().inset(36)
-            make.height.equalToSuperview().multipliedBy(0.35)
+            make.trailing.equalToSuperview().inset(24)
+            make.height.equalToSuperview().multipliedBy(0.3)
         }
         
         commentTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(episodeImageView.snp.bottom).offset(15)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalToSuperview().inset(36)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         commentTextField.snp.makeConstraints { make in
             make.top.equalTo(commentTitleLabel.snp.bottom).offset(8)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalToSuperview().inset(36)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         drinkNmaeTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(commentTextField.snp.bottom).offset(15)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalToSuperview().inset(36)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         drinkNameTextField.snp.makeConstraints { make in
             make.top.equalTo(drinkNmaeTitleLabel.snp.bottom).offset(8)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalToSuperview().inset(36)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         drinkCountTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(drinkNameTextField.snp.bottom).offset(15)
             make.leading.equalTo(titleLabel.snp.leading)
-            make.trailing.equalToSuperview().inset(36)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         drinkCountTextField.snp.makeConstraints { make in
             make.top.equalTo(drinkCountTitleLabel.snp.bottom).offset(8)
             make.leading.equalTo(titleLabel.snp.leading)
             make.width.equalTo(self.snp.width).multipliedBy(0.5)
+            make.bottom.equalToSuperview().inset(30).priority(.low)
         }
     }
     

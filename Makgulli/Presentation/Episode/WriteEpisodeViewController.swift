@@ -6,10 +6,10 @@
 //
 
 import UIKit
+import PhotosUI
 
 import RxSwift
 import RxCocoa
-import PhotosUI
 
 final class WriteEpisodeViewController: BaseViewController {
     
@@ -30,7 +30,6 @@ final class WriteEpisodeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "에피소드 기록하기"
-        self.view.backgroundColor = .pink
     }
     
     override func bind() {

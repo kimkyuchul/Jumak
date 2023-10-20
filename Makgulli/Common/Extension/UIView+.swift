@@ -37,6 +37,22 @@ extension UIView {
         layer.cornerRadius = cornerRadius
         layer.maskedCorners = CACornerMask(arrayLiteral: maskedCorners)
     }
+    
+    func getDeviceWidth() -> CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    func getDeviceHeight() -> CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    
+    func getDeviceHalfHeight() -> CGFloat {
+        return UIScreen.main.bounds.height * 0.5
+    }
+    
+    func getDeviceHalfWidtb() -> CGFloat {
+        return UIScreen.main.bounds.width * 0.5
+    }
 }
 
 

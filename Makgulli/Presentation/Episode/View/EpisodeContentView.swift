@@ -17,7 +17,7 @@ final class EpisodeContentView: BaseView {
         let label = UILabel()
         label.text = "그날의 기억"
         label.textAlignment = .left
-        label.textColor = .white
+        label.textColor = .black
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()

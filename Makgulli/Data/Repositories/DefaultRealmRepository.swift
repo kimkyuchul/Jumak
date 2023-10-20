@@ -11,6 +11,12 @@ import RxSwift
 import RealmSwift
 
 protocol RealmRepository {
+    func fetchBookmarkStore(sortAscending: Bool) -> Single<[StoreVO]>
+    func fetchBookmarkStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]>
+    func fetchStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]>
+    func fetchStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]>
+    func fetchBookmarkStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]>
+    func fetchStoreSortedByName(sortAscending: Bool) -> Single<[StoreVO]>
     func createStoreTable(_ store: StoreTable) -> Completable
     func createStore(_ store: StoreVO) -> Completable
     func updateStore(_ store: StoreVO) -> Completable
@@ -33,6 +39,103 @@ final class DefaultRealmRepository: RealmRepository {
         
         if let fileURL = realm.configuration.fileURL {
             print("Realm fileURL \(String(describing: fileURL))")
+        }
+    }
+    
+    func fetchBookmarkStore(sortAscending: Bool) -> Single<[StoreVO]> {
+        return Single.create { single in
+            let storeValue = self.realm.objects(StoreTable.self)
+                .sorted(byKeyPath: "bookmarkDate", ascending: sortAscending)
+                .filter("bookmark == %@", true)
+                .map { $0.toDomain() } as [StoreVO]
+            
+            single(.success(storeValue))
+            return Disposables.create()
+        }
+    }
+    
+    func fetchStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]> {
+        return Single.create { single in
+            let sortProperties = [SortDescriptor(keyPath: "rate", ascending: sortAscending),
+                                  SortDescriptor(keyPath: "date", ascending: false)]
+            
+            let storeValue = self.realm.objects(StoreTable.self)
+                .sorted(by: sortProperties)
+                .filter("rate != %@", 0)
+                .map { $0.toDomain() } as [StoreVO]
+            
+            single(.success(storeValue))
+            return Disposables.create()
+        }
+    }
+    
+    func fetchBookmarkStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]> {
+        return Single.create { single in
+            let sortProperties = [SortDescriptor(keyPath: "rate", ascending: sortAscending),
+                                  SortDescriptor(keyPath: "date", ascending: false)]
+            
+            let storeValue = self.realm.objects(StoreTable.self)
+                .sorted(by: sortProperties)
+                .filter("rate != %@", 0)
+                .filter("bookmark == %@", true)
+                .map { $0.toDomain() } as [StoreVO]
+            
+            single(.success(storeValue))
+            return Disposables.create()
+        }
+    }
+    
+    func fetchStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]> {
+        return Single.create { single in
+            let storeValue = self.realm.objects(StoreTable.self)
+                .sorted(byKeyPath: "date", ascending: false)
+                .sorted { (store1, store2) in
+                    let episodeCount1 = store1.episode.count
+                    let episodeCount2 = store2.episode.count
+                    
+                    if sortAscending {
+                        return episodeCount1 < episodeCount2
+                    } else {
+                        return episodeCount1 > episodeCount2
+                    }
+                }
+                .map { $0.toDomain() } as [StoreVO]
+            
+            single(.success(storeValue))
+            return Disposables.create()
+        }
+    }
+    
+    func fetchBookmarkStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]> {
+        return Single.create { single in
+            let storeValue = self.realm.objects(StoreTable.self)
+                .sorted(byKeyPath: "date", ascending: false)
+                .filter("bookmark == %@", true)
+                .sorted { (store1, store2) in
+                    let episodeCount1 = store1.episode.count
+                    let episodeCount2 = store2.episode.count
+                    
+                    if sortAscending {
+                        return episodeCount1 < episodeCount2
+                    } else {
+                        return episodeCount1 > episodeCount2
+                    }
+                }
+                .map { $0.toDomain() } as [StoreVO]
+            
+            single(.success(storeValue))
+            return Disposables.create()
+        }
+    }
+    
+    func fetchStoreSortedByName(sortAscending: Bool) -> Single<[StoreVO]> {
+        return Single.create { single in
+            let storeValue = self.realm.objects(StoreTable.self)
+                .sorted(byKeyPath: "placeName", ascending: sortAscending)
+                .map { $0.toDomain() } as [StoreVO]
+            
+            single(.success(storeValue))
+            return Disposables.create()
         }
     }
     
@@ -74,6 +177,7 @@ final class DefaultRealmRepository: RealmRepository {
             do {
                 try self.realm.write {
                     storeObject.bookmark = store.bookmark
+                    storeObject.bookmarkDate = store.bookmarkDate
                     storeObject.rate = store.rate
                     storeObject.categoryType = store.categoryType
                     self.realm.add(storeObject, update: .modified)
@@ -281,7 +385,8 @@ extension StoreVO {
                                     categoryType: self.categoryType,
                                     rate: self.rate,
                                     bookmark: self.bookmark,
-                                    episode: episodeList)
+                                    episode: episodeList,
+                                    bookmarkDate: self.bookmarkDate)
         return storeTable
     }
 }
