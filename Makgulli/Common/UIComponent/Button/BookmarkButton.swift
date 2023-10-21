@@ -37,6 +37,7 @@ final class BookmarkButton: UIButton {
                                                  ])
         configuration.attributedTitle = AttributedString(attributedTitle)
         configuration.baseForegroundColor = UIColor.pink
+        configuration.background.backgroundColor = .clear
         configuration.imagePadding = 5
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
         configuration.imagePlacement = .leading
