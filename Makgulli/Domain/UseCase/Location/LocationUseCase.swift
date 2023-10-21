@@ -11,7 +11,7 @@ import CoreLocation
 import RxSwift
 import RxRelay
 
-protocol LocationUseCase {
+protocol LocationUseCase: AnyObject {
     var locationCoordinate:  BehaviorRelay<CLLocationCoordinate2D> { get set }
     var authorizationDeniedStatus: PublishRelay<Bool> { get set  }
     var locationUpdateSubject: PublishRelay<Void> { get set }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol LocationDetailRepository {
+protocol LocationDetailRepository: AnyObject {
     func loadDataSourceImage(fileName: String) -> Data? 
 }

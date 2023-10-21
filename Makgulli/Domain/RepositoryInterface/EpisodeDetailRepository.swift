@@ -9,6 +9,6 @@ import Foundation
 
 import RxSwift
 
-protocol EpisodeDetailRepository {
+protocol EpisodeDetailRepository: AnyObject {
     func removeImage(fileName: String) -> Completable
 }

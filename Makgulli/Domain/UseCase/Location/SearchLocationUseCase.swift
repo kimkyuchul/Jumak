@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxRelay
 
-protocol SearchLocationUseCase {
+protocol SearchLocationUseCase: AnyObject {
     func fetchLocation(query: String, x: String, y: String, page: Int, display: Int)
     func updateStoreCellObservable(index: Int, storeList: [StoreVO])
     func updateStoreCell(_ store: StoreVO) -> StoreVO?

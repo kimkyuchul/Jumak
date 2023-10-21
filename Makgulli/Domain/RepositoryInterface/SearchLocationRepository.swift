@@ -9,6 +9,6 @@ import Foundation
 
 import RxSwift
 
-protocol SearchLocationRepository {
+protocol SearchLocationRepository: AnyObject {
     func fetchLocation(query: String, x: String, y: String, page: Int, display: Int) -> Single<SearchLocationVO>
 }

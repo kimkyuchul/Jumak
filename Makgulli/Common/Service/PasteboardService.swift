@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PasteboardService {
+protocol PasteboardService: AnyObject {
     func addressPasteboard(address: String)
 }
 

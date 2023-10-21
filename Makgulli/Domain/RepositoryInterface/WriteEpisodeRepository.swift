@@ -9,6 +9,6 @@ import Foundation
 
 import RxSwift
 
-protocol WriteEpisodeRepository {
+protocol WriteEpisodeRepository: AnyObject {
     func saveImage(fileName: String, imageData: Data) -> Completable
 }
