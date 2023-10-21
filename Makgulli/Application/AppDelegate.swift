@@ -36,6 +36,7 @@ private func setNavigationAppearance() {
     let appearance = UINavigationBarAppearance()
     appearance.backgroundColor = UIColor.white
     appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+    appearance.shadowColor = .clear
     UINavigationBar.appearance().tintColor = UIColor.black
     UINavigationBar.appearance().standardAppearance = appearance
     UINavigationBar.appearance().scrollEdgeAppearance = appearance
