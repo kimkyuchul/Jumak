@@ -155,7 +155,7 @@ final class LocationViewController: BaseViewController {
                 guard let realmRepository = DefaultRealmRepository() else { return }
                 
                 if let updatedItem = self?.viewModel.updateStoreCell(data.1.0) {
-                    let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: updatedItem, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), pasteboardService: DefaultPasteboardService())))
+                    let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: updatedItem, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), urlSchemaService: DefaultURLSchemaService(), pasteboardService: DefaultPasteboardService())))
                     detailVC.hidesBottomBarWhenPushed = true
                     data.0.navigationController?.pushViewController(detailVC, animated: true)
                 }
@@ -225,16 +225,14 @@ final class LocationViewController: BaseViewController {
         let getAuthAction: UIAlertAction
         getAuthAction = UIAlertAction(
             title: "설정으로 이동",
-            style: .destructive,
+            style: .default,
             handler: { _ in
                 if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
                 }
             }
         )
-        let cancelAction = UIAlertAction(title: "취소", style: .default)
         
-        authAlertController.addAction(cancelAction)
         authAlertController.addAction(getAuthAction)
         self.present(authAlertController, animated: true, completion: nil)
     }

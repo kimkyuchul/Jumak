@@ -10,11 +10,11 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-
 final class LocationDetailViewController: BaseViewController {
     
     private let locationDetailView = LocationDetailView()
     private let viewModel: LocationDetailViewModel
+    private let didSelectFindRouteType = PublishRelay<FindRouteType>()
     
     init(viewModel: LocationDetailViewModel) {
         self.viewModel = viewModel
@@ -54,6 +54,7 @@ final class LocationDetailViewController: BaseViewController {
                    viewWillDisappearEvent: self.rx.viewWillDisappear.map { _ in },
                    didSelectRate: locationDetailView.rateView.currentStarSubject.asObserver(),
                    didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable(),
+                   didSelectFindRouteType: didSelectFindRouteType.asObservable(),
                    didSelectUserLocationButton: locationDetailView.storeLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
                    didSelectCopyAddressButton: locationDetailView.infoView.rx.tapCopyAddress.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
                    didSelectMakeEpisodeButton: locationDetailView.bottomView.rx.tapMakeEpisode.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
@@ -176,10 +177,10 @@ final class LocationDetailViewController: BaseViewController {
     }
     
     override func bindAction() {
-        locationDetailView.titleView.rx.tapFindRoute.throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+        locationDetailView.titleView.rx.tapFindRoute
             .withUnretained(self)
             .bind(onNext: { owner, _ in
-                
+                owner.findRouteActionSheet()
             })
             .disposed(by: disposeBag)
         
@@ -192,4 +193,23 @@ final class LocationDetailViewController: BaseViewController {
              })
              .disposed(by: disposeBag)
     }
+    
+    private func findRouteActionSheet() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+         for findRoute in FindRouteType.allCases {
+             let alertAction = UIAlertAction(title: findRoute.title, style: .default) { [weak self] _ in
+                 self?.didSelectFindRouteType.accept(findRoute)
+             }
+             let image = findRoute.logoImage
+             alertAction.setValue(image, forKey: "image")
+             
+             let titleTextColor = findRoute.textColor
+             alertAction.setValue(titleTextColor, forKey: "titleTextColor")
+             
+             alert.addAction(alertAction)
+         }
+         let cancel = UIAlertAction(title: "취소", style: .cancel)
+         alert.addAction(cancel)
+         present(alert, animated: true)
+     }
 }

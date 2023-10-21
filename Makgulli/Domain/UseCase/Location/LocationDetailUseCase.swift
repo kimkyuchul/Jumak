@@ -19,15 +19,18 @@ final class LocationDetailUseCase {
     
     private let realmRepository: RealmRepository
     private let locationDetailRepository: LocationDetailRepository
+    private let urlSchemaService: URLSchemaService
     private let pasteboardService: PasteboardService
     private let disposebag = DisposeBag()
     
     init(realmRepository: RealmRepository,
          locationDetailRepository: LocationDetailRepository,
+         urlSchemaService: URLSchemaService,
          pasteboardService: PasteboardService
     ) {
         self.realmRepository = realmRepository
         self.locationDetailRepository = locationDetailRepository
+        self.urlSchemaService = urlSchemaService
         self.pasteboardService = pasteboardService
     }
     
@@ -105,6 +108,10 @@ final class LocationDetailUseCase {
             return Disposables.create()
         }
     }
+    
+    func showMap(_ findRouteType: FindRouteType, locationCoordinate: (Double, Double), address: String) {
+        urlSchemaService.openMapForURL(findRouteType: findRouteType, locationCoordinate: locationCoordinate, address: address)
+        }
 }
 
 extension LocationDetailUseCase {

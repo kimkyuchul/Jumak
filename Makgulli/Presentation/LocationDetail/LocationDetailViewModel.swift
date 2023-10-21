@@ -41,6 +41,7 @@ final class LocationDetailViewModel: ViewModelType {
         let viewWillDisappearEvent: Observable<Void>
         let didSelectRate: Observable<Int>
         let didSelectBookmark: Observable<Bool>
+        let didSelectFindRouteType: Observable<FindRouteType>
         let didSelectUserLocationButton: Observable<Void>
         let didSelectCopyAddressButton : Observable<Void>
         let didSelectMakeEpisodeButton: Observable<Void>
@@ -127,6 +128,19 @@ final class LocationDetailViewModel: ViewModelType {
         
         didSelectBookmark
             .bind(to: output.showBookmarkToast)
+            .disposed(by: disposeBag)
+        
+        let urlSchemaObservable = Observable.zip(output.address, output.locationCoordinate)
+        
+        input.didSelectFindRouteType
+            .withLatestFrom(urlSchemaObservable) { findRouteType, urlSchemaObservable in
+                return (findRouteType, urlSchemaObservable)
+            }
+            .withUnretained(self)
+            .bind(onNext: { owner, urlSchema in
+                let (findRouteType, (address, locationCoordinate)) = urlSchema
+                owner.locationDetailUseCase.showMap(findRouteType, locationCoordinate: locationCoordinate, address: address)
+            })
             .disposed(by: disposeBag)
         
         input.didSelectUserLocationButton

@@ -87,7 +87,7 @@ final class FavoriteViewController: BaseViewController {
                  guard let storeVO = owner.itemIdentifier(for: indexPath) else { return }
                  
                  guard let realmRepository = DefaultRealmRepository() else { return }
-                 let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: storeVO, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), pasteboardService: DefaultPasteboardService())))
+                 let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: storeVO, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), urlSchemaService: DefaultURLSchemaService(), pasteboardService: DefaultPasteboardService())))
                      detailVC.hidesBottomBarWhenPushed = true
                      owner.navigationController?.pushViewController(detailVC, animated: true)
              })
