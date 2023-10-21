@@ -15,33 +15,11 @@ enum FindRouteType: CaseIterable {
     var title: String {
         switch self {
         case .naver:
-            return "네이버 길찾기"
+            return "네이버맵으로 이동"
         case .kakao:
-            return "카카오 길찾기"
+            return "카카오맵으로 이동"
         case .apple:
-            return "애플 길찾기"
-        }
-    }
-    
-    var logoImage: UIImage {
-        switch self {
-        case .naver:
-            return ImageLiteral.copyIcon
-        case .kakao:
-            return ImageLiteral.calendarIcon
-        case .apple:
-            return ImageLiteral.fillBookMarkIcon
-        }
-    }
-    
-    var textColor: UIColor {
-        switch self {
-        case .naver:
-            return UIColor.green
-        case .kakao:
-            return UIColor.yellow
-        case .apple:
-            return UIColor.blue
+            return "애플맵으로 이동"
         }
     }
 }

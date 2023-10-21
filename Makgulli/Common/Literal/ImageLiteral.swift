@@ -16,8 +16,6 @@ enum ImageLiteral {
     static var touchMarker: UIImage { .load(named: "TouchMarker") }
     static var marker: UIImage { .load(named: "Marker") }
     
-    //MARK: - Home
-    
     //MARK: - Map
     static var makgulliLogo: UIImage { .load(named: "Makgulli") }
     static var pajeonLogo: UIImage { .load(named: "Pajeon") }

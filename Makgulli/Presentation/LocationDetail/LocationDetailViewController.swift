@@ -200,12 +200,6 @@ final class LocationDetailViewController: BaseViewController {
              let alertAction = UIAlertAction(title: findRoute.title, style: .default) { [weak self] _ in
                  self?.didSelectFindRouteType.accept(findRoute)
              }
-             let image = findRoute.logoImage
-             alertAction.setValue(image, forKey: "image")
-             
-             let titleTextColor = findRoute.textColor
-             alertAction.setValue(titleTextColor, forKey: "titleTextColor")
-             
              alert.addAction(alertAction)
          }
          let cancel = UIAlertAction(title: "취소", style: .cancel)
