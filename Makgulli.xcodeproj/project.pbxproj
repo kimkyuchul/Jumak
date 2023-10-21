@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		506CA1E64669FE0853F40A90 /* libPods-Makgulli-MakgulliUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */; };
 		5A0A982D2AE265A400545939 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */; };
+		5A0A982F2AE3A23900545939 /* URLSchemaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982E2AE3A23900545939 /* URLSchemaService.swift */; };
+		5A0A98312AE3E1E500545939 /* FindRouteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98302AE3E1E500545939 /* FindRouteType.swift */; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -162,6 +164,8 @@
 		463D854F776FDADD2658D9BD /* Pods-Makgulli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli.release.xcconfig"; path = "Target Support Files/Pods-Makgulli/Pods-Makgulli.release.xcconfig"; sourceTree = "<group>"; };
 		51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakgulliTests.release.xcconfig"; path = "Target Support Files/Pods-MakgulliTests/Pods-MakgulliTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		5A0A982E2AE3A23900545939 /* URLSchemaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemaService.swift; sourceTree = "<group>"; };
+		5A0A98302AE3E1E500545939 /* FindRouteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindRouteType.swift; sourceTree = "<group>"; };
 		5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreEmptyView.swift; sourceTree = "<group>"; };
 		5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -745,6 +749,7 @@
 			children = (
 				5A9DA2162AC3F629006040D2 /* LocationService.swift */,
 				5AAB8EAA2AE15CC7005969FA /* PasteboardService.swift */,
+				5A0A982E2AE3A23900545939 /* URLSchemaService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -853,6 +858,7 @@
 				5AAB8E692AD7F0FB005969FA /* QuantityType.swift */,
 				5AAB8E892ADCFC2E005969FA /* AlertType.swift */,
 				5AAB8E9B2ADFD225005969FA /* FilterType.swift */,
+				5A0A98302AE3E1E500545939 /* FindRouteType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1196,6 +1202,7 @@
 				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
 				5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */,
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,
+				5A0A98312AE3E1E500545939 /* FindRouteType.swift in Sources */,
 				5AAB8EA42ADFF1B1005969FA /* FavoriteUseCase.swift in Sources */,
 				5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */,
 				5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */,
@@ -1219,6 +1226,7 @@
 				5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */,
 				5AAB8EA02ADFE75E005969FA /* FilterBottomSheetHeaderView.swift in Sources */,
 				5A6827922AD14E0A00C37B17 /* String+.swift in Sources */,
+				5A0A982F2AE3A23900545939 /* URLSchemaService.swift in Sources */,
 				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
 				5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */,
 				5ADC00392AC5F9370024D7F8 /* CategoryCollectionViewCell.swift in Sources */,
