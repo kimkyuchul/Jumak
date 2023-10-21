@@ -95,8 +95,11 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.authorizationAlertShouldShow
-            .bind(onNext: { authorization in
-                print(authorization)
+            .withUnretained(self)
+            .bind(onNext: { owner, authorization in
+                if authorization {
+                    owner.setRequestLocationServiceAlertAction()
+                }
             })
             .disposed(by: disposeBag)
         
@@ -209,6 +212,31 @@ final class LocationViewController: BaseViewController {
             marker.mapView = nil
         }
         self.markers.removeAll()
+    }
+    
+    private func setRequestLocationServiceAlertAction() {
+        let authAlertController: UIAlertController
+        authAlertController = UIAlertController(
+            title: "위치정보 권한 요청",
+            message: "막걸리를 찾기 위해선 위치정보 권한이 필요해요!",
+            preferredStyle: .alert
+        )
+        
+        let getAuthAction: UIAlertAction
+        getAuthAction = UIAlertAction(
+            title: "설정으로 이동",
+            style: .destructive,
+            handler: { _ in
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                }
+            }
+        )
+        let cancelAction = UIAlertAction(title: "취소", style: .default)
+        
+        authAlertController.addAction(cancelAction)
+        authAlertController.addAction(getAuthAction)
+        self.present(authAlertController, animated: true, completion: nil)
     }
 }
 
