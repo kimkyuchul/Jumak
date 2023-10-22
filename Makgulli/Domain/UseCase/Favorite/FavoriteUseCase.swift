@@ -34,32 +34,29 @@ final class DefaultFavoriteUseCase {
                 case .failure(let error):
                     self?.errorSubject.onNext(error)
                 }
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    self?.isLoding.onNext(false)
-                }
+                self?.isLoding.onNext(false)
             }
             .disposed(by: disposebag)
     }
     
     private func filterStore(filterType: FilterType, reverseFilter: Bool) -> Single<[StoreVO]> {
-
+        
         switch filterType {
         case .recentlyAddedBookmark:
             return realmRepository.fetchBookmarkStore(sortAscending: reverseFilter)
-
+            
         case .sortByUpRating:
             return realmRepository.fetchStoreSortedByRating(sortAscending: reverseFilter)
-
+            
         case .bookmarkSortByUpRating:
             return realmRepository.fetchBookmarkStoreSortedByRating(sortAscending: reverseFilter)
-
+            
         case .sortByDescendingEpisodeCount:
             return realmRepository.fetchStoreSortedByEpisodeCount(sortAscending: reverseFilter)
-
+            
         case .bookmarkSortByDescendingEpisodeCount:
             return realmRepository.fetchBookmarkStoreSortedByEpisodeCount(sortAscending: reverseFilter)
-
+            
         case .sortByName:
             return realmRepository.fetchStoreSortedByName(sortAscending: !reverseFilter)
         }
