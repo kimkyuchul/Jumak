@@ -25,6 +25,7 @@ final class FavoriteViewModel: ViewModelType {
     struct Output {
         let storeList = PublishRelay<([StoreVO], FilterType, Bool)>()
         let filterType = BehaviorRelay<FilterType>(value: .recentlyAddedBookmark)
+        let isLoding = BehaviorRelay<Bool>(value: false)
     }
 
     func transform(input: Input) -> Output {
@@ -73,6 +74,10 @@ final class FavoriteViewModel: ViewModelType {
         
         defaultFavoriteUseCase.filterStore
             .bind(to: output.storeList)
+            .disposed(by: disposeBag)
+        
+        defaultFavoriteUseCase.isLoding
+            .bind(to: output.isLoding)
             .disposed(by: disposeBag)
     }
 }

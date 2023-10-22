@@ -49,6 +49,7 @@ final class FavoriteViewController: BaseViewController {
         collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCollectionViewCell")
         return collectionView
     }()
+    private lazy var indicatorView = IndicatorView(frame: .zero)
         
     init(viewModel: FavoriteViewModel) {
         self.viewModel = viewModel
@@ -77,6 +78,10 @@ final class FavoriteViewController: BaseViewController {
             
                 owner.applyCollectionViewDataSource(by: storeList, countTitle: storeList.count, filterType: filterType, reverseFilterType: reverseFilterType)
             })
+            .disposed(by: disposeBag)
+        
+        output.isLoding
+            .bind(to: indicatorView.rx.isAnimating)
             .disposed(by: disposeBag)
     }
     
@@ -165,7 +170,7 @@ final class FavoriteViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        [categoryButton, collectionView].forEach {
+        [categoryButton, collectionView, indicatorView].forEach {
             view.addSubview($0)
         }
     }
@@ -179,6 +184,10 @@ final class FavoriteViewController: BaseViewController {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(categoryButton.snp.bottom).offset(15)
             make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        indicatorView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }

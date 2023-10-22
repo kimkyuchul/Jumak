@@ -16,6 +16,7 @@ final class DefaultFavoriteUseCase {
     
     var errorSubject = PublishSubject<Error>()
     var filterStore = PublishSubject<([StoreVO], FilterType, Bool)>()
+    var isLoding = PublishSubject<Bool>()
     
     init(
         realmRepository: RealmRepository
@@ -26,11 +27,16 @@ final class DefaultFavoriteUseCase {
     func fetchFilterStore(filterType: FilterType, reverseFilter: Bool) {
         filterStore(filterType: filterType, reverseFilter: reverseFilter)
             .subscribe { [weak self] result in
+                self?.isLoding.onNext(true)
                 switch result {
                 case .success(let storeList):
                     self?.filterStore.onNext((storeList, filterType, reverseFilter))
                 case .failure(let error):
                     self?.errorSubject.onNext(error)
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self?.isLoding.onNext(false)
                 }
             }
             .disposed(by: disposebag)

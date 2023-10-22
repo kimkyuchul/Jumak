@@ -84,7 +84,7 @@ final class FilterCollectionViewCell: BaseCollectionViewCell {
         logoImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(15)
-            make.size.equalTo(110)
+            make.size.equalTo(100)
         }
         
         storeTitleLabel.snp.makeConstraints { make in
@@ -143,5 +143,6 @@ extension FilterCollectionViewCell {
         rateBadge.setBadgeTitle(text: "\(item.rate)점")
         distanceBadge.setBadgeTitle(text: "\(item.distance)M")
         bookmarkImageView.tintColor = item.bookmark ? .pink : .gray
+        
     }
 }
