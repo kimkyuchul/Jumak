@@ -69,6 +69,7 @@ final class LocationView: BaseView {
         return collectionView
     }()
     fileprivate let storeEmptyView = StoreEmptyView()
+    lazy var indicatorView  = IndicatorView(frame: .zero)
     
     var locationOverlay: NMFLocationOverlay?
     var visibleItemsRelay = PublishRelay<Int?>()
@@ -104,7 +105,7 @@ final class LocationView: BaseView {
     }
     
     override func setHierarchy() {
-        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton, userLocationButton, storeCollectionView, storeEmptyView].forEach {
+        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton, userLocationButton, storeCollectionView, storeEmptyView, indicatorView].forEach {
             self.addSubview($0)
         }
     }
@@ -155,6 +156,10 @@ final class LocationView: BaseView {
             make.top.equalTo(storeCollectionView.snp.top)
             make.leading.trailing.equalToSuperview().inset(48)
             make.bottom.equalTo(storeCollectionView.snp.bottom)
+        }
+        
+        indicatorView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }

@@ -139,6 +139,10 @@ final class LocationViewController: BaseViewController {
         output.storeEmptyViewHidden
             .bind(to: locationView.rx.handleStoreEmptyViewVisibility)
             .disposed(by: disposeBag)
+        
+        output.isLoding
+            .bind(to: locationView.indicatorView.rx.isAnimating)
+            .disposed(by: disposeBag)
     }
     
     override func bindAction() {
