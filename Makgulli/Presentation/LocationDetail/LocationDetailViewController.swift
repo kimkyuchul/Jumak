@@ -30,23 +30,9 @@ final class LocationDetailViewController: BaseViewController {
         self.title = "상세 정보"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = false
-        print(#function)
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(#function)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(#function)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
+        
     override func bind() {
         let input = LocationDetailViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
