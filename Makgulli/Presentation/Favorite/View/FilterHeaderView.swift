@@ -72,7 +72,6 @@ final class FilterHeaderView: UICollectionReusableView {
             .disposed(by: disposeBag)
         
         filterReverseButton.rx.tap
-            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withUnretained(self)
             .bind(onNext: { owner, event in
                 UserDefaultHandler.reverseFilter.toggle()

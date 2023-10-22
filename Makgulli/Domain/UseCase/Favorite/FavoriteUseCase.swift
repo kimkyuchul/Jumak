@@ -35,7 +35,7 @@ final class DefaultFavoriteUseCase {
                     self?.errorSubject.onNext(error)
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     self?.isLoding.onNext(false)
                 }
             }

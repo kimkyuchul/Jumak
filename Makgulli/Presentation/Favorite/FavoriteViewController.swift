@@ -68,7 +68,7 @@ final class FavoriteViewController: BaseViewController {
     
     override func bind() {
         let input = FavoriteViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
-                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable(), viewDidAppearEvent: self.rx.viewDidAppear.map { _ in })
+                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance), viewDidAppearEvent: self.rx.viewDidAppear.map { _ in })
         let output = viewModel.transform(input: input)
                 
         output.storeList
