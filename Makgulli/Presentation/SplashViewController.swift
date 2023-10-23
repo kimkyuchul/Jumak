@@ -7,8 +7,6 @@
 
 import UIKit
 
-import Reachability
-import RxReachability
 import RxSwift
 
 final class SplashViewController: BaseViewController {
@@ -22,25 +20,11 @@ final class SplashViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Reachability.rx.isConnected
+        reachability?.rx.isConnected
             .withUnretained(self)
             .subscribe(onNext: { owner, _ in
                 RootHandler.shard.update(.main)
             })
-            .disposed(by: disposeBag)
-        
-        
-        Reachability.rx.isDisconnected
-            .withUnretained(self)
-            .flatMap { owner, _ in
-                return owner.rx.makeErrorAlert(
-                    title: "네트워크 연결 오류",
-                    message: "네트워크 연결이 불안정 합니다.",
-                    cancelButtonTitle: "확인"
-                )
-            }
-            .subscribe()
             .disposed(by: disposeBag)
     }
         

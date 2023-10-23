@@ -69,6 +69,7 @@ final class LocationView: BaseView {
         return collectionView
     }()
     fileprivate let storeEmptyView = StoreEmptyView()
+    fileprivate let networkErrorView = NetworkErrorView()
     lazy var indicatorView  = IndicatorView(frame: .zero)
     
     var locationOverlay: NMFLocationOverlay?
@@ -105,7 +106,7 @@ final class LocationView: BaseView {
     }
     
     override func setHierarchy() {
-        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton, userLocationButton, storeCollectionView, storeEmptyView, indicatorView].forEach {
+        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton, userLocationButton, storeCollectionView, networkErrorView, storeEmptyView, indicatorView].forEach {
             self.addSubview($0)
         }
     }
@@ -152,6 +153,12 @@ final class LocationView: BaseView {
             make.height.equalTo(135)
         }
         
+        networkErrorView.snp.makeConstraints { make in
+            make.top.equalTo(storeCollectionView.snp.top)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.bottom.equalTo(storeCollectionView.snp.bottom)
+        }
+        
         storeEmptyView.snp.makeConstraints { make in
             make.top.equalTo(storeCollectionView.snp.top)
             make.leading.trailing.equalToSuperview().inset(48)
@@ -181,6 +188,12 @@ extension Reactive where Base: LocationView {
     var handleStoreEmptyViewVisibility: Binder<Bool> {
         return Binder(self.base) { view, isHidden in
             view.storeEmptyView.isHidden = isHidden
+        }
+    }
+    
+    var handleNetworkErrorViewVisibility: Binder<Bool> {
+        return Binder(self.base) { view, isHidden in
+            view.networkErrorView.isHidden = isHidden
         }
     }
 }

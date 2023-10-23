@@ -167,6 +167,27 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    override func bindReachability() {
+        super.bindReachability()
+        
+        let isReachable = reachability?.rx.isReachable
+            .share()
+            .distinctUntilChanged()
+        
+        isReachable?
+            .bind(to: locationView.rx.handleNetworkErrorViewVisibility)
+            .disposed(by: disposeBag)
+        
+        isReachable?
+            .withUnretained(self)
+            .bind(onNext:{ owner, isReachable in
+                if !isReachable {
+                    owner.clearMarker()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     private func updateUserCurrentLocation(
         latitude: CLLocationDegrees,
         longitude: CLLocationDegrees
