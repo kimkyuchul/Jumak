@@ -47,9 +47,7 @@ final class FilterHeaderView: UICollectionReusableView {
     }()
     private let filterReverseButton: UIButton = {
         let button = UIButton()
-        button.setTitle("필터", for: .normal)
-        button.titleLabel?.font = UIFont.regularLineSeed(size: ._16)
-        button.setTitleColor(.pink, for: .normal)
+        button.setImage(ImageLiteral.reserveFilterIcon, for: .normal)
         return button
     }()
     
@@ -113,13 +111,14 @@ final class FilterHeaderView: UICollectionReusableView {
         }
         
         filterButton.snp.makeConstraints { make in
-            make.trailing.equalTo(filterReverseButton.snp.leading).offset(5)
+            make.trailing.equalTo(filterReverseButton.snp.leading).offset(-6)
             make.centerY.equalTo(storeCountLabel.snp.centerY)
         }
         
         filterReverseButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(18)
             make.centerY.equalTo(storeCountLabel.snp.centerY)
+            make.height.equalTo(filterButton.snp.height)
         }
     }
 }
@@ -139,9 +138,9 @@ extension FilterHeaderView {
         filterButton.configuration?.attributedTitle = AttributedString(attributedTitle)
         
         if reverseFilter {
-            filterReverseButton.setTitle("역순이다.", for: .normal)
+            filterReverseButton.tintColor = .gray
         } else {
-            filterReverseButton.setTitle("정방향이다..", for: .normal)
+            filterReverseButton.tintColor = .black
         }
     }
 }
