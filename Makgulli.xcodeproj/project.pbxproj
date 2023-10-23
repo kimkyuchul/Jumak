@@ -19,6 +19,7 @@
 		5A0A98462AE66AB200545939 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98452AE66AB200545939 /* UIButton+.swift */; };
 		5A0A98482AE67F4200545939 /* RootHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98472AE67F4200545939 /* RootHandler.swift */; };
 		5A0A984B2AE689C600545939 /* RxReachability in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0A984A2AE689C600545939 /* RxReachability */; };
+		5A0A984D2AE6BEF200545939 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A984C2AE6BEF200545939 /* NetworkErrorView.swift */; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -181,6 +182,7 @@
 		5A0A98432AE664F100545939 /* CategoryFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterType.swift; sourceTree = "<group>"; };
 		5A0A98452AE66AB200545939 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		5A0A98472AE67F4200545939 /* RootHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHandler.swift; sourceTree = "<group>"; };
+		5A0A984C2AE6BEF200545939 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreEmptyView.swift; sourceTree = "<group>"; };
 		5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */,
 				5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */,
 				5AAB8EAC2AE1645E005969FA /* EpisodeEmptyView.swift */,
+				5A0A984C2AE6BEF200545939 /* NetworkErrorView.swift */,
 				5A68279E2AD2B64E00C37B17 /* StoreBadge.swift */,
 				5A6827BD2AD6D44E00C37B17 /* ImageSelectionView.swift */,
 				5A6827C12AD6E59300C37B17 /* CheckBoxView.swift */,
@@ -1227,6 +1230,7 @@
 				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
 				5AAB8E732AD9948E005969FA /* WriteEpisodeRepository.swift in Sources */,
 				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
+				5A0A984D2AE6BEF200545939 /* NetworkErrorView.swift in Sources */,
 				5A9DA1DA2AC1A2AA006040D2 /* StringLiteral.swift in Sources */,
 				5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */,
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,

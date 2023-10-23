@@ -12,19 +12,9 @@ import Reachability
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    var reachability: Reachability?
-    
     var window: UIWindow?
     
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        do {
-            reachability = try Reachability()
-            try reachability?.startNotifier()
-        } catch {
-            print("Reachability 에러: \(error)")
-        }
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = SplashViewController()
@@ -32,12 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
-        do {
-            reachability = try Reachability()
-            reachability?.stopNotifier()
-        } catch {
-            print("Reachability 에러: \(error)")
-        }
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -60,7 +44,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    
-    
 }
 
