@@ -18,42 +18,67 @@ final class FavoriteViewModel: ViewModelType {
         
     struct Input {
         let viewWillAppearEvent: Observable<Void>
-        let didSelectReverseFilterButton: Observable<Void>
         let viewDidAppearEvent: Observable<Void>
+        let didSelectCategoryFilterButton: Observable<CategoryFilterType>
+        let didSelectReverseFilterButton: Observable<Void>
     }
     
     struct Output {
         let storeList = PublishRelay<([StoreVO], FilterType, Bool)>()
         let filterType = BehaviorRelay<FilterType>(value: .recentlyAddedBookmark)
+        let categoryfilterType = BehaviorRelay<CategoryFilterType>(value: .all)
         let isLoding = BehaviorRelay<Bool>(value: false)
     }
 
     func transform(input: Input) -> Output {
         let output = Output()
+        
+        let filterTypes = Observable.combineLatest(output.filterType, output.categoryfilterType)
 
         input.viewWillAppearEvent
             .take(1)
-            .withLatestFrom(output.filterType)
+            .withLatestFrom(filterTypes)
             .withUnretained(self)
-            .subscribe(onNext: { owner, filterType in
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
+            .subscribe(onNext: { owner, filterTypes in
+                let (filterType, categoryFilter) = filterTypes
+                
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
         
         input.viewDidAppearEvent
             .skip(1)
-            .withLatestFrom(output.filterType)
+            .withLatestFrom(filterTypes)
             .withUnretained(self)
-            .subscribe(onNext: { owner, filterType in
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
+            .subscribe(onNext: { owner, filterTypes in
+                let (filterType, categoryFilter) = filterTypes
+                
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
+            })
+            .disposed(by: disposeBag)
+        
+        let didSelectCategoryFilterButton = input.didSelectCategoryFilterButton
+            .share()
+        
+        didSelectCategoryFilterButton
+            .withLatestFrom(output.filterType) { categoryFilter, filterType in
+                return (categoryFilter, filterType)
+            }
+            .withUnretained(self)
+            .bind(onNext: { owner, filterTypes in
+                let (categoryFilter, filterType) = filterTypes
+                output.categoryfilterType.accept(categoryFilter)
+                
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
         
         input.didSelectReverseFilterButton
-            .withLatestFrom(output.filterType)
+            .withLatestFrom(filterTypes)
             .withUnretained(self)
-            .bind(onNext: { owner, filterType in
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
+            .subscribe(onNext: { owner, filterTypes in
+                let (filterType, categoryFilter) = filterTypes
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
             
@@ -65,10 +90,14 @@ final class FavoriteViewModel: ViewModelType {
     private func createOutput(output: Output) {
         NotificationCenterManager.filterStore.addObserver()
             .compactMap { $0 as? FilterType }
+            .withLatestFrom(output.categoryfilterType)  { filterType, categoryfilterType in
+                return (filterType, categoryfilterType)
+            }
             .withUnretained(self)
-            .bind(onNext: { owner, filterType in
+            .bind(onNext: { owner, filterTypes in
+                let (filterType, categoryFilter) = filterTypes
                 output.filterType.accept(filterType)
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
+                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
         

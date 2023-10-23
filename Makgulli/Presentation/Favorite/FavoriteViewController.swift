@@ -23,11 +23,12 @@ final class FavoriteViewController: BaseViewController {
     private var dataSource: DiffableDataSource?
     private let viewModel: FavoriteViewModel
     private let didSelectReverseFilterButton = PublishRelay<Void>()
+    private let didSelectCategoryFilterButton = PublishRelay<CategoryFilterType>()
     
-    private let categoryButton = {
+    fileprivate let categoryButton = {
         var configuration = UIButton.Configuration.plain()
         configuration.buttonSize = .small
-        let attributedTitle = NSAttributedString(string: "막걸리 찾기",
+        let attributedTitle = NSAttributedString(string: "모두보기",
                                                  attributes: [
                                                     .font: UIFont.boldLineSeed(size: ._18),
                                                     .foregroundColor: UIColor.black
@@ -62,13 +63,16 @@ final class FavoriteViewController: BaseViewController {
         configureCellRegistrationAndDataSource()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func bind() {
         let input = FavoriteViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
-                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance), viewDidAppearEvent: self.rx.viewDidAppear.map { _ in })
+                                            viewDidAppearEvent: self.rx.viewDidAppear.map { _ in },
+                                            didSelectCategoryFilterButton: didSelectCategoryFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
+                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
                 
         output.storeList
@@ -80,12 +84,23 @@ final class FavoriteViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        output.categoryfilterType
+            .bind(to: rx.categoryTitle)
+            .disposed(by: disposeBag)
+        
         output.isLoding
             .bind(to: indicatorView.rx.isAnimating)
             .disposed(by: disposeBag)
     }
     
     override func bindAction() {
+        categoryButton.rx.tap
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.presentActionSheet(actionType: CategoryFilterType.allCases, relay: owner.didSelectCategoryFilterButton)
+            })
+            .disposed(by: disposeBag)
+        
         collectionView.rx.itemSelected
             .withUnretained(self)
              .subscribe(onNext: { owner, indexPath in
@@ -202,5 +217,13 @@ extension FavoriteViewController: ShowFilterBottomSheetDelegate {
 extension FavoriteViewController: FilterReverseDelegate {
     func filterReverseButtonTapped(_ void: Void) {
         self.didSelectReverseFilterButton.accept(void)
+    }
+}
+
+extension Reactive where Base: FavoriteViewController {
+    var categoryTitle: Binder<CategoryFilterType> {
+        return Binder(self.base) { base, categoryFilterType in
+            base.categoryButton.configuration?.setAttributedTitle(title: categoryFilterType.title, font: UIFont.boldLineSeed(size: ._18), color: .black)
+        }
     }
 }
