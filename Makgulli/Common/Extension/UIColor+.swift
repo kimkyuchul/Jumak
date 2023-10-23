@@ -55,6 +55,10 @@ extension UIColor {
     static var pink: UIColor {
         return UIColor(hex: "#FFA9C8")
     }
+    
+    static var deepYellow: UIColor {
+        return UIColor(hex: "#f1af14")
+    }
 }
 
 extension UIColor {
