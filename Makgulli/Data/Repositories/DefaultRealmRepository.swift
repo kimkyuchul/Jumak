@@ -11,12 +11,12 @@ import RxSwift
 import RealmSwift
 
 protocol RealmRepository {
-    func fetchBookmarkStore(sortAscending: Bool) -> Single<[StoreVO]>
-    func fetchBookmarkStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]>
-    func fetchStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]>
-    func fetchStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]>
-    func fetchBookmarkStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]>
-    func fetchStoreSortedByName(sortAscending: Bool) -> Single<[StoreVO]>
+    func fetchBookmarkStore(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]>
+    func fetchBookmarkStoreSortedByRating(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]>
+    func fetchStoreSortedByRating(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]>
+    func fetchStoreSortedByEpisodeCount(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]>
+    func fetchBookmarkStoreSortedByEpisodeCount(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]>
+    func fetchStoreSortedByName(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]>
     func createStoreTable(_ store: StoreTable) -> Completable
     func createStore(_ store: StoreVO) -> Completable
     func updateStore(_ store: StoreVO) -> Completable
@@ -42,19 +42,22 @@ final class DefaultRealmRepository: RealmRepository {
         }
     }
     
-    func fetchBookmarkStore(sortAscending: Bool) -> Single<[StoreVO]> {
+    func fetchBookmarkStore(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]> {
         return Single.create { single in
             let storeValue = self.realm.objects(StoreTable.self)
                 .sorted(byKeyPath: "bookmarkDate", ascending: sortAscending)
                 .filter("bookmark == %@", true)
+                .filter { [weak self] storeValue in
+                    return self?.filterStoreTable(storeTable: storeValue, with: categoryFilter) ?? true
+                }
                 .map { $0.toDomain() } as [StoreVO]
             
             single(.success(storeValue))
             return Disposables.create()
         }
     }
-    
-    func fetchStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]> {
+        
+    func fetchStoreSortedByRating(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]> {
         return Single.create { single in
             let sortProperties = [SortDescriptor(keyPath: "rate", ascending: sortAscending),
                                   SortDescriptor(keyPath: "date", ascending: false)]
@@ -62,6 +65,9 @@ final class DefaultRealmRepository: RealmRepository {
             let storeValue = self.realm.objects(StoreTable.self)
                 .sorted(by: sortProperties)
                 .filter("rate != %@", 0)
+                .filter { [weak self] storeValue in
+                    return self?.filterStoreTable(storeTable: storeValue, with: categoryFilter) ?? true
+                }
                 .map { $0.toDomain() } as [StoreVO]
             
             single(.success(storeValue))
@@ -69,7 +75,7 @@ final class DefaultRealmRepository: RealmRepository {
         }
     }
     
-    func fetchBookmarkStoreSortedByRating(sortAscending: Bool) -> Single<[StoreVO]> {
+    func fetchBookmarkStoreSortedByRating(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]> {
         return Single.create { single in
             let sortProperties = [SortDescriptor(keyPath: "rate", ascending: sortAscending),
                                   SortDescriptor(keyPath: "date", ascending: false)]
@@ -78,6 +84,9 @@ final class DefaultRealmRepository: RealmRepository {
                 .sorted(by: sortProperties)
                 .filter("rate != %@", 0)
                 .filter("bookmark == %@", true)
+                .filter { [weak self] storeValue in
+                    return self?.filterStoreTable(storeTable: storeValue, with: categoryFilter) ?? true
+                }
                 .map { $0.toDomain() } as [StoreVO]
             
             single(.success(storeValue))
@@ -85,7 +94,7 @@ final class DefaultRealmRepository: RealmRepository {
         }
     }
     
-    func fetchStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]> {
+    func fetchStoreSortedByEpisodeCount(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]> {
         return Single.create { single in
             let storeValue = self.realm.objects(StoreTable.self)
                 .sorted(byKeyPath: "date", ascending: false)
@@ -99,6 +108,9 @@ final class DefaultRealmRepository: RealmRepository {
                         return episodeCount1 > episodeCount2
                     }
                 }
+                .filter { [weak self] storeValue in
+                    return self?.filterStoreTable(storeTable: storeValue, with: categoryFilter) ?? true
+                }
                 .map { $0.toDomain() } as [StoreVO]
             
             single(.success(storeValue))
@@ -106,7 +118,7 @@ final class DefaultRealmRepository: RealmRepository {
         }
     }
     
-    func fetchBookmarkStoreSortedByEpisodeCount(sortAscending: Bool) -> Single<[StoreVO]> {
+    func fetchBookmarkStoreSortedByEpisodeCount(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]> {
         return Single.create { single in
             let storeValue = self.realm.objects(StoreTable.self)
                 .sorted(byKeyPath: "date", ascending: false)
@@ -121,6 +133,9 @@ final class DefaultRealmRepository: RealmRepository {
                         return episodeCount1 > episodeCount2
                     }
                 }
+                .filter { [weak self] storeValue in
+                    return self?.filterStoreTable(storeTable: storeValue, with: categoryFilter) ?? true
+                }
                 .map { $0.toDomain() } as [StoreVO]
             
             single(.success(storeValue))
@@ -128,10 +143,13 @@ final class DefaultRealmRepository: RealmRepository {
         }
     }
     
-    func fetchStoreSortedByName(sortAscending: Bool) -> Single<[StoreVO]> {
+    func fetchStoreSortedByName(sortAscending: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]> {
         return Single.create { single in
             let storeValue = self.realm.objects(StoreTable.self)
                 .sorted(byKeyPath: "placeName", ascending: sortAscending)
+                .filter { [weak self] storeValue in
+                    return self?.filterStoreTable(storeTable: storeValue, with: categoryFilter) ?? true
+                }
                 .map { $0.toDomain() } as [StoreVO]
             
             single(.success(storeValue))
@@ -353,6 +371,21 @@ final class DefaultRealmRepository: RealmRepository {
         }
         
         return false
+    }
+}
+
+extension DefaultRealmRepository {
+    private func filterStoreTable(storeTable: StoreTable, with categoryFilter: CategoryFilterType) -> Bool {
+        switch categoryFilter {
+        case .all:
+            return true
+        case .makgulli:
+            return storeTable.categoryType == .makgulli
+        case .pajeon:
+            return storeTable.categoryType == .pajeon
+        case .bossam:
+            return storeTable.categoryType == .bossam
+        }
     }
 }
 
