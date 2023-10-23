@@ -10,7 +10,7 @@ import UIKit
 enum ImageLiteral {
     
     // MARK: - tab bar icon
-    static var mapTabIcon: UIImage { .load(named: "magnifyingglass") }
+    static var mapTabIcon: UIImage { .load(systemName: "magnifyingglass") }
     
     //MARK: - logo icon
     static var touchMarker: UIImage { .load(named: "TouchMarker") }
@@ -19,6 +19,7 @@ enum ImageLiteral {
     //MARK: - Map
     static var makgulliLogo: UIImage { .load(named: "Makgulli") }
     static var pajeonLogo: UIImage { .load(named: "Pajeon") }
+    static var makgulliImage: UIImage { .load(named: "RealMakgulli") }
     
     //MARK: - Favorite
     
