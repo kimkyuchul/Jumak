@@ -31,13 +31,13 @@ extension TabBarController {
         let locationViewController = UINavigationController(rootViewController: LocationViewController())
         locationViewController.tabBarItem = UITabBarItem(
             title: StringLiteral.location,
-            image: ImageLiteral.koreaIcon,
+            image: ImageLiteral.mapTabIcon,
             selectedImage: nil)
         
         let favoriteViewController = UINavigationController(rootViewController: FavoriteViewController(viewModel: FavoriteViewModel()))
         favoriteViewController.tabBarItem = UITabBarItem(
             title: StringLiteral.Favorite,
-            image: ImageLiteral.koreaIcon,
+            image: ImageLiteral.heartIcon,
             selectedImage: nil)
         
         super.setViewControllers([
