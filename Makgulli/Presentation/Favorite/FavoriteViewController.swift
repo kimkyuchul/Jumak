@@ -51,6 +51,7 @@ final class FavoriteViewController: BaseViewController {
         return collectionView
     }()
     private lazy var indicatorView = IndicatorView(frame: .zero)
+    fileprivate lazy var favoriteEmptyView = FavoriteEmptyView()
         
     init(viewModel: FavoriteViewModel) {
         self.viewModel = viewModel
@@ -59,7 +60,6 @@ final class FavoriteViewController: BaseViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .pink
         configureCellRegistrationAndDataSource()
     }
     
@@ -74,14 +74,22 @@ final class FavoriteViewController: BaseViewController {
                                             didSelectCategoryFilterButton: didSelectCategoryFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
                                             didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
-                
-        output.storeList
+         
+        let storeList = output.storeList
+            .share()
+        
+        storeList
             .withUnretained(self)
             .bind(onNext: { owner, storeListAndFilterType in
                 let (storeList, filterType, reverseFilterType) = storeListAndFilterType
             
                 owner.applyCollectionViewDataSource(by: storeList, countTitle: storeList.count, filterType: filterType, reverseFilterType: reverseFilterType)
             })
+            .disposed(by: disposeBag)
+        
+        storeList
+            .map { !$0.0.isEmpty }
+            .bind(to: rx.handleFavoriteEmptyViewVisibility)
             .disposed(by: disposeBag)
         
         output.categoryfilterType
@@ -170,7 +178,7 @@ final class FavoriteViewController: BaseViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
         let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         headerSupplementary.pinToVisibleBounds = true
         
@@ -185,7 +193,7 @@ final class FavoriteViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        [categoryButton, collectionView, indicatorView].forEach {
+        [categoryButton, collectionView, favoriteEmptyView, indicatorView].forEach {
             view.addSubview($0)
         }
     }
@@ -201,9 +209,18 @@ final class FavoriteViewController: BaseViewController {
             make.leading.trailing.bottom.equalToSuperview()
         }
         
+        favoriteEmptyView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(350)
+        }
+        
         indicatorView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    override func setLayout() {
+        view.backgroundColor = .lightGray
     }
 }
 
@@ -224,6 +241,12 @@ extension Reactive where Base: FavoriteViewController {
     var categoryTitle: Binder<CategoryFilterType> {
         return Binder(self.base) { base, categoryFilterType in
             base.categoryButton.configuration?.setAttributedTitle(title: categoryFilterType.title, font: UIFont.boldLineSeed(size: ._18), color: .black)
+        }
+    }
+    
+    var handleFavoriteEmptyViewVisibility: Binder<Bool> {
+        return Binder(self.base) { view, isHidden in
+            view.favoriteEmptyView.isHidden = isHidden
         }
     }
 }
