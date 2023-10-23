@@ -56,6 +56,7 @@ enum ImageLiteral {
     static var deleteEpisodeIcon : UIImage { .load(systemName: "trash.fill") }
     static var titleArrowDownIcon : UIImage { .load(systemName: "arrowtriangle.down.circle") }
     static var networkErrorIcon : UIImage { .load(systemName: "network") }
+    static var reserveFilterIcon : UIImage { .load(systemName: "arrow.up.arrow.down") }
 }
 
 extension UIImage {
