@@ -56,8 +56,8 @@ final class DefaultSearchLocationUseCase: SearchLocationUseCase {
                 case .failure(let error):
                     self?.errorSubject.onNext(error)
                 }
-        
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     self?.isLoding.onNext(false)
                 }
             }
