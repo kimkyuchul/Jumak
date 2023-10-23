@@ -12,6 +12,13 @@
 		5A0A982F2AE3A23900545939 /* URLSchemaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982E2AE3A23900545939 /* URLSchemaService.swift */; };
 		5A0A98312AE3E1E500545939 /* FindRouteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98302AE3E1E500545939 /* FindRouteType.swift */; };
 		5A0A98332AE4BBBE00545939 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98322AE4BBBD00545939 /* IndicatorView.swift */; };
+		5A0A98372AE5894D00545939 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98362AE5894D00545939 /* SplashViewController.swift */; };
+		5A0A98402AE64A2E00545939 /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A983F2AE64A2E00545939 /* UIDevice+.swift */; };
+		5A0A98422AE6617D00545939 /* ActionTitleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98412AE6617D00545939 /* ActionTitleable.swift */; };
+		5A0A98442AE664F100545939 /* CategoryFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98432AE664F100545939 /* CategoryFilterType.swift */; };
+		5A0A98462AE66AB200545939 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98452AE66AB200545939 /* UIButton+.swift */; };
+		5A0A98482AE67F4200545939 /* RootHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98472AE67F4200545939 /* RootHandler.swift */; };
+		5A0A984B2AE689C600545939 /* RxReachability in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0A984A2AE689C600545939 /* RxReachability */; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -168,6 +175,12 @@
 		5A0A982E2AE3A23900545939 /* URLSchemaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemaService.swift; sourceTree = "<group>"; };
 		5A0A98302AE3E1E500545939 /* FindRouteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindRouteType.swift; sourceTree = "<group>"; };
 		5A0A98322AE4BBBD00545939 /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
+		5A0A98362AE5894D00545939 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		5A0A983F2AE64A2E00545939 /* UIDevice+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+.swift"; sourceTree = "<group>"; };
+		5A0A98412AE6617D00545939 /* ActionTitleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTitleable.swift; sourceTree = "<group>"; };
+		5A0A98432AE664F100545939 /* CategoryFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterType.swift; sourceTree = "<group>"; };
+		5A0A98452AE66AB200545939 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		5A0A98472AE67F4200545939 /* RootHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHandler.swift; sourceTree = "<group>"; };
 		5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreEmptyView.swift; sourceTree = "<group>"; };
 		5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -303,6 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A0A984B2AE689C600545939 /* RxReachability in Frameworks */,
 				5A70BA722AC179A500506846 /* RealmSwift in Frameworks */,
 				5A6827BC2AD6BDCE00C37B17 /* RxGesture in Frameworks */,
 				5A9DA1E52AC2B4DF006040D2 /* Alamofire in Frameworks */,
@@ -572,6 +586,7 @@
 				5ADC003C2AC869060024D7F8 /* Tabbar */,
 				5ADC003F2AC86D8A0024D7F8 /* Favorite */,
 				5ADC002E2AC5E2C60024D7F8 /* Location */,
+				5A0A98362AE5894D00545939 /* SplashViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -605,6 +620,8 @@
 				5A68279C2AD2AC5C00C37B17 /* UIImage+.swift */,
 				5A6827A02AD446D700C37B17 /* UIViewController+.swift */,
 				5A6827B32AD6906700C37B17 /* Date+.swift */,
+				5A0A983F2AE64A2E00545939 /* UIDevice+.swift */,
+				5A0A98452AE66AB200545939 /* UIButton+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -734,6 +751,7 @@
 			children = (
 				5A9DA20E2AC3D739006040D2 /* ViewModelType.swift */,
 				5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */,
+				5A0A98412AE6617D00545939 /* ActionTitleable.swift */,
 			);
 			path = Protocal;
 			sourceTree = "<group>";
@@ -830,6 +848,7 @@
 			children = (
 				5AAB8EA62AE145F0005969FA /* UserDefault.swift */,
 				5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */,
+				5A0A98472AE67F4200545939 /* RootHandler.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -857,6 +876,7 @@
 		5ADC00322AC5F2590024D7F8 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				5A0A98432AE664F100545939 /* CategoryFilterType.swift */,
 				5ADC00332AC5F2720024D7F8 /* CategoryType.swift */,
 				5AAB8E692AD7F0FB005969FA /* QuantityType.swift */,
 				5AAB8E892ADCFC2E005969FA /* AlertType.swift */,
@@ -944,6 +964,7 @@
 				5A9DA1E42AC2B4DF006040D2 /* Alamofire */,
 				5A6827BB2AD6BDCE00C37B17 /* RxGesture */,
 				5AAB8E8C2ADD780E005969FA /* RxKeyboard */,
+				5A0A984A2AE689C600545939 /* RxReachability */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -1027,6 +1048,7 @@
 				5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */,
 				5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */,
+				5A0A98492AE689C600545939 /* XCRemoteSwiftPackageReference "RxReachability" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -1181,6 +1203,7 @@
 				5A70BA332AC174E600506846 /* AppDelegate.swift in Sources */,
 				5A9DA2012AC3C227006040D2 /* SearchLocationVO.swift in Sources */,
 				5A6827A72AD50D5600C37B17 /* WriteEpisodeViewController.swift in Sources */,
+				5A0A98462AE66AB200545939 /* UIButton+.swift in Sources */,
 				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
 				5AAB8E982ADFC203005969FA /* FilterBottomSheetViewController.swift in Sources */,
 				5A6827792ACEC68000C37B17 /* UILabel+.swift in Sources */,
@@ -1194,9 +1217,11 @@
 				5ADC00412AC86DA00024D7F8 /* FavoriteViewController.swift in Sources */,
 				5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */,
 				5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */,
+				5A0A98402AE64A2E00545939 /* UIDevice+.swift in Sources */,
 				5A6827A92AD5221A00C37B17 /* WriteEpisodeView.swift in Sources */,
 				5A6827882AD0509D00C37B17 /* DetailEpisodeView.swift in Sources */,
 				5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */,
+				5A0A98422AE6617D00545939 /* ActionTitleable.swift in Sources */,
 				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
 				5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */,
 				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
@@ -1211,6 +1236,7 @@
 				5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */,
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
 				5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */,
+				5A0A98372AE5894D00545939 /* SplashViewController.swift in Sources */,
 				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
 				5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */,
 				5AAB8E9C2ADFD225005969FA /* FilterType.swift in Sources */,
@@ -1276,6 +1302,7 @@
 				5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */,
 				5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */,
 				5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */,
+				5A0A98442AE664F100545939 /* CategoryFilterType.swift in Sources */,
 				5A6827752ACE9A1D00C37B17 /* DetailRateView.swift in Sources */,
 				5AAB8EA72AE145F0005969FA /* UserDefault.swift in Sources */,
 				5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */,
@@ -1289,6 +1316,7 @@
 				5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */,
 				5A6827702ACE7A6C00C37B17 /* EpisodeCollectionViewCell.swift in Sources */,
 				5AAB8E7F2ADBEEAE005969FA /* EpisodeDetailUseCase.swift in Sources */,
+				5A0A98482AE67F4200545939 /* RootHandler.swift in Sources */,
 				5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1457,6 +1485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
@@ -1476,6 +1505,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1491,6 +1521,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
@@ -1510,6 +1541,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1641,6 +1673,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5A0A98492AE689C600545939 /* XCRemoteSwiftPackageReference "RxReachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxReachability";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
@@ -1692,6 +1732,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5A0A984A2AE689C600545939 /* RxReachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A0A98492AE689C600545939 /* XCRemoteSwiftPackageReference "RxReachability" */;
+			productName = RxReachability;
+		};
 		5A6827BB2AD6BDCE00C37B17 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */;
