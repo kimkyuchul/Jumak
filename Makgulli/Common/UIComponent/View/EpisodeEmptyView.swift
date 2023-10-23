@@ -34,32 +34,34 @@ final class EpisodeEmptyView: BaseView {
         label.font = UIFont.boldLineSeed(size: ._14)
         return label
     }()
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.addArrangedSubviews(emptyTitleLabel, emptySubLabel)
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        return stackView
+    }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = 23
     }
-        
+    
     override func setHierarchy() {
-        [emptyImageView, emptyTitleLabel, emptySubLabel].forEach {
+        [emptyImageView, stackView].forEach {
             self.addSubview($0)
         }
     }
     
     override func setConstraints() {
         emptyImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(28)
             make.centerX.equalToSuperview()
-            make.size.equalTo(70)
+            make.centerY.equalToSuperview().offset(-30)
+            make.size.equalTo(60)
         }
         
-        emptyTitleLabel.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.top.equalTo(emptyImageView.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(10).priority(.high)
-        }
-        
-        emptySubLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyTitleLabel.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(10).priority(.high)
         }
     }

@@ -5,7 +5,7 @@
 //  Created by 김규철 on 2023/10/21.
 //
 
-import UIKit
+import Foundation
 
 enum FindRouteType: CaseIterable {
     case naver
