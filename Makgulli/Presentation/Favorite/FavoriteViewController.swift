@@ -125,8 +125,6 @@ final class FavoriteViewController: BaseViewController {
     private func applyCollectionViewDataSource(
         by viewModels: [StoreVO], countTitle: Int, filterType: FilterType, reverseFilterType: Bool
     ) {
-        print(#function)
-        
         var snapshot = Snapshot()
         
         snapshot.appendSections([.favorite])
