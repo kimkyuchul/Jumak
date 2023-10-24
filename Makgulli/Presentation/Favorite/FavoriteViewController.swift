@@ -123,7 +123,7 @@ final class FavoriteViewController: BaseViewController {
         appInfoButton.rx.tap
             .withUnretained(self)
             .bind(onNext: { owner, _ in
-                print("appInfoButton")
+                owner.navigationController?.pushViewController(AppInfoViewController(), animated: true)
             })
             .disposed(by: disposeBag)
         
