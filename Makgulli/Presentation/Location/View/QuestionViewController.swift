@@ -37,15 +37,14 @@ final class QuestionViewController: BaseViewController {
     private let questionContentLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldLineSeed(size: ._18)
+        label.font = UIFont.boldLineSeed(size: ._16)
         label.numberOfLines = 0
         label.sizeToFit()
         label.text =
         """
         ‘주막’은 주변막걸리의 약자로
-        내 주위의 막걸리 맛집을 찾을 수 있습니다.
-        키워드 기반으로 막걸리 맛집을 찾고 방문 했을 때
-        그날의 에피소드 기록이 가능한 서비스 입니다.🍶
+        내 주위의 맛있는 막걸리 주막을 찾을 수 있습니다.
+        키워드 기반으로 주막을 찾고 그날의 에피소드 기록이 가능한 서비스 입니다.🍶
         """
         return label
     }()
@@ -92,21 +91,21 @@ final class QuestionViewController: BaseViewController {
         }
         
         questionImageView.snp.makeConstraints { make in
-            make.top.equalTo(questionTitleLabel.snp.bottom).offset(20)
+            make.top.equalTo(questionTitleLabel.snp.bottom).offset(10)
             make.leading.equalToSuperview().inset(30)
             make.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(230)
+            make.height.equalTo(UIDevice.current.hasNotch ? 200 : 180)
         }
         
         questionContentLabel.snp.makeConstraints { make in
-            make.top.equalTo(questionImageView.snp.bottom).offset(20)
+            make.top.equalTo(questionImageView.snp.bottom).offset(10)
             make.leading.equalToSuperview().inset(30)
             make.trailing.equalToSuperview().inset(30)
-            make.bottom.equalToSuperview().priority(.low)
+            make.bottom.equalToSuperview().inset(20).priority(.low)
         }
     }
     
     override func setLayout() {
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
     }
 }
