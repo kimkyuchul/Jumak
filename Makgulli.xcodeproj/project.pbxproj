@@ -21,6 +21,9 @@
 		5A0A984B2AE689C600545939 /* RxReachability in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0A984A2AE689C600545939 /* RxReachability */; };
 		5A0A984D2AE6BEF200545939 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A984C2AE6BEF200545939 /* NetworkErrorView.swift */; };
 		5A0A984F2AE6C6FA00545939 /* FavoriteEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A984E2AE6C6FA00545939 /* FavoriteEmptyView.swift */; };
+		5A0A98532AE79F4000545939 /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98522AE79F4000545939 /* AppInfoViewController.swift */; };
+		5A0A98562AE817BE00545939 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0A98552AE817BE00545939 /* Differentiator */; };
+		5A0A98582AE817BE00545939 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0A98572AE817BE00545939 /* RxDataSources */; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -185,6 +188,7 @@
 		5A0A98472AE67F4200545939 /* RootHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHandler.swift; sourceTree = "<group>"; };
 		5A0A984C2AE6BEF200545939 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		5A0A984E2AE6C6FA00545939 /* FavoriteEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEmptyView.swift; sourceTree = "<group>"; };
+		5A0A98522AE79F4000545939 /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
 		5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreEmptyView.swift; sourceTree = "<group>"; };
 		5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -321,9 +325,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A0A984B2AE689C600545939 /* RxReachability in Frameworks */,
+				5A0A98582AE817BE00545939 /* RxDataSources in Frameworks */,
 				5A70BA722AC179A500506846 /* RealmSwift in Frameworks */,
 				5A6827BC2AD6BDCE00C37B17 /* RxGesture in Frameworks */,
 				5A9DA1E52AC2B4DF006040D2 /* Alamofire in Frameworks */,
+				5A0A98562AE817BE00545939 /* Differentiator in Frameworks */,
 				5A70BA6B2AC1795600506846 /* RxRelay in Frameworks */,
 				5A70BA692AC1795600506846 /* RxCocoa in Frameworks */,
 				5A70BA6D2AC1795600506846 /* RxSwift in Frameworks */,
@@ -398,6 +404,7 @@
 		5A0A98512AE79DF200545939 /* AppInfo */ = {
 			isa = PBXGroup;
 			children = (
+				5A0A98522AE79F4000545939 /* AppInfoViewController.swift */,
 			);
 			path = AppInfo;
 			sourceTree = "<group>";
@@ -987,6 +994,8 @@
 				5A6827BB2AD6BDCE00C37B17 /* RxGesture */,
 				5AAB8E8C2ADD780E005969FA /* RxKeyboard */,
 				5A0A984A2AE689C600545939 /* RxReachability */,
+				5A0A98552AE817BE00545939 /* Differentiator */,
+				5A0A98572AE817BE00545939 /* RxDataSources */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -1071,6 +1080,7 @@
 				5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */,
 				5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 				5A0A98492AE689C600545939 /* XCRemoteSwiftPackageReference "RxReachability" */,
+				5A0A98542AE817BE00545939 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -1294,6 +1304,7 @@
 				5A6827B02AD56B1300C37B17 /* WriteEpisodeUseCase.swift in Sources */,
 				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
 				5A6827A32AD44DD900C37B17 /* PaddingLabel.swift in Sources */,
+				5A0A98532AE79F4000545939 /* AppInfoViewController.swift in Sources */,
 				5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */,
 				5A6827AB2AD5265100C37B17 /* EpisodeButton.swift in Sources */,
 				5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */,
@@ -1705,6 +1716,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		5A0A98542AE817BE00545939 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
@@ -1760,6 +1779,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A0A98492AE689C600545939 /* XCRemoteSwiftPackageReference "RxReachability" */;
 			productName = RxReachability;
+		};
+		5A0A98552AE817BE00545939 /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A0A98542AE817BE00545939 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		5A0A98572AE817BE00545939 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A0A98542AE817BE00545939 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		5A6827BB2AD6BDCE00C37B17 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
