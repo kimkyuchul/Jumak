@@ -43,7 +43,7 @@ enum CategoryType: String, CaseIterable, PersistableEnum {
         case .pajeon:
             return ImageLiteral.pajeonLogo
         case .bossam:
-            return ImageLiteral.bossamCategoryIcon
+            return ImageLiteral.bossamLogo
         }
     }
     
