@@ -370,6 +370,8 @@
 			isa = PBXGroup;
 			children = (
 				5AAB8E942ADE824F005969FA /* FilterHeaderView.swift */,
+				5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */,
+				5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */,
 				5A0A982B2AE2657600545939 /* Cell */,
 			);
 			path = View;
@@ -379,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */,
+				5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -390,6 +393,13 @@
 				5ADC003C2AC869060024D7F8 /* Tabbar */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		5A0A98512AE79DF200545939 /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppInfo;
 			sourceTree = "<group>";
 		};
 		5A6827712ACE7CC200C37B17 /* Cell */ = {
@@ -471,8 +481,8 @@
 			isa = PBXGroup;
 			children = (
 				5AAB8E7D2ADBE246005969FA /* View */,
-				5A6827AC2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift */,
 				5A6827A62AD50D5500C37B17 /* WriteEpisodeViewController.swift */,
+				5A6827AC2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -596,11 +606,12 @@
 			isa = PBXGroup;
 			children = (
 				5A0A98502AE6D9A000545939 /* Common */,
-				5AAB8E782ADBE152005969FA /* EpisodeDetail */,
-				5A6827A52AD50D3A00C37B17 /* Episode */,
-				5ADC004B2ACA9D970024D7F8 /* LocationDetail */,
-				5ADC003F2AC86D8A0024D7F8 /* Favorite */,
 				5ADC002E2AC5E2C60024D7F8 /* Location */,
+				5ADC004B2ACA9D970024D7F8 /* LocationDetail */,
+				5A6827A52AD50D3A00C37B17 /* Episode */,
+				5AAB8E782ADBE152005969FA /* EpisodeDetail */,
+				5ADC003F2AC86D8A0024D7F8 /* Favorite */,
+				5A0A98512AE79DF200545939 /* AppInfo */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -822,9 +833,9 @@
 		5AAB8E782ADBE152005969FA /* EpisodeDetail */ = {
 			isa = PBXGroup;
 			children = (
+				5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */,
 				5AAB8E792ADBE171005969FA /* EpisodeDetailViewController.swift */,
 				5AAB8E7B2ADBE22D005969FA /* EpisodeDetailViewModel.swift */,
-				5AAB8E872ADC36F2005969FA /* EpisodeDetailView.swift */,
 			);
 			path = EpisodeDetail;
 			sourceTree = "<group>";
@@ -871,9 +882,8 @@
 			isa = PBXGroup;
 			children = (
 				5ADC002F2AC5E2DA0024D7F8 /* View */,
-				5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */,
-				5A9DA21D2AC419D5006040D2 /* LocationView.swift */,
 				5A70BA622AC1788E00506846 /* LocationViewController.swift */,
+				5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -881,8 +891,9 @@
 		5ADC002F2AC5E2DA0024D7F8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5ADC00372AC5F9270024D7F8 /* Cell */,
+				5A9DA21D2AC419D5006040D2 /* LocationView.swift */,
 				5ADC00302AC5E31C0024D7F8 /* QuestionViewController.swift */,
+				5ADC00372AC5F9270024D7F8 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -923,9 +934,6 @@
 				5A0A982A2AE2657000545939 /* View */,
 				5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */,
 				5AAB8E8E2ADE1F97005969FA /* FavoriteViewModel.swift */,
-				5AAB8E972ADFC203005969FA /* FilterBottomSheetViewController.swift */,
-				5AAB8E992ADFD1C6005969FA /* FilterTableViewCell.swift */,
-				5AAB8E9F2ADFE75E005969FA /* FilterBottomSheetHeaderView.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
