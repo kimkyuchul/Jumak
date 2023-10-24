@@ -19,6 +19,7 @@ enum ImageLiteral {
     //MARK: - Map
     static var makgulliLogo: UIImage { .load(named: "Makgulli") }
     static var pajeonLogo: UIImage { .load(named: "Pajeon") }
+    static var bossamLogo: UIImage { .load(named: "bossam") }
     static var makgulliImage: UIImage { .load(named: "RealMakgulli") }
     
     //MARK: - Favorite
