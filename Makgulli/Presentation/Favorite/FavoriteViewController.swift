@@ -38,6 +38,17 @@ final class FavoriteViewController: BaseViewController {
         configuration.baseForegroundColor = .black
         configuration.imagePadding = 6
         configuration.imagePlacement = .trailing
+        configuration.background.backgroundInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        let button = UIButton()
+        button.configuration = configuration
+        button.backgroundColor = .clear
+        return button
+    }()
+    private let appInfoButton: UIButton = {
+        var configuration = UIButton.Configuration.plain()
+        configuration.buttonSize = .medium
+        configuration.image = ImageLiteral.settingIcon
+        configuration.baseForegroundColor = .black
         let button = UIButton()
         button.configuration = configuration
         button.backgroundColor = .clear
@@ -106,6 +117,13 @@ final class FavoriteViewController: BaseViewController {
             .withUnretained(self)
             .bind(onNext: { owner, _ in
                 owner.presentActionSheet(actionType: CategoryFilterType.allCases, relay: owner.didSelectCategoryFilterButton)
+            })
+            .disposed(by: disposeBag)
+        
+        appInfoButton.rx.tap
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                print("appInfoButton")
             })
             .disposed(by: disposeBag)
         
@@ -191,7 +209,7 @@ final class FavoriteViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        [categoryButton, collectionView, favoriteEmptyView, indicatorView].forEach {
+        [categoryButton, appInfoButton, collectionView, favoriteEmptyView, indicatorView].forEach {
             view.addSubview($0)
         }
     }
@@ -200,6 +218,11 @@ final class FavoriteViewController: BaseViewController {
         categoryButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(5)
             make.centerX.equalToSuperview()
+        }
+        
+        appInfoButton.snp.makeConstraints { make in
+            make.centerY.equalTo(categoryButton.snp.centerY)
+            make.trailing.equalToSuperview().inset(10)
         }
         
         collectionView.snp.makeConstraints { make in

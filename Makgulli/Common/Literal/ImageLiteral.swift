@@ -9,9 +9,6 @@ import UIKit
 
 enum ImageLiteral {
     
-    // MARK: - tab bar icon
-    static var mapTabIcon: UIImage { .load(systemName: "magnifyingglass") }
-    
     //MARK: - logo icon
     static var touchMarker: UIImage { .load(named: "TouchMarker") }
     static var marker: UIImage { .load(named: "Marker") }
@@ -59,6 +56,8 @@ enum ImageLiteral {
     static var titleArrowDownIcon : UIImage { .load(systemName: "arrowtriangle.down.circle") }
     static var networkErrorIcon : UIImage { .load(systemName: "network") }
     static var reserveFilterIcon : UIImage { .load(systemName: "arrow.up.arrow.down") }
+    static var settingIcon : UIImage { .load(systemName: "gearshape.fill") }
+    static var mapTabIcon: UIImage { .load(systemName: "magnifyingglass") }
 }
 
 extension UIImage {
