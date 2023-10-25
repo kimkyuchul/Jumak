@@ -9,7 +9,15 @@ import Foundation
 
 import RxSwift
 
-final class DefaultFavoriteUseCase {
+protocol FavoriteUseCase: AnyObject {
+    func fetchFilterStore(filterType: FilterType, reverseFilter: Bool, categoryFilter: CategoryFilterType)
+    
+    var errorSubject: PublishSubject<Error> { get }
+    var filterStore: PublishSubject<([StoreVO], FilterType, Bool)> { get }
+    var isLoding: PublishSubject<Bool> { get }
+}
+
+final class DefaultFavoriteUseCase: FavoriteUseCase {
     
     private let realmRepository: RealmRepository
     private let disposebag = DisposeBag()
