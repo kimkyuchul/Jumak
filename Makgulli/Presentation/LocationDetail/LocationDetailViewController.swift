@@ -180,6 +180,15 @@ final class LocationDetailViewController: BaseViewController {
                  owner.navigationController?.pushViewController(episodeDetailViewController, animated: true)
              })
              .disposed(by: disposeBag)
+
+        locationDetailView.bottomView.rx.tapWarning
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.presentAlert(type: .declarationStore, rightButtonAction:  { [weak owner] in
+                    owner?.showToast(message: "정보가 접수되었습니다.")
+                })
+            })
+            .disposed(by: disposeBag)
     }
     
     private func findRouteActionSheet() {
