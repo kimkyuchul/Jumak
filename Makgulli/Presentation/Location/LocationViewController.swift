@@ -145,6 +145,15 @@ final class LocationViewController: BaseViewController {
             .bind(to: locationView.rx.handleStoreEmptyViewVisibility)
             .disposed(by: disposeBag)
         
+        output.showErrorAlert
+            .withUnretained(self)
+            .flatMap { owner, error in
+                dump(error)
+                return owner.rx.makeErrorAlert(title: "네트워크 에러", message: "네트워크 에러가 발생했습니다.", cancelButtonTitle: "확인")
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+        
         output.isLoding
             .bind(to: locationView.indicatorView.rx.isAnimating)
             .disposed(by: disposeBag)
@@ -164,7 +173,7 @@ final class LocationViewController: BaseViewController {
                 guard let realmRepository = DefaultRealmRepository() else { return }
                 
                 if let updatedItem = self?.viewModel.updateStoreCell(data.1.0) {
-                    let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: updatedItem, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), urlSchemaService: DefaultURLSchemaService(), pasteboardService: DefaultPasteboardService())))
+                    let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: updatedItem, locationDetailUseCase: DefaultLocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), urlSchemaService: DefaultURLSchemaService(), pasteboardService: DefaultPasteboardService())))
                     detailVC.hidesBottomBarWhenPushed = true
                     data.0.navigationController?.pushViewController(detailVC, animated: true)
                 }

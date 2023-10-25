@@ -32,6 +32,7 @@ final class FavoriteViewModel: ViewModelType {
         let storeList = PublishRelay<([StoreVO], FilterType, Bool)>()
         let filterType = BehaviorRelay<FilterType>(value: .recentlyAddedBookmark)
         let categoryfilterType = BehaviorRelay<CategoryFilterType>(value: .all)
+        let showErrorAlert = PublishRelay<Error>()
         let isLoding = BehaviorRelay<Bool>(value: false)
     }
 
@@ -112,6 +113,10 @@ final class FavoriteViewModel: ViewModelType {
         
         favoriteUseCase.isLoding
             .bind(to: output.isLoding)
+            .disposed(by: disposeBag)
+        
+        favoriteUseCase.errorSubject
+            .bind(to: output.showErrorAlert)
             .disposed(by: disposeBag)
     }
 }

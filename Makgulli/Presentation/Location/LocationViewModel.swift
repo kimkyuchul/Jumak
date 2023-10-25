@@ -51,6 +51,7 @@ final class LocationViewModel: ViewModelType {
         let reSearchButtonHidden = PublishRelay<Bool>()
         let storeCollectionViewDataSource = BehaviorRelay<[StoreVO]>(value: [])
         let storeEmptyViewHidden = PublishRelay<Bool>()
+        let showErrorAlert = PublishRelay<Error>()
         let isLoding = BehaviorRelay<Bool>(value: false)
     }
     
@@ -178,7 +179,7 @@ final class LocationViewModel: ViewModelType {
                 }
                 output.storeList.accept(storeVO.stores)
             }) { error in
-                print(error)
+                output.showErrorAlert.accept(error)
             }
             .disposed(by: disposeBag)
         
@@ -237,6 +238,10 @@ final class LocationViewModel: ViewModelType {
         
         searchLocationUseCase.isLoding
             .bind(to: output.isLoding)
+            .disposed(by: disposeBag)
+        
+        searchLocationUseCase.errorSubject
+            .bind(to: output.showErrorAlert)
             .disposed(by: disposeBag)
     }
 }

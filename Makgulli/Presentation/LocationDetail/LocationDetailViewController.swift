@@ -117,11 +117,13 @@ final class LocationDetailViewController: BaseViewController {
         
         output.showErrorAlert
             .withUnretained(self)
-            .bind(onNext: {owner, error in
-                print("\(error.localizedDescription) 에러 모달 띄우기")
-            })
+            .flatMap { owner, error in
+                dump(error)
+                return owner.rx.makeErrorAlert(title: "네트워크 에러", message: "네트워크 에러가 발생했습니다.", cancelButtonTitle: "확인")
+            }
+            .subscribe()
             .disposed(by: disposeBag)
-        
+            
         output.presentWriteEpisode
             .withUnretained(self)
             .bind(onNext: { owner, storeVO in

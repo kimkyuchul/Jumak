@@ -107,6 +107,15 @@ final class FavoriteViewController: BaseViewController {
             .bind(to: rx.categoryTitle)
             .disposed(by: disposeBag)
         
+        output.showErrorAlert
+            .withUnretained(self)
+            .flatMap { owner, error in
+                dump(error)
+                return owner.rx.makeErrorAlert(title: "내부 에러", message: "알수없는 에러가 발생했습니다.", cancelButtonTitle: "확인")
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+        
         output.isLoding
             .bind(to: indicatorView.rx.isAnimating)
             .disposed(by: disposeBag)
@@ -135,7 +144,7 @@ final class FavoriteViewController: BaseViewController {
                  guard let storeVO = owner.itemIdentifier(for: indexPath) else { return }
                  
                  guard let realmRepository = DefaultRealmRepository() else { return }
-                 let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: storeVO, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), urlSchemaService: DefaultURLSchemaService(), pasteboardService: DefaultPasteboardService())))
+                 let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: storeVO, locationDetailUseCase: DefaultLocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), urlSchemaService: DefaultURLSchemaService(), pasteboardService: DefaultPasteboardService())))
                      detailVC.hidesBottomBarWhenPushed = true
                      owner.navigationController?.pushViewController(detailVC, animated: true)
              })
