@@ -29,4 +29,13 @@ extension Bundle {
         }
         return clientID
     }
+    
+    var appVersion: String {
+            guard
+                let version = object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+            else {
+                return ""
+            }
+            return version
+        }
 }
