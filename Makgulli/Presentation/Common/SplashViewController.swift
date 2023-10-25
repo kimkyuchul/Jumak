@@ -17,6 +17,20 @@ final class SplashViewController: BaseViewController {
         imageVIew.contentMode = .scaleAspectFit
         return imageVIew
     }()
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldLineSeed(size: ._34)
+        label.textColor = .black
+        label.text = "내 주변의 막걸리 찾기"
+        return label
+    }()
+    private let subLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldLineSeed(size: ._24)
+        label.textColor = .black
+        label.text = "JUMAK"
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +43,30 @@ final class SplashViewController: BaseViewController {
     }
         
     override func setHierarchy() {
-        view.addSubview(imageView)
+        [imageView, titleLabel, subLabel].forEach {
+            view.addSubview($0)
+        }
     }
     
     override func setConstraints() {
         imageView.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-40)
+            make.size.equalTo(180)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
+        
+        subLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
         }
     }
     
     override func setLayout() {
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
     }
 }
