@@ -28,7 +28,8 @@ final class EpisodeDetailView: BaseView {
     }()
     fileprivate let episodeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .white
         imageView.clipsToBounds = true
         return imageView
     }()

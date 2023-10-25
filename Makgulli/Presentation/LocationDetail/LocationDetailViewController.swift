@@ -10,11 +10,11 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-
 final class LocationDetailViewController: BaseViewController {
     
     private let locationDetailView = LocationDetailView()
     private let viewModel: LocationDetailViewModel
+    private let didSelectFindRouteType = PublishRelay<FindRouteType>()
     
     init(viewModel: LocationDetailViewModel) {
         self.viewModel = viewModel
@@ -30,23 +30,9 @@ final class LocationDetailViewController: BaseViewController {
         self.title = "상세 정보"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = false
-        print(#function)
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(#function)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(#function)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
+        
     override func bind() {
         let input = LocationDetailViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
@@ -54,6 +40,7 @@ final class LocationDetailViewController: BaseViewController {
                    viewWillDisappearEvent: self.rx.viewWillDisappear.map { _ in },
                    didSelectRate: locationDetailView.rateView.currentStarSubject.asObserver(),
                    didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable(),
+                   didSelectFindRouteType: didSelectFindRouteType.asObservable(),
                    didSelectUserLocationButton: locationDetailView.storeLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
                    didSelectCopyAddressButton: locationDetailView.infoView.rx.tapCopyAddress.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
                    didSelectMakeEpisodeButton: locationDetailView.bottomView.rx.tapMakeEpisode.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
@@ -130,11 +117,13 @@ final class LocationDetailViewController: BaseViewController {
         
         output.showErrorAlert
             .withUnretained(self)
-            .bind(onNext: {owner, error in
-                print("\(error.localizedDescription) 에러 모달 띄우기")
-            })
+            .flatMap { owner, error in
+                dump(error)
+                return owner.rx.makeErrorAlert(title: "네트워크 에러", message: "네트워크 에러가 발생했습니다.", cancelButtonTitle: "확인")
+            }
+            .subscribe()
             .disposed(by: disposeBag)
-        
+            
         output.presentWriteEpisode
             .withUnretained(self)
             .bind(onNext: { owner, storeVO in
@@ -147,9 +136,9 @@ final class LocationDetailViewController: BaseViewController {
         
         let episodeList = output.episodeList
             .share()
+            .distinctUntilChanged()
         
         episodeList
-            .distinctUntilChanged()
             .withUnretained(self)
             .map { owner, episodeList in
                 let episodes = episodeList.map { episodeVO -> Episode in
@@ -170,17 +159,16 @@ final class LocationDetailViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         episodeList
-            .distinctUntilChanged()
-            .map { $0.isEmpty }
+            .map { !$0.isEmpty }
             .bind(to: locationDetailView.episodeView.rx.handleEpisodeEmptyViewVisibility)
             .disposed(by: disposeBag)
     }
     
     override func bindAction() {
-        locationDetailView.titleView.rx.tapFindRoute.throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+        locationDetailView.titleView.rx.tapFindRoute
             .withUnretained(self)
             .bind(onNext: { owner, _ in
-                
+                owner.findRouteActionSheet()
             })
             .disposed(by: disposeBag)
         
@@ -188,9 +176,31 @@ final class LocationDetailViewController: BaseViewController {
             .withUnretained(self)
              .subscribe(onNext: { owner, indexPath in
                  guard let episode = owner.locationDetailView.itemIdentifier(for: indexPath) else { return }
-                 let episodeDetailViewController = EpisodeDetailViewController(viewModel: EpisodeDetailViewModel(episode: episode, storeId: owner.viewModel.storeVO.id, episodeDetailUseCase: EpisodeDetailUseCase(realmRepository: DefaultRealmRepository()!, episodeDetailRepository: DefaultEpisodeDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())))))
+                 let episodeDetailViewController = EpisodeDetailViewController(viewModel: EpisodeDetailViewModel(episode: episode, storeId: owner.viewModel.storeVO.id, episodeDetailUseCase: DefaultEpisodeDetailUseCase(realmRepository: DefaultRealmRepository()!, episodeDetailRepository: DefaultEpisodeDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())))))
                  owner.navigationController?.pushViewController(episodeDetailViewController, animated: true)
              })
              .disposed(by: disposeBag)
+
+        locationDetailView.bottomView.rx.tapWarning
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.presentAlert(type: .declarationStore, rightButtonAction:  { [weak owner] in
+                    owner?.showToast(message: "정보가 접수되었습니다.")
+                })
+            })
+            .disposed(by: disposeBag)
     }
+    
+    private func findRouteActionSheet() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+         for findRoute in FindRouteType.allCases {
+             let alertAction = UIAlertAction(title: findRoute.title, style: .default) { [weak self] _ in
+                 self?.didSelectFindRouteType.accept(findRoute)
+             }
+             alert.addAction(alertAction)
+         }
+         let cancel = UIAlertAction(title: "취소", style: .cancel)
+         alert.addAction(cancel)
+         present(alert, animated: true)
+     }
 }

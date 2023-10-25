@@ -9,18 +9,15 @@ import UIKit
 
 enum ImageLiteral {
     
-    // MARK: - tab bar icon
-    static var homeIcon: UIImage { .load(named: "homeIcon") }
-    
     //MARK: - logo icon
     static var touchMarker: UIImage { .load(named: "TouchMarker") }
     static var marker: UIImage { .load(named: "Marker") }
     
-    //MARK: - Home
-    
     //MARK: - Map
     static var makgulliLogo: UIImage { .load(named: "Makgulli") }
     static var pajeonLogo: UIImage { .load(named: "Pajeon") }
+    static var bossamLogo: UIImage { .load(named: "bossam") }
+    static var makgulliImage: UIImage { .load(named: "RealMakgulli") }
     
     //MARK: - Favorite
     
@@ -57,6 +54,11 @@ enum ImageLiteral {
     static var episodeDefaultImage : UIImage { .load(systemName: "party.popper.fill") }
     static var deleteEpisodeIcon : UIImage { .load(systemName: "trash.fill") }
     static var titleArrowDownIcon : UIImage { .load(systemName: "arrowtriangle.down.circle") }
+    static var networkErrorIcon : UIImage { .load(systemName: "network") }
+    static var reserveFilterIcon : UIImage { .load(systemName: "arrow.up.arrow.down") }
+    static var settingIcon : UIImage { .load(systemName: "gearshape.fill") }
+    static var mapTabIcon: UIImage { .load(systemName: "magnifyingglass") }
+    static var warningIcon: UIImage { .load(systemName: "checkmark.circle.trianglebadge.exclamationmark") }
 }
 
 extension UIImage {

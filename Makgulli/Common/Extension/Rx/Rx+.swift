@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+
 extension Reactive where Base: UIViewController {
     var viewDidLoad: ControlEvent<Void> {
       let source = self.methodInvoked(#selector(Base.viewDidLoad)).map { _ in }
@@ -41,5 +42,33 @@ extension Reactive where Base: UIButton {
             editingEvents: [.touchUpInside],
             getter: { $0.isSelected },
             setter: { $0.isSelected = $1 })
+    }
+}
+
+extension Reactive where Base: UIViewController {
+    func makeErrorAlert(
+        title: String?,
+        message: String?,
+        cancelButtonTitle: String?,
+        completion: (() -> Void)? = nil
+    ) -> Observable<Void> {
+        return Observable.create { [weak base] observer in
+            let alertController = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: .alert
+            )
+            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel) { _ in
+                observer.onNext(())
+                observer.onCompleted()
+            }
+            alertController.addAction(cancelAction)
+            
+            base?.present(alertController, animated: true, completion: completion)
+            
+            return Disposables.create {
+                alertController.dismiss(animated: true)
+            }
+        }
     }
 }

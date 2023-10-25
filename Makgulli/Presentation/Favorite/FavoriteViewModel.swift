@@ -13,35 +13,78 @@ import RxSwift
 final class FavoriteViewModel: ViewModelType {
     var disposeBag: DisposeBag = .init()
     
-    private var defaultRealmRepository = DefaultRealmRepository()
-    private lazy var defaultFavoriteUseCase = DefaultFavoriteUseCase(realmRepository: defaultRealmRepository!)
+    private let favoriteUseCase: FavoriteUseCase
+    
+    init(
+        favoriteUseCase: FavoriteUseCase
+    ) {
+        self.favoriteUseCase = favoriteUseCase
+    }
         
     struct Input {
         let viewWillAppearEvent: Observable<Void>
+        let viewDidAppearEvent: Observable<Void>
+        let didSelectCategoryFilterButton: Observable<CategoryFilterType>
         let didSelectReverseFilterButton: Observable<Void>
     }
     
     struct Output {
         let storeList = PublishRelay<([StoreVO], FilterType, Bool)>()
         let filterType = BehaviorRelay<FilterType>(value: .recentlyAddedBookmark)
+        let categoryfilterType = BehaviorRelay<CategoryFilterType>(value: .all)
+        let showErrorAlert = PublishRelay<Error>()
+        let isLoding = BehaviorRelay<Bool>(value: false)
     }
 
     func transform(input: Input) -> Output {
         let output = Output()
+        
+        let filterTypes = Observable.combineLatest(output.filterType, output.categoryfilterType)
 
         input.viewWillAppearEvent
-            .withLatestFrom(output.filterType)
+            .take(1)
+            .withLatestFrom(filterTypes)
             .withUnretained(self)
-            .subscribe(onNext: { owner, filterType in
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
+            .subscribe(onNext: { owner, filterTypes in
+                let (filterType, categoryFilter) = filterTypes
+                
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
+            })
+            .disposed(by: disposeBag)
+        
+        input.viewDidAppearEvent
+            .skip(1)
+            .withLatestFrom(filterTypes)
+            .withUnretained(self)
+            .subscribe(onNext: { owner, filterTypes in
+                let (filterType, categoryFilter) = filterTypes
+                
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
+            })
+            .disposed(by: disposeBag)
+        
+        let didSelectCategoryFilterButton = input.didSelectCategoryFilterButton
+            .share()
+        
+        didSelectCategoryFilterButton
+            .withLatestFrom(output.filterType) { categoryFilter, filterType in
+                return (categoryFilter, filterType)
+            }
+            .withUnretained(self)
+            .bind(onNext: { owner, filterTypes in
+                let (categoryFilter, filterType) = filterTypes
+                output.categoryfilterType.accept(categoryFilter)
+                
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
         
         input.didSelectReverseFilterButton
-            .withLatestFrom(output.filterType)
+            .withLatestFrom(filterTypes)
             .withUnretained(self)
-            .bind(onNext: { owner, filterType in
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
+            .subscribe(onNext: { owner, filterTypes in
+                let (filterType, categoryFilter) = filterTypes
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
             
@@ -53,15 +96,27 @@ final class FavoriteViewModel: ViewModelType {
     private func createOutput(output: Output) {
         NotificationCenterManager.filterStore.addObserver()
             .compactMap { $0 as? FilterType }
+            .withLatestFrom(output.categoryfilterType)  { filterType, categoryfilterType in
+                return (filterType, categoryfilterType)
+            }
             .withUnretained(self)
-            .bind(onNext: { owner, filterType in
+            .bind(onNext: { owner, filterTypes in
+                let (filterType, categoryFilter) = filterTypes
                 output.filterType.accept(filterType)
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter)
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
         
-        defaultFavoriteUseCase.filterStore
+        favoriteUseCase.filterStore
             .bind(to: output.storeList)
+            .disposed(by: disposeBag)
+        
+        favoriteUseCase.isLoding
+            .bind(to: output.isLoding)
+            .disposed(by: disposeBag)
+        
+        favoriteUseCase.errorSubject
+            .bind(to: output.showErrorAlert)
             .disposed(by: disposeBag)
     }
 }

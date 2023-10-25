@@ -44,8 +44,8 @@ final class DetailEpisodeView: BaseView {
     }
     
     private func configureCellRegistrationAndDataSource() {
-        let registration = EpisodeCollectionViewCellRegistration { cell, _, episode in
-            cell.configureCell(item: episode)
+        let registration = EpisodeCollectionViewCellRegistration { cell, indexPath, episode in
+            cell.configureCell(item: episode, episodeIndex: indexPath.item + 1)
         }
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: episodeCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
@@ -96,7 +96,10 @@ final class DetailEpisodeView: BaseView {
         }
         
         episodeEmptyView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(episodeTitleLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(30)
+            make.height.equalTo(episodeCollectionView.snp.height)
+            make.bottom.equalToSuperview()
         }
     }
 }

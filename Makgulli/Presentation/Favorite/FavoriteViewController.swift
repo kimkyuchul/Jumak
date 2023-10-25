@@ -17,17 +17,18 @@ final class FavoriteViewController: BaseViewController {
     }
     
     typealias SectionHeaderRegistration<Header: UICollectionReusableView> = UICollectionView.SupplementaryRegistration<FilterHeaderView>
-    typealias FavoriteCollectionViewCellRegistration = UICollectionView.CellRegistration<StoreCollectionViewCell, StoreVO>
+    typealias FavoriteCollectionViewCellRegistration = UICollectionView.CellRegistration<FilterCollectionViewCell, StoreVO>
     typealias DiffableDataSource = UICollectionViewDiffableDataSource<FavoriteSection, StoreVO>
     typealias Snapshot = NSDiffableDataSourceSnapshot<FavoriteSection, StoreVO>
     private var dataSource: DiffableDataSource?
     private let viewModel: FavoriteViewModel
     private let didSelectReverseFilterButton = PublishRelay<Void>()
+    private let didSelectCategoryFilterButton = PublishRelay<CategoryFilterType>()
     
-    private let categoryButton = {
+    fileprivate let categoryButton = {
         var configuration = UIButton.Configuration.plain()
         configuration.buttonSize = .small
-        let attributedTitle = NSAttributedString(string: "막걸리 찾기",
+        let attributedTitle = NSAttributedString(string: "모두보기",
                                                  attributes: [
                                                     .font: UIFont.boldLineSeed(size: ._18),
                                                     .foregroundColor: UIColor.black
@@ -37,6 +38,17 @@ final class FavoriteViewController: BaseViewController {
         configuration.baseForegroundColor = .black
         configuration.imagePadding = 6
         configuration.imagePlacement = .trailing
+        configuration.background.backgroundInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        let button = UIButton()
+        button.configuration = configuration
+        button.backgroundColor = .clear
+        return button
+    }()
+    private let appInfoButton: UIButton = {
+        var configuration = UIButton.Configuration.plain()
+        configuration.buttonSize = .medium
+        configuration.image = ImageLiteral.settingIcon
+        configuration.baseForegroundColor = .black
         let button = UIButton()
         button.configuration = configuration
         button.backgroundColor = .clear
@@ -46,9 +58,11 @@ final class FavoriteViewController: BaseViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .clear
-        collectionView.register(StoreCollectionViewCell.self, forCellWithReuseIdentifier: "StoreCollectionViewCell")
+        collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCollectionViewCell")
         return collectionView
     }()
+    private lazy var indicatorView = IndicatorView(frame: .zero)
+    fileprivate lazy var favoriteEmptyView = FavoriteEmptyView()
         
     init(viewModel: FavoriteViewModel) {
         self.viewModel = viewModel
@@ -57,7 +71,6 @@ final class FavoriteViewController: BaseViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .pink
         configureCellRegistrationAndDataSource()
     }
     
@@ -68,10 +81,15 @@ final class FavoriteViewController: BaseViewController {
     
     override func bind() {
         let input = FavoriteViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
-                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable())
+                                            viewDidAppearEvent: self.rx.viewDidAppear.map { _ in },
+                                            didSelectCategoryFilterButton: didSelectCategoryFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
+                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
-                
-        output.storeList
+         
+        let storeList = output.storeList
+            .share()
+        
+        storeList
             .withUnretained(self)
             .bind(onNext: { owner, storeListAndFilterType in
                 let (storeList, filterType, reverseFilterType) = storeListAndFilterType
@@ -79,16 +97,54 @@ final class FavoriteViewController: BaseViewController {
                 owner.applyCollectionViewDataSource(by: storeList, countTitle: storeList.count, filterType: filterType, reverseFilterType: reverseFilterType)
             })
             .disposed(by: disposeBag)
+        
+        storeList
+            .map { !$0.0.isEmpty }
+            .bind(to: rx.handleFavoriteEmptyViewVisibility)
+            .disposed(by: disposeBag)
+        
+        output.categoryfilterType
+            .bind(to: rx.categoryTitle)
+            .disposed(by: disposeBag)
+        
+        output.showErrorAlert
+            .withUnretained(self)
+            .flatMap { owner, error in
+                dump(error)
+                return owner.rx.makeErrorAlert(title: "내부 에러", message: "알수없는 에러가 발생했습니다.", cancelButtonTitle: "확인")
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+        
+        output.isLoding
+            .bind(to: indicatorView.rx.isAnimating)
+            .disposed(by: disposeBag)
     }
     
     override func bindAction() {
+        categoryButton.rx.tap
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                owner.presentActionSheet(actionType: CategoryFilterType.allCases, relay: owner.didSelectCategoryFilterButton)
+            })
+            .disposed(by: disposeBag)
+        
+        appInfoButton.rx.tap
+            .withUnretained(self)
+            .bind(onNext: { owner, _ in
+                let appInfoViewController = AppInfoViewController()
+                appInfoViewController.hidesBottomBarWhenPushed = true
+                owner.navigationController?.pushViewController(appInfoViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
         collectionView.rx.itemSelected
             .withUnretained(self)
-             .subscribe(onNext: { owner, indexPath in
+             .bind(onNext: { owner, indexPath in
                  guard let storeVO = owner.itemIdentifier(for: indexPath) else { return }
                  
                  guard let realmRepository = DefaultRealmRepository() else { return }
-                 let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: storeVO, locationDetailUseCase: LocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), pasteboardService: DefaultPasteboardService())))
+                 let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: storeVO, locationDetailUseCase: DefaultLocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), urlSchemaService: DefaultURLSchemaService(), pasteboardService: DefaultPasteboardService())))
                      detailVC.hidesBottomBarWhenPushed = true
                      owner.navigationController?.pushViewController(detailVC, animated: true)
              })
@@ -98,8 +154,6 @@ final class FavoriteViewController: BaseViewController {
     private func applyCollectionViewDataSource(
         by viewModels: [StoreVO], countTitle: Int, filterType: FilterType, reverseFilterType: Bool
     ) {
-        print(#function)
-        
         var snapshot = Snapshot()
         
         snapshot.appendSections([.favorite])
@@ -146,18 +200,18 @@ final class FavoriteViewController: BaseViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.2))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(UIDevice.current.hasNotch ? 0.2 : 0.3))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(45))
         let headerSupplementary = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         headerSupplementary.pinToVisibleBounds = true
         
         section.boundarySupplementaryItems = [headerSupplementary]
         section.orthogonalScrollingBehavior = .none
-        section.contentInsets = .init(top: 6, leading: 10, bottom: 6, trailing: 10)
+        section.contentInsets = .init(top: 12, leading: 0, bottom: 12, trailing: 0)
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         layout.configuration.scrollDirection = .vertical
@@ -166,7 +220,7 @@ final class FavoriteViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        [categoryButton, collectionView].forEach {
+        [categoryButton, appInfoButton, collectionView, favoriteEmptyView, indicatorView].forEach {
             view.addSubview($0)
         }
     }
@@ -177,10 +231,28 @@ final class FavoriteViewController: BaseViewController {
             make.centerX.equalToSuperview()
         }
         
+        appInfoButton.snp.makeConstraints { make in
+            make.centerY.equalTo(categoryButton.snp.centerY)
+            make.trailing.equalToSuperview().inset(10)
+        }
+        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(categoryButton.snp.bottom).offset(15)
             make.leading.trailing.bottom.equalToSuperview()
         }
+        
+        favoriteEmptyView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.size.equalTo(350)
+        }
+        
+        indicatorView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    override func setLayout() {
+        view.backgroundColor = .lightGray
     }
 }
 
@@ -194,5 +266,19 @@ extension FavoriteViewController: ShowFilterBottomSheetDelegate {
 extension FavoriteViewController: FilterReverseDelegate {
     func filterReverseButtonTapped(_ void: Void) {
         self.didSelectReverseFilterButton.accept(void)
+    }
+}
+
+extension Reactive where Base: FavoriteViewController {
+    var categoryTitle: Binder<CategoryFilterType> {
+        return Binder(self.base) { base, categoryFilterType in
+            base.categoryButton.configuration?.setAttributedTitle(title: categoryFilterType.title, font: UIFont.boldLineSeed(size: ._18), color: .black)
+        }
+    }
+    
+    var handleFavoriteEmptyViewVisibility: Binder<Bool> {
+        return Binder(self.base) { view, isHidden in
+            view.favoriteEmptyView.isHidden = isHidden
+        }
     }
 }

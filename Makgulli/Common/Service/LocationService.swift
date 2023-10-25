@@ -11,7 +11,7 @@ import CoreLocation
 import RxSwift
 import RxRelay
 
-protocol LocationService {
+protocol LocationService: AnyObject {
     var authorizationStatus: BehaviorRelay<CLAuthorizationStatus> { get set }
     var locationCoordinate: PublishRelay<CLLocationCoordinate2D> { get set }
     var locationUpdateSubject: PublishSubject<Void> { get set }

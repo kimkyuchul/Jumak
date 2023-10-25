@@ -116,10 +116,8 @@ final class LocationDetailView: BaseView {
         }
         
         contentView.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(scrollView)
-            make.width.equalTo(scrollView.snp.width)
-            make.height.greaterThanOrEqualTo(scrollView.snp.height).priority(.low)
-            make.height.equalToSuperview().multipliedBy(1.75)
+            make.centerX.top.bottom.equalToSuperview()
+            make.width.equalToSuperview()
         }
         
         topCornerView.snp.makeConstraints { make in
@@ -149,21 +147,21 @@ final class LocationDetailView: BaseView {
             make.top.equalTo(titleView.snp.bottom).offset(30).priority(.high)
             make.leading.equalTo(titleView.snp.leading)
             make.trailing.equalTo(titleView.snp.trailing)
-            make.height.equalTo(self.snp.height).multipliedBy(0.13)
+            make.height.equalTo(self.snp.height).multipliedBy(0.15)
             make.centerX.equalTo(titleView.snp.centerX)
         }
         
         infoView.snp.makeConstraints { make in
             make.top.equalTo(rateView.snp.bottom).offset(18).priority(.high)
             make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(self.snp.height).multipliedBy(0.25)
+            make.height.equalTo(self.snp.height).multipliedBy(0.26)
         }
         
         episodeView.snp.makeConstraints { make in
             make.top.equalTo(infoView.snp.bottom).offset(18).priority(.high)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(self.snp.height).multipliedBy(0.3)
-            make.bottom.equalToSuperview().inset(10).priority(.low)
+            make.bottom.equalToSuperview().inset(15)
         }
         
         bottomView.snp.makeConstraints { make in

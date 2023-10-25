@@ -9,13 +9,22 @@ import Foundation
 
 import RxSwift
 
-final class DefaultFavoriteUseCase {
+protocol FavoriteUseCase: AnyObject {
+    func fetchFilterStore(filterType: FilterType, reverseFilter: Bool, categoryFilter: CategoryFilterType)
+    
+    var errorSubject: PublishSubject<Error> { get }
+    var filterStore: PublishSubject<([StoreVO], FilterType, Bool)> { get }
+    var isLoding: PublishSubject<Bool> { get }
+}
+
+final class DefaultFavoriteUseCase: FavoriteUseCase {
     
     private let realmRepository: RealmRepository
     private let disposebag = DisposeBag()
     
     var errorSubject = PublishSubject<Error>()
     var filterStore = PublishSubject<([StoreVO], FilterType, Bool)>()
+    var isLoding = PublishSubject<Bool>()
     
     init(
         realmRepository: RealmRepository
@@ -23,39 +32,41 @@ final class DefaultFavoriteUseCase {
         self.realmRepository = realmRepository
     }
     
-    func fetchFilterStore(filterType: FilterType, reverseFilter: Bool) {
-        filterStore(filterType: filterType, reverseFilter: reverseFilter)
+    func fetchFilterStore(filterType: FilterType, reverseFilter: Bool, categoryFilter: CategoryFilterType) {
+        filterStore(filterType: filterType, reverseFilter: reverseFilter, categoryFilter: categoryFilter)
             .subscribe { [weak self] result in
+                self?.isLoding.onNext(true)
                 switch result {
                 case .success(let storeList):
                     self?.filterStore.onNext((storeList, filterType, reverseFilter))
                 case .failure(let error):
                     self?.errorSubject.onNext(error)
                 }
+                self?.isLoding.onNext(false)
             }
             .disposed(by: disposebag)
     }
     
-    private func filterStore(filterType: FilterType, reverseFilter: Bool) -> Single<[StoreVO]> {
-
+    private func filterStore(filterType: FilterType, reverseFilter: Bool, categoryFilter: CategoryFilterType) -> Single<[StoreVO]> {
+        
         switch filterType {
         case .recentlyAddedBookmark:
-            return realmRepository.fetchBookmarkStore(sortAscending: reverseFilter)
-
+            return realmRepository.fetchBookmarkStore(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            
         case .sortByUpRating:
-            return realmRepository.fetchStoreSortedByRating(sortAscending: reverseFilter)
-
+            return realmRepository.fetchStoreSortedByRating(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            
         case .bookmarkSortByUpRating:
-            return realmRepository.fetchBookmarkStoreSortedByRating(sortAscending: reverseFilter)
-
+            return realmRepository.fetchBookmarkStoreSortedByRating(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            
         case .sortByDescendingEpisodeCount:
-            return realmRepository.fetchStoreSortedByEpisodeCount(sortAscending: reverseFilter)
-
+            return realmRepository.fetchStoreSortedByEpisodeCount(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            
         case .bookmarkSortByDescendingEpisodeCount:
-            return realmRepository.fetchBookmarkStoreSortedByEpisodeCount(sortAscending: reverseFilter)
-
+            return realmRepository.fetchBookmarkStoreSortedByEpisodeCount(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            
         case .sortByName:
-            return realmRepository.fetchStoreSortedByName(sortAscending: !reverseFilter)
+            return realmRepository.fetchStoreSortedByName(sortAscending: !reverseFilter, categoryFilter: categoryFilter)
         }
     }
 }

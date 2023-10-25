@@ -130,7 +130,7 @@ final class WriteEpisodeView: BaseView {
         writeButton.snp.makeConstraints { make in
             make.top.equalTo(episodeDrinkCountView.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(65)
-            make.bottom.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview().inset(15)
         }
     }
     

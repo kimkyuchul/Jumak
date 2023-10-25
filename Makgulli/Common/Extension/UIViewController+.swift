@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RxRelay
+
 extension UIViewController {
     func showToast(message : String) {
         let toastLabel = BasePaddingLabel()
@@ -46,5 +48,18 @@ extension UIViewController {
                                alertType: type,
                                leftButtonAction: leftButtonAction,
                                rightButtonAction: rightButtonAction)
+    }
+    
+    func presentActionSheet<T: CaseIterable>(actionType: T.AllCases, relay: PublishRelay<T>) where T: ActionTitleable {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        for action in actionType {
+            let alertAction = UIAlertAction(title: action.title, style: .default) { _ in
+                relay.accept(action)
+            }
+            alert.addAction(alertAction)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(cancel)
+        present(alert, animated: true)
     }
 }

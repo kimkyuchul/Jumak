@@ -21,6 +21,8 @@ final class TabBarController: UITabBarController {
         
         let appearance = UITabBarAppearance()
         appearance.backgroundColor = .white
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.darkGray, .font: UIFont.boldLineSeed(size: ._12)]
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.brown, .font: UIFont.boldLineSeed(size: ._12)]
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
     }
@@ -28,16 +30,16 @@ final class TabBarController: UITabBarController {
 
 extension TabBarController {
     func setViewControllers() {
-        let locationViewController = UINavigationController(rootViewController: LocationViewController())
+        let locationViewController = UINavigationController(rootViewController: LocationViewController(viewModel: LocationViewModel(searchLocationUseCase: DefaultSearchLocationUseCase(searchLocationRepository: DefaultSearchLocationRepository(networkManager: NetworkManager()), realmRepository: DefaultRealmRepository()!), locationUseCase: DefaultLocationUseCase(locationService: DefaultLocationManager()))))
         locationViewController.tabBarItem = UITabBarItem(
             title: StringLiteral.location,
-            image: ImageLiteral.koreaIcon,
+            image: ImageLiteral.mapTabIcon,
             selectedImage: nil)
         
-        let favoriteViewController = UINavigationController(rootViewController: FavoriteViewController(viewModel: FavoriteViewModel()))
+        let favoriteViewController = UINavigationController(rootViewController: FavoriteViewController(viewModel: FavoriteViewModel(favoriteUseCase: DefaultFavoriteUseCase(realmRepository: DefaultRealmRepository()!))))
         favoriteViewController.tabBarItem = UITabBarItem(
             title: StringLiteral.Favorite,
-            image: ImageLiteral.koreaIcon,
+            image: ImageLiteral.heartIcon,
             selectedImage: nil)
         
         super.setViewControllers([

@@ -51,6 +51,8 @@ final class LocationViewModel: ViewModelType {
         let reSearchButtonHidden = PublishRelay<Bool>()
         let storeCollectionViewDataSource = BehaviorRelay<[StoreVO]>(value: [])
         let storeEmptyViewHidden = PublishRelay<Bool>()
+        let showErrorAlert = PublishRelay<Error>()
+        let isLoding = BehaviorRelay<Bool>(value: false)
     }
     
     func transform(input: Input) -> Output {
@@ -158,7 +160,7 @@ final class LocationViewModel: ViewModelType {
     private func createOutput(input: Input, output: Output) {
         let userLocationAndCategoryType = Observable.combineLatest(output.currentUserLocation, self.categoryType)
         
-        self.locationUseCase.locationUpdateSubject
+        locationUseCase.locationUpdateSubject
             .withLatestFrom(userLocationAndCategoryType)
             .withUnretained(self)
             .bind(onNext: { owner, userLocationAndCategoryType in
@@ -168,7 +170,7 @@ final class LocationViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        self.searchLocationUseCase.storeVO
+        searchLocationUseCase.storeVO
             .subscribe(onNext: { storeVO in
                 if storeVO.stores.isEmpty {
                     output.storeEmptyViewHidden.accept(false)
@@ -177,7 +179,7 @@ final class LocationViewModel: ViewModelType {
                 }
                 output.storeList.accept(storeVO.stores)
             }) { error in
-                print(error)
+                output.showErrorAlert.accept(error)
             }
             .disposed(by: disposeBag)
         
@@ -214,11 +216,11 @@ final class LocationViewModel: ViewModelType {
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
         
-        self.locationUseCase.authorizationDeniedStatus
+        locationUseCase.authorizationDeniedStatus
             .bind(to: output.authorizationAlertShouldShow)
             .disposed(by: disposeBag)
         
-        self.searchLocationUseCase.updateStoreVO
+        searchLocationUseCase.updateStoreVO
             .withLatestFrom(input.willDisplayCell) { storeVO, willDisplayCell in
                 return (storeVO, willDisplayCell)
             }
@@ -232,6 +234,14 @@ final class LocationViewModel: ViewModelType {
                     output.storeList.accept(owner.storeList)
                 }
             })
+            .disposed(by: disposeBag)
+        
+        searchLocationUseCase.isLoding
+            .bind(to: output.isLoding)
+            .disposed(by: disposeBag)
+        
+        searchLocationUseCase.errorSubject
+            .bind(to: output.showErrorAlert)
             .disposed(by: disposeBag)
     }
 }

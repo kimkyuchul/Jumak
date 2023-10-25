@@ -21,6 +21,7 @@ final class FilterBottomSheetViewController: BaseViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.register(FilterTableViewCell.self, forCellReuseIdentifier: "FilterTableViewCell")
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
         return tableView
     }()
     

@@ -52,6 +52,7 @@ final class WriteEpisodeViewModel: ViewModelType {
         let isSelectImageValid = PublishRelay<Bool>()
         let writeButtonIsEnabled = BehaviorRelay<Bool>(value: false)
         let updateStoreEpisode = PublishRelay<Void>()
+        let showErrorAlert = PublishRelay<Error>()
     }
     
     func transform(input: Input) -> Output {
@@ -187,6 +188,10 @@ final class WriteEpisodeViewModel: ViewModelType {
         Observable.combineLatest(writeEpisodeUseCase.updateEpisodeListState, writeEpisodeUseCase.saveEpisodeImageState)
             .map { _, _ in () }
             .bind(to: output.updateStoreEpisode)
+            .disposed(by: disposeBag)
+        
+        writeEpisodeUseCase.errorSubject
+            .bind(to: output.showErrorAlert)
             .disposed(by: disposeBag)
     }
 }

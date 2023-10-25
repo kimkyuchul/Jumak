@@ -9,7 +9,18 @@ import Foundation
 
 import RxSwift
 
-final class EpisodeDetailUseCase {
+protocol EpisodeDetailUseCase: AnyObject {
+    func fetchEpisodeDetail(episode: Episode)
+    func deleteEpisode(storeId: String, episodeId: String)
+    func deleteEpisodeImage(fileName: String)
+    
+    var episodeDiffableItem: PublishSubject<Episode> { get }
+    var deleteEpisodeState: PublishSubject<Void> { get }
+    var deleteEpisodeImageState: PublishSubject<Void> { get }
+    var errorSubject: PublishSubject<Error> { get }
+}
+
+final class DefaultEpisodeDetailUseCase: EpisodeDetailUseCase {
     
     enum EpisodeDetailUseError: Error {
         case deleteEpisode
@@ -27,10 +38,10 @@ final class EpisodeDetailUseCase {
         self.episodeDetailRepository = episodeDetailRepository
     }
     
-    let episodeDiffableItem = PublishSubject<Episode>()
-    let deleteEpisodeState = PublishSubject<Void>()
-    let deleteEpisodeImageState = PublishSubject<Void>()
-    let errorSubject = PublishSubject<Error>()
+    var episodeDiffableItem = PublishSubject<Episode>()
+    var deleteEpisodeState = PublishSubject<Void>()
+    var deleteEpisodeImageState = PublishSubject<Void>()
+    var errorSubject = PublishSubject<Error>()
     
     func fetchEpisodeDetail(episode: Episode) {
         Observable.just(episode)

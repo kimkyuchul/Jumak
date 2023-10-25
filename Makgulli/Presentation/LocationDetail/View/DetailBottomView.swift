@@ -11,11 +11,10 @@ import RxSwift
 import RxCocoa
 
 final class DetailBottomView: BaseView {
-    fileprivate let bookmarkButton: UIButton = {
+    fileprivate let warningButton: UIButton = {
         let button = UIButton()
-        button.setImage(ImageLiteral.boltHeartIcon, for: .normal)
-        button.setImage(ImageLiteral.boltHeartFillIcon, for: .selected)
-        button.tintColor = .brown
+        button.setImage(ImageLiteral.warningIcon, for: .normal)
+        button.tintColor = .darkGray
         button.backgroundColor = .pink
         return button
     }()
@@ -31,25 +30,25 @@ final class DetailBottomView: BaseView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        bookmarkButton.layer.cornerRadius = bookmarkButton.frame.height / 2
+        warningButton.layer.cornerRadius = warningButton.frame.height / 2
     }
     
     override func setHierarchy() {
-        [bookmarkButton, makeEpisodeButton].forEach {
+        [warningButton, makeEpisodeButton].forEach {
             self.addSubview($0)
         }
     }
     
     override func setConstraints() {
-        bookmarkButton.snp.makeConstraints { make in
+        warningButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(5)
             make.leading.equalToSuperview().inset(10)
             make.size.equalTo(46)
         }
         
         makeEpisodeButton.snp.makeConstraints { make in
-            make.centerY.equalTo(bookmarkButton.snp.centerY)
-            make.leading.equalTo(bookmarkButton.snp.trailing).offset(10)
+            make.centerY.equalTo(warningButton.snp.centerY)
+            make.leading.equalTo(warningButton.snp.trailing).offset(10)
             make.trailing.equalToSuperview().inset(10)
             make.height.equalTo(46)
         }
@@ -66,5 +65,9 @@ final class DetailBottomView: BaseView {
 extension Reactive where Base: DetailBottomView {
     var tapMakeEpisode: ControlEvent<Void> {
         return base.makeEpisodeButton.rx.tap
+    }
+    
+    var tapWarning: ControlEvent<Void> {
+        return base.warningButton.rx.tap
     }
 }

@@ -76,7 +76,7 @@ final class StoreCollectionViewCell: BaseCollectionViewCell {
         }
         
         logoImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(14)
+            make.top.equalToSuperview().inset(16)
             make.leading.equalToSuperview().inset(14)
             make.size.equalTo(80)
         }

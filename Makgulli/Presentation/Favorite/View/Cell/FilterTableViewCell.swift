@@ -11,7 +11,6 @@ final class FilterTableViewCell: UITableViewCell {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldLineSeed(size: ._18)
         label.textColor = .black
         return label
     }()
@@ -19,20 +18,33 @@ final class FilterTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = ImageLiteral.fillHeartIcon
+        imageView.tintColor = .pink
         return imageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-         super.init(style: style, reuseIdentifier: reuseIdentifier)
-         setHierarchy()
-         setConstraints()
-         setLayout()
-     }
-     
-     required init?(coder: NSCoder) {
-         fatalError("init(coder:) has not been implemented")
-     }
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setHierarchy()
+        setConstraints()
+        setLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
         
+        if selected {
+            titleLabel.font = .boldLineSeed(size: ._18)
+            reverseImageView.isHidden = false
+        } else {
+            titleLabel.font = .regularLineSeed(size: ._18)
+            reverseImageView.isHidden = true
+        }
+    }
+    
     private func setHierarchy() {
         [titleLabel, reverseImageView].forEach {
             contentView.addSubview($0)
@@ -54,6 +66,7 @@ final class FilterTableViewCell: UITableViewCell {
     
     private func setLayout() {
         self.backgroundColor = .clear
+        selectionStyle = .none
     }
 }
 

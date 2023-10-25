@@ -69,6 +69,8 @@ final class LocationView: BaseView {
         return collectionView
     }()
     fileprivate let storeEmptyView = StoreEmptyView()
+    fileprivate let networkErrorView = NetworkErrorView()
+    lazy var indicatorView  = IndicatorView(frame: .zero)
     
     var locationOverlay: NMFLocationOverlay?
     var visibleItemsRelay = PublishRelay<Int?>()
@@ -104,7 +106,7 @@ final class LocationView: BaseView {
     }
     
     override func setHierarchy() {
-        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton, userLocationButton, storeCollectionView, storeEmptyView].forEach {
+        [mapView, questionButton, userAddressButton, categoryCollectionView, researchButton, userLocationButton, storeCollectionView, networkErrorView, storeEmptyView, indicatorView].forEach {
             self.addSubview($0)
         }
     }
@@ -148,13 +150,23 @@ final class LocationView: BaseView {
         storeCollectionView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-24)
-            make.height.equalTo(130)
+            make.height.equalTo(135)
+        }
+        
+        networkErrorView.snp.makeConstraints { make in
+            make.top.equalTo(storeCollectionView.snp.top)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.bottom.equalTo(storeCollectionView.snp.bottom)
         }
         
         storeEmptyView.snp.makeConstraints { make in
             make.top.equalTo(storeCollectionView.snp.top)
             make.leading.trailing.equalToSuperview().inset(48)
             make.bottom.equalTo(storeCollectionView.snp.bottom)
+        }
+        
+        indicatorView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }
@@ -176,6 +188,12 @@ extension Reactive where Base: LocationView {
     var handleStoreEmptyViewVisibility: Binder<Bool> {
         return Binder(self.base) { view, isHidden in
             view.storeEmptyView.isHidden = isHidden
+        }
+    }
+    
+    var handleNetworkErrorViewVisibility: Binder<Bool> {
+        return Binder(self.base) { view, isHidden in
+            view.networkErrorView.isHidden = isHidden
         }
     }
 }
@@ -206,7 +224,7 @@ private extension LocationView {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(130))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(135))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPagingCentered

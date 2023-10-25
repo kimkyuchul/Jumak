@@ -9,7 +9,30 @@ import Foundation
 
 import RxSwift
 
-final class LocationDetailUseCase {
+protocol LocationDetailUseCase: AnyObject {
+    func fetchStoreDetail(store: StoreVO)
+    func handleLocalStore(_ store: StoreVO)
+    func updateStoreEpisode(_ store: StoreVO) -> StoreVO?
+    func loadDataSourceImage(_ fileName: String) -> Data?
+    func addressPasteboard(_ address: String) -> Observable<Void>
+    func showMap(_ findRouteType: FindRouteType, locationCoordinate: (Double, Double), address: String)
+    
+    var hashTag: PublishSubject<String> { get }
+    var placeName: PublishSubject<String> { get }
+    var distance: PublishSubject<String> { get }
+    var type: PublishSubject<String> { get }
+    var address: PublishSubject<String> { get }
+    var roadAddress: PublishSubject<String> { get }
+    var phone: PublishSubject<String> { get }
+    var rate: PublishSubject<Int> { get }
+    var bookmark:  PublishSubject<Bool> { get }
+    var locationCoordinate: PublishSubject<(Double, Double)> { get }
+    var episodeList: PublishSubject<[EpisodeVO]> { get }
+    var errorSubject: PublishSubject<Error> { get }
+    
+}
+
+final class DefaultLocationDetailUseCase: LocationDetailUseCase {
     
     enum LocationDetailError: Error {
         case createStore
@@ -19,31 +42,34 @@ final class LocationDetailUseCase {
     
     private let realmRepository: RealmRepository
     private let locationDetailRepository: LocationDetailRepository
+    private let urlSchemaService: URLSchemaService
     private let pasteboardService: PasteboardService
     private let disposebag = DisposeBag()
     
     init(realmRepository: RealmRepository,
          locationDetailRepository: LocationDetailRepository,
+         urlSchemaService: URLSchemaService,
          pasteboardService: PasteboardService
     ) {
         self.realmRepository = realmRepository
         self.locationDetailRepository = locationDetailRepository
+        self.urlSchemaService = urlSchemaService
         self.pasteboardService = pasteboardService
     }
     
-    let hashTag = PublishSubject<String>()
-    let placeName = PublishSubject<String>()
-    let distance = PublishSubject<String>()
-    let type = PublishSubject<String>()
-    let address = PublishSubject<String>()
-    let roadAddress = PublishSubject<String>()
-    let phone = PublishSubject<String>()
-    let rate = PublishSubject<Int>()
-    let bookmark =  PublishSubject<Bool>()
-    let locationCoordinate = PublishSubject<(Double, Double)>()
-    let episodeList = PublishSubject<[EpisodeVO]>()
+    var hashTag = PublishSubject<String>()
+    var placeName = PublishSubject<String>()
+    var distance = PublishSubject<String>()
+    var type = PublishSubject<String>()
+    var address = PublishSubject<String>()
+    var roadAddress = PublishSubject<String>()
+    var phone = PublishSubject<String>()
+    var rate = PublishSubject<Int>()
+    var bookmark =  PublishSubject<Bool>()
+    var locationCoordinate = PublishSubject<(Double, Double)>()
+    var episodeList = PublishSubject<[EpisodeVO]>()
         
-    let errorSubject = PublishSubject<Error>()
+    var errorSubject = PublishSubject<Error>()
     
     func fetchStoreDetail(store: StoreVO) {
         Observable.just(store)
@@ -64,7 +90,7 @@ final class LocationDetailUseCase {
             .disposed(by: disposebag)
     }
     
-    func  handleLocalStore(_ store: StoreVO) {
+    func handleLocalStore(_ store: StoreVO) {
         if !storeExists(store.id) && hasRatingOrEpisode(store) {
             // Realm에 존재하지 않으면서, 평점 또는 에피소드, 북마크 중 하나라도 존재하는 경우
             createBookmark(store)
@@ -105,9 +131,13 @@ final class LocationDetailUseCase {
             return Disposables.create()
         }
     }
+    
+    func showMap(_ findRouteType: FindRouteType, locationCoordinate: (Double, Double), address: String) {
+        urlSchemaService.openMapForURL(findRouteType: findRouteType, locationCoordinate: locationCoordinate, address: address)
+        }
 }
 
-extension LocationDetailUseCase {
+extension DefaultLocationDetailUseCase {
     private func createBookmark(_ store: StoreVO) {
         realmRepository.createStore(store)
             .subscribe(onCompleted: {
