@@ -24,6 +24,10 @@
 		5A0A98532AE79F4000545939 /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98522AE79F4000545939 /* AppInfoViewController.swift */; };
 		5A0A98562AE817BE00545939 /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0A98552AE817BE00545939 /* Differentiator */; };
 		5A0A98582AE817BE00545939 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0A98572AE817BE00545939 /* RxDataSources */; };
+		5A0A985A2AE8A1BC00545939 /* AppInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98592AE8A1BC00545939 /* AppInfoTableViewCell.swift */; };
+		5A0A985E2AE90D0000545939 /* URLLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A985D2AE90D0000545939 /* URLLiteral.swift */; };
+		5A0A98602AE9159F00545939 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A985F2AE9159F00545939 /* InquiryViewController.swift */; };
+		5A0A98622AE917A300545939 /* InquiryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98612AE917A300545939 /* InquiryButtonView.swift */; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -189,6 +193,10 @@
 		5A0A984C2AE6BEF200545939 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		5A0A984E2AE6C6FA00545939 /* FavoriteEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEmptyView.swift; sourceTree = "<group>"; };
 		5A0A98522AE79F4000545939 /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
+		5A0A98592AE8A1BC00545939 /* AppInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoTableViewCell.swift; sourceTree = "<group>"; };
+		5A0A985D2AE90D0000545939 /* URLLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLLiteral.swift; sourceTree = "<group>"; };
+		5A0A985F2AE9159F00545939 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
+		5A0A98612AE917A300545939 /* InquiryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryButtonView.swift; sourceTree = "<group>"; };
 		5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreEmptyView.swift; sourceTree = "<group>"; };
 		5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -404,9 +412,28 @@
 		5A0A98512AE79DF200545939 /* AppInfo */ = {
 			isa = PBXGroup;
 			children = (
+				5A0A98632AE9201D00545939 /* View */,
 				5A0A98522AE79F4000545939 /* AppInfoViewController.swift */,
+				5A0A985F2AE9159F00545939 /* InquiryViewController.swift */,
 			);
 			path = AppInfo;
+			sourceTree = "<group>";
+		};
+		5A0A98632AE9201D00545939 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5A0A98612AE917A300545939 /* InquiryButtonView.swift */,
+				5A0A98642AE9202400545939 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5A0A98642AE9202400545939 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5A0A98592AE8A1BC00545939 /* AppInfoTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5A6827712ACE7CC200C37B17 /* Cell */ = {
@@ -675,6 +702,7 @@
 				5A9DA1D92AC1A2AA006040D2 /* StringLiteral.swift */,
 				5A9DA1DB2AC1A378006040D2 /* DesignLiteral.swift */,
 				5A9DA1DD2AC1A393006040D2 /* MetricLiteral.swift */,
+				5A0A985D2AE90D0000545939 /* URLLiteral.swift */,
 			);
 			path = Literal;
 			sourceTree = "<group>";
@@ -1257,6 +1285,7 @@
 				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
 				5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */,
 				5A9DA1DC2AC1A378006040D2 /* DesignLiteral.swift in Sources */,
+				5A0A985E2AE90D0000545939 /* URLLiteral.swift in Sources */,
 				5AAB8E732AD9948E005969FA /* WriteEpisodeRepository.swift in Sources */,
 				5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */,
 				5A0A984D2AE6BEF200545939 /* NetworkErrorView.swift in Sources */,
@@ -1273,11 +1302,13 @@
 				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
 				5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */,
 				5AAB8E9C2ADFD225005969FA /* FilterType.swift in Sources */,
+				5A0A98602AE9159F00545939 /* InquiryViewController.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
 				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
 				5A0A98332AE4BBBE00545939 /* IndicatorView.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
 				5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */,
+				5A0A98622AE917A300545939 /* InquiryButtonView.swift in Sources */,
 				5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */,
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
 				5A0A982D2AE265A400545939 /* FilterCollectionViewCell.swift in Sources */,
@@ -1351,6 +1382,7 @@
 				5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */,
 				5A6827702ACE7A6C00C37B17 /* EpisodeCollectionViewCell.swift in Sources */,
 				5AAB8E7F2ADBEEAE005969FA /* EpisodeDetailUseCase.swift in Sources */,
+				5A0A985A2AE8A1BC00545939 /* AppInfoTableViewCell.swift in Sources */,
 				5A0A98482AE67F4200545939 /* RootHandler.swift in Sources */,
 				5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */,
 			);
@@ -1537,7 +1569,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1573,7 +1605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
