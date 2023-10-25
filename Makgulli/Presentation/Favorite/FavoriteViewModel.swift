@@ -13,8 +13,13 @@ import RxSwift
 final class FavoriteViewModel: ViewModelType {
     var disposeBag: DisposeBag = .init()
     
-    private var defaultRealmRepository = DefaultRealmRepository()
-    private lazy var defaultFavoriteUseCase = DefaultFavoriteUseCase(realmRepository: defaultRealmRepository!)
+    private let favoriteUseCase: FavoriteUseCase
+    
+    init(
+        favoriteUseCase: FavoriteUseCase
+    ) {
+        self.favoriteUseCase = favoriteUseCase
+    }
         
     struct Input {
         let viewWillAppearEvent: Observable<Void>
@@ -42,7 +47,7 @@ final class FavoriteViewModel: ViewModelType {
             .subscribe(onNext: { owner, filterTypes in
                 let (filterType, categoryFilter) = filterTypes
                 
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
         
@@ -53,7 +58,7 @@ final class FavoriteViewModel: ViewModelType {
             .subscribe(onNext: { owner, filterTypes in
                 let (filterType, categoryFilter) = filterTypes
                 
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
         
@@ -69,7 +74,7 @@ final class FavoriteViewModel: ViewModelType {
                 let (categoryFilter, filterType) = filterTypes
                 output.categoryfilterType.accept(categoryFilter)
                 
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
         
@@ -78,7 +83,7 @@ final class FavoriteViewModel: ViewModelType {
             .withUnretained(self)
             .subscribe(onNext: { owner, filterTypes in
                 let (filterType, categoryFilter) = filterTypes
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
             
@@ -97,15 +102,15 @@ final class FavoriteViewModel: ViewModelType {
             .bind(onNext: { owner, filterTypes in
                 let (filterType, categoryFilter) = filterTypes
                 output.filterType.accept(filterType)
-                owner.defaultFavoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
+                owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
             .disposed(by: disposeBag)
         
-        defaultFavoriteUseCase.filterStore
+        favoriteUseCase.filterStore
             .bind(to: output.storeList)
             .disposed(by: disposeBag)
         
-        defaultFavoriteUseCase.isLoding
+        favoriteUseCase.isLoding
             .bind(to: output.isLoding)
             .disposed(by: disposeBag)
     }

@@ -15,11 +15,16 @@ final class LocationViewController: BaseViewController {
     
     private let locationView = LocationView()
     
-    private let viewModel = LocationViewModel(searchLocationUseCase: DefaultSearchLocationUseCase(searchLocationRepository: DefaultSearchLocationRepository(networkManager: NetworkManager()), realmRepository: DefaultRealmRepository()!), locationUseCase: DefaultLocationUseCase(locationService: DefaultLocationManager()))
+    private let viewModel: LocationViewModel
     private var markers: [NMFMarker] = []
     private var selectCategoryType: CategoryType = .makgulli
     private var selectMarkerRelay = PublishRelay<Int?>()
     private var changeMapLocation = PublishRelay<CLLocationCoordinate2D>()
+    
+    init(viewModel: LocationViewModel) {
+        self.viewModel = viewModel
+        super.init()
+    }
     
     override func loadView() {
         self.view = locationView
