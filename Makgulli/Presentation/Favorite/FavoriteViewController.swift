@@ -123,13 +123,15 @@ final class FavoriteViewController: BaseViewController {
         appInfoButton.rx.tap
             .withUnretained(self)
             .bind(onNext: { owner, _ in
-                owner.navigationController?.pushViewController(AppInfoViewController(), animated: true)
+                let appInfoViewController = AppInfoViewController()
+                appInfoViewController.hidesBottomBarWhenPushed = true
+                owner.navigationController?.pushViewController(appInfoViewController, animated: true)
             })
             .disposed(by: disposeBag)
         
         collectionView.rx.itemSelected
             .withUnretained(self)
-             .subscribe(onNext: { owner, indexPath in
+             .bind(onNext: { owner, indexPath in
                  guard let storeVO = owner.itemIdentifier(for: indexPath) else { return }
                  
                  guard let realmRepository = DefaultRealmRepository() else { return }
