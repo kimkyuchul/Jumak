@@ -58,6 +58,7 @@ enum ImageLiteral {
     static var reserveFilterIcon : UIImage { .load(systemName: "arrow.up.arrow.down") }
     static var settingIcon : UIImage { .load(systemName: "gearshape.fill") }
     static var mapTabIcon: UIImage { .load(systemName: "magnifyingglass") }
+    static var warningIcon: UIImage { .load(systemName: "checkmark.circle.trianglebadge.exclamationmark") }
 }
 
 extension UIImage {
