@@ -169,6 +169,10 @@ final class LocationView: BaseView {
             make.edges.equalToSuperview()
         }
     }
+    
+    override func setLayout() {
+        self.backgroundColor = .lightGray
+    }
 }
 
 extension Reactive where Base: LocationView {
