@@ -18,7 +18,7 @@ final class LocationView: BaseView {
         mapView.allowsZooming = true
         mapView.logoInteractionEnabled = false
         mapView.positionMode = .direction
-        mapView.zoomLevel = 12
+        mapView.zoomLevel = 13
         self.locationOverlay = mapView.locationOverlay
         return mapView
     }()
