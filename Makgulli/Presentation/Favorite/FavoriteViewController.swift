@@ -23,7 +23,7 @@ final class FavoriteViewController: BaseViewController {
     private var dataSource: DiffableDataSource?
     private let viewModel: FavoriteViewModel
     private let didSelectReverseFilterButton = PublishRelay<Void>()
-    private let didSelectCategoryFilterButton = PublishRelay<CategoryFilterType>()
+    private let didSelectCategoryFilterButton = PublishSubject<CategoryFilterType>()
     
     fileprivate let categoryButton = {
         var configuration = UIButton.Configuration.plain()
@@ -125,7 +125,7 @@ final class FavoriteViewController: BaseViewController {
         categoryButton.rx.tap
             .withUnretained(self)
             .bind(onNext: { owner, _ in
-                owner.presentActionSheet(actionType: CategoryFilterType.allCases, relay: owner.didSelectCategoryFilterButton)
+                owner.presentActionSheet(actionType: CategoryFilterType.allCases, inputSubject: owner.didSelectCategoryFilterButton)
             })
             .disposed(by: disposeBag)
         
