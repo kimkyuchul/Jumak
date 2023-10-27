@@ -13,6 +13,7 @@ import Alamofire
 struct NetworkManager<T: TargetType> {
     
     func request<T: Decodable>(_ target: TargetType, type: T.Type) -> Single<T> {
+        
         return Single.create(subscribe: { single in
             AF.request(target).responseData { response in
                 switch response.result {
@@ -25,14 +26,15 @@ struct NetworkManager<T: TargetType> {
                             let data = try JSONDecoder().decode(T.self, from: value)
                             single(.success(data))
                         } catch {
-                            print(error.localizedDescription)
-                            single(.failure(error))
+                            dump(error.localizedDescription)
+                            single(.failure(NetworkError.decodingError))
                         }
                     } else {
-                        print(response.response)
+                        dump(response.response)
+                        single(.failure(NetworkError.badStatusCode(statusCode: response.response?.statusCode ?? 500)))
                     }
                 case .failure(let failure):
-                    print(failure.localizedDescription)
+                    dump(failure.localizedDescription)
                     single(.failure(failure))
                 }
             }
