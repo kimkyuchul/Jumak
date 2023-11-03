@@ -30,12 +30,10 @@ struct NetworkManager<T: TargetType> {
                             single(.failure(NetworkError.decodingError))
                         }
                     } else {
-                        dump(response.response)
-                        single(.failure(NetworkError.badStatusCode(statusCode: response.response?.statusCode ?? 500)))
+                        single(.failure(NetworkError.isNotSuccessful(statusCode: response.response?.statusCode ?? 500)))
                     }
                 case .failure(let failure):
-                    dump(failure.localizedDescription)
-                    single(.failure(failure))
+                    single(.failure(NetworkError.underlyingError(message: failure.localizedDescription)))
                 }
             }
             return Disposables.create()

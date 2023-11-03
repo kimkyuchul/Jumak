@@ -7,29 +7,24 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case invalidURL
-    case badStatusCode(statusCode: Int, message: String? = nil, errorCode: String? = nil)
+enum NetworkError: Error, CustomDebugStringConvertible {
+    /// not contains 200~299.
+    case isNotSuccessful(statusCode: Int)
+    /// decoding error.
     case decodingError
-    case noData
-    case unknown
-    
-    var errorMessage: String {
+    /// server error.
+    case underlyingError(message: String)
+}
+
+extension NetworkError {
+    public var debugDescription: String {
         switch self {
-        case .invalidURL:
-            return "유효하지 않은 URL입니다."
-        case let .badStatusCode(statusCode, message, errorCode):
-            if let message {
-                return message + "\n\(errorCode ?? "")"
-            } else {
-                return "bad status Code\n\(statusCode)"
-            }
+        case .isNotSuccessful(let statusCode):
+            return "not contains 200~299 : `\(statusCode)`"
         case .decodingError:
-            return "디코딩 에러"
-        case .noData:
-            return "데이터가 없다"
-        case .unknown:
-            return "알 수 없는 오류"
+            return "decoding error."
+        case .underlyingError(let message):
+            return "server error \(message)"
         }
     }
 }
