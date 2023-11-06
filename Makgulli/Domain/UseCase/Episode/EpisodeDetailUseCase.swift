@@ -27,15 +27,15 @@ final class DefaultEpisodeDetailUseCase: EpisodeDetailUseCase {
         case deleteEpisodeImage
     }
     
-    private let realmRepository: RealmRepository
     private let episodeDetailRepository: EpisodeDetailRepository
+    private let episodeDetailLocalRepository: EpisodeDetailLocalRepository
     private let disposebag = DisposeBag()
     
-    init(realmRepository: RealmRepository,
-         episodeDetailRepository: EpisodeDetailRepository
+    init(episodeDetailRepository: EpisodeDetailRepository,
+         episodeDetailLocalRepository: EpisodeDetailLocalRepository
     ) {
-        self.realmRepository = realmRepository
         self.episodeDetailRepository = episodeDetailRepository
+        self.episodeDetailLocalRepository = episodeDetailLocalRepository
     }
     
     var episodeDiffableItem = PublishSubject<Episode>()
@@ -53,7 +53,7 @@ final class DefaultEpisodeDetailUseCase: EpisodeDetailUseCase {
     }
     
     func deleteEpisode(storeId: String, episodeId: String) {
-        realmRepository.deleteEpisode(id: storeId, episodeId: episodeId)
+        episodeDetailLocalRepository.deleteEpisode(id: storeId, episodeId: episodeId)
             .subscribe { [weak self] completable in
                 switch completable {
                 case .completed:
