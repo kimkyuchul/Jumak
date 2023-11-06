@@ -30,13 +30,25 @@ final class TabBarController: UITabBarController {
 
 extension TabBarController {
     func setViewControllers() {
-        let locationViewController = UINavigationController(rootViewController:       LocationViewController(viewModel: AppDIContainer.shared.makeLocationDIContainer().makeLocationViewModel()))
+        let locationViewController = UINavigationController(
+            rootViewController: LocationViewController(
+                viewModel: AppDIContainer.shared
+                    .makeLocationDIContainer()
+                    .makeLocationViewModel())
+        )
+        
         locationViewController.tabBarItem = UITabBarItem(
             title: StringLiteral.location,
             image: ImageLiteral.mapTabIcon,
             selectedImage: nil)
         
-        let favoriteViewController = UINavigationController(rootViewController: FavoriteViewController(viewModel: FavoriteViewModel(favoriteUseCase: DefaultFavoriteUseCase(realmRepository: DefaultRealmRepository()!))))
+        let favoriteViewController = UINavigationController(
+            rootViewController: FavoriteViewController(
+                viewModel: AppDIContainer.shared
+                    .makeFavoriteDIContainer()
+                    .makeFavoriteViewModel())
+        )
+        
         favoriteViewController.tabBarItem = UITabBarItem(
             title: StringLiteral.Favorite,
             image: ImageLiteral.heartIcon,
