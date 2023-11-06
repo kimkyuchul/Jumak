@@ -45,9 +45,9 @@ final class LocationViewController: BaseViewController {
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
                    viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
                    willDisplayCell: locationView.storeCollectionView.rx.willDisplayCell.map { $0.at },
-                   didSelectMarker: selectMarkerRelay,
+                   didSelectMarker: selectMarkerRelay.asObservable(),
                    didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
-                   changeMapLocation: changeMapLocation,
+                   changeMapLocation: changeMapLocation.asObservable(),
                    didSelectRefreshButton: locationView.researchButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
                    didSelectUserLocationButton: locationView.userLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
                    didScrollStoreCollectionView: locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(250), scheduler: MainScheduler.instance))
@@ -170,12 +170,16 @@ final class LocationViewController: BaseViewController {
         Observable.zip(locationView.storeCollectionView.rx.modelSelected(StoreVO.self), locationView.storeCollectionView.rx.itemSelected)
             .withUnretained(self)
             .bind(onNext: { [weak self] data in
-                guard let realmRepository = DefaultRealmRepository() else { return }
-                
                 if let updatedItem = self?.viewModel.updateStoreCell(data.1.0) {
-                    let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: updatedItem, locationDetailUseCase: DefaultLocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), urlSchemaService: DefaultURLSchemaService(), pasteboardService: DefaultPasteboardService())))
-                    detailVC.hidesBottomBarWhenPushed = true
-                    data.0.navigationController?.pushViewController(detailVC, animated: true)
+                    
+                    let locationDetilViewController = LocationDetailViewController(
+                        viewModel: AppDIContainer.shared
+                            .makeLocationDIContainer()
+                            .makeLocationDetailViewModel(store: updatedItem)
+                    )
+                    
+                    locationDetilViewController.hidesBottomBarWhenPushed = true
+                    data.0.navigationController?.pushViewController(locationDetilViewController, animated: true)
                 }
             })
             .disposed(by: disposeBag)
