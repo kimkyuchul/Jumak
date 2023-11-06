@@ -127,10 +127,14 @@ final class LocationDetailViewController: BaseViewController {
         output.presentWriteEpisode
             .withUnretained(self)
             .bind(onNext: { owner, storeVO in
-                let wirteViewController = WriteEpisodeViewController(viewModel: WriteEpisodeViewModel(storeVO: storeVO, writeEpisodeUseCase: DefaultWriteEpisodeUseCase(realmRepository: DefaultRealmRepository()!, writeEpisodeRepository: DefaultWriteEpisodeRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())))))
+                let writeEpisodeViewController = WriteEpisodeViewController(
+                    viewModel: AppDIContainer.shared
+                       .makeEpisodeDIContainer()
+                       .makeLocationViewModel(store: storeVO)
+                )
                 
-                wirteViewController.modalPresentationStyle = .fullScreen
-                owner.present(wirteViewController, animated: true)
+                writeEpisodeViewController.modalPresentationStyle = .fullScreen
+                owner.present(writeEpisodeViewController, animated: true)
             })
             .disposed(by: disposeBag)
         

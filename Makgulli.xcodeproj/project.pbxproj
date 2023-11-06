@@ -21,6 +21,7 @@
 		5A04070D2AF9197300A4BA84 /* EpisodeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A04070C2AF9197300A4BA84 /* EpisodeStorage.swift */; };
 		5A04070F2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A04070E2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift */; };
 		5A0407122AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407112AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift */; };
+		5A0407142AF91E8500A4BA84 /* EpisodeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407132AF91E8500A4BA84 /* EpisodeDIContainer.swift */; };
 		5A0A982D2AE265A400545939 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */; };
 		5A0A982F2AE3A23900545939 /* URLSchemaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982E2AE3A23900545939 /* URLSchemaService.swift */; };
 		5A0A98312AE3E1E500545939 /* FindRouteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98302AE3E1E500545939 /* FindRouteType.swift */; };
@@ -208,6 +209,7 @@
 		5A04070C2AF9197300A4BA84 /* EpisodeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeStorage.swift; sourceTree = "<group>"; };
 		5A04070E2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWriteEpisodeLocalRepository.swift; sourceTree = "<group>"; };
 		5A0407112AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeLocalRepository.swift; sourceTree = "<group>"; };
+		5A0407132AF91E8500A4BA84 /* EpisodeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDIContainer.swift; sourceTree = "<group>"; };
 		5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		5A0A982E2AE3A23900545939 /* URLSchemaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemaService.swift; sourceTree = "<group>"; };
 		5A0A98302AE3E1E500545939 /* FindRouteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindRouteType.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				5A0406E62AF50DB300A4BA84 /* AppDIContainer.swift */,
 				5A0406E82AF5145400A4BA84 /* LocationDIContainer.swift */,
+				5A0407132AF91E8500A4BA84 /* EpisodeDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -1573,6 +1576,7 @@
 				5A0A985A2AE8A1BC00545939 /* AppInfoTableViewCell.swift in Sources */,
 				5A0A98482AE67F4200545939 /* RootHandler.swift in Sources */,
 				5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */,
+				5A0407142AF91E8500A4BA84 /* EpisodeDIContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

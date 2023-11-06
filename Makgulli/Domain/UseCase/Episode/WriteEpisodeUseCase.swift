@@ -26,7 +26,6 @@ final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
         case saveEpisodeImage
     }
     
-    private let realmRepository: RealmRepository
     private let writeEpisodeRepository: WriteEpisodeRepository
     private let writeEpisodeLocalRepository: WriteEpisodeLocalRepository
     private let disposebag = DisposeBag()
@@ -36,11 +35,9 @@ final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
     var errorSubject = PublishSubject<Error>()
     
     
-    init(realmRepository: RealmRepository,
-         writeEpisodeRepository: WriteEpisodeRepository,
+    init(writeEpisodeRepository: WriteEpisodeRepository,
          writeEpisodeLocalRepository: WriteEpisodeLocalRepository
     ) {
-        self.realmRepository = realmRepository
         self.writeEpisodeRepository = writeEpisodeRepository
         self.writeEpisodeLocalRepository = writeEpisodeLocalRepository
     }
