@@ -130,3 +130,39 @@ final class DefaultLocationDetailStorage: BaseRealmStorage, LocationDetailStorag
         return false
     }
 }
+
+extension StoreVO {
+    func makeStoreTable() -> StoreTable {
+        let episodeList = List<EpisodeTable>()
+        
+        let episodeTableArray = self.episode.map { episodeVO in
+            let episodeTable = EpisodeTable()
+            episodeTable.comment = episodeVO.comment
+            episodeTable.date = episodeVO.date
+            episodeTable.alcohol = episodeVO.alcohol
+            episodeTable.imageURL = episodeVO.imageURL
+            episodeTable.drink = episodeVO.drink
+            episodeTable.drinkQuantity = episodeVO.drinkQuantity
+            return episodeTable
+        }
+        
+        episodeList.append(objectsIn: episodeTableArray)
+        
+        let storeTable = StoreTable(id: self.id,
+                                    placeName: self.placeName,
+                                    distance: self.distance,
+                                    placeURL: self.placeURL,
+                                    categoryName: self.categoryName,
+                                    addressName: self.addressName,
+                                    roadAddressName: self.roadAddressName,
+                                    phone: self.phone,
+                                    x: self.x,
+                                    y: self.y,
+                                    categoryType: self.categoryType,
+                                    rate: self.rate,
+                                    bookmark: self.bookmark,
+                                    episode: episodeList,
+                                    bookmarkDate: self.bookmarkDate)
+        return storeTable
+    }
+}
