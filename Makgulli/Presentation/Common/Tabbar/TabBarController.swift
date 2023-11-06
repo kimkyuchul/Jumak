@@ -30,7 +30,7 @@ final class TabBarController: UITabBarController {
 
 extension TabBarController {
     func setViewControllers() {
-        let locationViewController = UINavigationController(rootViewController: LocationViewController(viewModel: LocationViewModel(searchLocationUseCase: DefaultSearchLocationUseCase(searchLocationRepository: DefaultSearchLocationRepository(networkManager: NetworkManager()), realmRepository: DefaultRealmRepository()!), locationUseCase: DefaultLocationUseCase(locationService: DefaultLocationManager()))))
+        let locationViewController = UINavigationController(rootViewController:       LocationViewController(viewModel: AppDIContainer.shared.makeLocationDIContainer().makeLocationViewModel()))
         locationViewController.tabBarItem = UITabBarItem(
             title: StringLiteral.location,
             image: ImageLiteral.mapTabIcon,
