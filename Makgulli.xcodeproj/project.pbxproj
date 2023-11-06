@@ -22,6 +22,9 @@
 		5A04070F2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A04070E2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift */; };
 		5A0407122AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407112AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift */; };
 		5A0407142AF91E8500A4BA84 /* EpisodeDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407132AF91E8500A4BA84 /* EpisodeDIContainer.swift */; };
+		5A0407172AF922C500A4BA84 /* EpisodeDetailStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407162AF922C500A4BA84 /* EpisodeDetailStorage.swift */; };
+		5A04071C2AF923B800A4BA84 /* DefaultEpisodeDetailLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A04071B2AF923B800A4BA84 /* DefaultEpisodeDetailLocalRepository.swift */; };
+		5A0407202AF9245700A4BA84 /* EpisodeDetailLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A04071F2AF9245700A4BA84 /* EpisodeDetailLocalRepository.swift */; };
 		5A0A982D2AE265A400545939 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */; };
 		5A0A982F2AE3A23900545939 /* URLSchemaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982E2AE3A23900545939 /* URLSchemaService.swift */; };
 		5A0A98312AE3E1E500545939 /* FindRouteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98302AE3E1E500545939 /* FindRouteType.swift */; };
@@ -210,6 +213,9 @@
 		5A04070E2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWriteEpisodeLocalRepository.swift; sourceTree = "<group>"; };
 		5A0407112AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeLocalRepository.swift; sourceTree = "<group>"; };
 		5A0407132AF91E8500A4BA84 /* EpisodeDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDIContainer.swift; sourceTree = "<group>"; };
+		5A0407162AF922C500A4BA84 /* EpisodeDetailStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailStorage.swift; sourceTree = "<group>"; };
+		5A04071B2AF923B800A4BA84 /* DefaultEpisodeDetailLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEpisodeDetailLocalRepository.swift; sourceTree = "<group>"; };
+		5A04071F2AF9245700A4BA84 /* EpisodeDetailLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailLocalRepository.swift; sourceTree = "<group>"; };
 		5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		5A0A982E2AE3A23900545939 /* URLSchemaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemaService.swift; sourceTree = "<group>"; };
 		5A0A98302AE3E1E500545939 /* FindRouteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindRouteType.swift; sourceTree = "<group>"; };
@@ -462,6 +468,7 @@
 				5A0406ED2AF616E500A4BA84 /* LocationStorage */,
 				5A0406F72AF7A4EE00A4BA84 /* LocationDetailStorage */,
 				5A04070B2AF9194F00A4BA84 /* EpisodeStorage */,
+				5A0407152AF922AD00A4BA84 /* EpisodeDetailStorage */,
 				5A0406EE2AF6171000A4BA84 /* FavoriteStorage */,
 			);
 			path = Realm;
@@ -508,6 +515,59 @@
 				5A0407112AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift */,
 			);
 			path = Episode;
+			sourceTree = "<group>";
+		};
+		5A0407152AF922AD00A4BA84 /* EpisodeDetailStorage */ = {
+			isa = PBXGroup;
+			children = (
+				5A0407162AF922C500A4BA84 /* EpisodeDetailStorage.swift */,
+			);
+			path = EpisodeDetailStorage;
+			sourceTree = "<group>";
+		};
+		5A0407182AF9235700A4BA84 /* LocationDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */,
+				5A0407032AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift */,
+			);
+			path = LocationDetail;
+			sourceTree = "<group>";
+		};
+		5A0407192AF9237300A4BA84 /* Episode */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */,
+				5A04070E2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift */,
+			);
+			path = Episode;
+			sourceTree = "<group>";
+		};
+		5A04071A2AF9237E00A4BA84 /* EpisodeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */,
+				5A04071B2AF923B800A4BA84 /* DefaultEpisodeDetailLocalRepository.swift */,
+			);
+			path = EpisodeDetail;
+			sourceTree = "<group>";
+		};
+		5A04071D2AF9241F00A4BA84 /* LocationDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */,
+				5A0407072AF9028500A4BA84 /* LocationDetailLocalRepository.swift */,
+			);
+			path = LocationDetail;
+			sourceTree = "<group>";
+		};
+		5A04071E2AF9243C00A4BA84 /* EpisodeDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */,
+				5A04071F2AF9245700A4BA84 /* EpisodeDetailLocalRepository.swift */,
+			);
+			path = EpisodeDetail;
 			sourceTree = "<group>";
 		};
 		5A0A982A2AE2657000545939 /* View */ = {
@@ -930,12 +990,10 @@
 			isa = PBXGroup;
 			children = (
 				5A0407022AF8FF0A00A4BA84 /* Location */,
+				5A0407182AF9235700A4BA84 /* LocationDetail */,
+				5A0407192AF9237300A4BA84 /* Episode */,
+				5A04071A2AF9237E00A4BA84 /* EpisodeDetail */,
 				5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */,
-				5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */,
-				5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */,
-				5A04070E2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift */,
-				5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */,
-				5A0407032AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -974,11 +1032,10 @@
 			isa = PBXGroup;
 			children = (
 				5A0406FA2AF7C1FC00A4BA84 /* Location */,
+				5A04071D2AF9241F00A4BA84 /* LocationDetail */,
 				5A0407102AF91D0F00A4BA84 /* Episode */,
+				5A04071E2AF9243C00A4BA84 /* EpisodeDetail */,
 				5A0A98652AE9351C00545939 /* RealmRepository.swift */,
-				5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */,
-				5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */,
-				5A0407072AF9028500A4BA84 /* LocationDetailLocalRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -1448,6 +1505,7 @@
 				5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */,
 				5AAB8EA22ADFEB85005969FA /* NotificationCenterHandler.swift in Sources */,
 				5A6827A12AD446D700C37B17 /* UIViewController+.swift in Sources */,
+				5A0407172AF922C500A4BA84 /* EpisodeDetailStorage.swift in Sources */,
 				5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */,
 				5A6827772ACEA7B200C37B17 /* RateButton.swift in Sources */,
 				5A0406F62AF7922900A4BA84 /* BaseRealmStorage.swift in Sources */,
@@ -1460,6 +1518,7 @@
 				5A6827A92AD5221A00C37B17 /* WriteEpisodeView.swift in Sources */,
 				5A6827882AD0509D00C37B17 /* DetailEpisodeView.swift in Sources */,
 				5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */,
+				5A04071C2AF923B800A4BA84 /* DefaultEpisodeDetailLocalRepository.swift in Sources */,
 				5A0A98422AE6617D00545939 /* ActionTitleable.swift in Sources */,
 				5A9DA1E92AC2B703006040D2 /* HeaderType.swift in Sources */,
 				5A9DA1ED2AC2BBFE006040D2 /* URLConstants.swift in Sources */,
@@ -1502,6 +1561,7 @@
 				5A6827B42AD6906700C37B17 /* Date+.swift in Sources */,
 				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
 				5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */,
+				5A0407202AF9245700A4BA84 /* EpisodeDetailLocalRepository.swift in Sources */,
 				5AAB8EA02ADFE75E005969FA /* FilterBottomSheetHeaderView.swift in Sources */,
 				5A6827922AD14E0A00C37B17 /* String+.swift in Sources */,
 				5A0A982F2AE3A23900545939 /* URLSchemaService.swift in Sources */,
