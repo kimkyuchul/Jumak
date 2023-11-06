@@ -26,4 +26,8 @@ final class AppDIContainer {
     func makeEpisodeDIContainer() -> EpisodeDIContainer {
         return EpisodeDIContainer()
     }
+    
+    func makeFavoriteDIContainer() -> FavoriteDIContainer {
+        return FavoriteDIContainer()
+    }
 }
