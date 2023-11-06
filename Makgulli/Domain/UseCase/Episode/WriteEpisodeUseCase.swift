@@ -121,3 +121,15 @@ extension DefaultWriteEpisodeUseCase {
         writeEpisodeLocalRepository.checkContainsStore(id)
     }
 }
+
+extension EpisodeVO {
+    func makeEpisodeTable() -> EpisodeTable {
+        let episodeTable = EpisodeTable(date: self.date,
+                                        comment: self.comment,
+                                        imageURL: self.imageURL,
+                                        alcohol: self.alcohol,
+                                        drink: self.drink,
+                                        drinkQuantity: self.drinkQuantity)
+        return episodeTable
+    }
+}
