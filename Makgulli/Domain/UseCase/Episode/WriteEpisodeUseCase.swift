@@ -28,6 +28,7 @@ final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
     
     private let realmRepository: RealmRepository
     private let writeEpisodeRepository: WriteEpisodeRepository
+    private let writeEpisodeLocalRepository: WriteEpisodeLocalRepository
     private let disposebag = DisposeBag()
     
     var updateEpisodeListState = PublishSubject<Void>()
@@ -36,10 +37,12 @@ final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
     
     
     init(realmRepository: RealmRepository,
-         writeEpisodeRepository: WriteEpisodeRepository
+         writeEpisodeRepository: WriteEpisodeRepository,
+         writeEpisodeLocalRepository: WriteEpisodeLocalRepository
     ) {
         self.realmRepository = realmRepository
         self.writeEpisodeRepository = writeEpisodeRepository
+        self.writeEpisodeLocalRepository = writeEpisodeLocalRepository
     }
     
     func updateEpisodeList(_ store: StoreVO, episode: EpisodeVO, imageData: Data) {
@@ -88,7 +91,7 @@ extension DefaultWriteEpisodeUseCase {
     }
     
     private func createStore(_ store: StoreVO) {
-        realmRepository.createStore(store)
+        writeEpisodeLocalRepository.createStore(store)
             .subscribe(onCompleted: {
                 dump("createStore")
             }, onError: { [weak self] error in
@@ -98,7 +101,7 @@ extension DefaultWriteEpisodeUseCase {
     }
     
     private func createStoreTable(_ store: StoreTable) {
-        realmRepository.createStoreTable(store)
+        writeEpisodeLocalRepository.createStoreTable(store)
             .subscribe(onCompleted: {
                 dump("createStoreTable")
             }, onError: { [weak self] error in
@@ -108,7 +111,7 @@ extension DefaultWriteEpisodeUseCase {
     }
     
     private func updateEpisode(_ id: String, _ episode: EpisodeTable) {
-        realmRepository.updateEpisode(id: id, episode: episode)
+        writeEpisodeLocalRepository.updateEpisode(id: id, episode: episode)
             .subscribe(onCompleted: {
                 dump("updateEpisode")
             }, onError: { [weak self] error in
@@ -118,6 +121,6 @@ extension DefaultWriteEpisodeUseCase {
     }
     
     private func storeExists(_ id: String) -> Bool {
-        return realmRepository.checkContainsStore(id: id)
+        writeEpisodeLocalRepository.checkContainsStore(id)
     }
 }
