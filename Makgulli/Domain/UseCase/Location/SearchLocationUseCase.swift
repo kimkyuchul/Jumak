@@ -12,7 +12,7 @@ import RxRelay
 
 protocol SearchLocationUseCase: AnyObject {
     func fetchLocation(query: String, x: String, y: String, page: Int, display: Int)
-    func updateStoreCellObservable(index: Int, storeList: [StoreVO])
+    func updateWillDisplayStoreCell(index: Int, storeList: [StoreVO])
     func updateStoreCell(_ store: StoreVO) -> StoreVO?
     
     var storeVO: PublishSubject<SearchLocationVO> { get }
@@ -28,7 +28,7 @@ final class DefaultSearchLocationUseCase: SearchLocationUseCase {
     }
     
     private let searchLocationRepository: SearchLocationRepository
-    private let realmRepository: RealmRepository
+    private let searchLocationLocalRepository: SearchLocationLocalRepository
     private let disposebag = DisposeBag()
     
     var storeVO = PublishSubject<SearchLocationVO>()
@@ -38,10 +38,10 @@ final class DefaultSearchLocationUseCase: SearchLocationUseCase {
     
     init(
         searchLocationRepository: SearchLocationRepository,
-        realmRepository: RealmRepository
+        searchLocationLocalRepository: SearchLocationLocalRepository
     ) {
         self.searchLocationRepository = searchLocationRepository
-        self.realmRepository = realmRepository
+        self.searchLocationLocalRepository = searchLocationLocalRepository
     }
     
     
@@ -64,8 +64,8 @@ final class DefaultSearchLocationUseCase: SearchLocationUseCase {
             .disposed(by: disposebag)
     }
     
-    func updateStoreCellObservable(index: Int, storeList: [StoreVO]) {
-        realmRepository.updateStoreCellObservable(index: index, storeList: storeList)
+    func updateWillDisplayStoreCell(index: Int, storeList: [StoreVO]) {
+        searchLocationLocalRepository.updateWillDisplayStoreCell(index: index, storeList: storeList)
             .subscribe(with: self, onSuccess: { owner, storeVO  in
                 owner.updateStoreVO.onNext(storeVO)
             }, onFailure: { owner, error in
@@ -75,7 +75,7 @@ final class DefaultSearchLocationUseCase: SearchLocationUseCase {
     }
     
     func updateStoreCell(_ store: StoreVO) -> StoreVO? {
-        return realmRepository.updateStoreCell(store: store)
+        return searchLocationLocalRepository.updateStoreCell(store: store)
     }
 }
 
