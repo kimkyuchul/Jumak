@@ -13,9 +13,9 @@ import RxSwift
 protocol LocationDetailStorage: AnyObject {
     func createStore(_ store: StoreVO) -> Completable
     func updateStore(_ store: StoreVO) -> Completable
-    func updateStoreEpisode(store: StoreVO) -> StoreVO?
+    func updateStoreEpisode(_ store: StoreVO) -> StoreVO?
     func deleteStore(_ store: StoreVO) -> Completable
-    func checkContainsStore(id: String) -> Bool
+    func checkContainsStore(_ id: String) -> Bool
     func shouldUpdateStore(_ store: StoreVO) -> Bool
 }
 
@@ -59,7 +59,7 @@ final class DefaultLocationDetailStorage: BaseRealmStorage, LocationDetailStorag
     }
     
     // WriteEpisode -> LocationDetail로 Dismiss될 때 LocationDetail의 viewWillAppear에서 Episode 정보를 업데이트
-    func updateStoreEpisode(store: StoreVO) -> StoreVO? {
+    func updateStoreEpisode(_ store: StoreVO) -> StoreVO? {
         do {
             var updatedStore = store
             
@@ -112,7 +112,7 @@ final class DefaultLocationDetailStorage: BaseRealmStorage, LocationDetailStorag
         }
     }
     
-    func checkContainsStore(id: String) -> Bool {
+    func checkContainsStore(_ id: String) -> Bool {
         let result = realm.objects(StoreTable.self).filter("id == %@", id)
         return !result.isEmpty
     }
