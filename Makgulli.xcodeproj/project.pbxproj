@@ -18,6 +18,9 @@
 		5A0407042AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407032AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift */; };
 		5A0407062AF8FFF800A4BA84 /* LocationDetailStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407052AF8FFF800A4BA84 /* LocationDetailStorage.swift */; };
 		5A0407082AF9028500A4BA84 /* LocationDetailLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407072AF9028500A4BA84 /* LocationDetailLocalRepository.swift */; };
+		5A04070D2AF9197300A4BA84 /* EpisodeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A04070C2AF9197300A4BA84 /* EpisodeStorage.swift */; };
+		5A04070F2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A04070E2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift */; };
+		5A0407122AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407112AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift */; };
 		5A0A982D2AE265A400545939 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */; };
 		5A0A982F2AE3A23900545939 /* URLSchemaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982E2AE3A23900545939 /* URLSchemaService.swift */; };
 		5A0A98312AE3E1E500545939 /* FindRouteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98302AE3E1E500545939 /* FindRouteType.swift */; };
@@ -202,6 +205,9 @@
 		5A0407032AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationDetailLocalRepository.swift; sourceTree = "<group>"; };
 		5A0407052AF8FFF800A4BA84 /* LocationDetailStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailStorage.swift; sourceTree = "<group>"; };
 		5A0407072AF9028500A4BA84 /* LocationDetailLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailLocalRepository.swift; sourceTree = "<group>"; };
+		5A04070C2AF9197300A4BA84 /* EpisodeStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeStorage.swift; sourceTree = "<group>"; };
+		5A04070E2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWriteEpisodeLocalRepository.swift; sourceTree = "<group>"; };
+		5A0407112AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeLocalRepository.swift; sourceTree = "<group>"; };
 		5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		5A0A982E2AE3A23900545939 /* URLSchemaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemaService.swift; sourceTree = "<group>"; };
 		5A0A98302AE3E1E500545939 /* FindRouteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindRouteType.swift; sourceTree = "<group>"; };
@@ -429,12 +435,12 @@
 			path = LocationStorage;
 			sourceTree = "<group>";
 		};
-		5A0406EE2AF6171000A4BA84 /* FavoriteRealmStorage */ = {
+		5A0406EE2AF6171000A4BA84 /* FavoriteStorage */ = {
 			isa = PBXGroup;
 			children = (
 				5A0406F12AF617BE00A4BA84 /* FavoriteStorage.swift */,
 			);
-			path = FavoriteRealmStorage;
+			path = FavoriteStorage;
 			sourceTree = "<group>";
 		};
 		5A0406F32AF7901F00A4BA84 /* FileManager */ = {
@@ -452,7 +458,8 @@
 				5A6827972AD1642500C37B17 /* Table+Mapping */,
 				5A0406ED2AF616E500A4BA84 /* LocationStorage */,
 				5A0406F72AF7A4EE00A4BA84 /* LocationDetailStorage */,
-				5A0406EE2AF6171000A4BA84 /* FavoriteRealmStorage */,
+				5A04070B2AF9194F00A4BA84 /* EpisodeStorage */,
+				5A0406EE2AF6171000A4BA84 /* FavoriteStorage */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -481,6 +488,23 @@
 				5A0406F82AF7C15800A4BA84 /* DefaultSearchLocationLocalRepository.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		5A04070B2AF9194F00A4BA84 /* EpisodeStorage */ = {
+			isa = PBXGroup;
+			children = (
+				5A04070C2AF9197300A4BA84 /* EpisodeStorage.swift */,
+			);
+			path = EpisodeStorage;
+			sourceTree = "<group>";
+		};
+		5A0407102AF91D0F00A4BA84 /* Episode */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */,
+				5A0407112AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift */,
+			);
+			path = Episode;
 			sourceTree = "<group>";
 		};
 		5A0A982A2AE2657000545939 /* View */ = {
@@ -906,6 +930,7 @@
 				5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */,
 				5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */,
 				5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */,
+				5A04070E2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift */,
 				5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */,
 				5A0407032AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift */,
 			);
@@ -946,9 +971,9 @@
 			isa = PBXGroup;
 			children = (
 				5A0406FA2AF7C1FC00A4BA84 /* Location */,
+				5A0407102AF91D0F00A4BA84 /* Episode */,
 				5A0A98652AE9351C00545939 /* RealmRepository.swift */,
 				5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */,
-				5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */,
 				5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */,
 				5A0407072AF9028500A4BA84 /* LocationDetailLocalRepository.swift */,
 			);
@@ -1450,6 +1475,7 @@
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
 				5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */,
 				5A0A98372AE5894D00545939 /* SplashViewController.swift in Sources */,
+				5A04070F2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift in Sources */,
 				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
 				5AAB8E6F2AD9596F005969FA /* ImageStorage.swift in Sources */,
 				5AAB8E9C2ADFD225005969FA /* FilterType.swift in Sources */,
@@ -1505,6 +1531,7 @@
 				5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */,
 				5AAB8E9A2ADFD1C6005969FA /* FilterTableViewCell.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
+				5A04070D2AF9197300A4BA84 /* EpisodeStorage.swift in Sources */,
 				5A0406F02AF617B500A4BA84 /* LocationStorage.swift in Sources */,
 				5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */,
 				5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */,
@@ -1523,6 +1550,7 @@
 				5A6827C22AD6E59300C37B17 /* CheckBoxView.swift in Sources */,
 				5A0A984F2AE6C6FA00545939 /* FavoriteEmptyView.swift in Sources */,
 				5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */,
+				5A0407122AF91D1E00A4BA84 /* WriteEpisodeLocalRepository.swift in Sources */,
 				5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */,
 				5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */,
 				5A0A98442AE664F100545939 /* CategoryFilterType.swift in Sources */,
