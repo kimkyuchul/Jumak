@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		506CA1E64669FE0853F40A90 /* libPods-Makgulli-MakgulliUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */; };
+		5A0406E72AF50DB300A4BA84 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406E62AF50DB300A4BA84 /* AppDIContainer.swift */; };
+		5A0406E92AF5145400A4BA84 /* LocationDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406E82AF5145400A4BA84 /* LocationDIContainer.swift */; };
+		5A0406F02AF617B500A4BA84 /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406EF2AF617B400A4BA84 /* LocationStorage.swift */; };
+		5A0406F22AF617BE00A4BA84 /* FavoriteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406F12AF617BE00A4BA84 /* FavoriteStorage.swift */; };
+		5A0406F62AF7922900A4BA84 /* BaseRealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406F52AF7922900A4BA84 /* BaseRealmStorage.swift */; };
+		5A0406F92AF7C15800A4BA84 /* DefaultSearchLocationLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406F82AF7C15800A4BA84 /* DefaultSearchLocationLocalRepository.swift */; };
+		5A0406FC2AF7C20D00A4BA84 /* SearchLocationLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406FB2AF7C20D00A4BA84 /* SearchLocationLocalRepository.swift */; };
+		5A0407042AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407032AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift */; };
+		5A0407062AF8FFF800A4BA84 /* LocationDetailStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407052AF8FFF800A4BA84 /* LocationDetailStorage.swift */; };
+		5A0407082AF9028500A4BA84 /* LocationDetailLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0407072AF9028500A4BA84 /* LocationDetailLocalRepository.swift */; };
 		5A0A982D2AE265A400545939 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */; };
 		5A0A982F2AE3A23900545939 /* URLSchemaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A982E2AE3A23900545939 /* URLSchemaService.swift */; };
 		5A0A98312AE3E1E500545939 /* FindRouteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98302AE3E1E500545939 /* FindRouteType.swift */; };
@@ -182,6 +192,16 @@
 		1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli-MakgulliUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		463D854F776FDADD2658D9BD /* Pods-Makgulli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli.release.xcconfig"; path = "Target Support Files/Pods-Makgulli/Pods-Makgulli.release.xcconfig"; sourceTree = "<group>"; };
 		51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakgulliTests.release.xcconfig"; path = "Target Support Files/Pods-MakgulliTests/Pods-MakgulliTests.release.xcconfig"; sourceTree = "<group>"; };
+		5A0406E62AF50DB300A4BA84 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		5A0406E82AF5145400A4BA84 /* LocationDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDIContainer.swift; sourceTree = "<group>"; };
+		5A0406EF2AF617B400A4BA84 /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
+		5A0406F12AF617BE00A4BA84 /* FavoriteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStorage.swift; sourceTree = "<group>"; };
+		5A0406F52AF7922900A4BA84 /* BaseRealmStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRealmStorage.swift; sourceTree = "<group>"; };
+		5A0406F82AF7C15800A4BA84 /* DefaultSearchLocationLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchLocationLocalRepository.swift; sourceTree = "<group>"; };
+		5A0406FB2AF7C20D00A4BA84 /* SearchLocationLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationLocalRepository.swift; sourceTree = "<group>"; };
+		5A0407032AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationDetailLocalRepository.swift; sourceTree = "<group>"; };
+		5A0407052AF8FFF800A4BA84 /* LocationDetailStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailStorage.swift; sourceTree = "<group>"; };
+		5A0407072AF9028500A4BA84 /* LocationDetailLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailLocalRepository.swift; sourceTree = "<group>"; };
 		5A0A982C2AE265A400545939 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		5A0A982E2AE3A23900545939 /* URLSchemaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemaService.swift; sourceTree = "<group>"; };
 		5A0A98302AE3E1E500545939 /* FindRouteType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindRouteType.swift; sourceTree = "<group>"; };
@@ -384,6 +404,85 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5A0406E52AF50CF900A4BA84 /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				5A0406E62AF50DB300A4BA84 /* AppDIContainer.swift */,
+				5A0406E82AF5145400A4BA84 /* LocationDIContainer.swift */,
+			);
+			path = DIContainer;
+			sourceTree = "<group>";
+		};
+		5A0406EC2AF613F200A4BA84 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				5A0406F52AF7922900A4BA84 /* BaseRealmStorage.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		5A0406ED2AF616E500A4BA84 /* LocationStorage */ = {
+			isa = PBXGroup;
+			children = (
+				5A0406EF2AF617B400A4BA84 /* LocationStorage.swift */,
+			);
+			path = LocationStorage;
+			sourceTree = "<group>";
+		};
+		5A0406EE2AF6171000A4BA84 /* FavoriteRealmStorage */ = {
+			isa = PBXGroup;
+			children = (
+				5A0406F12AF617BE00A4BA84 /* FavoriteStorage.swift */,
+			);
+			path = FavoriteRealmStorage;
+			sourceTree = "<group>";
+		};
+		5A0406F32AF7901F00A4BA84 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */,
+			);
+			path = FileManager;
+			sourceTree = "<group>";
+		};
+		5A0406F42AF7902E00A4BA84 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				5A0406EC2AF613F200A4BA84 /* Infrastructure */,
+				5A6827972AD1642500C37B17 /* Table+Mapping */,
+				5A0406ED2AF616E500A4BA84 /* LocationStorage */,
+				5A0406F72AF7A4EE00A4BA84 /* LocationDetailStorage */,
+				5A0406EE2AF6171000A4BA84 /* FavoriteRealmStorage */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		5A0406F72AF7A4EE00A4BA84 /* LocationDetailStorage */ = {
+			isa = PBXGroup;
+			children = (
+				5A0407052AF8FFF800A4BA84 /* LocationDetailStorage.swift */,
+			);
+			path = LocationDetailStorage;
+			sourceTree = "<group>";
+		};
+		5A0406FA2AF7C1FC00A4BA84 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA2092AC3CE9F006040D2 /* SearchLocationRepository.swift */,
+				5A0406FB2AF7C20D00A4BA84 /* SearchLocationLocalRepository.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		5A0407022AF8FF0A00A4BA84 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1FB2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift */,
+				5A0406F82AF7C15800A4BA84 /* DefaultSearchLocationLocalRepository.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		5A0A982A2AE2657000545939 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,14 +640,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5A6827932AD15DF400C37B17 /* DataBase */ = {
-			isa = PBXGroup;
-			children = (
-				5A6827972AD1642500C37B17 /* Table+Mapping */,
-			);
-			path = DataBase;
-			sourceTree = "<group>";
-		};
 		5A6827972AD1642500C37B17 /* Table+Mapping */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +739,7 @@
 			children = (
 				5A70BA322AC174E600506846 /* AppDelegate.swift */,
 				5A70BA342AC174E600506846 /* SceneDelegate.swift */,
+				5A0406E52AF50CF900A4BA84 /* DIContainer */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -655,10 +747,9 @@
 		5A9DA1C12AC19030006040D2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5AAB8E6D2AD958E5005969FA /* PersistentStorage */,
-				5A9DA1FA2AC2FCB4006040D2 /* Repositories */,
+				5AAB8E6D2AD958E5005969FA /* Persistence */,
 				5A9DA1DF2AC1B0E7006040D2 /* Network */,
-				5A6827932AD15DF400C37B17 /* DataBase */,
+				5A9DA1FA2AC2FCB4006040D2 /* Repositories */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -811,11 +902,12 @@
 		5A9DA1FA2AC2FCB4006040D2 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				5A0407022AF8FF0A00A4BA84 /* Location */,
 				5A6827982AD1646D00C37B17 /* DefaultRealmRepository.swift */,
-				5A9DA1FB2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift */,
 				5AAB8E742ADA70BD005969FA /* DefaultLocationDetailRepository.swift */,
 				5AAB8E702AD99388005969FA /* DefaultWriteEpisodeRepository.swift */,
 				5AAB8E832ADC276F005969FA /* DefaultEpisodeDetailRepository.swift */,
+				5A0407032AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -853,11 +945,12 @@
 		5A9DA2082AC3CE64006040D2 /* RepositoryInterface */ = {
 			isa = PBXGroup;
 			children = (
+				5A0406FA2AF7C1FC00A4BA84 /* Location */,
 				5A0A98652AE9351C00545939 /* RealmRepository.swift */,
-				5A9DA2092AC3CE9F006040D2 /* SearchLocationRepository.swift */,
 				5AAB8E762ADA7107005969FA /* LocationDetailRepository.swift */,
 				5AAB8E722AD9948E005969FA /* WriteEpisodeRepository.swift */,
 				5AAB8E852ADC286D005969FA /* EpisodeDetailRepository.swift */,
+				5A0407072AF9028500A4BA84 /* LocationDetailLocalRepository.swift */,
 			);
 			path = RepositoryInterface;
 			sourceTree = "<group>";
@@ -913,12 +1006,13 @@
 			path = UIComponent;
 			sourceTree = "<group>";
 		};
-		5AAB8E6D2AD958E5005969FA /* PersistentStorage */ = {
+		5AAB8E6D2AD958E5005969FA /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				5AAB8E6E2AD9596F005969FA /* ImageStorage.swift */,
+				5A0406F32AF7901F00A4BA84 /* FileManager */,
+				5A0406F42AF7902E00A4BA84 /* Realm */,
 			);
-			path = PersistentStorage;
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		5AAB8E782ADBE152005969FA /* EpisodeDetail */ = {
@@ -1328,7 +1422,9 @@
 				5A6827A12AD446D700C37B17 /* UIViewController+.swift in Sources */,
 				5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */,
 				5A6827772ACEA7B200C37B17 /* RateButton.swift in Sources */,
+				5A0406F62AF7922900A4BA84 /* BaseRealmStorage.swift in Sources */,
 				5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */,
+				5A0406F92AF7C15800A4BA84 /* DefaultSearchLocationLocalRepository.swift in Sources */,
 				5ADC00412AC86DA00024D7F8 /* FavoriteViewController.swift in Sources */,
 				5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */,
 				5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */,
@@ -1359,6 +1455,7 @@
 				5AAB8E9C2ADFD225005969FA /* FilterType.swift in Sources */,
 				5A0A98602AE9159F00545939 /* InquiryViewController.swift in Sources */,
 				5A9DA2072AC3CC7F006040D2 /* SearchLocationUseCase.swift in Sources */,
+				5A0407062AF8FFF800A4BA84 /* LocationDetailStorage.swift in Sources */,
 				5A68279B2AD26A8400C37B17 /* EpisodeTable.swift in Sources */,
 				5A0A98332AE4BBBE00545939 /* IndicatorView.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
@@ -1368,9 +1465,11 @@
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
 				5A0A982D2AE265A400545939 /* FilterCollectionViewCell.swift in Sources */,
 				5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */,
+				5A0406FC2AF7C20D00A4BA84 /* SearchLocationLocalRepository.swift in Sources */,
 				5A0A98662AE9351C00545939 /* RealmRepository.swift in Sources */,
 				5A6827B22AD6760600C37B17 /* EpisodeDateView.swift in Sources */,
 				5AAB8E772ADA7107005969FA /* LocationDetailRepository.swift in Sources */,
+				5A0406F22AF617BE00A4BA84 /* FavoriteStorage.swift in Sources */,
 				5A6827B42AD6906700C37B17 /* Date+.swift in Sources */,
 				5A9DA1F22AC2F39C006040D2 /* SearchLocationDTO.swift in Sources */,
 				5A6827B92AD6AC4C00C37B17 /* EpisodeTextField.swift in Sources */,
@@ -1378,6 +1477,7 @@
 				5A6827922AD14E0A00C37B17 /* String+.swift in Sources */,
 				5A0A982F2AE3A23900545939 /* URLSchemaService.swift in Sources */,
 				5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */,
+				5A0406E72AF50DB300A4BA84 /* AppDIContainer.swift in Sources */,
 				5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */,
 				5ADC00392AC5F9370024D7F8 /* CategoryCollectionViewCell.swift in Sources */,
 				5A9DA1EB2AC2B74B006040D2 /* Task.swift in Sources */,
@@ -1405,6 +1505,7 @@
 				5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */,
 				5AAB8E9A2ADFD1C6005969FA /* FilterTableViewCell.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
+				5A0406F02AF617B500A4BA84 /* LocationStorage.swift in Sources */,
 				5AAB8E8A2ADCFC2E005969FA /* AlertType.swift in Sources */,
 				5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */,
 				5A68277C2ACEC7A700C37B17 /* DetailTitleView.swift in Sources */,
@@ -1426,15 +1527,18 @@
 				5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */,
 				5A0A98442AE664F100545939 /* CategoryFilterType.swift in Sources */,
 				5A6827752ACE9A1D00C37B17 /* DetailRateView.swift in Sources */,
+				5A0406E92AF5145400A4BA84 /* LocationDIContainer.swift in Sources */,
 				5AAB8EA72AE145F0005969FA /* UserDefault.swift in Sources */,
 				5AAB8E882ADC36F2005969FA /* EpisodeDetailView.swift in Sources */,
 				5AAB8E822ADC0418005969FA /* BaseAlert.swift in Sources */,
+				5A0407042AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift in Sources */,
 				5A9DA1F92AC2F79D006040D2 /* SearchLocationReqeustDTO.swift in Sources */,
 				5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */,
 				5A68278E2AD08A2A00C37B17 /* StoreVO.swift in Sources */,
 				5A9DA2172AC3F629006040D2 /* LocationService.swift in Sources */,
 				5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */,
 				5A9DA21A2AC415C5006040D2 /* BaseViewController.swift in Sources */,
+				5A0407082AF9028500A4BA84 /* LocationDetailLocalRepository.swift in Sources */,
 				5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */,
 				5A6827702ACE7A6C00C37B17 /* EpisodeCollectionViewCell.swift in Sources */,
 				5AAB8E7F2ADBEEAE005969FA /* EpisodeDetailUseCase.swift in Sources */,
