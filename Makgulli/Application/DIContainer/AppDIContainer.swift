@@ -22,4 +22,8 @@ final class AppDIContainer {
         )
         return LocationDIContainer(dependencies: dependencies)
     }
+    
+    func makeEpisodeDIContainer() -> EpisodeDIContainer {
+        return EpisodeDIContainer()
+    }
 }
