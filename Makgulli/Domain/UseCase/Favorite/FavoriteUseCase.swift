@@ -19,7 +19,7 @@ protocol FavoriteUseCase: AnyObject {
 
 final class DefaultFavoriteUseCase: FavoriteUseCase {
     
-    private let realmRepository: RealmRepository
+    private let favoriteRepository: FavoriteRepository
     private let disposebag = DisposeBag()
     
     var errorSubject = PublishSubject<Error>()
@@ -27,9 +27,9 @@ final class DefaultFavoriteUseCase: FavoriteUseCase {
     var isLoding = PublishSubject<Bool>()
     
     init(
-        realmRepository: RealmRepository
+        favoriteRepository: FavoriteRepository
     ) {
-        self.realmRepository = realmRepository
+        self.favoriteRepository = favoriteRepository
     }
     
     func fetchFilterStore(filterType: FilterType, reverseFilter: Bool, categoryFilter: CategoryFilterType) {
@@ -51,22 +51,22 @@ final class DefaultFavoriteUseCase: FavoriteUseCase {
         
         switch filterType {
         case .recentlyAddedBookmark:
-            return realmRepository.fetchBookmarkStore(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            return favoriteRepository.fetchBookmarkStore(sortAscending: reverseFilter, categoryFilter: categoryFilter)
             
         case .sortByUpRating:
-            return realmRepository.fetchStoreSortedByRating(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            return favoriteRepository.fetchStoreSortedByRating(sortAscending: reverseFilter, categoryFilter: categoryFilter)
             
         case .bookmarkSortByUpRating:
-            return realmRepository.fetchBookmarkStoreSortedByRating(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            return favoriteRepository.fetchBookmarkStoreSortedByRating(sortAscending: reverseFilter, categoryFilter: categoryFilter)
             
         case .sortByDescendingEpisodeCount:
-            return realmRepository.fetchStoreSortedByEpisodeCount(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            return favoriteRepository.fetchStoreSortedByEpisodeCount(sortAscending: reverseFilter, categoryFilter: categoryFilter)
             
         case .bookmarkSortByDescendingEpisodeCount:
-            return realmRepository.fetchBookmarkStoreSortedByEpisodeCount(sortAscending: reverseFilter, categoryFilter: categoryFilter)
+            return favoriteRepository.fetchBookmarkStoreSortedByEpisodeCount(sortAscending: reverseFilter, categoryFilter: categoryFilter)
             
         case .sortByName:
-            return realmRepository.fetchStoreSortedByName(sortAscending: !reverseFilter, categoryFilter: categoryFilter)
+            return favoriteRepository.fetchStoreSortedByName(sortAscending: !reverseFilter, categoryFilter: categoryFilter)
         }
     }
 }
