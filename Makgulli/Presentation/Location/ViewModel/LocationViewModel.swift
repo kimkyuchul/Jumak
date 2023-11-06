@@ -33,9 +33,9 @@ final class LocationViewModel: ViewModelType {
         let viewDidLoadEvent: Observable<Void>
         let viewWillAppearEvent: Observable<Void>
         let willDisplayCell: Observable<IndexPath>
-        let didSelectMarker: PublishRelay<Int?>
+        let didSelectMarker: Observable<Int?>
         let didSelectCategoryCell: Observable<IndexPath>
-        let changeMapLocation: PublishRelay<CLLocationCoordinate2D>
+        let changeMapLocation: Observable<CLLocationCoordinate2D>
         let didSelectRefreshButton: Observable<Void>
         let didSelectUserLocationButton: Observable<Void>
         let didScrollStoreCollectionView: Observable<Int?>
@@ -71,7 +71,7 @@ final class LocationViewModel: ViewModelType {
             .withLatestFrom(input.willDisplayCell)
             .withUnretained(self)
             .bind(onNext: { owner, indexPath in
-                owner.searchLocationUseCase.updateStoreCellObservable(index: indexPath.row, storeList: owner.storeList)
+                owner.searchLocationUseCase.updateWillDisplayStoreCell(index: indexPath.row, storeList: owner.storeList)
             })
             .disposed(by: disposeBag)
         
@@ -114,10 +114,8 @@ final class LocationViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        let currentLocationAndCategoryType = Observable.combineLatest(self.currentLocation, self.categoryType)
-        
         input.didSelectRefreshButton
-            .withLatestFrom(currentLocationAndCategoryType)
+            .withLatestFrom(Observable.combineLatest(self.currentLocation, self.categoryType))
             .withUnretained(self)
             .flatMap { owner, currentLocationAndCategoryType -> Observable<String> in
                 let (currentLocation, categoryType) = currentLocationAndCategoryType
@@ -158,10 +156,8 @@ final class LocationViewModel: ViewModelType {
     }
     
     private func createOutput(input: Input, output: Output) {
-        let userLocationAndCategoryType = Observable.combineLatest(output.currentUserLocation, self.categoryType)
-        
         locationUseCase.locationUpdateSubject
-            .withLatestFrom(userLocationAndCategoryType)
+            .withLatestFrom(Observable.combineLatest(output.currentUserLocation, self.categoryType))
             .withUnretained(self)
             .bind(onNext: { owner, userLocationAndCategoryType in
                 let (userLocation, categoryType) = userLocationAndCategoryType

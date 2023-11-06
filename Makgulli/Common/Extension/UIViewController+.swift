@@ -7,7 +7,7 @@
 
 import UIKit
 
-import RxRelay
+import RxSwift
 
 extension UIViewController {
     func showToast(message : String) {
@@ -50,11 +50,11 @@ extension UIViewController {
                                rightButtonAction: rightButtonAction)
     }
     
-    func presentActionSheet<T: CaseIterable>(actionType: T.AllCases, relay: PublishRelay<T>) where T: ActionTitleable {
+    func presentActionSheet<T: CaseIterable>(actionType: T.AllCases, inputSubject: PublishSubject<T>) where T: ActionTitleable {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         for action in actionType {
             let alertAction = UIAlertAction(title: action.title, style: .default) { _ in
-                relay.accept(action)
+                inputSubject.onNext(action)
             }
             alert.addAction(alertAction)
         }

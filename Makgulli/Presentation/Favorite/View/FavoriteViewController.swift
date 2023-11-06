@@ -23,7 +23,7 @@ final class FavoriteViewController: BaseViewController {
     private var dataSource: DiffableDataSource?
     private let viewModel: FavoriteViewModel
     private let didSelectReverseFilterButton = PublishRelay<Void>()
-    private let didSelectCategoryFilterButton = PublishRelay<CategoryFilterType>()
+    private let didSelectCategoryFilterButton = PublishSubject<CategoryFilterType>()
     
     fileprivate let categoryButton = {
         var configuration = UIButton.Configuration.plain()
@@ -63,12 +63,12 @@ final class FavoriteViewController: BaseViewController {
     }()
     private lazy var indicatorView = IndicatorView(frame: .zero)
     fileprivate lazy var favoriteEmptyView = FavoriteEmptyView()
-        
+    
     init(viewModel: FavoriteViewModel) {
         self.viewModel = viewModel
         super.init()
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCellRegistrationAndDataSource()
@@ -85,7 +85,7 @@ final class FavoriteViewController: BaseViewController {
                                             didSelectCategoryFilterButton: didSelectCategoryFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
                                             didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
-         
+        
         let storeList = output.storeList
             .share()
         
@@ -93,7 +93,7 @@ final class FavoriteViewController: BaseViewController {
             .withUnretained(self)
             .bind(onNext: { owner, storeListAndFilterType in
                 let (storeList, filterType, reverseFilterType) = storeListAndFilterType
-            
+                
                 owner.applyCollectionViewDataSource(by: storeList, countTitle: storeList.count, filterType: filterType, reverseFilterType: reverseFilterType)
             })
             .disposed(by: disposeBag)
@@ -125,7 +125,7 @@ final class FavoriteViewController: BaseViewController {
         categoryButton.rx.tap
             .withUnretained(self)
             .bind(onNext: { owner, _ in
-                owner.presentActionSheet(actionType: CategoryFilterType.allCases, relay: owner.didSelectCategoryFilterButton)
+                owner.presentActionSheet(actionType: CategoryFilterType.allCases, inputSubject: owner.didSelectCategoryFilterButton)
             })
             .disposed(by: disposeBag)
         
@@ -140,15 +140,19 @@ final class FavoriteViewController: BaseViewController {
         
         collectionView.rx.itemSelected
             .withUnretained(self)
-             .bind(onNext: { owner, indexPath in
-                 guard let storeVO = owner.itemIdentifier(for: indexPath) else { return }
-                 
-                 guard let realmRepository = DefaultRealmRepository() else { return }
-                 let detailVC = LocationDetailViewController(viewModel: LocationDetailViewModel(storeVO: storeVO, locationDetailUseCase: DefaultLocationDetailUseCase(realmRepository: realmRepository, locationDetailRepository: DefaultLocationDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())), urlSchemaService: DefaultURLSchemaService(), pasteboardService: DefaultPasteboardService())))
-                     detailVC.hidesBottomBarWhenPushed = true
-                     owner.navigationController?.pushViewController(detailVC, animated: true)
-             })
-             .disposed(by: disposeBag)
+            .bind(onNext: { owner, indexPath in
+                guard let storeVO = owner.itemIdentifier(for: indexPath) else { return }
+                
+                let locationDetilViewController = LocationDetailViewController(
+                    viewModel: AppDIContainer.shared
+                        .makeLocationDIContainer()
+                        .makeLocationDetailViewModel(store: storeVO)
+                )
+                
+                locationDetilViewController.hidesBottomBarWhenPushed = true
+                owner.navigationController?.pushViewController(locationDetilViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func applyCollectionViewDataSource(
@@ -161,7 +165,7 @@ final class FavoriteViewController: BaseViewController {
         snapshot.reconfigureItems(viewModels)
         configureHeader(countTitle: countTitle, filterType: filterType, reverseFilter: reverseFilterType)
         
-//        dataSource?.apply(snapshot, animatingDifferences: false)
+        //        dataSource?.apply(snapshot, animatingDifferences: false)
         dataSource?.applySnapshotUsingReloadData(snapshot)
     }
     

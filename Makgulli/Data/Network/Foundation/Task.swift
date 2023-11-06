@@ -9,7 +9,6 @@ import Foundation
 
 import Alamofire
 
-
 enum Task {
     case requestPlain
     case requestJSONEncodable(Encodable)

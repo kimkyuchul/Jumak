@@ -40,21 +40,21 @@ final class DefaultLocationDetailUseCase: LocationDetailUseCase {
         case deleteStore
     }
     
-    private let realmRepository: RealmRepository
     private let locationDetailRepository: LocationDetailRepository
+    private let locationDetailLocalRepository: LocationDetailLocalRepository
     private let urlSchemaService: URLSchemaService
     private let pasteboardService: PasteboardService
     private let disposebag = DisposeBag()
     
-    init(realmRepository: RealmRepository,
-         locationDetailRepository: LocationDetailRepository,
+    init(locationDetailRepository: LocationDetailRepository,
+         locationDetailLocalRepository: LocationDetailLocalRepository,
          urlSchemaService: URLSchemaService,
          pasteboardService: PasteboardService
     ) {
-        self.realmRepository = realmRepository
         self.locationDetailRepository = locationDetailRepository
         self.urlSchemaService = urlSchemaService
         self.pasteboardService = pasteboardService
+        self.locationDetailLocalRepository = locationDetailLocalRepository
     }
     
     var hashTag = PublishSubject<String>()
@@ -115,7 +115,7 @@ final class DefaultLocationDetailUseCase: LocationDetailUseCase {
     
     // 에피소드 추가뷰에서 에피소드를 추가하고 Dismiss됐을 때 에피소드를 업데이트
     func updateStoreEpisode(_ store: StoreVO) -> StoreVO? {
-        return realmRepository.updateStoreEpisode(store: store)
+        return locationDetailLocalRepository.updateStoreEpisode(store)
     }
     
     // 에피소드 콜렉션뷰의 셀 이미지를 load
@@ -139,7 +139,7 @@ final class DefaultLocationDetailUseCase: LocationDetailUseCase {
 
 extension DefaultLocationDetailUseCase {
     private func createBookmark(_ store: StoreVO) {
-        realmRepository.createStore(store)
+        locationDetailLocalRepository.createStore(store)
             .subscribe(onCompleted: {
                 dump("createBookmark")
             }, onError: { [weak self] error in
@@ -149,7 +149,7 @@ extension DefaultLocationDetailUseCase {
     }
     
     private func updateStoreBookmark(_ store: StoreVO) {
-        realmRepository.updateStore(store)
+        locationDetailLocalRepository.updateStore(store)
             .subscribe(onCompleted: {
                 dump("updateStoreBookmark")
             }, onError: { [weak self] error in
@@ -159,7 +159,7 @@ extension DefaultLocationDetailUseCase {
     }
     
     private func deleteStoreBookmark(_ store: StoreVO) {
-        realmRepository.deleteStore(store)
+        locationDetailLocalRepository.deleteStore(store)
             .subscribe(onCompleted: {
                 dump("deleteStoreBookmark")
             }, onError: { [weak self] error in
@@ -169,11 +169,11 @@ extension DefaultLocationDetailUseCase {
     }
     
     private func storeExists(_ id: String) -> Bool {
-        return realmRepository.checkContainsStore(id: id)
+        return locationDetailLocalRepository.checkContainsStore(id)
     }
     
     private func shouldUpdateStore(_ store: StoreVO) -> Bool {
-        return realmRepository.shouldUpdateStore(store)
+        return locationDetailLocalRepository.shouldUpdateStore(store)
     }
     
     private func hasRatingOrEpisode(_ store: StoreVO) -> Bool {

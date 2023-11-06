@@ -127,10 +127,14 @@ final class LocationDetailViewController: BaseViewController {
         output.presentWriteEpisode
             .withUnretained(self)
             .bind(onNext: { owner, storeVO in
-                let wirteViewController = WriteEpisodeViewController(viewModel: WriteEpisodeViewModel(storeVO: storeVO, writeEpisodeUseCase: DefaultWriteEpisodeUseCase(realmRepository: DefaultRealmRepository()!, writeEpisodeRepository: DefaultWriteEpisodeRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())))))
+                let writeEpisodeViewController = WriteEpisodeViewController(
+                    viewModel: AppDIContainer.shared
+                       .makeEpisodeDIContainer()
+                       .makeLocationViewModel(store: storeVO)
+                )
                 
-                wirteViewController.modalPresentationStyle = .fullScreen
-                owner.present(wirteViewController, animated: true)
+                writeEpisodeViewController.modalPresentationStyle = .fullScreen
+                owner.present(writeEpisodeViewController, animated: true)
             })
             .disposed(by: disposeBag)
         
@@ -176,7 +180,7 @@ final class LocationDetailViewController: BaseViewController {
             .withUnretained(self)
              .subscribe(onNext: { owner, indexPath in
                  guard let episode = owner.locationDetailView.itemIdentifier(for: indexPath) else { return }
-                 let episodeDetailViewController = EpisodeDetailViewController(viewModel: EpisodeDetailViewModel(episode: episode, storeId: owner.viewModel.storeVO.id, episodeDetailUseCase: DefaultEpisodeDetailUseCase(realmRepository: DefaultRealmRepository()!, episodeDetailRepository: DefaultEpisodeDetailRepository(imageStorage: DefaultImageStorage(fileManager: FileManager())))))
+                 let episodeDetailViewController = EpisodeDetailViewController(viewModel: AppDIContainer.shared.makeEpisodeDIContainer().makeLocationViewModel(episode: episode, storeId: owner.viewModel.storeVO.id))
                  owner.navigationController?.pushViewController(episodeDetailViewController, animated: true)
              })
              .disposed(by: disposeBag)
