@@ -1,5 +1,6 @@
 # Jumak
-<img width="1920" alt="주막타이틀" src="https://github.com/kimkyuchul/Makgulli/assets/25146374/0cce7415-f138-4150-b718-aeaeb8411917">
+
+<img width="960" alt="Slide 16_9 - 156 (1)" src="https://github.com/kimkyuchul/Jumak/assets/25146374/a25386dc-9f7f-4a73-b7bf-d196d60cc05a">
 
 ### [📱 앱 설치하러 가기](https://apps.apple.com/kr/app/%EC%A3%BC%EB%A7%89/id6470310590)
 
@@ -12,6 +13,12 @@
 
 
 # **✨ 프로젝트 주요 기능**
+
+![주막 레포 이미지 002](https://github.com/kimkyuchul/Jumak/assets/25146374/3339ee27-0b54-4150-ae2b-0dfaf33ef380)
+
+
+
+
 
 🔑 내 위치 근처 혹은 내가 검색하고 싶은 위치에서 막걸리 주막을 찾을 수 있어요.
 
