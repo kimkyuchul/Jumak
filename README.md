@@ -39,7 +39,7 @@
 
 CLGeocoder을 활용한 Address String Observable을 반환하는 메서드에서 알 수 없는 위치에서 주막 재 검색 시 `if let error = error` 로 빠지는 걸 확인할 수 있었다.
 
-공식 문서를 찾아본 결과 특정 위치에 정보를 사용할 수 없는 경우 에러를 준다는 것을 확인했다.
+CLGeocoder 공식 문서를 찾아본 결과 특정 위치에 정보를 사용할 수 없는 경우 에러를 준다는 것을 확인했다.
 
 ```swift
 func reverseGeocodeLocation(location: CLLocation) -> Observable<String> {
