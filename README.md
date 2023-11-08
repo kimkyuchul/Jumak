@@ -12,13 +12,118 @@
 > **지속적인 업데이트**: 2023.10.23 ~ (진행중)
 
 
-# **✨ 프로젝트 주요 기능**
+# **✨ 프로젝트 주요 화면**
 
 ![주막 레포 이미지 002](https://github.com/kimkyuchul/Jumak/assets/25146374/3339ee27-0b54-4150-ae2b-0dfaf33ef380)
 
+### 주요 기능
+- 사용자 위치 기반 막걸리, 파전, 보쌈 주막 찾기 기능 제공
+- 주막 즐겨찾기, 평점 등록 및 해당 주막애서의 에피소드 작성, 조회
+- 평점, 즐겨찾기, 에피소드 등록을 통한 주막 리스트 조회 및 다양한 필터링
+
+# **⚙️ 개발환경 및 기술스택**
+
+- Minimum Deployments: iOS 15.5
+- Dependence Manager : **SPM & CocoaPod(NaverMap)**
+- Swift Version: 5.8.1
+- `UIKit` `MVVM` `RxSwift` `RxCocoa`
+- `Codebase UI` `SnapKit`
+- `DiffableDataSource` `CompositionalLayout` `PHPickerViewController` `RxDataSources` `RxGesture`
+- `CoreLocation` `NaverMap`
+- `Alamofire` `RxReachability`
+- `RealmSwift`
+
+# 🫡 TroubleShooting
+
+1. **검색한 위치가 GeocodeLocation을 할 수 없는 지역일 경우 런타임 오류 이슈**
+
+```swift
+func reverseGeocodeLocation(location: CLLocation) -> Observable<String> {
+        let geocoder = CLGeocoder()
+        return Observable.create { emitter in
+             geocoder.reverseGeocodeLocation(location) { placemarks, error in
+                 if let error = error {
+                     emitter.onError(error)
+                     return
+                 }
+                 
+                 guard let placemark = placemarks?.first else {
+                     emitter.onError(error.unsafelyUnwrapped)
+                     return
+                 }
+                 
+                 let formattedAddress = self.getAddressString(from: placemark)
+                 emitter.onNext(formattedAddress)
+                 emitter.onCompleted()
+             }
+             return Disposables.create()
+         }
+     }
+```
+UscCase의 CLGeocoder을 통해 Address String Observable을 반환하는 메서드에서 알 수 없는 위치에서 주막 재 검색 시 `if let error = error` 로 빠지는 걸 확인할 수 있었다.
+
+공식 문서를 찾아본 결과 특정 위치에 정보를 사용할 수 없는 경우 에러를 준다는 것을 확인했다.
+
+```swift
+/// 1번 - 스트림 끊김
+input.didSelectRefreshButton
+            .withUnretained(self)
+            .flatMapLatest { owner, location in
+                let reverseGeocodeObservable = owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
+                return reverseGeocodeObservable
+            }
+            .subscribe(onNext: { locationAddress in
+                output.currentUserAddress.accept(locationAddress)
+            }) { error in
+                output.currentUserAddress.accept("알 수 없는 지역")
+            }
+            .disposed(by: disposeBag)
+
+/// 2번 - 스트림이 유지
+input.didSelectRefreshButton
+            .withUnretained(self)
+            .flatMapLatest { owner, location in
+                let reverseGeocodeObservable = owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
+                    .catchAndReturn("알 수 없는 지역입니다.")
+                return reverseGeocodeObservable
+            }
+            .bind(to: output.currentUserAddress)
+            .disposed(by: disposeBag)
+```
+2. **CollectionView 페이징 시 Cell에 보여지는 Index와 Map의 Annotation도 동일한 Index로 선택 & 맵 중심 좌표 이동 로직 구현**
+   
+![Simulator Screen Recording - iPhone 14 Pro Max - 2023-10-27 at 22 47 28](https://github.com/kimkyuchul/Jumak/assets/25146374/6413c8cf-ed8a-439f-bff1-5c228bfbe29c)
+
+ViewModel에서 위치 재검색 버튼 선택 시 flatMap을 통해 위의 reverseGeocodeLocation을 Output의 currentUserAddresst에 바인딩 하고 있었다. 해당 구문에서 에러 처리가 필요했다.
+
+1번처럼 처리할 경우 subscribe의 error로 떨어진 이후 스트림이 끊겨서 위치 재검색 버튼 이벤트가 방출되지 않는다.
+
+2번처럼 flatMap의 catchAndReturn을 통해 Error Default값을 보내고 스트림이 끊기지 않도록 처리했다.
+
+
+- [[RxSwift] 어노테이션 선택 시 콜렉션뷰 스크롤 이벤트때문에 여러 마커를 선택하고 오는 이슈](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
+- [[RxSwift] 왓챠식 3중 필터 구현기](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
+- [[RxSwift] Location이 업데이트 될 때만 Network Call 하도록 구현하기](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
+- [[UIKit] DiffableDatasource에서 헤더만 apply가 되지 않는 이슈](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
+- [[UIKit] Presentation Layer Model을 활용하여 Local DB에 Image Data가 저장되지 않게 구현하기](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# **✨ 프로젝트 주요 기능**
 
 🔑 내 위치 근처 혹은 내가 검색하고 싶은 위치에서 막걸리 주막을 찾을 수 있어요.
 
@@ -38,30 +143,6 @@
 
 ![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 53 56](https://github.com/kimkyuchul/Makgulli/assets/25146374/488a5c69-ebc0-469d-be8c-907cc6a84d97)
 ![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 46 58](https://github.com/kimkyuchul/Makgulli/assets/25146374/4863929b-9d03-4e5f-b180-e56d9f1a5836)
-
-# **⚙️ 개발환경 및 기술스택**
-
-- Minimum Deployments: iOS 15.5
-- Dependence Manager : **SPM & CocoaPod(NaverMap)**
-- Swift Version: 5.8.1
-- `UIKit` `CoreLocation`  `DiffableDataSource` `CompositionalLayout` `PHPickerViewController` `propertyWrapper`
-
-### 라이브러리
-
-- `RxSwift` `RxCocoa` `RxDataSources` `RxGesture`
-- `Alamofire`  `RxReachability`
-- `SnapKit`
-- `NaverMap`
-- `RealmSwift`
-
-# 🫡 TroubleShooting
-
-- [[RxSwift] 검색한 위치가 GeocodeLocation을 할 수 없는 지역일 경우 런타임 오류 이슈](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
-- [[RxSwift] 어노테이션 선택 시 콜렉션뷰 스크롤 이벤트때문에 여러 마커를 선택하고 오는 이슈](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
-- [[RxSwift] 왓챠식 3중 필터 구현기](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
-- [[RxSwift] Location이 업데이트 될 때만 Network Call 하도록 구현하기](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
-- [[UIKit] DiffableDatasource에서 헤더만 apply가 되지 않는 이슈](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
-- [[UIKit] Presentation Layer Model을 활용하여 Local DB에 Image Data가 저장되지 않게 구현하기](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
 
 # **🔥 기술적 도전**
 
