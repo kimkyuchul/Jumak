@@ -254,8 +254,8 @@ override func bindReachability() {
         super.bindReachability()
         
         let isReachable = reachability?.rx.isReachable
-            .share()
             .distinctUntilChanged()
+            .share()
         
         isReachable?
             .bind(to: locationView.rx.handleNetworkErrorViewVisibility)
