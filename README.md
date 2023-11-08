@@ -101,7 +101,7 @@ input.didSelectRefreshButton
 
 ### 2. **CollectionView 페이징 시 Cell의 Index와 Map Annotation이 동일한 Index로 선택 & 맵 중심 좌표 이동 로직 구현**
 
-![Simulator Screen Recording - iPhone 14 Pro Max - 2023-10-27 at 22 47 28](https://github.com/kimkyuchul/Jumak/assets/25146374/36d78e70-b24e-46fe-8128-6ec31aebdc9c) 
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 06 37](https://github.com/kimkyuchul/Jumak/assets/25146374/1aa89fa0-12e7-4c78-b16c-c47be98ac41c)
 
 위의 영상과 같이 하단 주막 정보 CollectionView를 페이징 시 Annotation과 맵 중심 좌표가 이동되어야 했다.
 
@@ -128,6 +128,8 @@ section.visibleItemsInvalidationHandler = { [weak self] (visibleItems, offset, e
 ```
 viewModel에선 페이징 시 visibleItems Index 값을 토대로 Annotation과 맵 중심 좌표가 이동되도록 구현했다.
 
+[[iOS] Compositional Layout의 visibleitemsinvalidationhandler 활용](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
+
 ```swift
 // didScrollStoreCollectionView == visibleItemsRelay
 input.didScrollStoreCollectionView
@@ -144,6 +146,8 @@ input.didScrollStoreCollectionView
 ---
 
 ### 3. **Map의 Annotation 선택 시 CollectionView 스크롤 이벤트 때문에 여러 Annotation을 선택하고 오는 이슈**
+
+![ezgif com-resize (2)](https://github.com/kimkyuchul/Jumak/assets/25146374/c02ec95c-60c3-4930-af28-972365cf3d14)
 
 2번 이슈에서 CollectionView 페이징 시 visibleItems Index를 방출하여 Cell의 선택된 Index와 Annotation을 동일하게 선택되게 하고, 해당 Index로 맵 중심 좌표를 이동시키게 구현했다.
 
@@ -267,13 +271,15 @@ override func bindReachability() {
             .disposed(by: disposeBag)
     }
 ```
+![ezgif com-resize (1)](https://github.com/kimkyuchul/Jumak/assets/25146374/25ded104-4a5f-4892-af96-6c1cae8e07fd)
+![ezgif com-resize](https://github.com/kimkyuchul/Jumak/assets/25146374/6f53a2d7-a2c8-42fe-a234-cb70a389ac40)
+
 
 # **🔥 기술적 도전**
 
 ### Clean Architecture
 
-<img width="770" alt="스크린샷 2023-11-02 오후 3 46 22" src="https://github.com/kimkyuchul/Makgulli/assets/25146374/f4e8f02b-cb4a-4ba7-90dc-a1309eba53bd">
-
+<img width="770" alt="스크린샷 2023-11-09 오전 2 53 48" src="https://github.com/kimkyuchul/Jumak/assets/25146374/68e44858-311c-4b84-8f27-4afe816874c8">
 
 **Why**
 
@@ -289,7 +295,7 @@ override func bindReachability() {
 
 ### MVVM + Input Output Patten
 
-<img width="480" alt="스크린샷 2023-11-02 오후 5 55 40" src="https://github.com/kimkyuchul/Makgulli/assets/25146374/5cb7a0ce-1e36-4358-90a6-6cdc396662b7">
+<img width="500" alt="스크린샷 2023-11-09 오전 2 58 26" src="https://github.com/kimkyuchul/Jumak/assets/25146374/349d1089-7c9a-48da-8297-1bf0774217fc">
 
 **Why**
 
