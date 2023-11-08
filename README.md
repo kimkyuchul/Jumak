@@ -35,7 +35,11 @@
 
 # 🫡 TroubleShooting
 
-1. **검색한 위치가 GeocodeLocation을 할 수 없는 지역일 경우 런타임 오류 이슈**
+### 1. **검색한 위치가 GeocodeLocation을 할 수 없는 지역일 경우 런타임 오류 이슈**
+
+UscCase의 CLGeocoder을 통해 Address String Observable을 반환하는 메서드에서 알 수 없는 위치에서 주막 재 검색 시 `if let error = error` 로 빠지는 걸 확인할 수 있었다.
+
+공식 문서를 찾아본 결과 특정 위치에 정보를 사용할 수 없는 경우 에러를 준다는 것을 확인했다.
 
 ```swift
 func reverseGeocodeLocation(location: CLLocation) -> Observable<String> {
@@ -60,9 +64,11 @@ func reverseGeocodeLocation(location: CLLocation) -> Observable<String> {
          }
      }
 ```
-UscCase의 CLGeocoder을 통해 Address String Observable을 반환하는 메서드에서 알 수 없는 위치에서 주막 재 검색 시 `if let error = error` 로 빠지는 걸 확인할 수 있었다.
+ViewModel에서 위치 재검색 버튼 선택 시 flatMap을 통해 위의 reverseGeocodeLocation을 Output의 currentUserAddresst에 바인딩 하고 있었다. 해당 구문에서 에러 처리가 필요했다.
 
-공식 문서를 찾아본 결과 특정 위치에 정보를 사용할 수 없는 경우 에러를 준다는 것을 확인했다.
+1번처럼 처리할 경우 subscribe의 error로 떨어진 이후 스트림이 끊겨서 위치 재검색 버튼 이벤트가 방출되지 않는다.
+
+2번처럼 flatMap의 catchAndReturn을 통해 Error Default값을 보내고 스트림이 끊기지 않도록 처리했다.
 
 ```swift
 /// 1번 - 스트림 끊김
@@ -90,59 +96,177 @@ input.didSelectRefreshButton
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
 ```
-2. **CollectionView 페이징 시 Cell에 보여지는 Index와 Map의 Annotation도 동일한 Index로 선택 & 맵 중심 좌표 이동 로직 구현**
-   
-![Simulator Screen Recording - iPhone 14 Pro Max - 2023-10-27 at 22 47 28](https://github.com/kimkyuchul/Jumak/assets/25146374/6413c8cf-ed8a-439f-bff1-5c228bfbe29c)
 
-ViewModel에서 위치 재검색 버튼 선택 시 flatMap을 통해 위의 reverseGeocodeLocation을 Output의 currentUserAddresst에 바인딩 하고 있었다. 해당 구문에서 에러 처리가 필요했다.
+---
 
-1번처럼 처리할 경우 subscribe의 error로 떨어진 이후 스트림이 끊겨서 위치 재검색 버튼 이벤트가 방출되지 않는다.
+### 2. **CollectionView 페이징 시 Cell의 Index와 Map Annotation이 동일한 Index로 선택 & 맵 중심 좌표 이동 로직 구현**
 
-2번처럼 flatMap의 catchAndReturn을 통해 Error Default값을 보내고 스트림이 끊기지 않도록 처리했다.
+![Simulator Screen Recording - iPhone 14 Pro Max - 2023-10-27 at 22 47 28](https://github.com/kimkyuchul/Jumak/assets/25146374/36d78e70-b24e-46fe-8128-6ec31aebdc9c) 
 
+위의 영상과 같이 하단 주막 정보 CollectionView를 페이징 시 Annotation과 맵 중심 좌표가 이동되어야 했다.
 
-- [[RxSwift] 어노테이션 선택 시 콜렉션뷰 스크롤 이벤트때문에 여러 마커를 선택하고 오는 이슈](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
-- [[RxSwift] 왓챠식 3중 필터 구현기](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
-- [[RxSwift] Location이 업데이트 될 때만 Network Call 하도록 구현하기](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
-- [[UIKit] DiffableDatasource에서 헤더만 apply가 되지 않는 이슈](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
-- [[UIKit] Presentation Layer Model을 활용하여 Local DB에 Image Data가 저장되지 않게 구현하기](https://medium.com/@kyuchul2/ios-compositional-layout%EC%9D%98-visibleitemsinvalidationhandler-%ED%99%9C%EC%9A%A9-190cde90c933)
+Compositional Layout의 visibleitemsinvalidationhandler을 활용했다. 
+visibleItems.last?.indexPath.row(페이징 될 때 마다 현재 섹션 화면에 표시된 아이템의 indexPath)을 Subject에 담아서 viewModel의 input으로 활용했다.
 
+더불어 transform 속성을 사용하여 페이징 시 셀이 커지고 줄어드는 Carousel view 효과를 적용했다.
+```swift
+section.visibleItemsInvalidationHandler = { [weak self] (visibleItems, offset, env) in
+            visibleItems.forEach { item in
+                let intersectedRect = item.frame.intersection(CGRect(x: offset.x, y: offset.y, width: env.container.contentSize.width, height: item.frame.height))
+                let percentVisible = intersectedRect.width / item.frame.width
+                
+                if percentVisible >= 1.0 {
+                    if let currentIndex = visibleItems.last?.indexPath.row {
+                        self?.visibleItemsRelay.accept(currentIndex)
+                    }
+                }
+                
+                let scale = 0.5 + (0.5 * percentVisible)
+                item.transform = CGAffineTransform(scaleX: 0.98, y: scale)
+            }
+        }        
+```
+viewModel에선 페이징 시 visibleItems Index 값을 토대로 Annotation과 맵 중심 좌표가 이동되도록 구현했다.
 
+```swift
+// didScrollStoreCollectionView == visibleItemsRelay
+input.didScrollStoreCollectionView
+            .distinctUntilChanged()
+            .withUnretained(self)
+            .bind(onNext: { owner, visibleIndex in
+                guard let index = visibleIndex else { return }
+                let store = owner.storeList[index]
+                output.setCameraPosition.accept((store.y, store.x))
+                output.selectedMarkerIndex.accept(index)
+            })
+            .disposed(by: disposeBag)
+```
+---
 
+### 3. **Map의 Annotation 선택 시 CollectionView 스크롤 이벤트 때문에 여러 Annotation을 선택하고 오는 이슈**
 
+2번 이슈에서 CollectionView 페이징 시 visibleItems Index를 방출하여 Cell의 선택된 Index와 Annotation을 동일하게 선택되게 하고, 해당 Index로 맵 중심 좌표를 이동시키게 구현했다.
 
+반대로 Map의 Annotation 선택 시 해당 Annotation 인덱스로 CollectionView가 스크롤되어야 했는데 `selectItem` 애니메이션 때문에 맵 중심 좌표가 여러 마커를 들렸다 오는 이슈를 발견했다.
 
+```swift
+output.selectedMarkerIndex
+            .distinctUntilChanged()
+            .withLatestFrom(output.storeList) { index, storeList in
+                return (index, storeList)
+            }
+            .withUnretained(self)
+            .bind(onNext: { owner, data in
+                let (selectedIndex, storeList) = data
+                owner.setUpMarker(selectedIndex: selectedIndex, storeList: storeList)
+                owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: selectedIndex ?? 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+            })
+            .disposed(by: disposeBag)
+```
+스크롤 이벤트 옵저버블에 `debounce` 를 걸었다. `debounce`는 일정 시간동안 새로운 이벤트가 없을 때에만 이벤트를 전달하며, 중간에 들어오는 이벤트들을 무시한다.
+이를 활용하여 마지막에 들어온 인덱스 값만 받아서 카메라를 이동시킬 수 있었다.
 
+```swift
+locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance)
+```
+---
 
+### 4. **RxReachability 네트워크 상태 감지**
 
+NaverMap의 경우 Map이 init되는 시점에 네트워크 연결 실패 시 무한 naver map error code -1020 에러를 방출 -> 즉, Map이 포함된 뷰가 그려지기 전에 네트워크 상태 감지가 필요했다.
 
+더불어 NaverMap을 사용하는 쏘카, 요기요 등의 경우 MapView가 그려지기 전에 네트워크 체크를 진행하는것처럼 보였다. (B에 Map이 포함되어 있다고 치면, A에서 네트워크를 감지해서 네트워크 미연결 시 B로 진입하는 뷰를 막아버림)
 
+BaseViewController에서 Reachability을 활용해 viewWillAppear 시 startNotifier() viewWillDisappear 시 stopNotifier() 되도록 구현하고 reachability?.rx.isDisconnected 시 rx.makeErrorAlert를 방출하도록 했다.
 
+```swift
+import Reachability
+import RxReachability
 
+class BaseViewController: UIViewController, BaseViewControllerProtocol, BaseBindableProtocol {
+    
+    var disposeBag: DisposeBag = .init()
+    var reachability: Reachability?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        do {
+            reachability = try Reachability()
+        } catch {
+            print("Reachability 에러: \(error)")
+        }
+       
+        bindReachability())
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        try? reachability?.startNotifier()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        reachability?.stopNotifier()
+    }
+        
+    func bindReachability() {
+        reachability?.rx.isDisconnected
+            .withUnretained(self)
+            .flatMap { owner, _ in
+                return owner.rx.makeErrorAlert(
+                    title: "네트워크 연결 오류",
+                    message: "네트워크 연결이 불안정 합니다.",
+                    cancelButtonTitle: "확인"
+                )
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
+}
+```
+앱의 첫번째로 보여지는 뷰에서 NaverMap을 사용하고 있었기 때문에, Splash에서 네트워크를 감지하여 `reachability?.rx.isConnected` 시에만 Main으로 이동되도록 했다.
 
+Main에서도 `reachability?.rx.isReachable` 로 네트워크 미연결 뷰를 핸들링하는`rx.handleNetworkErrorViewVisibility`를 바인딩해서 네트워크 미연결 시 Detail로 이동되지 못하도록 구현했다.
 
+```swift
+// Splash에서 네트워크를 감지하여, 네트워크 미연결 시 Main으로 이동되지 못하도록 구현 (Main에 Map이 존재하기 때문)
+final class SplashViewController: BaseViewController {
 
+override func viewDidLoad() {
+        super.viewDidLoad()
+        reachability?.rx.isConnected
+            .withUnretained(self)
+            .subscribe(onNext: { owner, _ in
+                RootHandler.shard.update(.main)
+            })
+            .disposed(by: disposeBag)
+    }
 
-# **✨ 프로젝트 주요 기능**
+// Main에서 네트워크를 감지하여, 네트워크 미연결 시 Detail로 이동되지 못하도록 구현 (Detail에 Map이 존재하기 때문)
+final class LocationViewController: BaseViewController {
 
-🔑 내 위치 근처 혹은 내가 검색하고 싶은 위치에서 막걸리 주막을 찾을 수 있어요.
-
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 05 37](https://github.com/kimkyuchul/Makgulli/assets/25146374/a111f000-fc9d-4d19-a665-f20426d2537a)
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 07 03](https://github.com/kimkyuchul/Makgulli/assets/25146374/0ee4602d-b8a7-4737-8393-130d67e0ea61)
-
-🔑 막걸리지도에서 찾은 주막을 선택해 상세 정보를 얻으세요. 주막까지의 길찾기 기능과 즐겨찾기 및 평점 등록이 가능합니다.
-
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 35 00](https://github.com/kimkyuchul/Makgulli/assets/25146374/e762f7f1-1cc9-4104-924d-7630bdf24346)
-
-🔑 해당 주막에서 있었던 에피소드를 등록하세요. 에피소드 조회와 삭제도 가능합니다.
-
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 43 26](https://github.com/kimkyuchul/Makgulli/assets/25146374/40ea16e7-76c9-47ea-9baf-649333024084)
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 39 30](https://github.com/kimkyuchul/Makgulli/assets/25146374/25bafd2e-3c7f-464f-8bd6-76e6e08890f8)
-
-🔑 평점, 즐겨찾기, 에피소드 등록을 통해 나만의 주막 리스트를 만들어보세요. 다양한 필터 기능으로 최적화된 주막을 선정 할 수 있습니다.
-
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 53 56](https://github.com/kimkyuchul/Makgulli/assets/25146374/488a5c69-ebc0-469d-be8c-907cc6a84d97)
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 46 58](https://github.com/kimkyuchul/Makgulli/assets/25146374/4863929b-9d03-4e5f-b180-e56d9f1a5836)
+override func bindReachability() {
+        super.bindReachability()
+        
+        let isReachable = reachability?.rx.isReachable
+            .share()
+            .distinctUntilChanged()
+        
+        isReachable?
+            .bind(to: locationView.rx.handleNetworkErrorViewVisibility)
+            .disposed(by: disposeBag)
+        
+        isReachable?
+            .withUnretained(self)
+            .bind(onNext:{ owner, isReachable in
+                if !isReachable {
+                    owner.clearMarker()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+```
 
 # **🔥 기술적 도전**
 
@@ -196,3 +320,24 @@ ViewModel에서 위치 재검색 버튼 선택 시 flatMap을 통해 위의 reve
   ---
 
 주막 서비스의 주차별 개발 일지를 보고 싶으시다면! [🍶 주막 프로젝트 Iteration](https://www.notion.so/bee21dc07a0a46aea22f20a6a15c3615?pvs=21)
+
+# **✨ 프로젝트 주요 기능**
+
+🔑 내 위치 근처 혹은 내가 검색하고 싶은 위치에서 막걸리 주막을 찾을 수 있어요.
+
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 05 37](https://github.com/kimkyuchul/Makgulli/assets/25146374/a111f000-fc9d-4d19-a665-f20426d2537a)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 07 03](https://github.com/kimkyuchul/Makgulli/assets/25146374/0ee4602d-b8a7-4737-8393-130d67e0ea61)
+
+🔑 막걸리지도에서 찾은 주막을 선택해 상세 정보를 얻으세요. 주막까지의 길찾기 기능과 즐겨찾기 및 평점 등록이 가능합니다.
+
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 35 00](https://github.com/kimkyuchul/Makgulli/assets/25146374/e762f7f1-1cc9-4104-924d-7630bdf24346)
+
+🔑 해당 주막에서 있었던 에피소드를 등록하세요. 에피소드 조회와 삭제도 가능합니다.
+
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 43 26](https://github.com/kimkyuchul/Makgulli/assets/25146374/40ea16e7-76c9-47ea-9baf-649333024084)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 39 30](https://github.com/kimkyuchul/Makgulli/assets/25146374/25bafd2e-3c7f-464f-8bd6-76e6e08890f8)
+
+🔑 평점, 즐겨찾기, 에피소드 등록을 통해 나만의 주막 리스트를 만들어보세요. 다양한 필터 기능으로 최적화된 주막을 선정 할 수 있습니다.
+
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 53 56](https://github.com/kimkyuchul/Makgulli/assets/25146374/488a5c69-ebc0-469d-be8c-907cc6a84d97)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 46 58](https://github.com/kimkyuchul/Makgulli/assets/25146374/4863929b-9d03-4e5f-b180-e56d9f1a5836)
