@@ -327,7 +327,7 @@ override func bindReachability() {
 
 주막 서비스의 주차별 개발 일지를 보고 싶으시다면! [🍶 주막 프로젝트 Iteration](https://www.notion.so/bee21dc07a0a46aea22f20a6a15c3615?pvs=21)
 
-# **✨ 프로젝트 주요 기능**
+# **🫀 실행 화면**
 
 🔑 내 위치 근처 혹은 내가 검색하고 싶은 위치에서 막걸리 주막을 찾을 수 있어요.
 
