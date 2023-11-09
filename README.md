@@ -167,8 +167,8 @@ output.selectedMarkerIndex
             })
             .disposed(by: disposeBag)
 ```
-스크롤 이벤트 옵저버블에 `debounce` 를 걸었다. `debounce`는 일정 시간동안 새로운 이벤트가 없을 때에만 이벤트를 전달하며, 중간에 들어오는 이벤트들을 무시한다.
-이를 활용하여 마지막에 들어온 인덱스 값만 받아서 카메라를 이동시킬 수 있었다.
+스크롤(페이징) 이벤트 input 옵저버블에 `debounce` 를 걸었다. `debounce`는 일정 시간동안 새로운 이벤트가 없을 때에만 이벤트를 전달하며, 중간에 들어오는 이벤트들을 무시한다.
+이를 활용하여 `selectItem`의 스크롤 애니메이션 때 들어오는 visibleItems Index를 무시하고, 스크롤 애니메이션이 끝나고 마지막에 들어온 visibleItems Index 값만 받아서 선택한 Annotation의 맵 중심 좌표로 이동시킬 수 있었다.
 
 ```swift
 locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(300), scheduler: MainScheduler.asyncInstance)
