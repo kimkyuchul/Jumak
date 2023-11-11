@@ -1,6 +1,6 @@
-# Jumak
+<img width="666" alt="스크린샷 2023-11-09 오전 3 10 58" src="https://github.com/kimkyuchul/Jumak/assets/25146374/68d46a28-805a-43bf-908a-36137bc281e3"># Jumak
 
-<img width="940" alt="Slide 16_9 - 156 (1)" src="https://github.com/kimkyuchul/Jumak/assets/25146374/a25386dc-9f7f-4a73-b7bf-d196d60cc05a">
+<img width="940" alt="Slide 16_9 - 156 (1)" src="https://github.com/kimkyuchul/Jumak/assets/25146374/2739e103-c35a-4491-b42c-a29ed84c6f64">
 
 ### [📱 앱 설치하러 가기](https://apps.apple.com/kr/app/%EC%A3%BC%EB%A7%89/id6470310590)
 
@@ -14,7 +14,7 @@
 
 # **✨ 프로젝트 주요 화면**
 
-![주막 레포 이미지 002](https://github.com/kimkyuchul/Jumak/assets/25146374/3339ee27-0b54-4150-ae2b-0dfaf33ef380)
+![주막 레포 이미지 002](https://github.com/kimkyuchul/Jumak/assets/25146374/17b3c9a2-82e3-4eb6-96c3-e44ba259a846)
 
 ### 주요 기능
 - 사용자 위치 기반 막걸리, 파전, 보쌈 주막 찾기 기능 제공
@@ -101,7 +101,7 @@ input.didSelectRefreshButton
 
 ### 2. **CollectionView 페이징 시 Cell의 Index와 Map Annotation이 동일한 Index로 선택 & 맵 중심 좌표 이동 로직 구현**
 
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 06 37](https://github.com/kimkyuchul/Jumak/assets/25146374/1aa89fa0-12e7-4c78-b16c-c47be98ac41c)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 06 37](https://github.com/kimkyuchul/Jumak/assets/25146374/66f249df-fed7-4b22-898b-c85f4a55b43b)
 
 위의 영상과 같이 하단 주막 정보 CollectionView를 페이징 시 Annotation과 맵 중심 좌표가 이동되어야 했다.
 
@@ -147,7 +147,7 @@ input.didScrollStoreCollectionView
 
 ### 3. **Map의 Annotation 선택 시 CollectionView 스크롤 이벤트 때문에 여러 Annotation을 선택하고 오는 이슈**
 
-![ezgif com-resize (2)](https://github.com/kimkyuchul/Jumak/assets/25146374/c02ec95c-60c3-4930-af28-972365cf3d14)
+![ezgif com-resize (2)](https://github.com/kimkyuchul/Jumak/assets/25146374/e52745c3-651d-497d-8cdf-ebba918b5fad)
 
 2번 이슈에서 CollectionView 페이징 시 visibleItems Index를 방출하여 Cell의 선택된 Index와 Annotation을 동일하게 선택되게 하고, 해당 Index로 맵 중심 좌표를 이동시키게 구현했다.
 
@@ -272,15 +272,16 @@ override func bindReachability() {
             .disposed(by: disposeBag)
     }
 ```
-![ezgif com-resize (1)](https://github.com/kimkyuchul/Jumak/assets/25146374/25ded104-4a5f-4892-af96-6c1cae8e07fd)
-![ezgif com-resize](https://github.com/kimkyuchul/Jumak/assets/25146374/6f53a2d7-a2c8-42fe-a234-cb70a389ac40)
+
+![ezgif com-resize (1)](https://github.com/kimkyuchul/Jumak/assets/25146374/37bf445e-8679-4f71-a51e-4ea8ad068cb2)
+![ezgif com-resize](https://github.com/kimkyuchul/Jumak/assets/25146374/a21dae17-b79f-4a7d-b7b3-c5659a8649ec)
 
 
 # **🔥 기술적 도전**
 
 ### Clean Architecture
 
-<img width="770" alt="스크린샷 2023-11-09 오전 2 53 48" src="https://github.com/kimkyuchul/Jumak/assets/25146374/68e44858-311c-4b84-8f27-4afe816874c8">
+<img width="770" alt="스크린샷 2023-11-09 오전 2 53 48" src="https://github.com/kimkyuchul/Jumak/assets/25146374/6213f76d-045c-4aea-89f5-5361d49a8c00">
 
 **Why**
 
@@ -296,7 +297,7 @@ override func bindReachability() {
 
 ### MVVM + Input Output Patten
 
-<img width="500" alt="스크린샷 2023-11-09 오전 3 10 58" src="https://github.com/kimkyuchul/Jumak/assets/25146374/cf51639b-4587-423c-9ae6-0b85b07d70cf">
+<img width="500" alt="스크린샷 2023-11-09 오전 3 10 58" src="https://github.com/kimkyuchul/Jumak/assets/25146374/b507a99d-c2b7-4682-99f7-f5b7cd2877cf">
 
 **Why**
 
@@ -332,8 +333,8 @@ override func bindReachability() {
 
 🍶  내 위치 근처 혹은 내가 검색하고 싶은 위치에서 막걸리 주막을 찾을 수 있어요.
 
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 05 37](https://github.com/kimkyuchul/Makgulli/assets/25146374/a111f000-fc9d-4d19-a665-f20426d2537a)
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 07 03](https://github.com/kimkyuchul/Makgulli/assets/25146374/0ee4602d-b8a7-4737-8393-130d67e0ea61)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 05 37](https://github.com/kimkyuchul/Jumak/assets/25146374/1e0d07bf-c1fb-4c56-9dc8-c0a3b8ec666f)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 07 03](https://github.com/kimkyuchul/Jumak/assets/25146374/28b681be-a941-413a-8b87-04415fb43a1b)
 
 🍶  막걸리지도에서 찾은 주막을 선택해 상세 정보를 얻으세요. 주막까지의 길찾기 기능과 즐겨찾기 및 평점 등록이 가능합니다.
 
