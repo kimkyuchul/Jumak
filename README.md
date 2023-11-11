@@ -1,4 +1,4 @@
-<img width="666" alt="스크린샷 2023-11-09 오전 3 10 58" src="https://github.com/kimkyuchul/Jumak/assets/25146374/68d46a28-805a-43bf-908a-36137bc281e3"># Jumak
+# Jumak
 
 <img width="940" alt="Slide 16_9 - 156 (1)" src="https://github.com/kimkyuchul/Jumak/assets/25146374/2739e103-c35a-4491-b42c-a29ed84c6f64">
 
