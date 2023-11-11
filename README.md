@@ -338,14 +338,14 @@ override func bindReachability() {
 
 🍶  막걸리지도에서 찾은 주막을 선택해 상세 정보를 얻으세요. 주막까지의 길찾기 기능과 즐겨찾기 및 평점 등록이 가능합니다.
 
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 35 00](https://github.com/kimkyuchul/Makgulli/assets/25146374/e762f7f1-1cc9-4104-924d-7630bdf24346)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 35 00](https://github.com/kimkyuchul/Jumak/assets/25146374/a77c3536-884f-46df-8aab-1137acf0315a)
 
 🍶  해당 주막에서 있었던 에피소드를 등록하세요. 에피소드 조회와 삭제도 가능합니다.
 
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 43 26](https://github.com/kimkyuchul/Makgulli/assets/25146374/40ea16e7-76c9-47ea-9baf-649333024084)
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 39 30](https://github.com/kimkyuchul/Makgulli/assets/25146374/25bafd2e-3c7f-464f-8bd6-76e6e08890f8)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 43 26](https://github.com/kimkyuchul/Jumak/assets/25146374/a50761bc-c5b4-4440-88ba-a8bed6455884)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 39 30](https://github.com/kimkyuchul/Jumak/assets/25146374/7a02d966-b4f6-4fac-bd73-f646606546db)
 
 🍶  평점, 즐겨찾기, 에피소드 등록을 통해 나만의 주막 리스트를 만들어보세요. 다양한 필터 기능으로 최적화된 주막을 선정 할 수 있습니다.
 
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 53 56](https://github.com/kimkyuchul/Makgulli/assets/25146374/488a5c69-ebc0-469d-be8c-907cc6a84d97)
-![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 46 58](https://github.com/kimkyuchul/Makgulli/assets/25146374/4863929b-9d03-4e5f-b180-e56d9f1a5836)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 53 56](https://github.com/kimkyuchul/Jumak/assets/25146374/daaae176-dbe2-4b2a-9119-9e394cad87f1)
+![Simulator Screen Recording - iPhone 14 Pro - 2023-11-02 at 19 46 58](https://github.com/kimkyuchul/Jumak/assets/25146374/0abca9be-ba36-4f74-827d-1c5d32b76ae1)
