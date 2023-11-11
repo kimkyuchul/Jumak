@@ -28,7 +28,7 @@
 - Swift Version: 5.8.1
 - `UIKit` `MVVM` `RxSwift` `RxCocoa`
 - `Codebase UI` `SnapKit`
-- `DiffableDataSource` `CompositionalLayout` `PHPickerViewController` `RxDataSources` `RxGesture`
+- `DiffableDataSource` `CompositionalLayout` `PHPickerViewController` `RxDataSources` `RxGesture` `RxKeyboard`
 - `CoreLocation` `NaverMap`
 - `Alamofire` `RxReachability`
 - `RealmSwift`
