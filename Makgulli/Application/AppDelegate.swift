@@ -6,13 +6,36 @@
 //
 
 import UIKit
+
+import FirebaseCore
+import FirebaseMessaging
 import NMapsMap
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NMFAuthManager.shared().clientId = Bundle.main.naverMapsClientID
+        FirebaseApp.configure()
         setNavigationAppearance()
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+              options: authOptions,
+              completionHandler: { _, _ in }
+            )
+        } else {
+            let settings: UIUserNotificationSettings =
+            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+        
+        Messaging.messaging().delegate = self
+        
         return true
     }
 
@@ -28,6 +51,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    // Show Apple NotificationCenter Token
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("Apple didRegisterForRemoteNotificationsWithDeviceToken: \(token)")
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+      print("Firebase registration token: \(String(describing: fcmToken))")
+
+      let dataDict: [String: String] = ["token": fcmToken ?? ""]
+      NotificationCenter.default.post(
+        name: Notification.Name("FCMToken"),
+        object: nil,
+        userInfo: dataDict
+      )
     }
 }
 

@@ -144,3 +144,5 @@ iOSInjectionProject/
 
 NaverMaps.plist
 KakaoAPIKey.plist
+
+GoogleService-Info.plist
