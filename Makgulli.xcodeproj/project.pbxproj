@@ -51,6 +51,7 @@
 		5A35E57F2AEBDFCD0074C8EC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35E57E2AEBDFCD0074C8EC /* NetworkError.swift */; };
 		5A36F15D2AFFA84F00039ADA /* SearchLocationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15C2AFFA84E00039ADA /* SearchLocationDTO.swift */; };
 		5A36F1602AFFA85500039ADA /* SearchLocationReqeustDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15F2AFFA85500039ADA /* SearchLocationReqeustDTO.swift */; };
+		5A36F1B72B027A9900039ADA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -240,6 +241,7 @@
 		5A35E57E2AEBDFCD0074C8EC /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5A36F15C2AFFA84E00039ADA /* SearchLocationDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationDTO.swift; sourceTree = "<group>"; };
 		5A36F15F2AFFA85500039ADA /* SearchLocationReqeustDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationReqeustDTO.swift; sourceTree = "<group>"; };
+		5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreEmptyView.swift; sourceTree = "<group>"; };
 		5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -809,6 +811,7 @@
 			isa = PBXGroup;
 			children = (
 				5A70BA312AC174E600506846 /* Makgulli */,
+				5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */,
 				5A70BA482AC174EC00506846 /* MakgulliTests */,
 				5A70BA522AC174EC00506846 /* MakgulliUITests */,
 				5A70BA302AC174E600506846 /* Products */,
@@ -1387,6 +1390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A9DA1D12AC19A3F006040D2 /* LINESeedKR-Rg.otf in Resources */,
+				5A36F1B72B027A9900039ADA /* GoogleService-Info.plist in Resources */,
 				5A70BA3F2AC174EC00506846 /* LaunchScreen.storyboard in Resources */,
 				5A9DA1CF2AC19A3F006040D2 /* LINESeedKR-Bd.otf in Resources */,
 				5A9DA1D02AC19A3F006040D2 /* LINESeedKR-Th.otf in Resources */,
