@@ -245,6 +245,7 @@
 		5A36F15C2AFFA84E00039ADA /* SearchLocationDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationDTO.swift; sourceTree = "<group>"; };
 		5A36F15F2AFFA85500039ADA /* SearchLocationReqeustDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationReqeustDTO.swift; sourceTree = "<group>"; };
 		5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5A36F1C12B02866E00039ADA /* Makgulli.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Makgulli.entitlements; sourceTree = "<group>"; };
 		5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreEmptyView.swift; sourceTree = "<group>"; };
 		5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
@@ -839,6 +840,7 @@
 		5A70BA312AC174E600506846 /* Makgulli */ = {
 			isa = PBXGroup;
 			children = (
+				5A36F1C12B02866E00039ADA /* Makgulli.entitlements */,
 				5A9DA1C02AC18F9D006040D2 /* Application */,
 				5A9DA1C32AC1903D006040D2 /* Common */,
 				5A9DA1C12AC19030006040D2 /* Data */,
@@ -1869,6 +1871,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Makgulli/Makgulli.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.2;
@@ -1877,6 +1880,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Makgulli/Common/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "주막";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치 기반으로 막걸리존 정보를 제공하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -1907,6 +1911,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Makgulli/Makgulli.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.2;
@@ -1914,6 +1919,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Makgulli/Common/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "주막";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 위치 기반으로 막걸리존 정보를 제공하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
