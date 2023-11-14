@@ -32,6 +32,7 @@
 - `CoreLocation` `NaverMap`
 - `Alamofire` `RxReachability`
 - `RealmSwift`
+- `Firebase Crashlytics` `Firebase Push Notifications`
 
 # 🫡 TroubleShooting
 
