@@ -34,6 +34,54 @@
 - `RealmSwift`
 - `Firebase Crashlytics` `Firebase Push Notifications`
 
+# **🔥 기술적 도전**
+
+### Clean Architecture
+
+<img width="770" alt="스크린샷 2023-11-09 오전 2 53 48" src="https://github.com/kimkyuchul/Jumak/assets/25146374/6213f76d-045c-4aea-89f5-5361d49a8c00">
+
+**Why**
+
+- 약 4주라는 기간 안에 앱스토어 출시라는 목표를 잡았습니다. 디자인, 기획 등이 개발 중에도 수정되어, 서비스의 방향과 스펙, UI 등이 변경될 수 있다고 생각했습니다. 핵심 비즈니스 로직과 변경이 자주 발생하는 외부의 레이어를 명확하게 분리하여 결합도를 낮출 수 있는 구조 설계를 고민했고, Clean-Architecture을 채택하게 되었습니다.
+
+**Result**
+
+- ViewModel의 비즈니스 로직들을 UseCase로, 네트워크나 외부 프레임워크에 대한 요청은 Repository로 분리해 각 레이어의 역할을 분명하게 나누어, 코드의 결합도를 낮추고, 의존성이 Domain Layer를 향하도록 구현할 수 있었습니다.
+- MVVM 구조에서 ViewModel이 모든 비즈니스 로직을 처리하는 것을 피할 수 있었습니다.
+- 각각의 레이어를 역할에 따라 분리하여 방대한 양의 코드를 쉽게 파악할 수 있었습니다.
+
+  ---
+
+### MVVM + Input Output Patten
+
+<img width="500" alt="스크린샷 2023-11-09 오전 3 10 58" src="https://github.com/kimkyuchul/Jumak/assets/25146374/b507a99d-c2b7-4682-99f7-f5b7cd2877cf">
+
+**Why**
+
+- 뷰가 화면을 그리는 역할만 담당하고, 비즈니스 로직에 대한 분리를 위해 MVVM 패턴을 도입했습니다.
+- iOS MVVM은 표준이 없고 구현하는 사람마다 패턴이 다를 수 있습니다. MVVM 패턴을 정형화하고, 데이터 흐름을 단방향으로 관리하기 위해 Input/Output 패턴을 활용했습니다.
+
+**Result**
+
+- 화면에서 일어나는 모든 이벤트를 Input으로 정의하여 비즈니스 로직을 요청하고, 결과로 갱신되는 값들을 Output에 바인딩해 뷰 컨트롤러는 Ouput을 보고 화면을 그리도록 구현할 수 있었습니다.
+- Input/Output 패턴을 활용해 일관성 있는 구조의 뷰모델 코드를 만들 수 있어, 가독성을 높일 수 있었습니다.
+
+  ---
+
+### RxSwift
+
+
+**Why**
+
+- 각 객체에서 연속된 escaping closure으로 인한 연속된 콜백의 데이터 흐름을 피하고 싶었습니다.
+- Notification Center, GCD등 복합적이고 다양한 비동기 API를 활용하기 보단, 일관된 비동기 프레임워크 활용하고 싶었습니다.
+
+**Result**
+
+- escaping closure가 아닌 RxSwift의 Operator를 활용하여 코드 양이 감소하고, 이해하기 쉬워졌습니다. 코드의 방대해짐과 실수를 방지할 수 있었습니다.
+- 오로지 RxSwift만 활용해 하나의 비동기 코드로 개발할 수 있었고, 기존의 복합적인 비동기코드의 가독성을 올리고 유지보수를 쉽게 만들 수 있었습니다.
+- RxTraits를 활용해 Thread 관리를 쉽고 간편하게 할 수 있었습니다.
+
 # 🫡 TroubleShooting
 
 ### 1. **검색한 위치가 GeocodeLocation을 할 수 없는 지역일 경우 런타임 오류 이슈**
@@ -276,55 +324,6 @@ override func bindReachability() {
 
 ![ezgif com-resize (1)](https://github.com/kimkyuchul/Jumak/assets/25146374/37bf445e-8679-4f71-a51e-4ea8ad068cb2)
 ![ezgif com-resize](https://github.com/kimkyuchul/Jumak/assets/25146374/a21dae17-b79f-4a7d-b7b3-c5659a8649ec)
-
-
-# **🔥 기술적 도전**
-
-### Clean Architecture
-
-<img width="770" alt="스크린샷 2023-11-09 오전 2 53 48" src="https://github.com/kimkyuchul/Jumak/assets/25146374/6213f76d-045c-4aea-89f5-5361d49a8c00">
-
-**Why**
-
-- 약 4주라는 기간 안에 앱스토어 출시라는 목표를 잡았습니다. 디자인, 기획 등이 개발 중에도 수정되어, 서비스의 방향과 스펙, UI 등이 변경될 수 있다고 생각했습니다. 핵심 비즈니스 로직과 변경이 자주 발생하는 외부의 레이어를 명확하게 분리하여 결합도를 낮출 수 있는 구조 설계를 고민했고, Clean-Architecture을 채택하게 되었습니다.
-
-**Result**
-
-- ViewModel의 비즈니스 로직들을 UseCase로, 네트워크나 외부 프레임워크에 대한 요청은 Repository로 분리해 각 레이어의 역할을 분명하게 나누어, 코드의 결합도를 낮추고, 의존성이 Domain Layer를 향하도록 구현할 수 있었습니다.
-- MVVM 구조에서 ViewModel이 모든 비즈니스 로직을 처리하는 것을 피할 수 있었습니다.
-- 각각의 레이어를 역할에 따라 분리하여 방대한 양의 코드를 쉽게 파악할 수 있었습니다.
-
-  ---
-
-### MVVM + Input Output Patten
-
-<img width="500" alt="스크린샷 2023-11-09 오전 3 10 58" src="https://github.com/kimkyuchul/Jumak/assets/25146374/b507a99d-c2b7-4682-99f7-f5b7cd2877cf">
-
-**Why**
-
-- 뷰가 화면을 그리는 역할만 담당하고, 비즈니스 로직에 대한 분리를 위해 MVVM 패턴을 도입했습니다.
-- iOS MVVM은 표준이 없고 구현하는 사람마다 패턴이 다를 수 있습니다. MVVM 패턴을 정형화하고, 데이터 흐름을 단방향으로 관리하기 위해 Input/Output 패턴을 활용했습니다.
-
-**Result**
-
-- 화면에서 일어나는 모든 이벤트를 Input으로 정의하여 비즈니스 로직을 요청하고, 결과로 갱신되는 값들을 Output에 바인딩해 뷰 컨트롤러는 Ouput을 보고 화면을 그리도록 구현할 수 있었습니다.
-- Input/Output 패턴을 활용해 일관성 있는 구조의 뷰모델 코드를 만들 수 있어, 가독성을 높일 수 있었습니다.
-
-  ---
-
-### RxSwift
-
-
-**Why**
-
-- 각 객체에서 연속된 escaping closure으로 인한 연속된 콜백의 데이터 흐름을 피하고 싶었습니다.
-- Notification Center, GCD등 복합적이고 다양한 비동기 API를 활용하기 보단, 일관된 비동기 프레임워크 활용하고 싶었습니다.
-
-**Result**
-
-- escaping closure가 아닌 RxSwift의 Operator를 활용하여 코드 양이 감소하고, 이해하기 쉬워졌습니다. 코드의 방대해짐과 실수를 방지할 수 있었습니다.
-- 오로지 RxSwift만 활용해 하나의 비동기 코드로 개발할 수 있었고, 기존의 복합적인 비동기코드의 가독성을 올리고 유지보수를 쉽게 만들 수 있었습니다.
-- RxTraits를 활용해 Thread 관리를 쉽고 간편하게 할 수 있었습니다.
 
   ---
 
