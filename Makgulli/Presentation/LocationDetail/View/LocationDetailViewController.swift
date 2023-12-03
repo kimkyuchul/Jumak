@@ -92,11 +92,7 @@ final class LocationDetailViewController: BaseViewController {
         output.showBookmarkToast
             .withUnretained(self)
             .bind(onNext: {owner, bookmark in
-                if bookmark {
-                    owner.showToast(message: "즐겨찾기가 추가 되었습니다.")
-                } else {
-                    owner.showToast(message: "즐겨찾기가 삭제 되었습니다.")
-                }
+                bookmark ? owner.showToast(message: "즐겨찾기가 추가 되었습니다.") : owner.showToast(message: "즐겨찾기가 삭제 되었습니다.")
             })
             .disposed(by: disposeBag)
         
