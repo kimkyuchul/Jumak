@@ -72,11 +72,10 @@ final class LocationViewController: BaseViewController {
                 return (index, storeList)
             }
             .withUnretained(self)
-            .bind(onNext: { owner, data in
-                let (selectedIndex, storeList) = data
-                guard selectedIndex ?? 0 < storeList.count else { return }
-                owner.setUpMarker(selectedIndex: selectedIndex, storeList: storeList)
-                owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: selectedIndex ?? 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+            .bind(onNext: { owner, markerData in
+                guard markerData.0 ?? 0 < markerData.1.count else { return }
+                owner.setUpMarker(selectedIndex: markerData.0, storeList: markerData.1)
+                owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: markerData.0 ?? 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
             })
             .disposed(by: disposeBag)
         
@@ -85,14 +84,13 @@ final class LocationViewController: BaseViewController {
             .distinctUntilChanged { (prevPosition, newPosition) -> Bool in
                 return prevPosition == newPosition
             }
-            .drive(self.locationView.rx.cameraPosition)
+            .drive(locationView.rx.cameraPosition)
             .disposed(by: disposeBag)
         
         output.currentUserLocation
-            .withUnretained(self)
-            .bind(onNext: { owner, location in
+            .bind(with: self) { owner, location in
                 owner.updateUserCurrentLocation(latitude: location.latitude, longitude: location.longitude)
-            })
+            }
             .disposed(by: disposeBag)
         
         output.currentUserAddress
@@ -100,12 +98,11 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.authorizationAlertShouldShow
-            .withUnretained(self)
-            .bind(onNext: { owner, authorization in
+            .bind(with: self) { owner, authorization in
                 if authorization {
                     owner.setRequestLocationServiceAlertAction()
                 }
-            })
+            }
             .disposed(by: disposeBag)
         
         output.reSearchButtonHidden
@@ -125,10 +122,9 @@ final class LocationViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.categoryType
-            .withUnretained(self)
-            .bind(onNext: { owner, type in
+            .bind(with: self) { owner, type in
                 owner.selectCategoryType = type
-            })
+            }
             .disposed(by: disposeBag)
         
         output.storeCollectionViewDataSource
