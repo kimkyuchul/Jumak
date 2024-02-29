@@ -1,0 +1,37 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push to TestFlight"
+  lane :tf  do
+
+    app_store_connect_api_key(is_key_content_base64: true, in_house: false)
+
+   get_certificates
+   get_provisioning_profile
+
+  increment_build_number(
+	 build_number: (latest_testflight_build_number.to_i + 1).to_s
+    )
+ 
+  cocoapods(clean_install: true, use_bundle_exec: false) 
+  build_app(configuration: "Debug")
+
+  upload_to_testflight(skip_waiting_for_build_processing: true)
+
+  end
+end
