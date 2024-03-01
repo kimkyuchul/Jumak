@@ -3,6 +3,8 @@
 
 name: TesfFlight
 
+name: TestFlight
+
 on:
   push:
     branches: [ "main" ]
@@ -44,7 +46,7 @@ jobs:
         KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
 
      - name: Change to Project Directory
-     run: cd ../
+       run: cd ../
 
     - run: fastlane tf
       env:
