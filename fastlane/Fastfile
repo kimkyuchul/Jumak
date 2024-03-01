@@ -13,7 +13,22 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+KEYCHAIN_NAME = ENV["KEYCHAIN_NAME"]
+KEYCHAIN_PASSWORD = ENV["KEYCHAIN_PASSWORD"]
+
 default_platform(:ios)
+
+  desc "Save To Keychain"
+  lane :set_keychain do |options|
+    create_keychain(
+      name: "#{KEYCHAIN_NAME}",
+      password: "#{KEYCHAIN_PASSWORD}",
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: true
+    )
+end
 
 platform :ios do
   desc "Push to TestFlight"
@@ -25,7 +40,7 @@ platform :ios do
    get_provisioning_profile
 
   increment_build_number(
-	 build_number: (latest_testflight_build_number.to_i + 1).to_s
+	 build_number: latest_testflight_build_number() + 1
     )
  
   cocoapods(clean_install: true, use_bundle_exec: false) 
