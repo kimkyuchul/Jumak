@@ -17,8 +17,8 @@ jobs:
 
     - name: Setup Xcode version
       uses: maxim-lobanov/setup-xcode@v1
-       with:
-          xcode-version: latest
+      with:
+        xcode-version: latest
           
     # match 사용시 ssh-key 설정
     # - uses: shimataro/ssh-key-action@v2
