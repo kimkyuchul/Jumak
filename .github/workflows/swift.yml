@@ -21,10 +21,10 @@ jobs:
         xcode-version: latest
           
     # match 사용시 ssh-key 설정
-    # - uses: shimataro/ssh-key-action@v2
-    #   with:
-    #     key: ${{ secrets.SSH_KEY }}
-    #     known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
     # Config 등 파일 가져와야 할 시 사용
     # - name: Bring ignored files
