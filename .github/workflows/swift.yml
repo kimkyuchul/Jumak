@@ -24,12 +24,12 @@ jobs:
         known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
     # Config 등 파일 가져와야 할 시 사용
-    # - name: Bring ignored files
-    #   uses: actions/checkout@v3
-    #   with:
-    #     repository: Jumak-ignored
-    #     path: JumakS/Sources/Config
-    #     token: ${{ secrets.ACTION_TOKEN }}
+    - name: Bring ignored files
+      uses: actions/checkout@v3
+      with:
+        repository: kimkyuchul/Jumak-iOS-ignored
+        path: Makgulli/Common/Resource/APIKey
+        token: ${{ secrets.ACTION_TOKEN }}
     
     - name: Install Fastlane
       run: brew install fastlane
