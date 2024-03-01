@@ -1,7 +1,7 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
-name: TesfFlight
+name: TestFlight
 
 on:
   push:
@@ -22,17 +22,17 @@ jobs:
           
     # match 사용시 ssh-key 설정
     # - uses: shimataro/ssh-key-action@v2
-    #    with:
+    #   with:
     #     key: ${{ secrets.SSH_KEY }}
     #     known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
     # Config 등 파일 가져와야 할 시 사용
-    #  - name: Bring ignored files
-    #     uses: actions/checkout@v3
-    #     with:
-    #       repository: Jumak-ignored
-    #       path: JumakS/Sources/Config
-    #       token: ${{ secrets.ACTION_TOKEN }}
+    # - name: Bring ignored files
+    #   uses: actions/checkout@v3
+    #   with:
+    #     repository: Jumak-ignored
+    #     path: JumakS/Sources/Config
+    #     token: ${{ secrets.ACTION_TOKEN }}
     
     - name: Install Fastlane
       run: brew install fastlane
@@ -43,10 +43,11 @@ jobs:
         KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
         KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
 
-     - name: Change to Project Directory
-       run: cd ../
+    - name: Change to Project Directory
+      run: cd ../
 
-    - run: fastlane tf
+    - name: Run Fastlane tf
+      run: fastlane tf
       env:
         KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
         KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
