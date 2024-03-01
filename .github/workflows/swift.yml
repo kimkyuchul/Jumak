@@ -20,7 +20,7 @@ jobs:
       with:
         xcode-version: latest
           
-    # match 사용시 ssh-key 설정
+    # match 사용시 ssh-key 설정!
     - uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.SSH_KEY }}
