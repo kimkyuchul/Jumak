@@ -51,7 +51,6 @@
 		5A35E57F2AEBDFCD0074C8EC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35E57E2AEBDFCD0074C8EC /* NetworkError.swift */; };
 		5A36F15D2AFFA84F00039ADA /* SearchLocationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15C2AFFA84E00039ADA /* SearchLocationDTO.swift */; };
 		5A36F1602AFFA85500039ADA /* SearchLocationReqeustDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15F2AFFA85500039ADA /* SearchLocationReqeustDTO.swift */; };
-		5A36F1B72B027A9900039ADA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */; };
 		5A36F1BB2B027E0900039ADA /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 5A36F1BA2B027E0900039ADA /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		5A36F1BD2B027E0900039ADA /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5A36F1BC2B027E0900039ADA /* FirebaseCrashlytics */; };
 		5A36F1BF2B027E0900039ADA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 5A36F1BE2B027E0900039ADA /* FirebaseMessaging */; };
@@ -179,6 +178,7 @@
 		5AE652942B9259240033CED5 /* LINESeedKR-Rg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AE6528F2B9259090033CED5 /* LINESeedKR-Rg.otf */; };
 		5AE652962B92636A0033CED5 /* NaverMaps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */; };
 		5AE652972B92636A0033CED5 /* KakaoAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */; };
+		5AE652982B9268FB0033CED5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
@@ -818,7 +818,6 @@
 			isa = PBXGroup;
 			children = (
 				5A70BA312AC174E600506846 /* Makgulli */,
-				5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */,
 				5A70BA482AC174EC00506846 /* MakgulliTests */,
 				5A70BA522AC174EC00506846 /* MakgulliUITests */,
 				5A70BA302AC174E600506846 /* Products */,
@@ -1256,6 +1255,7 @@
 		5AE652952B92632C0033CED5 /* APIKey */ = {
 			isa = PBXGroup;
 			children = (
+				5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */,
 				5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */,
 				5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */,
 			);
@@ -1410,12 +1410,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE652982B9268FB0033CED5 /* GoogleService-Info.plist in Resources */,
 				5AE652962B92636A0033CED5 /* NaverMaps.plist in Resources */,
 				5AE652972B92636A0033CED5 /* KakaoAPIKey.plist in Resources */,
 				5AE652922B9259240033CED5 /* LINESeedKR-Th.otf in Resources */,
 				5AE652932B9259240033CED5 /* LINESeedKR-Bd.otf in Resources */,
 				5AE652942B9259240033CED5 /* LINESeedKR-Rg.otf in Resources */,
-				5A36F1B72B027A9900039ADA /* GoogleService-Info.plist in Resources */,
 				5A70BA3F2AC174EC00506846 /* LaunchScreen.storyboard in Resources */,
 				5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */,
 			);
