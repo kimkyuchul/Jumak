@@ -107,7 +107,6 @@
 		5A70BA702AC179A500506846 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA6F2AC179A500506846 /* Realm */; };
 		5A70BA722AC179A500506846 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A70BA712AC179A500506846 /* RealmSwift */; };
 		5A9DA1C82AC19119006040D2 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1C72AC19119006040D2 /* Bundle+.swift */; };
-		5A9DA1CA2AC1920A006040D2 /* NaverMaps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */; };
 		5A9DA1D32AC19AFB006040D2 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D22AC19AFB006040D2 /* UIFont+.swift */; };
 		5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D42AC19D30006040D2 /* UIColor+.swift */; };
 		5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA1D72AC1A1F2006040D2 /* ImageLiteral.swift */; };
@@ -130,7 +129,6 @@
 		5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA20B2AC3D6E5006040D2 /* LocationViewModel.swift */; };
 		5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA20E2AC3D739006040D2 /* ViewModelType.swift */; };
 		5A9DA2122AC3DB5E006040D2 /* Rx+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2112AC3DB5E006040D2 /* Rx+.swift */; };
-		5A9DA2142AC3DD0D006040D2 /* KakaoAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */; };
 		5A9DA2172AC3F629006040D2 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2162AC3F629006040D2 /* LocationService.swift */; };
 		5A9DA21A2AC415C5006040D2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA2192AC415C5006040D2 /* BaseViewController.swift */; };
 		5A9DA21C2AC415EF006040D2 /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9DA21B2AC415EF006040D2 /* ViewSetupable.swift */; };
@@ -179,6 +177,8 @@
 		5AE652922B9259240033CED5 /* LINESeedKR-Th.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AE652912B9259130033CED5 /* LINESeedKR-Th.otf */; };
 		5AE652932B9259240033CED5 /* LINESeedKR-Bd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AE652902B92590E0033CED5 /* LINESeedKR-Bd.otf */; };
 		5AE652942B9259240033CED5 /* LINESeedKR-Rg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5AE6528F2B9259090033CED5 /* LINESeedKR-Rg.otf */; };
+		5AE652962B92636A0033CED5 /* NaverMaps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */; };
+		5AE652972B92636A0033CED5 /* KakaoAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 /* End PBXBuildFile section */
@@ -930,12 +930,11 @@
 		5A9DA1C52AC1909C006040D2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				5AE652952B92632C0033CED5 /* APIKey */,
 				5A9DA1CB2AC19A22006040D2 /* Font */,
 				5A70BA3B2AC174EC00506846 /* Assets.xcassets */,
 				5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */,
 				5A70BA402AC174EC00506846 /* Info.plist */,
-				5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */,
-				5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1254,6 +1253,15 @@
 			path = LocationDetail;
 			sourceTree = "<group>";
 		};
+		5AE652952B92632C0033CED5 /* APIKey */ = {
+			isa = PBXGroup;
+			children = (
+				5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */,
+				5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */,
+			);
+			path = APIKey;
+			sourceTree = "<group>";
+		};
 		64AEBEDA30B71C9D4154194F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1402,14 +1410,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE652962B92636A0033CED5 /* NaverMaps.plist in Resources */,
+				5AE652972B92636A0033CED5 /* KakaoAPIKey.plist in Resources */,
 				5AE652922B9259240033CED5 /* LINESeedKR-Th.otf in Resources */,
 				5AE652932B9259240033CED5 /* LINESeedKR-Bd.otf in Resources */,
 				5AE652942B9259240033CED5 /* LINESeedKR-Rg.otf in Resources */,
 				5A36F1B72B027A9900039ADA /* GoogleService-Info.plist in Resources */,
 				5A70BA3F2AC174EC00506846 /* LaunchScreen.storyboard in Resources */,
-				5A9DA1CA2AC1920A006040D2 /* NaverMaps.plist in Resources */,
 				5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */,
-				5A9DA2142AC3DD0D006040D2 /* KakaoAPIKey.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
