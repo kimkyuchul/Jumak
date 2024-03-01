@@ -13,7 +13,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-<<<<<<< HEAD
 ### set_keychain
 
 ```sh
@@ -25,8 +24,6 @@ Save To Keychain
 ----
 
 
-=======
->>>>>>> main
 ## iOS
 
 ### ios tf
