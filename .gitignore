@@ -148,3 +148,10 @@ KakaoAPIKey.plist
 GoogleService-Info.plist
 
 fastlane/.env
+<<<<<<< HEAD
+=======
+
+*.cer
+
+*.mobileprovision
+>>>>>>> main

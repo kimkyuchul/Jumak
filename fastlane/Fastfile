@@ -36,11 +36,16 @@ platform :ios do
 
     app_store_connect_api_key(is_key_content_base64: true, in_house: false)
 
+<<<<<<< HEAD
     sync_code_signing(
       type: "appstore",
       app_identifier: ["com.ios.Makgulli"],
       readonly: true
     )
+=======
+   get_certificates
+   get_provisioning_profile
+>>>>>>> main
 
   increment_build_number(
 	 build_number: latest_testflight_build_number() + 1

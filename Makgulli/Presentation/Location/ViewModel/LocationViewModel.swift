@@ -85,7 +85,7 @@ final class LocationViewModel: ViewModelType {
         didSelectMarker
             .withUnretained(self)
             .bind(onNext: { owner, index in
-                guard let index = index else { return  }
+                guard let index = index else { return }
                 let store = owner.storeList[index]
                 output.setCameraPosition.accept((store.y, store.x))
             })
@@ -97,12 +97,11 @@ final class LocationViewModel: ViewModelType {
             }
             .withUnretained(self)
             .bind(onNext: { owner, indexLocation in
-                let (indexPath, location) = indexLocation
-                let categoryType = CategoryType.allCases[indexPath.row]
+                let categoryType = CategoryType.allCases[indexLocation.0.row]
                 
                 output.reSearchButtonHidden.accept(true)
                 owner.categoryType.accept(categoryType)
-                owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: location.x, y: location.y, page: 1, display: 30)
+                owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: indexLocation.1.x, y: indexLocation.1.y, page: 1, display: 30)
             })
             .disposed(by: disposeBag)
         
@@ -122,10 +121,8 @@ final class LocationViewModel: ViewModelType {
                 output.reSearchButtonHidden.accept(true)
                 owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: currentLocation.x, y: currentLocation.y, page: 1, display: 30)
                 
-                let reverseGeocodeObservable = owner.locationUseCase.reverseGeocodeLocation(location: currentLocation.convertToCLLocation)
+                return owner.locationUseCase.reverseGeocodeLocation(location: currentLocation.convertToCLLocation)
                     .catchAndReturn("알 수 없는 지역입니다.")
-                
-                return reverseGeocodeObservable
             }
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
@@ -179,16 +176,14 @@ final class LocationViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        let storeListObservable = output.storeList
-        
-        storeListObservable
+        output.storeList
             .withUnretained(self)
             .subscribe(onNext: { owner, storeVO in
                 owner.storeList = storeVO
             })
             .disposed(by: disposeBag)
         
-        let locationCoordinate = self.locationUseCase.locationCoordinate
+        let locationCoordinate = locationUseCase.locationCoordinate
             .share()
         
         locationCoordinate
@@ -205,9 +200,8 @@ final class LocationViewModel: ViewModelType {
         locationCoordinate
             .withUnretained(self)
             .flatMapLatest { owner, location in
-                let reverseGeocodeObservable = owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
+ owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
                     .catchAndReturn("알 수 없는 지역입니다.")
-                return reverseGeocodeObservable
             }
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
@@ -222,11 +216,10 @@ final class LocationViewModel: ViewModelType {
             }
             .withUnretained(self)
             .bind(onNext: { owner, visibleStore in
-                let (storeVO, willDisplayCell) = visibleStore
-                let visibleStore = owner.storeList[willDisplayCell.row]
+                let willDisplayStore = owner.storeList[visibleStore.1.row]
                 
-                if owner.shouldUpdateStore(store: storeVO, visibleStore: visibleStore) {
-                    owner.storeList[willDisplayCell.row] = storeVO
+                if owner.shouldUpdateStore(store: visibleStore.0, visibleStore: willDisplayStore) {
+                    owner.storeList[visibleStore.1.row] = visibleStore.0
                     output.storeList.accept(owner.storeList)
                 }
             })
