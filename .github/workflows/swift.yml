@@ -43,6 +43,9 @@ jobs:
         KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
         KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
 
+     - name: Change to Project Directory
+     run: cd ../
+
     - run: fastlane tf
       env:
         KEYCHAIN_NAME: ${{ secrets.KEYCHAIN_NAME }}
