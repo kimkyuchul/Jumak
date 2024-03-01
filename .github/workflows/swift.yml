@@ -27,7 +27,7 @@ jobs:
     - name: Bring ignored files
       uses: actions/checkout@v3
       with:
-        repository: Jumak-iOS-ignored
+        repository: kimkyuchul/Jumak-iOS-ignored
         path: Makgulli/Common/Resource
         token: ${{ secrets.ACTION_TOKEN }}
     
