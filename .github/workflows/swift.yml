@@ -1,0 +1,43 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: TesfFlight
+
+on:
+  push:
+    branches: [ "main"]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  upload_testflight:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Xcode version
+      uses: maxim-lobanov/setup-xcode@v1
+       with:
+          xcode-version: latest
+          
+    # match 사용시 ssh-key 설정
+    # - uses: shimataro/ssh-key-action@v2
+    #    with:
+    #     key: ${{ secrets.SSH_KEY }}
+    #     known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+    # Config 등 파일 가져와야 할 시 사용
+    #  - name: Bring ignored files
+    #     uses: actions/checkout@v3
+    #     with:
+    #       repository: Jumak-ignored
+    #       path: JumakS/Sources/Config
+    #       token: ${{ secrets.ACTION_TOKEN }}
+    
+    - name: Install Fastlane
+      run: brew install fastlane
+          
+   - uses: actions/setup-ruby@v1
+    with:
+      ruby-version: 2.7
+    
