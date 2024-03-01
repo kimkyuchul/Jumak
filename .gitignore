@@ -146,3 +146,9 @@ NaverMaps.plist
 KakaoAPIKey.plist
 
 GoogleService-Info.plist
+
+fastlane/.env
+
+*.cer
+
+*.mobileprovision
