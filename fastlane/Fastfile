@@ -36,10 +36,22 @@ platform :ios do
 
     app_store_connect_api_key(is_key_content_base64: true, in_house: false)
 
-    sync_code_signing(
+     match(
+      git_url: "git@github.com:kimkyuchul/Jumak-fastlane-certificate.git",
+      storage_mode: "git",
       type: "appstore",
-      app_identifier: ["com.ios.Makgulli"],
-      readonly: true
+      readonly: true,
+      keychain_name: "#{KEYCHAIN_NAME}",
+      keychain_password: "#{KEYCHAIN_PASSWORD}"
+    )
+    
+    match(
+      git_url: "git@github.com:kimkyuchul/Jumak-fastlane-certificate.git",
+      storage_mode: "git",
+      type: "development",
+      readonly: true,
+      keychain_name: "#{KEYCHAIN_NAME}",
+      keychain_password: "#{KEYCHAIN_PASSWORD}"
     )
 
   increment_build_number(
