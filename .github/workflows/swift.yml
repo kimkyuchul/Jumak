@@ -25,10 +25,10 @@ jobs:
 
     # Config 등 파일 가져와야 할 시 사용
     - name: Bring ignored files
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: kimkyuchul/Jumak-iOS-ignored
-        path: Makgulli/Common/Resource
+        path: Makgulli/Common/Resource/APIKey
         token: ${{ secrets.ACTION_TOKEN }}
     
     - name: Install Fastlane
