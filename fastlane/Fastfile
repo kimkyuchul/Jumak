@@ -60,10 +60,13 @@ platform :ios do
  
   cocoapods(clean_install: true, use_bundle_exec: false)
 
-  build_app(
+  gym(
       workspace: "Makgulli.xcworkspace",
       scheme: "Makgulli",
-      export_method: "app-store"
+       export_options: {
+        method: "app-store",
+        signingStyle: "manual"
+        }
   )
 
   upload_to_testflight(skip_waiting_for_build_processing: true)
