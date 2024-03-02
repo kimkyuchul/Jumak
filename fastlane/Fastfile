@@ -58,8 +58,16 @@ platform :ios do
 	 build_number: latest_testflight_build_number() + 1
     )
  
-  cocoapods(clean_install: true, use_bundle_exec: false) 
-  build_app(configuration: "Debug")
+  cocoapods(clean_install: true, use_bundle_exec: false)
+
+  build_app(
+      workspace: "Makgulli.xcworkspace",
+      scheme: "Makgulli",
+      configuration: "Debug",
+      export_method: "app-store",
+      export_options: {
+        signingStyle: "manual"
+    )
 
   upload_to_testflight(skip_waiting_for_build_processing: true)
 
