@@ -65,7 +65,7 @@ platform :ios do
       scheme: "Makgulli",
       configuration: "Debug",
       export_options: {
-	method: "development"
+	method: "development",
         signingStyle: "manual"
 	}
     )
