@@ -54,20 +54,30 @@ platform :ios do
       keychain_password: "#{KEYCHAIN_PASSWORD}"
     )
 
+    sync_code_signing(
+      type: "appstore",
+      app_identifier: ["com.ios.Makgulli"],
+      readonly: true
+    )	
+
   increment_build_number(
 	 build_number: latest_testflight_build_number() + 1
     )
  
   cocoapods(clean_install: true, use_bundle_exec: false)
 
-  gym(
-      workspace: "Makgulli.xcworkspace",
-      scheme: "Makgulli",
-       export_options: {
-        method: "app-store",
-        signingStyle: "manual"
-        }
-  )
+    build_app(
+      configuration: "Debug"
+    )
+
+ #  gym(
+ #     workspace: "Makgulli.xcworkspace",
+ #     scheme: "Makgulli",
+ #      export_options: {
+ #       method: "app-store",
+ #       signingStyle: "manual"
+ #       }
+ # )
 
   upload_to_testflight(skip_waiting_for_build_processing: true)
 
