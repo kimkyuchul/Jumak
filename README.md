@@ -23,8 +23,8 @@
 
 # **⚙️ 개발환경 및 기술스택**
 
-- Minimum Deployments: iOS 15.5
-- Dependence Manager : **SPM & CocoaPod(NaverMap)**
+- Minimum Deployment: iOS 15.5
+- Dependence Manager : SPM & CocoaPod(NaverMap)
 - Swift Version: 5.8.1
 - `UIKit` `MVVM` `RxSwift` `RxCocoa`
 - `Codebase UI` `SnapKit`
@@ -33,6 +33,7 @@
 - `Alamofire` `RxReachability`
 - `RealmSwift`
 - `Firebase Crashlytics` `Firebase Push Notifications`
+- `fastlane`, `GithubAction`
 
 # **🔥 기술적 도전**
 
