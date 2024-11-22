@@ -378,17 +378,17 @@
 				5A0A984B2AE689C600545939 /* RxReachability in Frameworks */,
 				5A0A98582AE817BE00545939 /* RxDataSources in Frameworks */,
 				C2773C612CEF26C400942765 /* RxBlocking in Frameworks */,
-				5A70BA722AC179A500506846 /* RealmSwift in Frameworks */,
 				C2773C632CEF26C400942765 /* RxCocoa in Frameworks */,
 				5A6827BC2AD6BDCE00C37B17 /* RxGesture in Frameworks */,
 				C2773C652CEF26C400942765 /* RxRelay in Frameworks */,
+				C2C2FECC2CF02DD50000AC4F /* RealmSwift in Frameworks */,
 				5A9DA1E52AC2B4DF006040D2 /* Alamofire in Frameworks */,
 				5A0A98562AE817BE00545939 /* Differentiator in Frameworks */,
 				C2773C5E2CEF25E500942765 /* FirebaseMessaging in Frameworks */,
 				5A70BA662AC178E600506846 /* SnapKit in Frameworks */,
-				5A70BA702AC179A500506846 /* Realm in Frameworks */,
 				C2773C5C2CEF25E500942765 /* FirebaseCrashlytics in Frameworks */,
 				5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */,
+				C652817663168A57FCC2F4F3 /* Pods_Makgulli.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1288,8 +1288,6 @@
 			name = Makgulli;
 			packageProductDependencies = (
 				5A70BA652AC178E600506846 /* SnapKit */,
-				5A70BA6F2AC179A500506846 /* Realm */,
-				5A70BA712AC179A500506846 /* RealmSwift */,
 				5A9DA1E42AC2B4DF006040D2 /* Alamofire */,
 				5A6827BB2AD6BDCE00C37B17 /* RxGesture */,
 				5AAB8E8C2ADD780E005969FA /* RxKeyboard */,
@@ -1304,6 +1302,7 @@
 				C2773C622CEF26C400942765 /* RxCocoa */,
 				C2773C642CEF26C400942765 /* RxRelay */,
 				C2773C662CEF26C400942765 /* RxSwift */,
+				C2C2FECB2CF02DD50000AC4F /* RealmSwift */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -1382,7 +1381,6 @@
 			mainGroup = 5A70BA262AC174E600506846;
 			packageReferences = (
 				5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */,
 				5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */,
@@ -1390,6 +1388,7 @@
 				5A0A98542AE817BE00545939 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				C2773C562CEF25E500942765 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C2773C5F2CEF26C400942765 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				C2C2FECA2CF02DD50000AC4F /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -2110,14 +2109,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		5A9DA1E32AC2B4DF006040D2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -2150,6 +2141,14 @@
 				minimumVersion = 6.8.0;
 			};
 		};
+		C2C2FECA2CF02DD50000AC4F /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2177,16 +2176,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A70BA642AC178E600506846 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		5A70BA6F2AC179A500506846 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		5A70BA712AC179A500506846 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5A70BA6E2AC179A500506846 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
 		};
 		5A9DA1E42AC2B4DF006040D2 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2237,6 +2226,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C2773C5F2CEF26C400942765 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		C2C2FECB2CF02DD50000AC4F /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2C2FECA2CF02DD50000AC4F /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
