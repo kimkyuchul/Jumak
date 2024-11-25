@@ -34,6 +34,7 @@ final class AppInfoCoordinator: Coordinator {
         viewModel.coordinator = self
         
         let viewController = AppInfoViewController(viewModel: viewModel)
+        viewController.hidesBottomBarWhenPushed = true
         push(viewController: viewController, navibarHidden: true, swipe: false)
     }
 }
