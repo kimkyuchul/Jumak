@@ -641,29 +641,10 @@
 		5A0A98502AE6D9A000545939 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				5A0A98362AE5894D00545939 /* SplashViewController.swift */,
+				C2F741882CF019D900C423D5 /* Splash */,
 				5ADC003C2AC869060024D7F8 /* Tabbar */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		5A0A98512AE79DF200545939 /* AppInfo */ = {
-			isa = PBXGroup;
-			children = (
-				5A0A98632AE9201D00545939 /* View */,
-				5A0A98522AE79F4000545939 /* AppInfoViewController.swift */,
-				5A0A985F2AE9159F00545939 /* InquiryViewController.swift */,
-			);
-			path = AppInfo;
-			sourceTree = "<group>";
-		};
-		5A0A98632AE9201D00545939 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				5A0A98612AE917A300545939 /* InquiryButtonView.swift */,
-				5A0A98642AE9202400545939 /* Cell */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		5A0A98642AE9202400545939 /* Cell */ = {
@@ -1291,6 +1272,12 @@
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
+		C2F741882CF019D900C423D5 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				5A0A98362AE5894D00545939 /* SplashViewController.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

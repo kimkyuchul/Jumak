@@ -9,7 +9,13 @@ import UIKit
 
 import RxSwift
 
-final class SplashViewController: BaseViewController {
+final class SplashViewController: BaseViewController, Coordinatable {
+    weak var coordinator: AppCoordinator?
+    
+    init(coordinator: AppCoordinator) {
+        self.coordinator = coordinator
+        super.init()
+    }
     
     private let imageView: UIImageView = {
         let imageVIew = UIImageView()
@@ -35,10 +41,11 @@ final class SplashViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         reachability?.rx.isConnected
-            .withUnretained(self)
-            .subscribe(onNext: { owner, _ in
-                RootHandler.shard.update(.main)
-            })
+            .bind(with: self) { owner, _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    owner.coordinator?.flow.send(.main)
+                }
+            }
             .disposed(by: disposeBag)
     }
         
