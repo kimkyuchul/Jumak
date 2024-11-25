@@ -52,17 +52,10 @@ extension AppCoordinator {
     }
     
     private func startTabBar() {
-        guard let window = UIApplication.shared.keyWindowInConnectedScenes else { return }
-        
         let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController)
         tabBarCoordinator.parentCoordinator = self
-                
-        UIView.transition(with: window,
-                         duration: 0.5,
-                         options: .transitionCrossDissolve,
-                         animations: {
-            tabBarCoordinator.start()
-            self.addDependency(tabBarCoordinator)
-        }, completion: nil)
+        tabBarCoordinator.start()
+        
+        self.addDependency(tabBarCoordinator)
     }
 }

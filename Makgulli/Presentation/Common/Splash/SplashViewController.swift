@@ -42,7 +42,7 @@ final class SplashViewController: BaseViewController, Coordinatable {
         super.viewDidLoad()
         reachability?.rx.isConnected
             .bind(with: self) { owner, _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     owner.coordinator?.flow.send(.main)
                 }
             }
