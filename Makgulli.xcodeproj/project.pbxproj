@@ -179,10 +179,14 @@
 		C2C2FECD2CF02DE80000AC4F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C2C2FECF2CF1BEB70000AC4F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FECE2CF1BEB70000AC4F /* TabBar.swift */; };
 		C2C2FED22CF1C2720000AC4F /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FED12CF1C2720000AC4F /* LocationCoordinator.swift */; };
+		C2C2FED52CF1C37A0000AC4F /* FavoriteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FED42CF1C37A0000AC4F /* FavoriteCoordinator.swift */; };
 		C2C2FED82CF310930000AC4F /* LocationDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FED72CF310930000AC4F /* LocationDetailCoordinator.swift */; };
 		C2C2FEDD2CF363A30000AC4F /* WriteEpisodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEDC2CF363A30000AC4F /* WriteEpisodeCoordinator.swift */; };
 		C2C2FEE02CF369830000AC4F /* EpisodeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEDF2CF369830000AC4F /* EpisodeDetailCoordinator.swift */; };
+		C2C2FEE92CF4167D0000AC4F /* AppInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEE82CF4167D0000AC4F /* AppInfoViewModel.swift */; };
 		C2C2FEEB2CF416DF0000AC4F /* AppInfoDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */; };
+		C2C2FEEE2CF42E560000AC4F /* AppInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEED2CF42E560000AC4F /* AppInfoType.swift */; };
+		C2C2FEF02CF42FD10000AC4F /* AppInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEEF2CF42FD10000AC4F /* AppInfoCoordinator.swift */; };
 		C2F7418C2CF0270700C423D5 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7418B2CF0270700C423D5 /* TabBarCoordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -391,10 +395,14 @@
 		C2773C6B2CF0087300942765 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C2C2FECE2CF1BEB70000AC4F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		C2C2FED12CF1C2720000AC4F /* LocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinator.swift; sourceTree = "<group>"; };
+		C2C2FED42CF1C37A0000AC4F /* FavoriteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoordinator.swift; sourceTree = "<group>"; };
 		C2C2FED72CF310930000AC4F /* LocationDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailCoordinator.swift; sourceTree = "<group>"; };
 		C2C2FEDC2CF363A30000AC4F /* WriteEpisodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeCoordinator.swift; sourceTree = "<group>"; };
 		C2C2FEDF2CF369830000AC4F /* EpisodeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailCoordinator.swift; sourceTree = "<group>"; };
+		C2C2FEE82CF4167D0000AC4F /* AppInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewModel.swift; sourceTree = "<group>"; };
 		C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoDIContainer.swift; sourceTree = "<group>"; };
+		C2C2FEED2CF42E560000AC4F /* AppInfoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoType.swift; sourceTree = "<group>"; };
+		C2C2FEEF2CF42FD10000AC4F /* AppInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoCoordinator.swift; sourceTree = "<group>"; };
 		C2F7418B2CF0270700C423D5 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -931,7 +939,7 @@
 				5A6827A52AD50D3A00C37B17 /* WriteEpisode */,
 				5AAB8E782ADBE152005969FA /* EpisodeDetail */,
 				5ADC003F2AC86D8A0024D7F8 /* Favorite */,
-				5A0A98512AE79DF200545939 /* AppInfo */,
+				C2C2FEE42CF416590000AC4F /* AppInfo */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1250,6 +1258,7 @@
 		5ADC003F2AC86D8A0024D7F8 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				C2C2FED32CF1C3550000AC4F /* Coordinator */,
 				5A0A982A2AE2657000545939 /* View */,
 				5A35E57D2AEB4A8D0074C8EC /* ViewModel */,
 			);
@@ -1293,6 +1302,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		C2C2FED32CF1C3550000AC4F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2FED42CF1C37A0000AC4F /* FavoriteCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		C2C2FED62CF310820000AC4F /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1315,6 +1332,52 @@
 				C2C2FEDF2CF369830000AC4F /* EpisodeDetailCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		C2C2FEE42CF416590000AC4F /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2FEEC2CF42E460000AC4F /* Enum */,
+				C2C2FEE72CF4166D0000AC4F /* Coordinator */,
+				C2C2FEE52CF416640000AC4F /* View */,
+				C2C2FEE62CF416690000AC4F /* ViewModel */,
+			);
+			path = AppInfo;
+			sourceTree = "<group>";
+		};
+		C2C2FEE52CF416640000AC4F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5A0A98522AE79F4000545939 /* AppInfoViewController.swift */,
+				5A0A985F2AE9159F00545939 /* InquiryViewController.swift */,
+				5A0A98612AE917A300545939 /* InquiryButtonView.swift */,
+				5A0A98642AE9202400545939 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C2C2FEE62CF416690000AC4F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2FEE82CF4167D0000AC4F /* AppInfoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C2C2FEE72CF4166D0000AC4F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2FEEF2CF42FD10000AC4F /* AppInfoCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		C2C2FEEC2CF42E460000AC4F /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2FEED2CF42E560000AC4F /* AppInfoType.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		C2F741882CF019D900C423D5 /* Splash */ = {
@@ -1639,6 +1702,7 @@
 				5A0407172AF922C500A4BA84 /* EpisodeDetailStorage.swift in Sources */,
 				5A6827BE2AD6D44E00C37B17 /* ImageSelectionView.swift in Sources */,
 				5A6827772ACEA7B200C37B17 /* RateButton.swift in Sources */,
+				C2C2FEEE2CF42E560000AC4F /* AppInfoType.swift in Sources */,
 				5A0406F62AF7922900A4BA84 /* BaseRealmStorage.swift in Sources */,
 				C2C2FEDD2CF363A30000AC4F /* WriteEpisodeCoordinator.swift in Sources */,
 				5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */,
@@ -1712,6 +1776,7 @@
 				5AAB8E952ADE824F005969FA /* FilterHeaderView.swift in Sources */,
 				C2773C6C2CF0087300942765 /* Coordinator.swift in Sources */,
 				5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */,
+				C2C2FEF02CF42FD10000AC4F /* AppInfoCoordinator.swift in Sources */,
 				5A6827842ACFEB6D00C37B17 /* UIStackView+.swift in Sources */,
 				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
 				5A6827B02AD56B1300C37B17 /* WriteEpisodeUseCase.swift in Sources */,
@@ -1745,6 +1810,7 @@
 				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
 				5AAB8EAB2AE15CC7005969FA /* PasteboardService.swift in Sources */,
 				5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */,
+				C2C2FEE92CF4167D0000AC4F /* AppInfoViewModel.swift in Sources */,
 				5AAB8EAD2AE1645F005969FA /* EpisodeEmptyView.swift in Sources */,
 				5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */,
 				5A6827C22AD6E59300C37B17 /* CheckBoxView.swift in Sources */,
@@ -1770,6 +1836,7 @@
 				5A0407082AF9028500A4BA84 /* LocationDetailLocalRepository.swift in Sources */,
 				5A68279D2AD2AC5C00C37B17 /* UIImage+.swift in Sources */,
 				5A6827702ACE7A6C00C37B17 /* EpisodeCollectionViewCell.swift in Sources */,
+				C2C2FED52CF1C37A0000AC4F /* FavoriteCoordinator.swift in Sources */,
 				5AAB8E7F2ADBEEAE005969FA /* EpisodeDetailUseCase.swift in Sources */,
 				5A0A985A2AE8A1BC00545939 /* AppInfoTableViewCell.swift in Sources */,
 				5A0A98482AE67F4200545939 /* RootHandler.swift in Sources */,

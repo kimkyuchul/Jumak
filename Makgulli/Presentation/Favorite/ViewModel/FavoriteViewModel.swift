@@ -10,7 +10,8 @@ import Foundation
 import RxRelay
 import RxSwift
 
-final class FavoriteViewModel: ViewModelType {
+final class FavoriteViewModel: ViewModelType, Coordinatable {
+    weak var coordinator: FavoriteCoordinator?
     var disposeBag: DisposeBag = .init()
     
     private let favoriteUseCase: FavoriteUseCase
@@ -24,8 +25,10 @@ final class FavoriteViewModel: ViewModelType {
     struct Input {
         let viewWillAppearEvent: Observable<Void>
         let viewDidAppearEvent: Observable<Void>
+        let didSelectAppInfoButton: Observable<Void>
         let didSelectCategoryFilterButton: Observable<CategoryFilterType>
         let didSelectReverseFilterButton: Observable<Void>
+        let didSelectStoreItem: Observable<StoreVO>
     }
     
     struct Output {
@@ -63,6 +66,12 @@ final class FavoriteViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
+        input.didSelectAppInfoButton
+            .bind(with: self) { owner, _ in
+                owner.coordinator?.startAppInfo()
+            }
+            .disposed(by: disposeBag)
+        
         let didSelectCategoryFilterButton = input.didSelectCategoryFilterButton
             .share()
         
@@ -86,6 +95,12 @@ final class FavoriteViewModel: ViewModelType {
                 let (filterType, categoryFilter) = filterTypes
                 owner.favoriteUseCase.fetchFilterStore(filterType: filterType, reverseFilter: UserDefaultHandler.reverseFilter, categoryFilter: categoryFilter)
             })
+            .disposed(by: disposeBag)
+        
+        input.didSelectStoreItem
+            .bind(with: self) { owner, store in
+                owner.coordinator?.startLocationDetail(store)
+            }
             .disposed(by: disposeBag)
             
         createOutput(output: output)

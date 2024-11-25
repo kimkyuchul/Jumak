@@ -14,6 +14,7 @@ import RxCocoa
 
 final class InquiryViewController: BaseViewController {
     
+    private let navigationBar = JumakNavigationBar()
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "궁금한 점이 있으시다면\n아래 연락처를 통해 문의해주세요."
@@ -33,6 +34,12 @@ final class InquiryViewController: BaseViewController {
     }()
     
     override func bindAction() {
+        navigationBar.backButtonAction()
+            .bind(with: self) { owner, _ in
+                owner.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         emailInquiryView.rx.tapInquiry
             .withUnretained(self)
             .bind(onNext: { owner, _ in
@@ -63,14 +70,18 @@ final class InquiryViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        [titleLabel, stackView].forEach {
+        [navigationBar, titleLabel, stackView].forEach {
             view.addSubview($0)
         }
     }
     
     override func setConstraints() {
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+        
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.top.equalTo(navigationBar.snp.bottom).offset(20)
             make.leading.equalToSuperview().inset(18)
             make.trailing.equalToSuperview().inset(18).priority(.high)
         }
