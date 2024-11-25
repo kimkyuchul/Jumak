@@ -13,8 +13,14 @@ final class TabBarCoordinator: Coordinator {
     var navigationController: UINavigationController
     private var tabBarController = UITabBarController()
     
-    init(navigationController: UINavigationController) {
+    private let dependency: injector
+    
+    init(
+        navigationController: UINavigationController,
+        dependency: injector
+    ) {
         self.navigationController = navigationController
+        self.dependency = dependency
     }
     
     func start() {
@@ -54,7 +60,7 @@ extension TabBarCoordinator {
     private func setTabBarFlow(of tabBar: TabBar, to tabNavigationController: UINavigationController) {
         switch tabBar {
         case .makgulli:
-           let locationCoordinator = LocationCoordinator(navigationController: tabNavigationController)
+            let locationCoordinator = LocationCoordinator(navigationController: tabNavigationController, dependency: dependency)
             locationCoordinator.parentCoordinator = self
             locationCoordinator.start()
             
@@ -62,7 +68,7 @@ extension TabBarCoordinator {
             
             
         case .favorite:
-            let favoriteCoordinator = FavoriteCoordinator(navigationController: tabNavigationController)
+            let favoriteCoordinator = FavoriteCoordinator(navigationController: tabNavigationController, dependency: dependency)
             favoriteCoordinator.parentCoordinator = self
             favoriteCoordinator.start()
              

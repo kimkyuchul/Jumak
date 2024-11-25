@@ -11,13 +11,19 @@ final class FavoriteCoordinator: Coordinator {
     weak var parentCoordinator: (any Coordinator)?
     var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
-        
-    init(navigationController: UINavigationController) {
+    
+    private let dependency: injector
+    
+    init(
+        navigationController: UINavigationController,
+        dependency: injector
+    ) {
         self.navigationController = navigationController
+        self.dependency = dependency
     }
     
     func start() {
-        let viewModel = AppDIContainer.shared
+        let viewModel = dependency
             .makeFavoriteDIContainer()
             .makeFavoriteViewModel()
         viewModel.coordinator = self
@@ -30,7 +36,7 @@ final class FavoriteCoordinator: Coordinator {
 
 extension FavoriteCoordinator {
     func startLocationDetail(_ store: StoreVO) {
-        let locationDetailCoordinator = LocationDetailCoordinator(navigationController: navigationController)
+        let locationDetailCoordinator = LocationDetailCoordinator(navigationController: navigationController, dependency: dependency)
         locationDetailCoordinator.parentCoordinator = self
         locationDetailCoordinator.store = store
         locationDetailCoordinator.start()
@@ -39,7 +45,7 @@ extension FavoriteCoordinator {
     }
     
     func startAppInfo() {
-        let appInfoCoordinator = AppInfoCoordinator(navigationController: navigationController)
+        let appInfoCoordinator = AppInfoCoordinator(navigationController: navigationController, dependency: dependency)
         appInfoCoordinator.parentCoordinator = self
         appInfoCoordinator.start()
         

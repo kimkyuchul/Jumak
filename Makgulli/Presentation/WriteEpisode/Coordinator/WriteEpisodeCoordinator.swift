@@ -8,13 +8,19 @@
 import UIKit
 
 final class WriteEpisodeCoordinator: Coordinator {
-    var parentCoordinator: (any Coordinator)?
+    weak var parentCoordinator: (any Coordinator)?
     var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
     var store: StoreVO?
     
-    init(navigationController: UINavigationController) {
+    private let dependency: injector
+    
+    init(
+        navigationController: UINavigationController,
+        dependency: injector
+    ) {
         self.navigationController = navigationController
+        self.dependency = dependency
     }
     
     deinit {
@@ -24,7 +30,9 @@ final class WriteEpisodeCoordinator: Coordinator {
     func start() {
         guard let store else { return }
         
-        let viewModel = AppDIContainer.shared.makeEpisodeDIContainer().makeWriteEpisodeViewModel(store: store)
+        let viewModel = dependency
+            .makeEpisodeDIContainer()
+            .makeWriteEpisodeViewModel(store: store)
         viewModel.coordinator = self
 
         let viewController = WriteEpisodeViewController(viewModel: viewModel)
