@@ -187,6 +187,7 @@
 		C2C2FEEB2CF416DF0000AC4F /* AppInfoDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */; };
 		C2C2FEEE2CF42E560000AC4F /* AppInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEED2CF42E560000AC4F /* AppInfoType.swift */; };
 		C2C2FEF02CF42FD10000AC4F /* AppInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEEF2CF42FD10000AC4F /* AppInfoCoordinator.swift */; };
+		C2C2FEF22CF43FD30000AC4F /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEF12CF43FD30000AC4F /* UIApplication+.swift */; };
 		C2F7418C2CF0270700C423D5 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7418B2CF0270700C423D5 /* TabBarCoordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -403,6 +404,7 @@
 		C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoDIContainer.swift; sourceTree = "<group>"; };
 		C2C2FEED2CF42E560000AC4F /* AppInfoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoType.swift; sourceTree = "<group>"; };
 		C2C2FEEF2CF42FD10000AC4F /* AppInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoCoordinator.swift; sourceTree = "<group>"; };
+		C2C2FEF12CF43FD30000AC4F /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		C2F7418B2CF0270700C423D5 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -974,6 +976,7 @@
 				5A6827B32AD6906700C37B17 /* Date+.swift */,
 				5A0A983F2AE64A2E00545939 /* UIDevice+.swift */,
 				5A0A98452AE66AB200545939 /* UIButton+.swift */,
+				C2C2FEF12CF43FD30000AC4F /* UIApplication+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1746,6 +1749,7 @@
 				5A0A98332AE4BBBE00545939 /* IndicatorView.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
 				5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */,
+				C2C2FEF22CF43FD30000AC4F /* UIApplication+.swift in Sources */,
 				C2C2FEEB2CF416DF0000AC4F /* AppInfoDIContainer.swift in Sources */,
 				5A0A98622AE917A300545939 /* InquiryButtonView.swift in Sources */,
 				5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */,
