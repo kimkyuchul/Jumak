@@ -22,6 +22,7 @@ enum ImageLiteral {
     //MARK: - Favorite
     
     //MARK: - System image
+    static var back: UIImage { .load(systemName: "chevron.backward") }
     static var checkIcon: UIImage { .load(systemName: "checkmark")}
     static var bookMarkIcon: UIImage { .load(systemName: "bookmark") }
     static var fillBookMarkIcon: UIImage { .load(systemName: "bookmark.fill") }

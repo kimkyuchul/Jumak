@@ -37,7 +37,6 @@
 		5A0A98422AE6617D00545939 /* ActionTitleable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98412AE6617D00545939 /* ActionTitleable.swift */; };
 		5A0A98442AE664F100545939 /* CategoryFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98432AE664F100545939 /* CategoryFilterType.swift */; };
 		5A0A98462AE66AB200545939 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98452AE66AB200545939 /* UIButton+.swift */; };
-		5A0A98482AE67F4200545939 /* RootHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98472AE67F4200545939 /* RootHandler.swift */; };
 		5A0A984B2AE689C600545939 /* RxReachability in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0A984A2AE689C600545939 /* RxReachability */; };
 		5A0A984D2AE6BEF200545939 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A984C2AE6BEF200545939 /* NetworkErrorView.swift */; };
 		5A0A984F2AE6C6FA00545939 /* FavoriteEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A984E2AE6C6FA00545939 /* FavoriteEmptyView.swift */; };
@@ -161,7 +160,6 @@
 		5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00352AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift */; };
 		5ADC00392AC5F9370024D7F8 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00382AC5F9370024D7F8 /* CategoryCollectionViewCell.swift */; };
 		5ADC003B2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003A2AC8450C0024D7F8 /* CLLocationCoordinate2D+.swift */; };
-		5ADC003E2AC8693A0024D7F8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC003D2AC8693A0024D7F8 /* TabBarController.swift */; };
 		5ADC00412AC86DA00024D7F8 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00402AC86DA00024D7F8 /* FavoriteViewController.swift */; };
 		5ADC00432AC879060024D7F8 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00422AC879060024D7F8 /* StoreCollectionViewCell.swift */; };
 		5ADC004D2ACA9DAE0024D7F8 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC004C2ACA9DAE0024D7F8 /* LocationDetailViewController.swift */; };
@@ -183,6 +181,7 @@
 		C2C2FED82CF310930000AC4F /* LocationDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FED72CF310930000AC4F /* LocationDetailCoordinator.swift */; };
 		C2C2FEDD2CF363A30000AC4F /* WriteEpisodeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEDC2CF363A30000AC4F /* WriteEpisodeCoordinator.swift */; };
 		C2C2FEE02CF369830000AC4F /* EpisodeDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEDF2CF369830000AC4F /* EpisodeDetailCoordinator.swift */; };
+		C2C2FEE22CF3F8970000AC4F /* JumakNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEE12CF3F8970000AC4F /* JumakNavigationBar.swift */; };
 		C2C2FEE92CF4167D0000AC4F /* AppInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEE82CF4167D0000AC4F /* AppInfoViewModel.swift */; };
 		C2C2FEEB2CF416DF0000AC4F /* AppInfoDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */; };
 		C2C2FEEE2CF42E560000AC4F /* AppInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEED2CF42E560000AC4F /* AppInfoType.swift */; };
@@ -255,7 +254,6 @@
 		5A0A98412AE6617D00545939 /* ActionTitleable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTitleable.swift; sourceTree = "<group>"; };
 		5A0A98432AE664F100545939 /* CategoryFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilterType.swift; sourceTree = "<group>"; };
 		5A0A98452AE66AB200545939 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
-		5A0A98472AE67F4200545939 /* RootHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHandler.swift; sourceTree = "<group>"; };
 		5A0A984C2AE6BEF200545939 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		5A0A984E2AE6C6FA00545939 /* FavoriteEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEmptyView.swift; sourceTree = "<group>"; };
 		5A0A98522AE79F4000545939 /* AppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
@@ -400,6 +398,7 @@
 		C2C2FED72CF310930000AC4F /* LocationDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailCoordinator.swift; sourceTree = "<group>"; };
 		C2C2FEDC2CF363A30000AC4F /* WriteEpisodeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeCoordinator.swift; sourceTree = "<group>"; };
 		C2C2FEDF2CF369830000AC4F /* EpisodeDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailCoordinator.swift; sourceTree = "<group>"; };
+		C2C2FEE12CF3F8970000AC4F /* JumakNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumakNavigationBar.swift; sourceTree = "<group>"; };
 		C2C2FEE82CF4167D0000AC4F /* AppInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoViewModel.swift; sourceTree = "<group>"; };
 		C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoDIContainer.swift; sourceTree = "<group>"; };
 		C2C2FEED2CF42E560000AC4F /* AppInfoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoType.swift; sourceTree = "<group>"; };
@@ -1139,6 +1138,7 @@
 		5A9DA2212AC57E20006040D2 /* UIComponent */ = {
 			isa = PBXGroup;
 			children = (
+				C2C2FEE32CF3F89D0000AC4F /* NavigationBar */,
 				5AAB8E802ADC034B005969FA /* Alert */,
 				5A6827B72AD6AC3B00C37B17 /* TextField */,
 				5A6827A42AD44DDE00C37B17 /* Label */,
@@ -1201,7 +1201,6 @@
 			children = (
 				5AAB8EA62AE145F0005969FA /* UserDefault.swift */,
 				5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */,
-				5A0A98472AE67F4200545939 /* RootHandler.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1335,6 +1334,14 @@
 				C2C2FEDF2CF369830000AC4F /* EpisodeDetailCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		C2C2FEE32CF3F89D0000AC4F /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2FEE12CF3F8970000AC4F /* JumakNavigationBar.swift */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 		C2C2FEE42CF416590000AC4F /* AppInfo */ = {
@@ -1695,6 +1702,7 @@
 				5A0A98462AE66AB200545939 /* UIButton+.swift in Sources */,
 				5A9DA1DE2AC1A393006040D2 /* MetricLiteral.swift in Sources */,
 				5AAB8E982ADFC203005969FA /* FilterBottomSheetViewController.swift in Sources */,
+				C2C2FEE22CF3F8970000AC4F /* JumakNavigationBar.swift in Sources */,
 				5A6827792ACEC68000C37B17 /* UILabel+.swift in Sources */,
 				5A35E57F2AEBDFCD0074C8EC /* NetworkError.swift in Sources */,
 				5A9DA20C2AC3D6E5006040D2 /* LocationViewModel.swift in Sources */,
@@ -1843,7 +1851,6 @@
 				C2C2FED52CF1C37A0000AC4F /* FavoriteCoordinator.swift in Sources */,
 				5AAB8E7F2ADBEEAE005969FA /* EpisodeDetailUseCase.swift in Sources */,
 				5A0A985A2AE8A1BC00545939 /* AppInfoTableViewCell.swift in Sources */,
-				5A0A98482AE67F4200545939 /* RootHandler.swift in Sources */,
 				5A9DA2202AC41A19006040D2 /* BaseView.swift in Sources */,
 				5A0407142AF91E8500A4BA84 /* EpisodeDIContainer.swift in Sources */,
 			);
