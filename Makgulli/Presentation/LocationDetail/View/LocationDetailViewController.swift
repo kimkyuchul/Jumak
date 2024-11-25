@@ -15,6 +15,7 @@ final class LocationDetailViewController: BaseViewController {
     private let locationDetailView = LocationDetailView()
     private let viewModel: LocationDetailViewModel
     private let didSelectFindRouteType = PublishRelay<FindRouteType>()
+    private let didSelectEpisodeItem = PublishRelay<Episode>()
     
     init(viewModel: LocationDetailViewModel) {
         self.viewModel = viewModel
@@ -27,23 +28,22 @@ final class LocationDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "상세 정보"
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
         
     override func bind() {
         let input = LocationDetailViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
                    viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
-                   viewWillDisappearEvent: self.rx.viewWillDisappear.map { _ in },
+                   viewWillDisappearEvent: self.rx.viewWillDisappear.map { _ in }, 
+                   didSelectBackButton: locationDetailView.rx.backButtonTap.throttle(.milliseconds(300), scheduler: MainScheduler.instance),
                    didSelectRate: locationDetailView.rateView.currentStarSubject.asObserver(),
                    didSelectBookmark: locationDetailView.titleView.bookMarkButton.rx.isSelected.asObservable(),
                    didSelectFindRouteType: didSelectFindRouteType.asObservable(),
                    didSelectUserLocationButton: locationDetailView.storeLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.asyncInstance),
                    didSelectCopyAddressButton: locationDetailView.infoView.rx.tapCopyAddress.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
-                   didSelectMakeEpisodeButton: locationDetailView.bottomView.rx.tapMakeEpisode.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
+                   didSelectMakeEpisodeButton: locationDetailView.bottomView.rx.tapMakeEpisode.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance),
+                   didSelectEpisodeItem: didSelectEpisodeItem.asObservable().throttle(.milliseconds(300), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
         
         output.hashTag
@@ -119,21 +119,7 @@ final class LocationDetailViewController: BaseViewController {
             }
             .subscribe()
             .disposed(by: disposeBag)
-            
-        output.presentWriteEpisode
-            .withUnretained(self)
-            .bind(onNext: { owner, storeVO in
-                let writeEpisodeViewController = WriteEpisodeViewController(
-                    viewModel: AppDIContainer.shared
-                       .makeEpisodeDIContainer()
-                       .makeLocationViewModel(store: storeVO)
-                )
-                
-                writeEpisodeViewController.modalPresentationStyle = .fullScreen
-                owner.present(writeEpisodeViewController, animated: true)
-            })
-            .disposed(by: disposeBag)
-        
+                    
         let episodeList = output.episodeList
             .share()
             .distinctUntilChanged()
@@ -164,7 +150,7 @@ final class LocationDetailViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    override func bindAction() {
+    override func bindAction() {        
         locationDetailView.titleView.rx.tapFindRoute
             .withUnretained(self)
             .bind(onNext: { owner, _ in
@@ -176,8 +162,7 @@ final class LocationDetailViewController: BaseViewController {
             .withUnretained(self)
              .subscribe(onNext: { owner, indexPath in
                  guard let episode = owner.locationDetailView.itemIdentifier(for: indexPath) else { return }
-                 let episodeDetailViewController = EpisodeDetailViewController(viewModel: AppDIContainer.shared.makeEpisodeDIContainer().makeLocationViewModel(episode: episode, storeId: owner.viewModel.storeVO.id))
-                 owner.navigationController?.pushViewController(episodeDetailViewController, animated: true)
+                 owner.didSelectEpisodeItem.accept(episode)
              })
              .disposed(by: disposeBag)
 

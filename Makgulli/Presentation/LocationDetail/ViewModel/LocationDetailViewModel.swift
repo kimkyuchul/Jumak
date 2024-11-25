@@ -21,7 +21,8 @@ struct Episode: Hashable {
     let imageData: Data
 }
 
-final class LocationDetailViewModel: ViewModelType {
+final class LocationDetailViewModel: ViewModelType, Coordinatable {
+    weak var coordinator: LocationDetailCoordinator?
     var disposeBag: DisposeBag = .init()
     
     var storeVO: StoreVO
@@ -39,12 +40,14 @@ final class LocationDetailViewModel: ViewModelType {
         let viewDidLoadEvent: Observable<Void>
         let viewWillAppearEvent: Observable<Void>
         let viewWillDisappearEvent: Observable<Void>
+        let didSelectBackButton: Observable<Void>
         let didSelectRate: Observable<Int>
         let didSelectBookmark: Observable<Bool>
         let didSelectFindRouteType: Observable<FindRouteType>
         let didSelectUserLocationButton: Observable<Void>
         let didSelectCopyAddressButton : Observable<Void>
         let didSelectMakeEpisodeButton: Observable<Void>
+        let didSelectEpisodeItem: Observable<Episode>
     }
     
     struct Output {
@@ -92,6 +95,12 @@ final class LocationDetailViewModel: ViewModelType {
             .subscribe(onNext: { owner, _ in
                 owner.locationDetailUseCase.handleLocalStore(owner.storeVO)
             })
+            .disposed(by: disposeBag)
+        
+        input.didSelectBackButton
+            .subscribe(with: self) { owner, _ in
+                owner.coordinator?.popLocationDetail()
+            }
             .disposed(by: disposeBag)
         
         let didSelectRate = input.didSelectRate
@@ -158,10 +167,15 @@ final class LocationDetailViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         input.didSelectMakeEpisodeButton
-            .withUnretained(self)
-            .bind(onNext: { owner, _ in
-                output.presentWriteEpisode.accept(owner.storeVO)
-            })
+            .bind(with: self) { owner, _ in
+                owner.coordinator?.startWriteEpisode(store: owner.storeVO)
+            }
+            .disposed(by: disposeBag)
+        
+        input.didSelectEpisodeItem
+            .bind(with: self) { owner, episode in
+                owner.coordinator?.startEpisodeDetail(episode: episode, storeId: owner.storeVO.id)
+            }
             .disposed(by: disposeBag)
         
         createOutput(output: output)

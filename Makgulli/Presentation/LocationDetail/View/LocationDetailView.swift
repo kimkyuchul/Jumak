@@ -12,7 +12,12 @@ import RxSwift
 import RxCocoa
 
 final class LocationDetailView: BaseView {
-
+    
+    fileprivate let navigationBar: JumakNavigationBar = {
+        let navigationBar = JumakNavigationBar()
+        navigationBar.setTitle("상세 정보")
+        return navigationBar
+    }()
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let topCornerView: UIView = {
@@ -56,7 +61,7 @@ final class LocationDetailView: BaseView {
     func itemIdentifier(for indexPath: IndexPath) -> Episode? {
         return episodeView.dataSource?.itemIdentifier(for: indexPath)
     }
-        
+    
     fileprivate func moveCamera(latitude: Double, longitude: Double) {
         let cameraPosition = NMFCameraPosition(
             NMGLatLng(lat: latitude,lng: longitude),
@@ -91,6 +96,7 @@ final class LocationDetailView: BaseView {
     }
     
     override func setHierarchy() {
+        self.addSubview(navigationBar)
         self.addSubview(scrollView)
         self.addSubview(bottomView)
         scrollView.addSubview(contentView)
@@ -110,8 +116,13 @@ final class LocationDetailView: BaseView {
     }
     
     override func setConstraints() {
-        scrollView.snp.makeConstraints { make in
+        navigationBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
+        }
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.horizontalEdges.equalTo(navigationBar.snp.horizontalEdges)
             make.bottom.equalTo(bottomView.snp.top)
         }
         
@@ -178,9 +189,13 @@ final class LocationDetailView: BaseView {
 }
 
 extension Reactive where Base: LocationDetailView {
+    var backButtonTap: Observable<Void> {
+        return self.base.navigationBar.backButtonAction()
+    }
+    
     var selectedItem: ControlEvent<IndexPath> {
         return self.base.episodeView.episodeCollectionView.rx.itemSelected
-     }
+    }
     
     var storeCameraPosition: Binder<(Double, Double)> {
         return Binder(self.base) { view, cameraPosition in

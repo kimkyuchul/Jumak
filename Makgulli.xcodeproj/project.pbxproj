@@ -178,6 +178,8 @@
 		C2C2FECC2CF02DD50000AC4F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; };
 		C2C2FECD2CF02DE80000AC4F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C2C2FECF2CF1BEB70000AC4F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FECE2CF1BEB70000AC4F /* TabBar.swift */; };
+		C2C2FED22CF1C2720000AC4F /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FED12CF1C2720000AC4F /* LocationCoordinator.swift */; };
+		C2C2FED82CF310930000AC4F /* LocationDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FED72CF310930000AC4F /* LocationDetailCoordinator.swift */; };
 		C2C2FEEB2CF416DF0000AC4F /* AppInfoDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */; };
 		C2F7418C2CF0270700C423D5 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F7418B2CF0270700C423D5 /* TabBarCoordinator.swift */; };
 /* End PBXBuildFile section */
@@ -386,6 +388,8 @@
 		C2773C692CF007BC00942765 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C2773C6B2CF0087300942765 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C2C2FECE2CF1BEB70000AC4F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		C2C2FED12CF1C2720000AC4F /* LocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinator.swift; sourceTree = "<group>"; };
+		C2C2FED72CF310930000AC4F /* LocationDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailCoordinator.swift; sourceTree = "<group>"; };
 		C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoDIContainer.swift; sourceTree = "<group>"; };
 		C2F7418B2CF0270700C423D5 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1188,6 +1192,7 @@
 		5ADC002E2AC5E2C60024D7F8 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				C2C2FED02CF1C25D0000AC4F /* Coordinator */,
 				5ADC002F2AC5E2DA0024D7F8 /* View */,
 				5A35E5782AEB482E0074C8EC /* ViewModel */,
 			);
@@ -1248,6 +1253,7 @@
 		5ADC004B2ACA9D970024D7F8 /* LocationDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C2C2FED62CF310820000AC4F /* Coordinator */,
 				5A68277A2ACEC78300C37B17 /* View */,
 				5A35E5792AEB48460074C8EC /* ViewModel */,
 			);
@@ -1272,6 +1278,23 @@
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
+		};
+		C2C2FED02CF1C25D0000AC4F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2FED12CF1C2720000AC4F /* LocationCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		C2C2FED62CF310820000AC4F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C2C2FED72CF310930000AC4F /* LocationDetailCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		C2F741882CF019D900C423D5 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
@@ -1643,6 +1666,7 @@
 				5A9DA2052AC3CABB006040D2 /* LocationUseCase.swift in Sources */,
 				5A0406FC2AF7C20D00A4BA84 /* SearchLocationLocalRepository.swift in Sources */,
 				5A6827B22AD6760600C37B17 /* EpisodeDateView.swift in Sources */,
+				C2C2FED22CF1C2720000AC4F /* LocationCoordinator.swift in Sources */,
 				5AAB8E772ADA7107005969FA /* LocationDetailRepository.swift in Sources */,
 				5A0406F22AF617BE00A4BA84 /* FavoriteStorage.swift in Sources */,
 				5A6827B42AD6906700C37B17 /* Date+.swift in Sources */,
@@ -1714,6 +1738,7 @@
 				5AAB8E822ADC0418005969FA /* BaseAlert.swift in Sources */,
 				5A0407042AF8FF7F00A4BA84 /* DefaultLocationDetailLocalRepository.swift in Sources */,
 				5A9DA21E2AC419D5006040D2 /* LocationView.swift in Sources */,
+				C2C2FED82CF310930000AC4F /* LocationDetailCoordinator.swift in Sources */,
 				5A68278E2AD08A2A00C37B17 /* StoreVO.swift in Sources */,
 				5A9DA2172AC3F629006040D2 /* LocationService.swift in Sources */,
 				5A9DA1D52AC19D30006040D2 /* UIColor+.swift in Sources */,

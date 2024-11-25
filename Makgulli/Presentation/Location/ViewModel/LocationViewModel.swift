@@ -11,7 +11,8 @@ import CoreLocation
 import RxSwift
 import RxRelay
 
-final class LocationViewModel: ViewModelType {
+final class LocationViewModel: ViewModelType, Coordinatable {
+    weak var coordinator: LocationCoordinator?
     var disposeBag: DisposeBag = .init()
     
     private let searchLocationUseCase: SearchLocationUseCase
@@ -32,6 +33,7 @@ final class LocationViewModel: ViewModelType {
     struct Input {
         let viewDidLoadEvent: Observable<Void>
         let viewWillAppearEvent: Observable<Void>
+        let didSelectQuestionButton: Observable<Void>
         let willDisplayCell: Observable<IndexPath>
         let didSelectMarker: Observable<Int?>
         let didSelectCategoryCell: Observable<IndexPath>
@@ -39,6 +41,7 @@ final class LocationViewModel: ViewModelType {
         let didSelectRefreshButton: Observable<Void>
         let didSelectUserLocationButton: Observable<Void>
         let didScrollStoreCollectionView: Observable<Int?>
+        let didSelectStoreItem: Observable<StoreVO>
     }
     
     struct Output {
@@ -59,20 +62,24 @@ final class LocationViewModel: ViewModelType {
         let output = Output()
         
         input.viewDidLoadEvent
-            .withUnretained(self)
-            .subscribe(onNext: { owner, _ in
+            .subscribe(with: self) { owner, _ in
                 owner.locationUseCase.checkLocationAuthorization()
                 owner.locationUseCase.checkAuthorization()
                 owner.locationUseCase.observeUserLocation()
-            })
+            }
             .disposed(by: disposeBag)
         
         input.viewWillAppearEvent
             .withLatestFrom(input.willDisplayCell)
-            .withUnretained(self)
-            .bind(onNext: { owner, indexPath in
+            .bind(with: self) { owner, indexPath in
                 owner.searchLocationUseCase.updateWillDisplayStoreCell(index: indexPath.row, storeList: owner.storeList)
-            })
+            }
+            .disposed(by: disposeBag)
+        
+        input.didSelectQuestionButton
+            .bind(with: self) { owner, _ in
+                owner.coordinator?.startQuestion()
+            }
             .disposed(by: disposeBag)
         
         let didSelectMarker = input.didSelectMarker
@@ -83,34 +90,31 @@ final class LocationViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         didSelectMarker
-            .withUnretained(self)
-            .bind(onNext: { owner, index in
+            .bind(with: self) { owner, index in
                 guard let index = index else { return }
                 let store = owner.storeList[index]
                 output.setCameraPosition.accept((store.y, store.x))
-            })
+            }
             .disposed(by: disposeBag)
         
         input.didSelectCategoryCell
             .withLatestFrom(currentLocation) { index, location in
                 return (index, location)
             }
-            .withUnretained(self)
-            .bind(onNext: { owner, indexLocation in
+            .bind(with: self) { owner, indexLocation in
                 let categoryType = CategoryType.allCases[indexLocation.0.row]
                 
                 output.reSearchButtonHidden.accept(true)
                 owner.categoryType.accept(categoryType)
                 owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: indexLocation.1.x, y: indexLocation.1.y, page: 1, display: 30)
-            })
+            }
             .disposed(by: disposeBag)
         
         input.changeMapLocation
-            .withUnretained(self)
-            .bind(onNext: { owner, coordinate in
+            .bind(with: self) { owner, coordinate in
                 output.reSearchButtonHidden.accept(false)
                 owner.currentLocation.accept(coordinate)
-            })
+            }
             .disposed(by: disposeBag)
         
         input.didSelectRefreshButton
@@ -129,21 +133,26 @@ final class LocationViewModel: ViewModelType {
         
         input.didSelectUserLocationButton
             .withUnretained(self)
-            .bind(onNext: { owner, _ in
+            .bind(with: self) { owner, _ in
                 output.reSearchButtonHidden.accept(true)
                 owner.locationUseCase.startUpdatingLocation()
-            })
+            }
             .disposed(by: disposeBag)
         
         input.didScrollStoreCollectionView
             .distinctUntilChanged()
-            .withUnretained(self)
-            .bind(onNext: { owner, percentVisible in
+            .bind(with: self) { owner, percentVisible in
                 guard let index = percentVisible else { return }
                 let store = owner.storeList[index]
                 output.setCameraPosition.accept((store.y, store.x))
                 output.selectedMarkerIndex.accept(index)
-            })
+            }
+            .disposed(by: disposeBag)
+        
+        input.didSelectStoreItem
+            .bind(with: self) { owner, store in
+                owner.coordinator?.startLocationDetail(store)
+            }
             .disposed(by: disposeBag)
         
         createOutput(input: input, output: output)
@@ -155,12 +164,11 @@ final class LocationViewModel: ViewModelType {
     private func createOutput(input: Input, output: Output) {
         locationUseCase.locationUpdateSubject
             .withLatestFrom(Observable.combineLatest(output.currentUserLocation, self.categoryType))
-            .withUnretained(self)
-            .bind(onNext: { owner, userLocationAndCategoryType in
+            .bind(with: self) { owner, userLocationAndCategoryType in
                 let (userLocation, categoryType) = userLocationAndCategoryType
                 
                 owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: userLocation.x, y: userLocation.y, page: 1, display: 30)
-            })
+            }
             .disposed(by: disposeBag)
         
         searchLocationUseCase.storeVO
@@ -177,20 +185,18 @@ final class LocationViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         output.storeList
-            .withUnretained(self)
-            .subscribe(onNext: { owner, storeVO in
+            .subscribe(with: self) { owner, storeVO in
                 owner.storeList = storeVO
-            })
+            }
             .disposed(by: disposeBag)
         
         let locationCoordinate = locationUseCase.locationCoordinate
             .share()
         
         locationCoordinate
-            .withUnretained(self)
-            .bind(onNext: { owner, coordinate in
+            .bind(with: self) { owner, coordinate in
                 owner.currentLocation.accept(coordinate)
-            })
+            }
             .disposed(by: disposeBag)
         
         locationCoordinate
@@ -214,15 +220,14 @@ final class LocationViewModel: ViewModelType {
             .withLatestFrom(input.willDisplayCell) { storeVO, willDisplayCell in
                 return (storeVO, willDisplayCell)
             }
-            .withUnretained(self)
-            .bind(onNext: { owner, visibleStore in
+            .bind(with: self) { owner, visibleStore in
                 let willDisplayStore = owner.storeList[visibleStore.1.row]
                 
                 if owner.shouldUpdateStore(store: visibleStore.0, visibleStore: willDisplayStore) {
                     owner.storeList[visibleStore.1.row] = visibleStore.0
                     output.storeList.accept(owner.storeList)
                 }
-            })
+            }
             .disposed(by: disposeBag)
         
         searchLocationUseCase.isLoding
