@@ -40,7 +40,7 @@ extension AppInfoCoordinator {
     
     func startInquiry() {
         let viewController = InquiryViewController()
-        push(viewController: viewController)
+        push(viewController: viewController, swipe: false)
     }
     
     func startSafariWebView(_ url: URL) {

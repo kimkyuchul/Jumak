@@ -33,6 +33,10 @@ final class InquiryViewController: BaseViewController {
         return stackView
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     override func bindAction() {
         navigationBar.backButtonAction()
             .bind(with: self) { owner, _ in
