@@ -38,6 +38,13 @@ extension Coordinator {
             break
         }
     }
+    
+    func printStack() {
+        let viewControllers = navigationController.viewControllers
+        for (index, viewController) in viewControllers.enumerated() {
+            print("\(index): \(Swift.type(of: viewController))")
+        }
+    }
 }
 
 extension Coordinator {
@@ -53,15 +60,15 @@ extension Coordinator {
     }
     
     func present(_ viewController: UIViewController, style: UIModalPresentationStyle) {
-        navigationController.modalPresentationStyle = style
+        viewController.modalPresentationStyle = style
         navigationController.present(viewController, animated: true)
     }
     
-    func pop(_ viewController: UIViewController) {
+    func pop() {
         navigationController.popViewController(animated: true)
     }
     
-    func dismiss(animated: Bool = true,completion: (() -> Void)?) {
+    func dismiss(animated: Bool = true,completion: (() -> Void)? = nil) {
         navigationController.dismiss(animated: animated, completion: completion)
     }
     
