@@ -13,8 +13,14 @@ final class LocationDetailCoordinator: Coordinator {
     var navigationController: UINavigationController
     var store: StoreVO?
     
-    init(navigationController: UINavigationController) {
+    private let dependency: injector
+    
+    init(
+        navigationController: UINavigationController,
+        dependency: injector
+    ) {
         self.navigationController = navigationController
+        self.dependency = dependency
     }
     
     deinit {
@@ -24,7 +30,7 @@ final class LocationDetailCoordinator: Coordinator {
     func start() {
         guard let store else { return }
         
-        let viewModel = AppDIContainer.shared
+        let viewModel = dependency
             .makeLocationDIContainer()
             .makeLocationDetailViewModel(store: store)
         viewModel.coordinator = self
@@ -43,7 +49,7 @@ extension LocationDetailCoordinator {
     }
     
     func startWriteEpisode(store: StoreVO) {
-        let writeEpisodeCoordinator = WriteEpisodeCoordinator(navigationController: navigationController)
+        let writeEpisodeCoordinator = WriteEpisodeCoordinator(navigationController: navigationController, dependency: dependency)
         writeEpisodeCoordinator.parentCoordinator = self
         writeEpisodeCoordinator.store = store
         writeEpisodeCoordinator.start()
@@ -52,7 +58,7 @@ extension LocationDetailCoordinator {
     }
 
     func startEpisodeDetail(episode: Episode, storeId: String) {
-        let episodeDetailCoordinator = EpisodeDetailCoordinator(navigationController: navigationController)
+        let episodeDetailCoordinator = EpisodeDetailCoordinator(navigationController: navigationController, dependency: dependency)
         episodeDetailCoordinator.parentCoordinator = self
         episodeDetailCoordinator.episode = episode
         episodeDetailCoordinator.storeId = storeId

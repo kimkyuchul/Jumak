@@ -12,12 +12,18 @@ final class LocationCoordinator: Coordinator {
     var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
         
-    init(navigationController: UINavigationController) {
+    private let dependency: injector
+    
+    init(
+        navigationController: UINavigationController,
+        dependency: injector
+    ) {
         self.navigationController = navigationController
+        self.dependency = dependency
     }
     
     func start() {
-        let viewModel = AppDIContainer.shared
+        let viewModel = dependency
             .makeLocationDIContainer()
             .makeLocationViewModel()
         viewModel.coordinator = self
@@ -30,7 +36,7 @@ final class LocationCoordinator: Coordinator {
 
 extension LocationCoordinator {
     func startLocationDetail(_ store: StoreVO) {
-        let locationDetailCoordinator = LocationDetailCoordinator(navigationController: navigationController)
+        let locationDetailCoordinator = LocationDetailCoordinator(navigationController: navigationController, dependency: dependency)
         locationDetailCoordinator.parentCoordinator = self
         locationDetailCoordinator.store = store
         locationDetailCoordinator.start()

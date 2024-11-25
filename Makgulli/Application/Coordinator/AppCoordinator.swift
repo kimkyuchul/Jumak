@@ -21,8 +21,14 @@ final class AppCoordinator: Coordinator {
     let flow = PassthroughSubject<AppFlow, Never>()
     private var cancellable = Set<AnyCancellable>()
     
-    init(navigationController: UINavigationController) {
+    private let dependency: injector
+    
+    init(
+        navigationController: UINavigationController,
+        dependency: injector
+    ) {
         self.navigationController = navigationController
+        self.dependency = dependency
         bindState()
     }
     
@@ -52,7 +58,7 @@ extension AppCoordinator {
     }
     
     private func startTabBar() {
-        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController)
+        let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, dependency: dependency)
         tabBarCoordinator.parentCoordinator = self
         tabBarCoordinator.start()
         

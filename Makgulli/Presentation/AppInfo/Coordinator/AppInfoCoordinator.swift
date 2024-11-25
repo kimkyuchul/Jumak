@@ -9,12 +9,18 @@ import UIKit
 import SafariServices
 
 final class AppInfoCoordinator: Coordinator {
-    var parentCoordinator: (any Coordinator)?
+    weak var parentCoordinator: (any Coordinator)?
     var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    private let dependency: injector
+    
+    init(
+        navigationController: UINavigationController,
+        dependency: injector
+    ) {
         self.navigationController = navigationController
+        self.dependency = dependency
     }
     
     deinit {
@@ -22,11 +28,11 @@ final class AppInfoCoordinator: Coordinator {
     }
     
     func start() {
-        let viewModel = AppDIContainer.shared
+        let viewModel = dependency
             .makeAppInfoDIContainer()
             .makeAppInfoViewModel()
         viewModel.coordinator = self
-       
+        
         let viewController = AppInfoViewController(viewModel: viewModel)
         push(viewController: viewController, navibarHidden: true, swipe: false)
     }
