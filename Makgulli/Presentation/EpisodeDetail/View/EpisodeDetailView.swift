@@ -12,6 +12,17 @@ import RxCocoa
 
 final class EpisodeDetailView: BaseView {
     
+    fileprivate lazy var navigationBar: JumakNavigationBar = {
+        let navigationBar = JumakNavigationBar(rightItems: [deleteBarButton])
+        navigationBar.backgroundColor = .lightGray
+        return navigationBar
+    }()
+    fileprivate let deleteBarButton: UIButton = {
+        let button = UIButton()
+        button.setImage(ImageLiteral.deleteEpisodeIcon, for: .normal)
+        button.tintColor = .darkGray
+        return button
+    }()
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "에피소드"
@@ -77,14 +88,18 @@ final class EpisodeDetailView: BaseView {
     }
     
     override func setHierarchy() {
-        [titleLabel, dateLabel, episodeImageView, commentTitleLabel, commentTextField, drinkNmaeTitleLabel, drinkNameTextField, drinkCountTitleLabel, drinkCountTextField].forEach {
+        [navigationBar, titleLabel, dateLabel, episodeImageView, commentTitleLabel, commentTextField, drinkNmaeTitleLabel, drinkNameTextField, drinkCountTitleLabel, drinkCountTextField].forEach {
             addSubview($0)
         }
     }
     
     override func setConstraints() {
+        navigationBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(self.safeAreaLayoutGuide)
+        }
+        
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(20)
+            make.top.equalTo(navigationBar.snp.bottom).offset(20)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24).priority(.high)
         }
@@ -146,6 +161,14 @@ final class EpisodeDetailView: BaseView {
 }
 
 extension Reactive where Base: EpisodeDetailView {
+    var backButtonTap: Observable<Void> {
+        return self.base.navigationBar.backButtonAction()
+    }
+    
+    var deleteButtonTap: Observable<Void> {
+        return self.base.deleteBarButton.rx.tap.asObservable()
+    }
+    
     var episode: Binder<Episode> {
         return Binder(self.base) { view, episode in
             view.dateLabel.text = episode.date.formattedDate()

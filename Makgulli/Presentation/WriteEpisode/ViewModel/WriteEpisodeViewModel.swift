@@ -10,7 +10,8 @@ import Foundation
 import RxRelay
 import RxSwift
 
-final class WriteEpisodeViewModel: ViewModelType {
+final class WriteEpisodeViewModel: ViewModelType, Coordinatable {
+    weak var coordinator: WriteEpisodeCoordinator?
     var disposeBag: DisposeBag = .init()
     
     private let writeEpisodeUseCase: WriteEpisodeUseCase
@@ -29,6 +30,7 @@ final class WriteEpisodeViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
+        let didSelectBackButton: Observable<Void>
         let didSelectDatePicker: Observable<Date>
         let commentTextFieldDidEditEvent: Observable<String>
         let didSelectImage: Observable<Bool>
@@ -73,6 +75,13 @@ final class WriteEpisodeViewModel: ViewModelType {
             .bind(onNext: { owner, _ in
                 output.placeName.accept(owner.storeVO.placeName)
             })
+            .disposed(by: disposeBag)
+        
+        input.didSelectBackButton
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, _ in
+                owner.coordinator?.dismissWriteEpisode()
+            }
             .disposed(by: disposeBag)
         
         input.didSelectDatePicker

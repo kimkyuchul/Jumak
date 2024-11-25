@@ -34,7 +34,8 @@ final class WriteEpisodeViewController: BaseViewController {
     
     override func bind() {
         let input = WriteEpisodeViewModel.Input(
-            viewDidLoadEvent: Observable.just(()).asObservable(),
+            viewDidLoadEvent: Observable.just(()).asObservable(), 
+            didSelectBackButton: episodeView.rx.tapDismiss.asObservable(),
             didSelectDatePicker: episodeView.episodeDateView.rx.date.asObservable(),
             commentTextFieldDidEditEvent: episodeView.episodeContentView.rx.comment,
             didSelectImage: episodeView.episodeContentView.rx.hasImage,
@@ -81,13 +82,6 @@ final class WriteEpisodeViewController: BaseViewController {
     }
     
     override func bindAction() {
-        episodeView.rx.tapDismiss
-            .withUnretained(self)
-            .bind(onNext: { owner, _ in
-                owner.dismiss(animated: true)
-            })
-            .disposed(by: disposeBag)
-        
         episodeView.episodeContentView.rx.imageViewTapGesture
             .emit(with: self, onNext: { owner, _ in
                 owner.showPhotoGallery()
