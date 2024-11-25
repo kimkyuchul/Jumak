@@ -173,6 +173,7 @@
 		5AE652982B9268FB0033CED5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
+		C2773C6A2CF007BC00942765 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2773C692CF007BC00942765 /* AppCoordinator.swift */; };
 		C2773C6C2CF0087300942765 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2773C6B2CF0087300942765 /* Coordinator.swift */; };
 		C2C2FECC2CF02DD50000AC4F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; };
 		C2C2FECD2CF02DE80000AC4F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -380,6 +381,7 @@
 		C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MakgulliTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E264EB7DCC1E4513F31412DC /* Pods-MakgulliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakgulliTests.debug.xcconfig"; path = "Target Support Files/Pods-MakgulliTests/Pods-MakgulliTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F42A819738E82936BB69AC5F /* Pods-Makgulli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli/Pods-Makgulli.debug.xcconfig"; sourceTree = "<group>"; };
+		C2773C692CF007BC00942765 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C2773C6B2CF0087300942765 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1625,6 +1627,7 @@
 				5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */,
 				5A9DA1FE2AC3B070006040D2 /* Encodable+.swift in Sources */,
 				5AAB8E6A2AD7F0FB005969FA /* QuantityType.swift in Sources */,
+				C2773C6A2CF007BC00942765 /* AppCoordinator.swift in Sources */,
 				5A0A98372AE5894D00545939 /* SplashViewController.swift in Sources */,
 				5A04070F2AF91BB200A4BA84 /* DefaultWriteEpisodeLocalRepository.swift in Sources */,
 				5A6827AD2AD52F4D00C37B17 /* WriteEpisodeViewModel.swift in Sources */,
