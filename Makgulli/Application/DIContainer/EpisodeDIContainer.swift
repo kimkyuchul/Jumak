@@ -45,7 +45,7 @@ final class EpisodeDIContainer {
     }
 
     // MARK: - UseCases
-    private func makeLocationUseCase() -> WriteEpisodeUseCase {
+    private func makeWriteEpisodeUseCase() -> WriteEpisodeUseCase {
         DefaultWriteEpisodeUseCase(
             writeEpisodeRepository: makeWriteEpisodeRepository(),
             writeEpisodeLocalRepository:  makeWriteEpisodeLocalRepository()
@@ -60,14 +60,14 @@ final class EpisodeDIContainer {
     }
     
     // MARK: - ViewModel
-    func makeLocationViewModel(store: StoreVO) -> WriteEpisodeViewModel {
+    func makeWriteEpisodeViewModel(store: StoreVO) -> WriteEpisodeViewModel {
         WriteEpisodeViewModel(
             storeVO: store,
-            writeEpisodeUseCase: makeLocationUseCase()
+            writeEpisodeUseCase: makeWriteEpisodeUseCase()
         )
     }
     
-    func makeLocationViewModel(episode: Episode, storeId: String) -> EpisodeDetailViewModel {
+    func makeEpisodeDetailViewModel(episode: Episode, storeId: String) -> EpisodeDetailViewModel {
         EpisodeDetailViewModel(
             episode: episode,
             storeId: storeId,

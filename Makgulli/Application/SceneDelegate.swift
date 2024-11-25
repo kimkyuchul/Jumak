@@ -12,13 +12,20 @@ import Reachability
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
+    private var coordinator: AppCoordinator?
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = SplashViewController()
+        
+        let navigationController = UINavigationController()
+        coordinator = AppCoordinator(navigationController: navigationController)
+        
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        
+        coordinator?.start()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

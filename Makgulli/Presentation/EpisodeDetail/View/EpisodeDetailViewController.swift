@@ -13,7 +13,6 @@ import RxSwift
 final class EpisodeDetailViewController: BaseViewController {
     
     private let detailView = EpisodeDetailView()
-    private lazy var episodeDeleteBarButtonItem = UIBarButtonItem(image: ImageLiteral.deleteEpisodeIcon, style: .plain, target: self, action: nil)
     private let viewModel: EpisodeDetailViewModel
     private let deleteButtonAction = PublishRelay<Void>()
     
@@ -37,34 +36,23 @@ final class EpisodeDetailViewController: BaseViewController {
     override func bind() {
         let input = EpisodeDetailViewModel.Input(
             viewDidLoadEvent: Observable.just(()).asObservable(),
-            didSeletDeleteButton: deleteButtonAction.asObservable())
+            didSelectBackButton: detailView.rx.backButtonTap.throttle(.milliseconds(300), scheduler: MainScheduler.instance),
+            didSelectDeleteButton: deleteButtonAction.asObservable())
         let output = viewModel.transform(input: input)
         
         output.episode
             .bind(to: detailView.rx.episode)
             .disposed(by: disposeBag)
-        
-        output.deleteStoreEpisodeState
-            .withUnretained(self)
-            .bind(onNext: { owner, _ in
-                owner.navigationController?.popViewController(animated: true)
-            })
-            .disposed(by: disposeBag)
     }
     
     override func bindAction() {
-        episodeDeleteBarButtonItem.rx.tap.throttle(.milliseconds(300), scheduler: MainScheduler.instance)
-            .withUnretained(self)
-            .bind(onNext: { owner, _ in
+        detailView.rx.deleteButtonTap
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .bind(with: self) { owner, _ in
                 owner.presentAlert(type: .deleteEpisode, leftButtonAction: nil) {
-                    owner.deleteButtonAction.accept(Void())
+                    owner.deleteButtonAction.accept(())
                 }
-            })
+            }
             .disposed(by: disposeBag)
-    }
-    
-    override func setNavigationBar() {
-        episodeDeleteBarButtonItem.tintColor = .black
-        self.navigationItem.rightBarButtonItem = episodeDeleteBarButtonItem
     }
 }

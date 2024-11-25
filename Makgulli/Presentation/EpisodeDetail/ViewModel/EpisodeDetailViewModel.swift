@@ -10,7 +10,8 @@ import Foundation
 import RxRelay
 import RxSwift
 
-final class EpisodeDetailViewModel: ViewModelType {
+final class EpisodeDetailViewModel: ViewModelType, Coordinatable {
+    weak var coordinator: EpisodeDetailCoordinator?
     var disposeBag: DisposeBag = .init()
     
     private let episodeDetailUseCase: EpisodeDetailUseCase
@@ -29,12 +30,12 @@ final class EpisodeDetailViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoadEvent: Observable<Void>
-        let didSeletDeleteButton: Observable<Void>
+        let didSelectBackButton: Observable<Void>
+        let didSelectDeleteButton: Observable<Void>
     }
     
     struct Output {
         let episode = PublishRelay<Episode>()
-        let deleteStoreEpisodeState = PublishRelay<Void>()
     }
     
     func transform(input: Input) -> Output {
@@ -47,13 +48,18 @@ final class EpisodeDetailViewModel: ViewModelType {
                 owner.episodeDetailUseCase.fetchEpisodeDetail(episode: owner.episode)
             })
             .disposed(by: disposeBag)
+                
+        input.didSelectBackButton
+            .bind(with: self) { owner, _ in
+                owner.coordinator?.popEpisodeDetail()
+            }
+            .disposed(by: disposeBag)
         
-        input.didSeletDeleteButton
-            .withUnretained(self)
-            .bind(onNext: { owner, _ in
+        input.didSelectDeleteButton
+            .bind(with: self) { owner, _ in
                 owner.episodeDetailUseCase.deleteEpisodeImage(fileName: "\(owner.episode.id).jpg".trimmingWhitespace())
                 owner.episodeDetailUseCase.deleteEpisode(storeId: owner.storeId, episodeId: owner.episode.id)
-            })
+            }
             .disposed(by: disposeBag)
  
         
@@ -69,7 +75,9 @@ final class EpisodeDetailViewModel: ViewModelType {
         
         Observable.combineLatest(episodeDetailUseCase.deleteEpisodeState, episodeDetailUseCase.deleteEpisodeImageState)
             .map { _, _ in () }
-            .bind(to: output.deleteStoreEpisodeState)
+            .bind(with: self) { owner, _ in
+                owner.coordinator?.popEpisodeDetail()
+            }
             .disposed(by: disposeBag)
     }
 }

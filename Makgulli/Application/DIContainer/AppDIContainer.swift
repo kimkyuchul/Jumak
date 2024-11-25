@@ -30,4 +30,8 @@ final class AppDIContainer {
     func makeFavoriteDIContainer() -> FavoriteDIContainer {
         return FavoriteDIContainer()
     }
+    
+    func makeAppInfoDIContainer() -> AppInfoDIContainer {
+        return AppInfoDIContainer()
+    }
 }

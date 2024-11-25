@@ -24,6 +24,7 @@ final class FavoriteViewController: BaseViewController {
     private let viewModel: FavoriteViewModel
     private let didSelectReverseFilterButton = PublishRelay<Void>()
     private let didSelectCategoryFilterButton = PublishSubject<CategoryFilterType>()
+    private let didSelectStoreItem = PublishRelay<StoreVO>()
     
     fileprivate let categoryButton = {
         var configuration = UIButton.Configuration.plain()
@@ -81,9 +82,11 @@ final class FavoriteViewController: BaseViewController {
     
     override func bind() {
         let input = FavoriteViewModel.Input(viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
-                                            viewDidAppearEvent: self.rx.viewDidAppear.map { _ in },
+                                            viewDidAppearEvent: self.rx.viewDidAppear.map { _ in }, 
+                                            didSelectAppInfoButton: appInfoButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
                                             didSelectCategoryFilterButton: didSelectCategoryFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
-                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance))
+                                            didSelectReverseFilterButton: didSelectReverseFilterButton.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance), 
+                                            didSelectStoreItem: didSelectStoreItem.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance))
         let output = viewModel.transform(input: input)
         
         let storeList = output.storeList
@@ -128,30 +131,13 @@ final class FavoriteViewController: BaseViewController {
                 owner.presentActionSheet(actionType: CategoryFilterType.allCases, inputSubject: owner.didSelectCategoryFilterButton)
             })
             .disposed(by: disposeBag)
-        
-        appInfoButton.rx.tap
-            .withUnretained(self)
-            .bind(onNext: { owner, _ in
-                let appInfoViewController = AppInfoViewController()
-                appInfoViewController.hidesBottomBarWhenPushed = true
-                owner.navigationController?.pushViewController(appInfoViewController, animated: true)
-            })
-            .disposed(by: disposeBag)
-        
+                
         collectionView.rx.itemSelected
-            .withUnretained(self)
-            .bind(onNext: { owner, indexPath in
+            .bind(with: self) { owner, indexPath in
                 guard let storeVO = owner.itemIdentifier(for: indexPath) else { return }
                 
-                let locationDetilViewController = LocationDetailViewController(
-                    viewModel: AppDIContainer.shared
-                        .makeLocationDIContainer()
-                        .makeLocationDetailViewModel(store: storeVO)
-                )
-                
-                locationDetilViewController.hidesBottomBarWhenPushed = true
-                owner.navigationController?.pushViewController(locationDetilViewController, animated: true)
-            })
+                owner.didSelectStoreItem.accept(storeVO)
+            }
             .disposed(by: disposeBag)
     }
     
@@ -165,7 +151,6 @@ final class FavoriteViewController: BaseViewController {
         snapshot.reconfigureItems(viewModels)
         configureHeader(countTitle: countTitle, filterType: filterType, reverseFilter: reverseFilterType)
         
-        //        dataSource?.apply(snapshot, animatingDifferences: false)
         dataSource?.applySnapshotUsingReloadData(snapshot)
     }
     

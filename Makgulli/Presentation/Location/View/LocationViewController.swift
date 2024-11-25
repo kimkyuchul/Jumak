@@ -20,6 +20,7 @@ final class LocationViewController: BaseViewController {
     private var selectCategoryType: CategoryType = .makgulli
     private var selectMarkerRelay = PublishRelay<Int?>()
     private var changeMapLocation = PublishRelay<CLLocationCoordinate2D>()
+    private let didSelectStoreItem = PublishRelay<StoreVO>()
     
     init(viewModel: LocationViewModel) {
         self.viewModel = viewModel
@@ -43,14 +44,17 @@ final class LocationViewController: BaseViewController {
     override func bind() {
         let input = LocationViewModel
             .Input(viewDidLoadEvent: Observable.just(()).asObservable(),
-                   viewWillAppearEvent: self.rx.viewWillAppear.map { _ in },
+                   viewWillAppearEvent: self.rx.viewWillAppear.map { _ in }, 
+                   didSelectQuestionButton:  locationView.questionButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
                    willDisplayCell: locationView.storeCollectionView.rx.willDisplayCell.map { $0.at },
                    didSelectMarker: selectMarkerRelay.asObservable(),
                    didSelectCategoryCell: locationView.categoryCollectionView.rx.itemSelected.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
                    changeMapLocation: changeMapLocation.asObservable(),
                    didSelectRefreshButton: locationView.researchButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
                    didSelectUserLocationButton: locationView.userLocationButton.rx.tap.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance),
-                   didScrollStoreCollectionView: locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(250), scheduler: MainScheduler.instance))
+                   didScrollStoreCollectionView: locationView.visibleItemsRelay.asObservable().debounce(.milliseconds(250), scheduler: MainScheduler.instance),
+                   didSelectStoreItem: didSelectStoreItem.asObservable().throttle(.seconds(1), scheduler: MainScheduler.instance)
+            )
         let output = viewModel.transform(input: input)
         
         output.storeList
@@ -144,7 +148,6 @@ final class LocationViewController: BaseViewController {
         output.showErrorAlert
             .withUnretained(self)
             .flatMap { owner, error in
-                dump(error)
                 return owner.rx.makeErrorAlert(title: "네트워크 에러", message: "네트워크 에러가 발생했습니다.", cancelButtonTitle: "확인")
             }
             .subscribe()
@@ -156,26 +159,11 @@ final class LocationViewController: BaseViewController {
     }
     
     override func bindAction() {
-        locationView.questionButton.rx.tap
-            .asDriver(onErrorJustReturn: Void())
-            .drive(with: self) { owner, _ in
-                owner.present(QuestionViewController(), animated: true)
-            }
-            .disposed(by: disposeBag)
-        
         Observable.zip(locationView.storeCollectionView.rx.modelSelected(StoreVO.self), locationView.storeCollectionView.rx.itemSelected)
             .withUnretained(self)
             .bind(onNext: { [weak self] data in
                 if let updatedItem = self?.viewModel.updateStoreCell(data.1.0) {
-                    
-                    let locationDetilViewController = LocationDetailViewController(
-                        viewModel: AppDIContainer.shared
-                            .makeLocationDIContainer()
-                            .makeLocationDetailViewModel(store: updatedItem)
-                    )
-                    
-                    locationDetilViewController.hidesBottomBarWhenPushed = true
-                    data.0.navigationController?.pushViewController(locationDetilViewController, animated: true)
+                    data.0.didSelectStoreItem.accept(updatedItem)
                 }
             })
             .disposed(by: disposeBag)
