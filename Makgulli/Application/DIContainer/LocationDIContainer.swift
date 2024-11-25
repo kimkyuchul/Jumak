@@ -11,6 +11,7 @@ final class LocationDIContainer {
 
     struct Dependencies {
         let networkManager: NetworkManager<LocationAPI>
+        let imageStorage: ImageStorage
     }
 
     private let dependencies: Dependencies
@@ -38,7 +39,7 @@ final class LocationDIContainer {
     
     private func makeLocationDetailRepository() -> LocationDetailRepository {
         DefaultLocationDetailRepository(
-            imageStorage: DefaultImageStorage(fileManager: FileManager())
+            imageStorage: dependencies.imageStorage
         )
     }
     

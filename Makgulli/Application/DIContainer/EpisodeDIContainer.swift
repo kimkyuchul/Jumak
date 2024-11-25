@@ -9,10 +9,20 @@ import Foundation
 
 final class EpisodeDIContainer {
     
+    struct Dependencies {
+        let imageStorage: ImageStorage
+    }
+
+    private let dependencies: Dependencies
+
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
+    
     // MARK: - Repository
     private func makeWriteEpisodeRepository() -> WriteEpisodeRepository {
         DefaultWriteEpisodeRepository(
-            imageStorage: DefaultImageStorage(fileManager: FileManager())
+            imageStorage: dependencies.imageStorage
         )
     }
     
@@ -30,7 +40,7 @@ final class EpisodeDIContainer {
     
     private func makeEpisodeDetailRepository() -> EpisodeDetailRepository {
         DefaultEpisodeDetailRepository(
-            imageStorage: DefaultImageStorage(fileManager: FileManager())
+            imageStorage: dependencies.imageStorage
         )
     }
     
