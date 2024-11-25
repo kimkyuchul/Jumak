@@ -171,6 +171,13 @@
 		5AE652982B9268FB0033CED5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */; };
 		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
+		C2773C5A2CEF25E500942765 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C592CEF25E500942765 /* FirebaseCore */; };
+		C2773C5C2CEF25E500942765 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C5B2CEF25E500942765 /* FirebaseCrashlytics */; };
+		C2773C5E2CEF25E500942765 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C5D2CEF25E500942765 /* FirebaseMessaging */; };
+		C2773C612CEF26C400942765 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C602CEF26C400942765 /* RxBlocking */; };
+		C2773C632CEF26C400942765 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C622CEF26C400942765 /* RxCocoa */; };
+		C2773C652CEF26C400942765 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C642CEF26C400942765 /* RxRelay */; };
+		C2773C672CEF26C400942765 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C662CEF26C400942765 /* RxSwift */; };
 		C2773C6A2CF007BC00942765 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2773C692CF007BC00942765 /* AppCoordinator.swift */; };
 		C2773C6C2CF0087300942765 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2773C6B2CF0087300942765 /* Coordinator.swift */; };
 		C2C2FECC2CF02DD50000AC4F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; };
