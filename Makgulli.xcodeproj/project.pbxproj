@@ -177,6 +177,7 @@
 		C2773C6C2CF0087300942765 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2773C6B2CF0087300942765 /* Coordinator.swift */; };
 		C2C2FECC2CF02DD50000AC4F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; };
 		C2C2FECD2CF02DE80000AC4F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C2C2FEEB2CF416DF0000AC4F /* AppInfoDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -383,6 +384,7 @@
 		F42A819738E82936BB69AC5F /* Pods-Makgulli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli/Pods-Makgulli.debug.xcconfig"; sourceTree = "<group>"; };
 		C2773C692CF007BC00942765 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C2773C6B2CF0087300942765 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoDIContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +451,7 @@
 				5A0406E82AF5145400A4BA84 /* LocationDIContainer.swift */,
 				5A0407132AF91E8500A4BA84 /* EpisodeDIContainer.swift */,
 				5A0407212AF9275F00A4BA84 /* FavoriteDIContainer.swift */,
+				C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -1640,6 +1643,7 @@
 				5A0A98332AE4BBBE00545939 /* IndicatorView.swift in Sources */,
 				5A9DA1E72AC2B4F2006040D2 /* TargetType.swift in Sources */,
 				5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */,
+				C2C2FEEB2CF416DF0000AC4F /* AppInfoDIContainer.swift in Sources */,
 				5A0A98622AE917A300545939 /* InquiryButtonView.swift in Sources */,
 				5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */,
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
