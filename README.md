@@ -26,7 +26,7 @@
 - Minimum Deployment: iOS 15.5
 - Dependence Manager : SPM & CocoaPod(NaverMap)
 - Swift Version: 5.8.1
-- `UIKit` `MVVM` `RxSwift` `RxCocoa`
+- `UIKit` `MVVM-C` `RxSwift` `RxCocoa`
 - `Codebase UI` `SnapKit`
 - `DiffableDataSource` `CompositionalLayout` `PHPickerViewController` `RxDataSources` `RxGesture` `RxKeyboard`
 - `CoreLocation` `NaverMap`
