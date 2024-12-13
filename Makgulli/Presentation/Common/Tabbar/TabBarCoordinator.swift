@@ -73,6 +73,13 @@ extension TabBarCoordinator {
             favoriteCoordinator.start()
              
             addDependency(favoriteCoordinator)
+            
+        case .alcoholicBeverage:
+            let alcoholicBeverageListCoordinator = AlcoholicBeverageListCoordinator(navigationController: tabNavigationController, dependency: dependency)
+            alcoholicBeverageListCoordinator.parentCoordinator = self
+            alcoholicBeverageListCoordinator.start()
+            
+            addDependency(alcoholicBeverageListCoordinator)
         }
     }
 }
