@@ -1,5 +1,5 @@
 //
-//  AlcoholicBeverageViewModel.swift
+//  AlcoholicBeverageListViewModel.swift
 //  Makgulli
 //
 //  Created by kyuchul on 12/13/24.
@@ -9,7 +9,7 @@ import Foundation
 
 import Combine
 
-final class AlcoholicBeverageViewModel: ViewModelType {
+final class AlcoholicBeverageListViewModel: ViewModelType {
     struct Input {
         let viewDidLoadEvent: PassthroughSubject<Void, Never>
     }
@@ -33,7 +33,7 @@ final class AlcoholicBeverageViewModel: ViewModelType {
     }
 }
 
-extension AlcoholicBeverageViewModel {
+extension AlcoholicBeverageListViewModel {
     func transform(input: Input) -> Output {
         let output = Output()
         

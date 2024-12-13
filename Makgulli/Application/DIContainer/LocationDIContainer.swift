@@ -10,7 +10,7 @@ import Foundation
 final class LocationDIContainer {
 
     struct Dependencies {
-        let networkManager: NetworkManager<LocationAPI>
+        let networkManager: NetworkManager
         let imageStorage: ImageStorage
     }
 

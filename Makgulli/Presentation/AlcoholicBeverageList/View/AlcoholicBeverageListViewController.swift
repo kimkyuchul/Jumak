@@ -1,5 +1,5 @@
 //
-//  AlcoholicBeverageViewController.swift
+//  AlcoholicBeverageListViewController.swift
 //  Makgulli
 //
 //  Created by kyuchul on 12/13/24.
@@ -8,12 +8,12 @@
 import UIKit
 import Combine
 
-final class AlcoholicBeverageViewController: BaseViewController {
-    private let viewModel: AlcoholicBeverageViewModel
+final class AlcoholicBeverageListViewController: BaseViewController {
+    private let viewModel: AlcoholicBeverageListViewModel
     private let viewDidLoadEvent = PassthroughSubject<Void, Never>()
     private var cancellables = Set<AnyCancellable>()
     
-    init(viewModel: AlcoholicBeverageViewModel) {
+    init(viewModel: AlcoholicBeverageListViewModel) {
         self.viewModel = viewModel
         super.init()
     }
@@ -26,7 +26,7 @@ final class AlcoholicBeverageViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = AlcoholicBeverageViewModel.Input(viewDidLoadEvent: viewDidLoadEvent)
+        let input = AlcoholicBeverageListViewModel.Input(viewDidLoadEvent: viewDidLoadEvent)
         
         let output = viewModel.transform(input: input)
         

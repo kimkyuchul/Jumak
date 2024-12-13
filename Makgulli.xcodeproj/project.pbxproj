@@ -177,8 +177,10 @@
 		C20715B82D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715B72D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift */; };
 		C20715BB2D0C0026004BCB24 /* AlcoholicBeverageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715BA2D0C0026004BCB24 /* AlcoholicBeverageUseCase.swift */; };
 		C20715C02D0C0995004BCB24 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715BF2D0C0995004BCB24 /* Publisher+.swift */; };
-		C20715C32D0C0E10004BCB24 /* AlcoholicBeverageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715C22D0C0E10004BCB24 /* AlcoholicBeverageViewModel.swift */; };
-		C20715C52D0C17AF004BCB24 /* AlcoholicBeverageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715C42D0C17AF004BCB24 /* AlcoholicBeverageViewController.swift */; };
+		C20715C32D0C0E10004BCB24 /* AlcoholicBeverageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715C22D0C0E10004BCB24 /* AlcoholicBeverageListViewModel.swift */; };
+		C20715C52D0C17AF004BCB24 /* AlcoholicBeverageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715C42D0C17AF004BCB24 /* AlcoholicBeverageListViewController.swift */; };
+		C20715C72D0C741C004BCB24 /* AlcoholicBeverageListDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715C62D0C741C004BCB24 /* AlcoholicBeverageListDIContainer.swift */; };
+		C20715CC2D0C76CE004BCB24 /* AlcoholicBeverageListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715CB2D0C76CE004BCB24 /* AlcoholicBeverageListCoordinator.swift */; };
 		C2773C5A2CEF25E500942765 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C592CEF25E500942765 /* FirebaseCore */; };
 		C2773C5C2CEF25E500942765 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C5B2CEF25E500942765 /* FirebaseCrashlytics */; };
 		C2773C5E2CEF25E500942765 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C5D2CEF25E500942765 /* FirebaseMessaging */; };
@@ -411,8 +413,10 @@
 		C20715B72D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageListRepository.swift; sourceTree = "<group>"; };
 		C20715BA2D0C0026004BCB24 /* AlcoholicBeverageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageUseCase.swift; sourceTree = "<group>"; };
 		C20715BF2D0C0995004BCB24 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
-		C20715C22D0C0E10004BCB24 /* AlcoholicBeverageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageViewModel.swift; sourceTree = "<group>"; };
-		C20715C42D0C17AF004BCB24 /* AlcoholicBeverageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageViewController.swift; sourceTree = "<group>"; };
+		C20715C22D0C0E10004BCB24 /* AlcoholicBeverageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageListViewModel.swift; sourceTree = "<group>"; };
+		C20715C42D0C17AF004BCB24 /* AlcoholicBeverageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageListViewController.swift; sourceTree = "<group>"; };
+		C20715C62D0C741C004BCB24 /* AlcoholicBeverageListDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageListDIContainer.swift; sourceTree = "<group>"; };
+		C20715CB2D0C76CE004BCB24 /* AlcoholicBeverageListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageListCoordinator.swift; sourceTree = "<group>"; };
 		C2773C692CF007BC00942765 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C2773C6B2CF0087300942765 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C2C2FECE2CF1BEB70000AC4F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 				5A0407132AF91E8500A4BA84 /* EpisodeDIContainer.swift */,
 				5A0407212AF9275F00A4BA84 /* FavoriteDIContainer.swift */,
 				C2C2FEEA2CF416DF0000AC4F /* AppInfoDIContainer.swift */,
+				C20715C62D0C741C004BCB24 /* AlcoholicBeverageListDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -1349,10 +1354,35 @@
 		C20715C12D0C0DFE004BCB24 /* AlcoholicBeverageList */ = {
 			isa = PBXGroup;
 			children = (
-				C20715C42D0C17AF004BCB24 /* AlcoholicBeverageViewController.swift */,
-				C20715C22D0C0E10004BCB24 /* AlcoholicBeverageViewModel.swift */,
+				C20715CA2D0C765F004BCB24 /* Coordinator */,
+				C20715C82D0C7652004BCB24 /* View */,
+				C20715C92D0C7658004BCB24 /* ViewModel */,
 			);
 			path = AlcoholicBeverageList;
+			sourceTree = "<group>";
+		};
+		C20715C82D0C7652004BCB24 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C20715C42D0C17AF004BCB24 /* AlcoholicBeverageListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C20715C92D0C7658004BCB24 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C20715C22D0C0E10004BCB24 /* AlcoholicBeverageListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C20715CA2D0C765F004BCB24 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C20715CB2D0C76CE004BCB24 /* AlcoholicBeverageListCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 			path = APIKey;
@@ -1790,10 +1820,10 @@
 				5A0406F62AF7922900A4BA84 /* BaseRealmStorage.swift in Sources */,
 				C2C2FEDD2CF363A30000AC4F /* WriteEpisodeCoordinator.swift in Sources */,
 				5A68279F2AD2B64E00C37B17 /* StoreBadge.swift in Sources */,
-				C20715C32D0C0E10004BCB24 /* AlcoholicBeverageViewModel.swift in Sources */,
+				C20715C32D0C0E10004BCB24 /* AlcoholicBeverageListViewModel.swift in Sources */,
 				5A0406F92AF7C15800A4BA84 /* DefaultSearchLocationLocalRepository.swift in Sources */,
 				5ADC00412AC86DA00024D7F8 /* FavoriteViewController.swift in Sources */,
-				C20715C52D0C17AF004BCB24 /* AlcoholicBeverageViewController.swift in Sources */,
+				C20715C52D0C17AF004BCB24 /* AlcoholicBeverageListViewController.swift in Sources */,
 				5A6827902AD127EC00C37B17 /* LocationDetailUseCase.swift in Sources */,
 				5AAB8E842ADC276F005969FA /* DefaultEpisodeDetailRepository.swift in Sources */,
 				5A0A98402AE64A2E00545939 /* UIDevice+.swift in Sources */,
@@ -1865,12 +1895,14 @@
 				5AAB8E952ADE824F005969FA /* FilterHeaderView.swift in Sources */,
 				C2773C6C2CF0087300942765 /* Coordinator.swift in Sources */,
 				5ADC00342AC5F2720024D7F8 /* CategoryType.swift in Sources */,
+				C20715CC2D0C76CE004BCB24 /* AlcoholicBeverageListCoordinator.swift in Sources */,
 				C2C2FEF02CF42FD10000AC4F /* AppInfoCoordinator.swift in Sources */,
 				5A6827842ACFEB6D00C37B17 /* UIStackView+.swift in Sources */,
 				5A9DA1F62AC2F51C006040D2 /* LocationAPI.swift in Sources */,
 				5A6827B02AD56B1300C37B17 /* WriteEpisodeUseCase.swift in Sources */,
 				5A36F1602AFFA85500039ADA /* SearchLocationReqeustDTO.swift in Sources */,
 				5A9DA1D82AC1A1F2006040D2 /* ImageLiteral.swift in Sources */,
+				C20715C72D0C741C004BCB24 /* AlcoholicBeverageListDIContainer.swift in Sources */,
 				5A6827A32AD44DD900C37B17 /* PaddingLabel.swift in Sources */,
 				5A0A98532AE79F4000545939 /* AppInfoViewController.swift in Sources */,
 				5A6827AB2AD5265100C37B17 /* EpisodeButton.swift in Sources */,
