@@ -35,7 +35,11 @@ final class AppInfoCoordinator: Coordinator {
         
         let viewController = AppInfoViewController(viewModel: viewModel)
         viewController.hidesBottomBarWhenPushed = true
-        push(viewController: viewController, navibarHidden: true, swipe: false)
+        push(viewController: viewController, navibarHidden: true)
+    }
+    
+    func didFinish() {
+        parentCoordinator?.removeDependency(self)
     }
 }
 

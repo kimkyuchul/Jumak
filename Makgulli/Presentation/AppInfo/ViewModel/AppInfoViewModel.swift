@@ -14,6 +14,10 @@ final class AppInfoViewModel: ViewModelType, Coordinatable {
     weak var coordinator: AppInfoCoordinator?
     var disposeBag: DisposeBag = .init()
     
+    deinit {
+        coordinator?.didFinish()
+    }
+    
     struct Input {
         let didSelectBackButton: Observable<Void>
         let didSelectTablbViewItem: Observable<IndexPath>

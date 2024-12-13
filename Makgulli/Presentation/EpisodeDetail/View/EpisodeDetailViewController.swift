@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 
 final class EpisodeDetailViewController: BaseViewController {
-    
     private let detailView = EpisodeDetailView()
     private let viewModel: EpisodeDetailViewModel
     private let deleteButtonAction = PublishRelay<Void>()
@@ -20,11 +19,7 @@ final class EpisodeDetailViewController: BaseViewController {
         self.viewModel = viewModel
         super.init()
     }
-    
-    deinit {
-        print("deinit")
-    }
-    
+        
     override func loadView() {
         self.view = detailView
     }

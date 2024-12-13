@@ -37,7 +37,11 @@ final class EpisodeDetailCoordinator: Coordinator {
         viewModel.coordinator = self
        
         let viewController = EpisodeDetailViewController(viewModel: viewModel)
-        push(viewController: viewController, swipe: false)
+        push(viewController: viewController)
+    }
+    
+    func didFinish() {
+        parentCoordinator?.removeDependency(self)
     }
 }
 

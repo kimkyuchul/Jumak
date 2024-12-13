@@ -23,7 +23,7 @@ final class AppInfoViewController: BaseViewController {
         self.viewModel = viewModel
         super.init()
     }
-    
+        
     private let navigationBar = JumakNavigationBar()
     private lazy var appInfoTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)

@@ -28,6 +28,10 @@ final class EpisodeDetailViewModel: ViewModelType, Coordinatable {
         self.episodeDetailUseCase = episodeDetailUseCase
     }
     
+    deinit {
+        coordinator?.didFinish()
+    }
+    
     struct Input {
         let viewDidLoadEvent: Observable<Void>
         let didSelectBackButton: Observable<Void>
