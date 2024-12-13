@@ -171,7 +171,9 @@
 		5AE652982B9268FB0033CED5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */; };
 		C20715AA2D0BC45C004BCB24 /* AlcoholicBeverageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715A92D0BC45C004BCB24 /* AlcoholicBeverageAPI.swift */; };
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
+		C20715B12D0BF7A3004BCB24 /* DefaultAlcoholicBeverageListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715B02D0BF7A3004BCB24 /* DefaultAlcoholicBeverageListRepository.swift */; };
 		C20715B32D0BFAAC004BCB24 /* AlcoholicBeverageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715B22D0BFAAC004BCB24 /* AlcoholicBeverageDTO.swift */; };
+		C20715B82D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715B72D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift */; };
 		C20715C02D0C0995004BCB24 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715BF2D0C0995004BCB24 /* Publisher+.swift */; };
 		C2773C5A2CEF25E500942765 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C592CEF25E500942765 /* FirebaseCore */; };
 		C2773C5C2CEF25E500942765 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C5B2CEF25E500942765 /* FirebaseCrashlytics */; };
@@ -399,7 +401,9 @@
 		C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MakgulliTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E264EB7DCC1E4513F31412DC /* Pods-MakgulliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakgulliTests.debug.xcconfig"; path = "Target Support Files/Pods-MakgulliTests/Pods-MakgulliTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C20715A92D0BC45C004BCB24 /* AlcoholicBeverageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageAPI.swift; sourceTree = "<group>"; };
+		C20715B02D0BF7A3004BCB24 /* DefaultAlcoholicBeverageListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlcoholicBeverageListRepository.swift; sourceTree = "<group>"; };
 		C20715B22D0BFAAC004BCB24 /* AlcoholicBeverageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageDTO.swift; sourceTree = "<group>"; };
+		C20715B72D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageListRepository.swift; sourceTree = "<group>"; };
 		C20715BF2D0C0995004BCB24 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
 		C2773C692CF007BC00942765 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C2773C6B2CF0087300942765 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -1059,6 +1063,7 @@
 		5A9DA1FA2AC2FCB4006040D2 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				C20715AF2D0BF728004BCB24 /* AlcoholicBeverageList */,
 				5A0407022AF8FF0A00A4BA84 /* Location */,
 				5A0407182AF9235700A4BA84 /* LocationDetail */,
 				5A0407192AF9237300A4BA84 /* Episode */,
@@ -1081,6 +1086,7 @@
 		5A9DA2022AC3C44B006040D2 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				C20715B92D0C000D004BCB24 /* AlcoholicBeverage */,
 				5AAB8E962ADF65DA005969FA /* Favorite */,
 				5A9DA2032AC3C6AC006040D2 /* Location */,
 				5A6827AE2AD56AD700C37B17 /* Episode */,
@@ -1101,6 +1107,7 @@
 		5A9DA2082AC3CE64006040D2 /* RepositoryInterface */ = {
 			isa = PBXGroup;
 			children = (
+				C20715B62D0BFF88004BCB24 /* AlcoholicBeverageList */,
 				5A0406FA2AF7C1FC00A4BA84 /* Location */,
 				5A04071D2AF9241F00A4BA84 /* LocationDetail */,
 				5A0407102AF91D0F00A4BA84 /* Episode */,
@@ -1782,6 +1789,7 @@
 				5A6827962AD15EAA00C37B17 /* StoreTable.swift in Sources */,
 				C2C2FEF22CF43FD30000AC4F /* UIApplication+.swift in Sources */,
 				C2C2FEEB2CF416DF0000AC4F /* AppInfoDIContainer.swift in Sources */,
+				C20715B12D0BF7A3004BCB24 /* DefaultAlcoholicBeverageListRepository.swift in Sources */,
 				5A0A98622AE917A300545939 /* InquiryButtonView.swift in Sources */,
 				5AAB8E752ADA70BD005969FA /* DefaultLocationDetailRepository.swift in Sources */,
 				5A9DA20F2AC3D739006040D2 /* ViewModelType.swift in Sources */,
@@ -1831,6 +1839,7 @@
 				5A9DA1FC2AC2FD00006040D2 /* DefaultSearchLocationRepository.swift in Sources */,
 				5A6827B62AD69BF900C37B17 /* EpisodeContentView.swift in Sources */,
 				5AAB8E7A2ADBE171005969FA /* EpisodeDetailViewController.swift in Sources */,
+				C20715B82D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift in Sources */,
 				5AAB8E9A2ADFD1C6005969FA /* FilterTableViewCell.swift in Sources */,
 				5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */,
 				5A04070D2AF9197300A4BA84 /* EpisodeStorage.swift in Sources */,

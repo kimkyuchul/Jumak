@@ -23,6 +23,7 @@ final class DefaultLocationDetailLocalRepository: LocationDetailLocalRepository 
     func updateStore(_ store: StoreVO) -> Completable {
         locationDetailStorage.updateStore(store)
     }
+    
     func updateStoreEpisode(_ store: StoreVO) -> StoreVO? {
         locationDetailStorage.updateStoreEpisode(store)
     }
