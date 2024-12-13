@@ -9,33 +9,39 @@ import Foundation
 
 extension Bundle {
     var naverMapsClientID: String {
-        guard let file = self.path(forResource: "NaverMaps", ofType: "plist") else {
-            fatalError("NaverMaps.plist 파일이 없습니다.")
-        }
-        guard let resource = NSDictionary(contentsOfFile: file) else { fatalError("파일 형식 에러") }
-        guard let clientID = resource["NMFClientId"] as? String else {
-            fatalError("NaverMaps에 NMFClientId을 설정해주세요.")
-        }
-        return clientID
+        fetchAPIKey(fromPlist: "NaverMaps", withKey: "NMFClientId")
     }
     
     var kakaoAPIKey: String {
-        guard let file = self.path(forResource: "KakaoAPIKey", ofType: "plist") else {
-            fatalError("KakaoAPIKey.plist 파일이 없습니다.")
-        }
-        guard let resource = NSDictionary(contentsOfFile: file) else { fatalError("파일 형식 에러") }
-        guard let clientID = resource["APIKey"] as? String else {
-            fatalError("KakaoAPIKey에 APIKey을 설정해주세요.")
-        }
-        return clientID
+        fetchAPIKey(fromPlist: "KakaoAPIKey", withKey: "APIKey")
     }
     
-    var appVersion: String {
-            guard
-                let version = object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-            else {
-                return ""
-            }
-            return version
-        }
+    var openDataPortalServiceKey: String {
+        fetchAPIKey(fromPlist: "OpenDataPortal", withKey: "ServiceKey")
+    }
 }
+
+extension Bundle {
+    var appVersion: String {
+        guard let version = object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
+            return ""
+        }
+        return version
+    }
+}
+
+private extension Bundle {
+    private func fetchAPIKey(fromPlist fileName: String, withKey key: String) -> String {
+        guard let file = self.path(forResource: fileName, ofType: "plist") else {
+            fatalError("\(fileName).plist 파일이 없습니다.")
+        }
+        guard let resource = NSDictionary(contentsOfFile: file) else {
+            fatalError("파일 형식 에러")
+        }
+        guard let value = resource[key] as? String else {
+            fatalError("\(fileName)에 \(key)을 설정해주세요.")
+        }
+        return value
+    }
+}
+
