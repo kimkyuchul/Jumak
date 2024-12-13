@@ -40,6 +40,10 @@ final class LocationDetailCoordinator: Coordinator {
         locationDetilViewController.hidesBottomBarWhenPushed = true
         push(viewController: locationDetilViewController, navibarHidden: true, swipe: false)
     }
+    
+    func didFinish() {
+        parentCoordinator?.removeDependency(self)
+    }
 }
 
 extension LocationDetailCoordinator {

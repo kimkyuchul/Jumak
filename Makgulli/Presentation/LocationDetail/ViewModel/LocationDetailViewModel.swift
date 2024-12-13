@@ -36,6 +36,10 @@ final class LocationDetailViewModel: ViewModelType, Coordinatable {
         self.locationDetailUseCase = locationDetailUseCase
     }
     
+    deinit {
+        coordinator?.didFinish()
+    }
+    
     struct Input {
         let viewDidLoadEvent: Observable<Void>
         let viewWillAppearEvent: Observable<Void>
