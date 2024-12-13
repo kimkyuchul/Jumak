@@ -60,6 +60,7 @@ enum ImageLiteral {
     static var settingIcon : UIImage { .load(systemName: "gearshape.fill") }
     static var mapTabIcon: UIImage { .load(systemName: "magnifyingglass") }
     static var warningIcon: UIImage { .load(systemName: "checkmark.circle.trianglebadge.exclamationmark") }
+    static var wineglassIcon: UIImage { .load(systemName: "wineglass") }
 }
 
 extension UIImage {
