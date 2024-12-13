@@ -11,21 +11,19 @@ import Combine
 import RxSwift
 import Alamofire
 
-protocol NetworkSessionable<APIType> {
-    associatedtype APIType: TargetType
-    
-    func request<Model: Decodable>(_ target: APIType, type: Model.Type) -> Single<Model>
-    func request<Model: Decodable>(_ target: APIType, type: Model.Type) -> AnyPublisher<Model, Error>
+protocol NetworkSessionable {
+    func request<Model: Decodable>(_ target: TargetType, type: Model.Type) -> Single<Model>
+    func request<Model: Decodable>(_ target: TargetType, type: Model.Type) -> AnyPublisher<Model, Error>
 }
 
-struct NetworkManager<APIType: TargetType>: NetworkSessionable {
+struct NetworkManager: NetworkSessionable {
     private let decoder: JSONDecoder
     
     init() {
         self.decoder = JSONDecoder()
     }
     
-    func request<Model: Decodable>(_ target: APIType, type: Model.Type) -> Single<Model> {
+    func request<Model: Decodable>(_ target: TargetType, type: Model.Type) -> Single<Model> {
         
         return Single.create(subscribe: { single in
             AF.request(target).responseData { response in
@@ -50,7 +48,7 @@ struct NetworkManager<APIType: TargetType>: NetworkSessionable {
         })
     }
     
-    func request<Model: Decodable>(_ target: APIType, type: Model.Type) -> AnyPublisher<Model, Error> {
+    func request<Model: Decodable>(_ target: TargetType, type: Model.Type) -> AnyPublisher<Model, Error> {
         Future<Model, Error> { promise in
             AF.request(target).responseData { response in
                 switch response.result {

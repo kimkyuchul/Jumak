@@ -10,15 +10,14 @@ import Foundation
 import RxSwift
 
 final class DefaultSearchLocationRepository: SearchLocationRepository {
-    private let networkManager: NetworkManager<LocationAPI>
+    private let networkManager: any NetworkSessionable
     
-    init(networkManager: NetworkManager<LocationAPI>) {
+    init(networkManager: NetworkManager) {
         self.networkManager = networkManager
     }
     
     func fetchLocation(query: String, x: String, y: String, page: Int, display: Int) -> Single<SearchLocationVO> {
-        let api = LocationAPI.fetchSearchLocations(query, x, y, page, display)
-        
-        return networkManager.request(api, type: SearchLocationDTO.self).map { $0.toDomain() }
+        return networkManager.request(LocationAPI.fetchSearchLocations(query, x, y, page, display), type: SearchLocationDTO.self)
+            .map { $0.toDomain() }
     }
 }
