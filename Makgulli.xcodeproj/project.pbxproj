@@ -173,7 +173,9 @@
 		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 		C20715B12D0BF7A3004BCB24 /* DefaultAlcoholicBeverageListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715B02D0BF7A3004BCB24 /* DefaultAlcoholicBeverageListRepository.swift */; };
 		C20715B32D0BFAAC004BCB24 /* AlcoholicBeverageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715B22D0BFAAC004BCB24 /* AlcoholicBeverageDTO.swift */; };
+		C20715B52D0BFC1D004BCB24 /* AlcoholicBeverageVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715B42D0BFC1D004BCB24 /* AlcoholicBeverageVO.swift */; };
 		C20715B82D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715B72D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift */; };
+		C20715BB2D0C0026004BCB24 /* AlcoholicBeverageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715BA2D0C0026004BCB24 /* AlcoholicBeverageUseCase.swift */; };
 		C20715C02D0C0995004BCB24 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20715BF2D0C0995004BCB24 /* Publisher+.swift */; };
 		C2773C5A2CEF25E500942765 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C592CEF25E500942765 /* FirebaseCore */; };
 		C2773C5C2CEF25E500942765 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C5B2CEF25E500942765 /* FirebaseCrashlytics */; };
@@ -403,7 +405,9 @@
 		C20715A92D0BC45C004BCB24 /* AlcoholicBeverageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageAPI.swift; sourceTree = "<group>"; };
 		C20715B02D0BF7A3004BCB24 /* DefaultAlcoholicBeverageListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlcoholicBeverageListRepository.swift; sourceTree = "<group>"; };
 		C20715B22D0BFAAC004BCB24 /* AlcoholicBeverageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageDTO.swift; sourceTree = "<group>"; };
+		C20715B42D0BFC1D004BCB24 /* AlcoholicBeverageVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageVO.swift; sourceTree = "<group>"; };
 		C20715B72D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageListRepository.swift; sourceTree = "<group>"; };
+		C20715BA2D0C0026004BCB24 /* AlcoholicBeverageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholicBeverageUseCase.swift; sourceTree = "<group>"; };
 		C20715BF2D0C0995004BCB24 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
 		C2773C692CF007BC00942765 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C2773C6B2CF0087300942765 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -1079,6 +1083,7 @@
 				5A9DA2002AC3C227006040D2 /* SearchLocationVO.swift */,
 				5A68278D2AD08A2A00C37B17 /* StoreVO.swift */,
 				5A6827892AD054A300C37B17 /* EpisodeVO.swift */,
+				C20715B42D0BFC1D004BCB24 /* AlcoholicBeverageVO.swift */,
 			);
 			path = VO;
 			sourceTree = "<group>";
@@ -1304,6 +1309,30 @@
 				5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */,
 				5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */,
 				5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */,
+		C20715AF2D0BF728004BCB24 /* AlcoholicBeverageList */ = {
+			isa = PBXGroup;
+			children = (
+				C20715B02D0BF7A3004BCB24 /* DefaultAlcoholicBeverageListRepository.swift */,
+			);
+			path = AlcoholicBeverageList;
+			sourceTree = "<group>";
+		};
+		C20715B62D0BFF88004BCB24 /* AlcoholicBeverageList */ = {
+			isa = PBXGroup;
+			children = (
+				C20715B72D0BFF98004BCB24 /* AlcoholicBeverageListRepository.swift */,
+			);
+			path = AlcoholicBeverageList;
+			sourceTree = "<group>";
+		};
+		C20715B92D0C000D004BCB24 /* AlcoholicBeverage */ = {
+			isa = PBXGroup;
+			children = (
+				C20715BA2D0C0026004BCB24 /* AlcoholicBeverageUseCase.swift */,
+			);
+			path = AlcoholicBeverage;
+			sourceTree = "<group>";
+		};
 		C20715BC2D0C097F004BCB24 /* Combine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1769,6 +1798,7 @@
 				5A6827732ACE900F00C37B17 /* LocationButton.swift in Sources */,
 				5A0A98312AE3E1E500545939 /* FindRouteType.swift in Sources */,
 				5AAB8EA42ADFF1B1005969FA /* FavoriteUseCase.swift in Sources */,
+				C20715B52D0BFC1D004BCB24 /* AlcoholicBeverageVO.swift in Sources */,
 				5AAB8E662AD7CCEC005969FA /* EpisodeDrinkCountView.swift in Sources */,
 				5A36F15D2AFFA84F00039ADA /* SearchLocationDTO.swift in Sources */,
 				5AAB8E862ADC286D005969FA /* EpisodeDetailRepository.swift in Sources */,
@@ -1851,6 +1881,7 @@
 				5A6827C02AD6DEFC00C37B17 /* EpisodeDrinkNameView.swift in Sources */,
 				5A68278A2AD054A300C37B17 /* EpisodeVO.swift in Sources */,
 				5A9DA1EF2AC2C169006040D2 /* NetworkManager.swift in Sources */,
+				C20715BB2D0C0026004BCB24 /* AlcoholicBeverageUseCase.swift in Sources */,
 				5AAB8E8F2ADE1F97005969FA /* FavoriteViewModel.swift in Sources */,
 				5ADC00362AC5F8EC0024D7F8 /* BaseCollectionViewCell.swift in Sources */,
 				5AAB8EAB2AE15CC7005969FA /* PasteboardService.swift in Sources */,
