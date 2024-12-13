@@ -16,14 +16,14 @@ enum HeaderType {
 
 extension HeaderType {
     var toHTTPHeaders: HTTPHeaders {
+        var headers = HTTPHeaders.default
+        headers.add(name: "accept", value: "application/json")
+        
         switch self {
         case .default:
-            var headers = HTTPHeaders.default
-            headers.add(name: "accept", value: "application/json")
             return headers
+            
         case .withKakaoApiKey:
-            var headers = HTTPHeaders.default
-            headers.add(name: "accept", value: "application/json")
             headers.add(name: "Authorization", value: "KakaoAK \(Bundle.main.kakaoAPIKey)")
             return headers
         }
