@@ -17,7 +17,7 @@ enum HeaderType {
 extension HeaderType {
     var toHTTPHeaders: HTTPHeaders {
         var headers = HTTPHeaders.default
-        headers.add(name: "accept", value: "application/json")
+        headers.add(name: "Accept", value: "application/json")
         
         switch self {
         case .default:

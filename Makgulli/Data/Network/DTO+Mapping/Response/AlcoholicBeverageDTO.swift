@@ -46,11 +46,12 @@ struct TraditionalLiquorDTO: Decodable {
 extension TraditionalLiquorDTO {
     func toDomain() -> TraditionalLiquor {
         return .init(
-            name: name ?? "알수없음",
+            name: name ?? "미표기",
             alcoholContent: "\(alcoholContent ?? "0") 도",
-            specification: specification ?? "알수없음",
-            mainIngredient: mainIngredient ?? "알수없음",
-            manufacturer: manufacturer ?? "알수없음"
+            specification: specification ?? "미표기",
+            mainIngredient: mainIngredient ?? "미표기",
+            manufacturer: manufacturer ?? "미표기",
+            liquorType: LiquorType.filterLiquorType(name: name ?? "", manufacturer: manufacturer ?? "")
         )
     }
 }

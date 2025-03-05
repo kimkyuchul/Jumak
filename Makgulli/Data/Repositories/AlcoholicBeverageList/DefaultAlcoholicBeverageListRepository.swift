@@ -15,6 +15,11 @@ final class DefaultAlcoholicBeverageListRepository: AlcoholicBeverageListReposit
         self.networkManager = networkManager
     }
     
+    func fetchAlcoholicBeverageList(page: Int) async -> Result<AlcoholicBeverage, Error> {
+        return await networkManager.request(AlcoholicBeverageAPI.fetchTraditionalAlcoholicBeverage(page: page, perPage: 20), type: AlcoholicBeverageDTO.self)
+            .map { $0.toDomain() }
+    }
+    
     func fetchAlcoholicBeverageList(page: Int) -> AnyPublisher<AlcoholicBeverage, Error> {
         return networkManager.request(AlcoholicBeverageAPI.fetchTraditionalAlcoholicBeverage(page: page, perPage: 20), type: AlcoholicBeverageDTO.self)
             .map { $0.toDomain() }

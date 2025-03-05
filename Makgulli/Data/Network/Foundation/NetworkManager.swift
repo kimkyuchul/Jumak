@@ -14,19 +14,22 @@ import Alamofire
 protocol NetworkSessionable {
     func request<Model: Decodable>(_ target: TargetType, type: Model.Type) -> Single<Model>
     func request<Model: Decodable>(_ target: TargetType, type: Model.Type) -> AnyPublisher<Model, Error>
+    func request<Model: Decodable>(_ target: TargetType, type: Model.Type) async -> Result<Model, Error>
 }
 
 struct NetworkManager: NetworkSessionable {
+    private let session: Session
     private let decoder: JSONDecoder
     
-    init() {
+    init(session: Session = Session.default) {
+        self.session = session
         self.decoder = JSONDecoder()
     }
     
     func request<Model: Decodable>(_ target: TargetType, type: Model.Type) -> Single<Model> {
         
         return Single.create(subscribe: { single in
-            AF.request(target).responseData { response in
+            session.request(target).responseData { response in
                 switch response.result {
                 case .success(let value):
                     if validate(response.response) {
@@ -50,7 +53,7 @@ struct NetworkManager: NetworkSessionable {
     
     func request<Model: Decodable>(_ target: TargetType, type: Model.Type) -> AnyPublisher<Model, Error> {
         Future<Model, Error> { promise in
-            AF.request(target).responseData { response in
+            session.request(target).responseData { response in
                 switch response.result {
                 case .success(let value):
                     if validate(response.response) {
@@ -71,7 +74,31 @@ struct NetworkManager: NetworkSessionable {
             }
         }.eraseToAnyPublisher()
     }
+    
+    func request<Model: Decodable>(_ target: TargetType, type: Model.Type) async -> Result<Model, Error> {
+        await withCheckedContinuation { continuation in
+            session.request(target).responseData { response in
+                switch response.result {
+                case .success(let value):
+                    if validate(response.response) {
+                        do {
+                            let data = try decoder.decode(Model.self, from: value)
+                            continuation.resume(returning: .success(data))
+                        } catch {
+                            dump(error.localizedDescription)
+                            continuation.resume(returning: .failure(NetworkError.decodingError))
+                        }
+                    } else {
+                        continuation.resume(returning: .failure(NetworkError.isNotSuccessful(statusCode: response.response?.statusCode ?? 500)))
+                    }
+                case .failure(let failure):
+                    continuation.resume(returning:.failure(NetworkError.underlyingError(message: failure.localizedDescription)))
+                }
+            }
+        }
+    }
 }
+
 
 private extension NetworkManager {
     func validate(_ response: HTTPURLResponse?) -> Bool {

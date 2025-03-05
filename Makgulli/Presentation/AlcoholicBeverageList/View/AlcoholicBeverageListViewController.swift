@@ -11,6 +11,7 @@ import Combine
 final class AlcoholicBeverageListViewController: BaseViewController {
     private let viewModel: AlcoholicBeverageListViewModel
     private let viewDidLoadEvent = PassthroughSubject<Void, Never>()
+    private let scrollToBottom = PassthroughSubject<Void, Never>()
     private var cancellables = Set<AnyCancellable>()
     
     init(viewModel: AlcoholicBeverageListViewModel) {
@@ -26,7 +27,8 @@ final class AlcoholicBeverageListViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = AlcoholicBeverageListViewModel.Input(viewDidLoadEvent: viewDidLoadEvent)
+        let input = AlcoholicBeverageListViewModel.Input(viewDidLoadEvent: viewDidLoadEvent,
+                                                         scrollToBottom: scrollToBottom)
         
         let output = viewModel.transform(input: input)
         

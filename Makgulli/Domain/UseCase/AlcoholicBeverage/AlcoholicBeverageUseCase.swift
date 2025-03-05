@@ -10,10 +10,11 @@ import Foundation
 import Combine
 
 protocol AlcoholicBeverageUseCase: AnyObject {
-    func fetchAlcoholicBeverageList(page: Int)
-    
-    var error: PassthroughSubject<Error, Never> { get }
-    var alcoholicBeverage: PassthroughSubject<AlcoholicBeverage, Never> { get }
+    func fetchAlcoholicBeverageListAsync(page: Int) async -> Result<AlcoholicBeverage, Error>
+//    func fetchAlcoholicBeverageList(page: Int)
+//    
+//    var error: PassthroughSubject<Error, Never> { get }
+//    var alcoholicBeverage: PassthroughSubject<AlcoholicBeverage, Never> { get }
 }
 
 final class DefaultAlcoholicBeverageUseCase: AlcoholicBeverageUseCase {
@@ -27,6 +28,12 @@ final class DefaultAlcoholicBeverageUseCase: AlcoholicBeverageUseCase {
         self.repository = repository
     }
     
+    // async + Result
+    func fetchAlcoholicBeverageListAsync(page: Int) async -> Result<AlcoholicBeverage, Error> {
+        return await repository.fetchAlcoholicBeverageList(page: page)
+    }
+    
+    // Combine
     func fetchAlcoholicBeverageList(page: Int) {
         repository.fetchAlcoholicBeverageList(page: page)
             .catch { [weak self] error in
