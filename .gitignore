@@ -150,3 +150,7 @@ fastlane/.env
 
 *.cer
 *.mobileprovision
+
+# Claude Code
+.claude/settings.local.json
+skills-lock.json
