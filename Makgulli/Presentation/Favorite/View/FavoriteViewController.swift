@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 
 final class FavoriteViewController: BaseViewController {
-    
     enum FavoriteSection {
         case favorite
     }
@@ -21,7 +20,13 @@ final class FavoriteViewController: BaseViewController {
     typealias DiffableDataSource = UICollectionViewDiffableDataSource<FavoriteSection, StoreVO>
     typealias Snapshot = NSDiffableDataSourceSnapshot<FavoriteSection, StoreVO>
     private var dataSource: DiffableDataSource?
+    
+    private var headerCountTitle: Int = 0
+    private var headerFilterType: FilterType = .recentlyAddedBookmark
+    private var headerReverseFilter: Bool = false
+    
     private let viewModel: FavoriteViewModel
+    
     private let didSelectReverseFilterButton = PublishRelay<Void>()
     private let didSelectCategoryFilterButton = PublishSubject<CategoryFilterType>()
     private let didSelectStoreItem = PublishRelay<StoreVO>()
@@ -119,7 +124,7 @@ final class FavoriteViewController: BaseViewController {
             .subscribe()
             .disposed(by: disposeBag)
         
-        output.isLoding
+        output.isLoading
             .bind(to: indicatorView.rx.isAnimating)
             .disposed(by: disposeBag)
     }
@@ -144,14 +149,21 @@ final class FavoriteViewController: BaseViewController {
     private func applyCollectionViewDataSource(
         by viewModels: [StoreVO], countTitle: Int, filterType: FilterType, reverseFilterType: Bool
     ) {
+        headerCountTitle = countTitle
+        headerFilterType = filterType
+        headerReverseFilter = reverseFilterType
+
         var snapshot = Snapshot()
-        
         snapshot.appendSections([.favorite])
         snapshot.appendItems(viewModels, toSection: .favorite)
         snapshot.reconfigureItems(viewModels)
-        configureHeader(countTitle: countTitle, filterType: filterType, reverseFilter: reverseFilterType)
-        
-        dataSource?.applySnapshotUsingReloadData(snapshot)
+        dataSource?.apply(snapshot, animatingDifferences: true)
+
+        UIView.performWithoutAnimation {
+            if let header = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0)) as? FilterHeaderView {
+                header.configure(countTile: countTitle, filterType: filterType, reverseFilter: reverseFilterType)
+            }
+        }
     }
     
     private func itemIdentifier(for indexPath: IndexPath) -> StoreVO? {
@@ -162,26 +174,24 @@ final class FavoriteViewController: BaseViewController {
         let registration = FavoriteCollectionViewCellRegistration { cell, _, store in
             cell.configureCell(item: store)
         }
-        
+
+        let headerRegistration = SectionHeaderRegistration<FilterHeaderView>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] supplementaryView, _ ,_ in
+            guard let self else { return }
+            supplementaryView.configure(countTile: self.headerCountTitle, filterType: self.headerFilterType, reverseFilter: self.headerReverseFilter)
+            supplementaryView.bottomSheetDelegate = self
+            supplementaryView.filterReverseDelegate = self
+        }
+
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             let cell = collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: itemIdentifier)
             return cell
         })
-    }
-    
-    private func configureHeader(countTitle: Int, filterType: FilterType, reverseFilter: Bool) {
-        let headerRegistration = SectionHeaderRegistration<FilterHeaderView>(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, _ ,_ in
-            supplementaryView.configure(countTile: countTitle, filterType: filterType, reverseFilter: reverseFilter)
-            supplementaryView.bottomSheetDelegate = self
-            supplementaryView.filterReverseDelegate = self
-        }
-        
+
         dataSource?.supplementaryViewProvider = { [weak self] _, _, indexPath in
-            let header = self?.collectionView.dequeueConfiguredReusableSupplementary(
+            self?.collectionView.dequeueConfiguredReusableSupplementary(
                 using: headerRegistration,
                 for: indexPath
             )
-            return header
         }
     }
     

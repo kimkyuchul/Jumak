@@ -43,6 +43,15 @@ final class EpisodeDetailViewController: BaseViewController {
         output.episode
             .bind(to: detailView.rx.episode)
             .disposed(by: disposeBag)
+
+        output.showErrorAlert
+            .withUnretained(self)
+            .flatMap { owner, error in
+                dump(error)
+                return owner.rx.makeErrorAlert(title: "내부 에러", message: "알수없는 에러가 발생했습니다.", cancelButtonTitle: "확인")
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
     
     override func bindAction() {

@@ -15,12 +15,12 @@ protocol injector: AnyObject {
 }
 
 final class AppDIContainer: injector {
-    private lazy var networkManager = NetworkManager<LocationAPI>()
+    private lazy var networkService: NetworkService = DefaultNetworkService()
     private lazy var imageStorage = DefaultImageStorage(fileManager: FileManager.default)
     
     func makeLocationDIContainer() -> LocationDIContainer {
         let dependencies = LocationDIContainer.Dependencies(
-            networkManager: networkManager, 
+            networkService: networkService,
             imageStorage: imageStorage
         )
         

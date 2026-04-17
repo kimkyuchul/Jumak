@@ -24,18 +24,24 @@ struct Episode: Hashable {
 final class LocationDetailViewModel: ViewModelType, Coordinatable {
     weak var coordinator: LocationDetailCoordinator?
     var disposeBag: DisposeBag = .init()
-    
+
     var storeVO: StoreVO
     private let locationDetailUseCase: LocationDetailUseCase
-    
+    private let urlSchemaService: URLSchemaService
+    private let pasteboardService: PasteboardService
+
     init(
         storeVO: StoreVO,
-        locationDetailUseCase: LocationDetailUseCase
+        locationDetailUseCase: LocationDetailUseCase,
+        urlSchemaService: URLSchemaService,
+        pasteboardService: PasteboardService
     ) {
         self.storeVO = storeVO
         self.locationDetailUseCase = locationDetailUseCase
+        self.urlSchemaService = urlSchemaService
+        self.pasteboardService = pasteboardService
     }
-    
+
     struct Input {
         let viewDidLoadEvent: Observable<Void>
         let viewWillAppearEvent: Observable<Void>
@@ -49,7 +55,7 @@ final class LocationDetailViewModel: ViewModelType, Coordinatable {
         let didSelectMakeEpisodeButton: Observable<Void>
         let didSelectEpisodeItem: Observable<Episode>
     }
-    
+
     struct Output {
         let hashTag = PublishRelay<String>()
         let placeName = PublishRelay<String>()
@@ -69,174 +75,131 @@ final class LocationDetailViewModel: ViewModelType, Coordinatable {
         let presentWriteEpisode = PublishRelay<StoreVO>()
         let episodeList = PublishRelay<[EpisodeVO]>()
     }
-    
+
     func transform(input: Input) -> Output {
         let output = Output()
-        
+
         input.viewDidLoadEvent
-            .withUnretained(self)
             .observe(on: MainScheduler.asyncInstance)
-            .subscribe(onNext: { owner, _ in
-                owner.locationDetailUseCase.fetchStoreDetail(store: owner.storeVO)
-            })
-            .disposed(by: disposeBag)
-        
-        input.viewWillAppearEvent
-            .withUnretained(self)
-            .subscribe(onNext: { owner, _ in
-                let updatedStoreVO = owner.locationDetailUseCase.updateStoreEpisode(owner.storeVO)
-                owner.storeVO.episode = updatedStoreVO?.episode ?? []
-                output.episodeList.accept(owner.storeVO.episode)
-            })
-            .disposed(by: disposeBag)
-        
-        input.viewWillDisappearEvent
-            .withUnretained(self)
-            .subscribe(onNext: { owner, _ in
-                owner.locationDetailUseCase.handleLocalStore(owner.storeVO)
-            })
-            .disposed(by: disposeBag)
-        
-        input.didSelectBackButton
-            .subscribe(with: self) { owner, _ in
-                owner.coordinator?.popLocationDetail()
+            .bind(with: self) { owner, _ in
+                let store = owner.storeVO
+                output.hashTag.accept(store.categoryType.hashTag)
+                output.placeName.accept(store.placeName)
+                output.distance.accept(store.distance)
+                output.type.accept(store.categoryName)
+                output.address.accept(store.addressName)
+                output.roadAddress.accept(store.roadAddressName)
+                output.phone.accept(store.phone ?? "")
+                output.rate.accept(store.rate)
+                output.bookmark.accept(store.bookmark)
+                output.locationCoordinate.accept((store.y, store.x))
+                output.episodeList.accept(store.episode)
             }
             .disposed(by: disposeBag)
-        
-        let didSelectRate = input.didSelectRate
-            .share()
-        
-        didSelectRate
-            .observe(on: MainScheduler.asyncInstance)
-            .withUnretained(self)
-            .bind(onNext: { owner, rate in
-                owner.storeVO.rate = rate
-            })
+
+        input.viewWillAppearEvent
+            .bind(with: self) { owner, _ in
+                let updated = owner.locationDetailUseCase.updateStoreEpisode(owner.storeVO)
+                owner.storeVO.episode = updated?.episode ?? []
+                output.episodeList.accept(owner.storeVO.episode)
+            }
             .disposed(by: disposeBag)
-        
-        didSelectRate
-            .bind(to: output.convertRateLabelText)
-            .disposed(by: disposeBag)
-        
-        let didSelectBookmark = input.didSelectBookmark
-            .share()
-        
-        didSelectBookmark
-            .skip(1)
+
+        input.viewWillDisappearEvent
             .withUnretained(self)
-            .bind(onNext: { owner, bookmark in
-                owner.storeVO.bookmark = bookmark
-                
-                if bookmark {
-                    owner.storeVO.bookmarkDate = Date()
-                } else {
-                    owner.storeVO.bookmarkDate = nil
+            .flatMap { owner, _ -> Observable<Event<Never>> in
+                owner.locationDetailUseCase
+                    .syncStore(owner.storeVO)
+                    .asObservable()
+                    .materialize()
+            }
+            .subscribe(onNext: { event in
+                if case .error(let error) = event {
+                    output.showErrorAlert.accept(error)
                 }
             })
             .disposed(by: disposeBag)
-        
+
+        input.didSelectBackButton
+            .bind(with: self) { owner, _ in
+                owner.coordinator?.popLocationDetail()
+            }
+            .disposed(by: disposeBag)
+
+        let didSelectRate = input.didSelectRate
+            .share()
+
+        didSelectRate
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(with: self) { owner, rate in
+                owner.storeVO.rate = rate
+            }
+            .disposed(by: disposeBag)
+
+        didSelectRate
+            .bind(to: output.convertRateLabelText)
+            .disposed(by: disposeBag)
+
+        let didSelectBookmark = input.didSelectBookmark
+            .share()
+
+        didSelectBookmark
+            .skip(1)
+            .bind(with: self) { owner, bookmark in
+                owner.storeVO.bookmark = bookmark
+                owner.storeVO.bookmarkDate = bookmark ? Date() : nil
+            }
+            .disposed(by: disposeBag)
+
         didSelectBookmark
             .bind(to: output.showBookmarkToast)
             .disposed(by: disposeBag)
-        
-        let urlSchemaObservable = Observable.zip(output.address, output.locationCoordinate)
-        
+
+        let addressAndCoordinate = Observable.zip(output.address, output.locationCoordinate)
+
         input.didSelectFindRouteType
-            .withLatestFrom(urlSchemaObservable) { findRouteType, urlSchemaObservable in
-                return (findRouteType, urlSchemaObservable)
+            .withLatestFrom(addressAndCoordinate) { ($0, $1) }
+            .bind(with: self) { owner, tuple in
+                let (findRouteType, (address, coordinate)) = tuple
+                owner.urlSchemaService.openMapForURL(
+                    findRouteType: findRouteType,
+                    locationCoordinate: coordinate,
+                    address: address
+                )
             }
-            .withUnretained(self)
-            .bind(onNext: { owner, urlSchema in
-                let (findRouteType, (address, locationCoordinate)) = urlSchema
-                owner.locationDetailUseCase.showMap(findRouteType, locationCoordinate: locationCoordinate, address: address)
-            })
             .disposed(by: disposeBag)
-        
+
         input.didSelectUserLocationButton
             .withLatestFrom(output.locationCoordinate)
             .bind(to: output.setCameraPosition)
             .disposed(by: disposeBag)
-        
+
         input.didSelectCopyAddressButton
             .withLatestFrom(output.address)
-            .withUnretained(self)
-            .flatMap { owner, adress in
-                return owner.locationDetailUseCase.addressPasteboard(adress)
+            .bind(with: self) { owner, address in
+                owner.pasteboardService.addressPasteboard(address: address)
+                output.addressPasteboardToast.accept(())
             }
-            .bind(to: output.addressPasteboardToast)
             .disposed(by: disposeBag)
-        
+
         input.didSelectMakeEpisodeButton
             .bind(with: self) { owner, _ in
                 owner.coordinator?.startWriteEpisode(store: owner.storeVO)
             }
             .disposed(by: disposeBag)
-        
+
         input.didSelectEpisodeItem
             .bind(with: self) { owner, episode in
                 owner.coordinator?.startEpisodeDetail(episode: episode, storeId: owner.storeVO.id)
             }
             .disposed(by: disposeBag)
-        
-        createOutput(output: output)
-        
+
         return output
-    }
-    
-    private func createOutput(output: Output) {
-        locationDetailUseCase.hashTag
-            .bind(to: output.hashTag)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.placeName
-            .bind(to: output.placeName)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.distance
-            .bind(to: output.distance)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.type
-            .bind(to: output.type)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.address
-            .bind(to: output.address)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.roadAddress
-            .bind(to: output.roadAddress)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.phone
-            .bind(to: output.phone)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.rate
-            .bind(to: output.rate)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.errorSubject
-            .bind(to: output.showErrorAlert)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.bookmark
-            .bind(to: output.bookmark)
-            .disposed(by: disposeBag)
-        
-        locationDetailUseCase.locationCoordinate
-            .bind(to: output.locationCoordinate)
-            .disposed(by: disposeBag)
-                        
-        locationDetailUseCase.episodeList
-            .bind(to: output.episodeList)
-            .disposed(by: disposeBag)
     }
 }
 
 extension LocationDetailViewModel {
-    func loadDataSourceImage(_ fileName: String) -> Data? {
-        locationDetailUseCase.loadDataSourceImage(fileName)
+    func loadEpisodeImage(_ fileName: String) -> Data? {
+        locationDetailUseCase.loadEpisodeImage(fileName)
     }
 }
-

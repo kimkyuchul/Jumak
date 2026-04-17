@@ -10,7 +10,7 @@ import Foundation
 final class LocationDIContainer {
 
     struct Dependencies {
-        let networkManager: NetworkManager<LocationAPI>
+        let networkService: NetworkService
         let imageStorage: ImageStorage
     }
 
@@ -23,7 +23,7 @@ final class LocationDIContainer {
     // MARK: - Repository
     private func makeSearchLocationRepository() -> SearchLocationRepository {
         DefaultSearchLocationRepository(
-            networkManager: dependencies.networkManager
+            networkService: dependencies.networkService
         )
     }
     
@@ -70,9 +70,7 @@ final class LocationDIContainer {
     private func makeLocationDetailUseCase() -> LocationDetailUseCase {
         DefaultLocationDetailUseCase(
             locationDetailRepository: makeLocationDetailRepository(),
-            locationDetailLocalRepository: makeLocationDetailLocalRepository(),
-            urlSchemaService: DefaultURLSchemaService(),
-            pasteboardService: DefaultPasteboardService()
+            locationDetailLocalRepository: makeLocationDetailLocalRepository()
         )
     }
     
@@ -87,7 +85,9 @@ final class LocationDIContainer {
     func makeLocationDetailViewModel(store: StoreVO) -> LocationDetailViewModel {
         LocationDetailViewModel(
             storeVO: store,
-            locationDetailUseCase: makeLocationDetailUseCase()
+            locationDetailUseCase: makeLocationDetailUseCase(),
+            urlSchemaService: DefaultURLSchemaService(),
+            pasteboardService: DefaultPasteboardService()
         )
     }
 }
