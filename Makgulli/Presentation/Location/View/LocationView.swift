@@ -12,7 +12,6 @@ import RxCocoa
 import NMapsMap
 
 final class LocationView: BaseView {
-    
     lazy var mapView: NMFMapView = {
         let mapView = NMFMapView()
         mapView.allowsZooming = true
@@ -113,8 +112,7 @@ final class LocationView: BaseView {
     
     override func setConstraints() {
         mapView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalToSuperview()
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            make.edges.equalToSuperview()
         }
         
         questionButton.snp.makeConstraints { make in

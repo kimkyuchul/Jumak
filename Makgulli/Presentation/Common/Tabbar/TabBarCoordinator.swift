@@ -41,7 +41,10 @@ extension TabBarCoordinator {
         self.tabBarController.tabBar.tintColor = .brown
         self.tabBarController.tabBar.unselectedItemTintColor = .darkGray
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .white
+        appearance.configureWithDefaultBackground()
+        appearance.backgroundEffect = UIBlurEffect(style: .systemThinMaterial)
+        appearance.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        appearance.shadowColor = .clear
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.darkGray, .font: UIFont.boldLineSeed(size: ._12)]
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.brown, .font: UIFont.boldLineSeed(size: ._12)]
         self.tabBarController.tabBar.standardAppearance = appearance
