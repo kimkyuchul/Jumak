@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		506CA1E64669FE0853F40A90 /* libPods-Makgulli-MakgulliUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */; };
 		5A0406E72AF50DB300A4BA84 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406E62AF50DB300A4BA84 /* AppDIContainer.swift */; };
 		5A0406E92AF5145400A4BA84 /* LocationDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406E82AF5145400A4BA84 /* LocationDIContainer.swift */; };
 		5A0406F02AF617B500A4BA84 /* LocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0406EF2AF617B400A4BA84 /* LocationStorage.swift */; };
@@ -47,9 +46,31 @@
 		5A0A985E2AE90D0000545939 /* URLLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A985D2AE90D0000545939 /* URLLiteral.swift */; };
 		5A0A98602AE9159F00545939 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A985F2AE9159F00545939 /* InquiryViewController.swift */; };
 		5A0A98622AE917A300545939 /* InquiryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0A98612AE917A300545939 /* InquiryButtonView.swift */; };
+		5A0C37192F907A0900235467 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C572CEF25E500942765 /* FirebaseAnalytics */; };
+		5A0C371B2F907CEB00235467 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0C371A2F907CEB00235467 /* RxBlocking */; };
+		5A0C371D2F907CEB00235467 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0C371C2F907CEB00235467 /* RxRelay */; };
+		5A0C371F2F907CEB00235467 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0C371E2F907CEB00235467 /* RxSwift */; };
+		5A0C37212F907CEB00235467 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 5A0C37202F907CEB00235467 /* RxTest */; };
+		5A0C37342F907E8300235467 /* MockEpisodeDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37232F907E8300235467 /* MockEpisodeDetailRepository.swift */; };
+		5A0C37352F907E8300235467 /* MockLocationDetailLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37252F907E8300235467 /* MockLocationDetailLocalRepository.swift */; };
+		5A0C37362F907E8300235467 /* MockWriteEpisodeLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37292F907E8300235467 /* MockWriteEpisodeLocalRepository.swift */; };
+		5A0C37372F907E8300235467 /* MockEpisodeDetailLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37222F907E8300235467 /* MockEpisodeDetailLocalRepository.swift */; };
+		5A0C37382F907E8300235467 /* MockSearchLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37282F907E8300235467 /* MockSearchLocationRepository.swift */; };
+		5A0C37392F907E8300235467 /* EpisodeDetailUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C372E2F907E8300235467 /* EpisodeDetailUseCaseTests.swift */; };
+		5A0C373A2F907E8300235467 /* MockLocationDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37262F907E8300235467 /* MockLocationDetailRepository.swift */; };
+		5A0C373B2F907E8300235467 /* MockFavoriteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37242F907E8300235467 /* MockFavoriteRepository.swift */; };
+		5A0C373C2F907E8300235467 /* FavoriteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C372F2F907E8300235467 /* FavoriteUseCaseTests.swift */; };
+		5A0C373D2F907E8300235467 /* MockWriteEpisodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C372A2F907E8300235467 /* MockWriteEpisodeRepository.swift */; };
+		5A0C373E2F907E8300235467 /* LocationDetailUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37302F907E8300235467 /* LocationDetailUseCaseTests.swift */; };
+		5A0C373F2F907E8300235467 /* WriteEpisodeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37322F907E8300235467 /* WriteEpisodeUseCaseTests.swift */; };
+		5A0C37402F907E8300235467 /* SearchLocationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37312F907E8300235467 /* SearchLocationUseCaseTests.swift */; };
+		5A0C37412F907E8300235467 /* MockSearchLocationLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C37272F907E8300235467 /* MockSearchLocationLocalRepository.swift */; };
+		5A0C37422F907E8300235467 /* StoreVOFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0C372C2F907E8300235467 /* StoreVOFactory.swift */; };
+		5A2018F62F90D1C3004DBBE9 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 5A2018F52F90D1C3004DBBE9 /* NMapsMap */; };
 		5A35E57F2AEBDFCD0074C8EC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35E57E2AEBDFCD0074C8EC /* NetworkError.swift */; };
 		5A36F15D2AFFA84F00039ADA /* SearchLocationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15C2AFFA84E00039ADA /* SearchLocationDTO.swift */; };
 		5A36F1602AFFA85500039ADA /* SearchLocationReqeustDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15F2AFFA85500039ADA /* SearchLocationReqeustDTO.swift */; };
+		5A46FBA92F91B0700028D6A1 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -91,7 +112,6 @@
 		5A70BA352AC174E600506846 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA342AC174E600506846 /* SceneDelegate.swift */; };
 		5A70BA3C2AC174EC00506846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3B2AC174EC00506846 /* Assets.xcassets */; };
 		5A70BA3F2AC174EC00506846 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A70BA3D2AC174EC00506846 /* LaunchScreen.storyboard */; };
-		5A70BA4A2AC174EC00506846 /* MakgulliTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA492AC174EC00506846 /* MakgulliTests.swift */; };
 		5A70BA542AC174EC00506846 /* MakgulliUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA532AC174EC00506846 /* MakgulliUITests.swift */; };
 		5A70BA562AC174EC00506846 /* MakgulliUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */; };
 		5A70BA632AC1788E00506846 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A70BA622AC1788E00506846 /* LocationViewController.swift */; };
@@ -169,8 +189,6 @@
 		5AE652962B92636A0033CED5 /* NaverMaps.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA1C92AC1920A006040D2 /* NaverMaps.plist */; };
 		5AE652972B92636A0033CED5 /* KakaoAPIKey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A9DA2132AC3DD0D006040D2 /* KakaoAPIKey.plist */; };
 		5AE652982B9268FB0033CED5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5A36F1B62B027A9900039ADA /* GoogleService-Info.plist */; };
-		97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */; };
-		D5B862DDBE4105DA235A3EDC /* libPods-Makgulli.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */; };
 		C2773C5A2CEF25E500942765 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C592CEF25E500942765 /* FirebaseCore */; };
 		C2773C5C2CEF25E500942765 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C5B2CEF25E500942765 /* FirebaseCrashlytics */; };
 		C2773C5E2CEF25E500942765 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = C2773C5D2CEF25E500942765 /* FirebaseMessaging */; };
@@ -181,7 +199,6 @@
 		C2773C6A2CF007BC00942765 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2773C692CF007BC00942765 /* AppCoordinator.swift */; };
 		C2773C6C2CF0087300942765 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2773C6B2CF0087300942765 /* Coordinator.swift */; };
 		C2C2FECC2CF02DD50000AC4F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; };
-		C2C2FECD2CF02DE80000AC4F /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C2C2FECF2CF1BEB70000AC4F /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FECE2CF1BEB70000AC4F /* TabBar.swift */; };
 		C2C2FED22CF1C2720000AC4F /* LocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FED12CF1C2720000AC4F /* LocationCoordinator.swift */; };
 		C2C2FED52CF1C37A0000AC4F /* FavoriteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C2FED42CF1C37A0000AC4F /* FavoriteCoordinator.swift */; };
@@ -215,13 +232,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C2C2FEC82CF02D000000AC4F /* Embed Frameworks */ = {
+		5A46FBAA2F91B0700028D6A1 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C2C2FECD2CF02DE80000AC4F /* RealmSwift in Embed Frameworks */,
+				5A46FBA92F91B0700028D6A1 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,9 +246,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1611F00CAC988DA4A2FFB986 /* libPods-Makgulli-MakgulliUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli-MakgulliUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		463D854F776FDADD2658D9BD /* Pods-Makgulli.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli.release.xcconfig"; path = "Target Support Files/Pods-Makgulli/Pods-Makgulli.release.xcconfig"; sourceTree = "<group>"; };
-		51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakgulliTests.release.xcconfig"; path = "Target Support Files/Pods-MakgulliTests/Pods-MakgulliTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A0406E62AF50DB300A4BA84 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		5A0406E82AF5145400A4BA84 /* LocationDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDIContainer.swift; sourceTree = "<group>"; };
 		5A0406EF2AF617B400A4BA84 /* LocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStorage.swift; sourceTree = "<group>"; };
@@ -268,6 +282,21 @@
 		5A0A985D2AE90D0000545939 /* URLLiteral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLLiteral.swift; sourceTree = "<group>"; };
 		5A0A985F2AE9159F00545939 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
 		5A0A98612AE917A300545939 /* InquiryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryButtonView.swift; sourceTree = "<group>"; };
+		5A0C37222F907E8300235467 /* MockEpisodeDetailLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEpisodeDetailLocalRepository.swift; sourceTree = "<group>"; };
+		5A0C37232F907E8300235467 /* MockEpisodeDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEpisodeDetailRepository.swift; sourceTree = "<group>"; };
+		5A0C37242F907E8300235467 /* MockFavoriteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoriteRepository.swift; sourceTree = "<group>"; };
+		5A0C37252F907E8300235467 /* MockLocationDetailLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationDetailLocalRepository.swift; sourceTree = "<group>"; };
+		5A0C37262F907E8300235467 /* MockLocationDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocationDetailRepository.swift; sourceTree = "<group>"; };
+		5A0C37272F907E8300235467 /* MockSearchLocationLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchLocationLocalRepository.swift; sourceTree = "<group>"; };
+		5A0C37282F907E8300235467 /* MockSearchLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSearchLocationRepository.swift; sourceTree = "<group>"; };
+		5A0C37292F907E8300235467 /* MockWriteEpisodeLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWriteEpisodeLocalRepository.swift; sourceTree = "<group>"; };
+		5A0C372A2F907E8300235467 /* MockWriteEpisodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWriteEpisodeRepository.swift; sourceTree = "<group>"; };
+		5A0C372C2F907E8300235467 /* StoreVOFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreVOFactory.swift; sourceTree = "<group>"; };
+		5A0C372E2F907E8300235467 /* EpisodeDetailUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailUseCaseTests.swift; sourceTree = "<group>"; };
+		5A0C372F2F907E8300235467 /* FavoriteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUseCaseTests.swift; sourceTree = "<group>"; };
+		5A0C37302F907E8300235467 /* LocationDetailUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailUseCaseTests.swift; sourceTree = "<group>"; };
+		5A0C37312F907E8300235467 /* SearchLocationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationUseCaseTests.swift; sourceTree = "<group>"; };
+		5A0C37322F907E8300235467 /* WriteEpisodeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteEpisodeUseCaseTests.swift; sourceTree = "<group>"; };
 		5A35E57E2AEBDFCD0074C8EC /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5A36F15C2AFFA84E00039ADA /* SearchLocationDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationDTO.swift; sourceTree = "<group>"; };
 		5A36F15F2AFFA85500039ADA /* SearchLocationReqeustDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationReqeustDTO.swift; sourceTree = "<group>"; };
@@ -316,7 +345,6 @@
 		5A70BA3E2AC174EC00506846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A70BA402AC174EC00506846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A70BA452AC174EC00506846 /* MakgulliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakgulliTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5A70BA492AC174EC00506846 /* MakgulliTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliTests.swift; sourceTree = "<group>"; };
 		5A70BA4F2AC174EC00506846 /* MakgulliUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MakgulliUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A70BA532AC174EC00506846 /* MakgulliUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITests.swift; sourceTree = "<group>"; };
 		5A70BA552AC174EC00506846 /* MakgulliUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakgulliUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -391,12 +419,6 @@
 		5AE6528F2B9259090033CED5 /* LINESeedKR-Rg.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LINESeedKR-Rg.otf"; sourceTree = "<group>"; };
 		5AE652902B92590E0033CED5 /* LINESeedKR-Bd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LINESeedKR-Bd.otf"; sourceTree = "<group>"; };
 		5AE652912B9259130033CED5 /* LINESeedKR-Th.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LINESeedKR-Th.otf"; sourceTree = "<group>"; };
-		629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.release.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.release.xcconfig"; sourceTree = "<group>"; };
-		7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli-MakgulliUITests.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		B35E14DFFC9313A7EEBC2771 /* libPods-Makgulli.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Makgulli.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6D596DBBF462B7A2EB0ABAA /* libPods-MakgulliTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MakgulliTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E264EB7DCC1E4513F31412DC /* Pods-MakgulliTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MakgulliTests.debug.xcconfig"; path = "Target Support Files/Pods-MakgulliTests/Pods-MakgulliTests.debug.xcconfig"; sourceTree = "<group>"; };
-		F42A819738E82936BB69AC5F /* Pods-Makgulli.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Makgulli.debug.xcconfig"; path = "Target Support Files/Pods-Makgulli/Pods-Makgulli.debug.xcconfig"; sourceTree = "<group>"; };
 		C2773C692CF007BC00942765 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C2773C6B2CF0087300942765 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C2C2FECE2CF1BEB70000AC4F /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
@@ -419,8 +441,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A0C37192F907A0900235467 /* FirebaseAnalytics in Frameworks */,
 				C2773C672CEF26C400942765 /* RxSwift in Frameworks */,
-				C2773C582CEF25E500942765 /* FirebaseAnalytics in Frameworks */,
 				C2773C5A2CEF25E500942765 /* FirebaseCore in Frameworks */,
 				5A0A984B2AE689C600545939 /* RxReachability in Frameworks */,
 				5A0A98582AE817BE00545939 /* RxDataSources in Frameworks */,
@@ -434,8 +456,8 @@
 				C2773C5E2CEF25E500942765 /* FirebaseMessaging in Frameworks */,
 				5A70BA662AC178E600506846 /* SnapKit in Frameworks */,
 				C2773C5C2CEF25E500942765 /* FirebaseCrashlytics in Frameworks */,
+				5A2018F62F90D1C3004DBBE9 /* NMapsMap in Frameworks */,
 				5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */,
-				C652817663168A57FCC2F4F3 /* Pods_Makgulli.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +465,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97E4E67B233AA4926A368385 /* libPods-MakgulliTests.a in Frameworks */,
+				5A0C37212F907CEB00235467 /* RxTest in Frameworks */,
+				5A0C371D2F907CEB00235467 /* RxRelay in Frameworks */,
+				5A0C371F2F907CEB00235467 /* RxSwift in Frameworks */,
+				5A0C371B2F907CEB00235467 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,26 +476,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				506CA1E64669FE0853F40A90 /* libPods-Makgulli-MakgulliUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C90E139FD36705BE1388911 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F42A819738E82936BB69AC5F /* Pods-Makgulli.debug.xcconfig */,
-				463D854F776FDADD2658D9BD /* Pods-Makgulli.release.xcconfig */,
-				7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */,
-				629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */,
-				E264EB7DCC1E4513F31412DC /* Pods-MakgulliTests.debug.xcconfig */,
-				51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		5A0406E52AF50CF900A4BA84 /* DIContainer */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +690,42 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		5A0C372B2F907E8300235467 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				5A0C37222F907E8300235467 /* MockEpisodeDetailLocalRepository.swift */,
+				5A0C37232F907E8300235467 /* MockEpisodeDetailRepository.swift */,
+				5A0C37242F907E8300235467 /* MockFavoriteRepository.swift */,
+				5A0C37252F907E8300235467 /* MockLocationDetailLocalRepository.swift */,
+				5A0C37262F907E8300235467 /* MockLocationDetailRepository.swift */,
+				5A0C37272F907E8300235467 /* MockSearchLocationLocalRepository.swift */,
+				5A0C37282F907E8300235467 /* MockSearchLocationRepository.swift */,
+				5A0C37292F907E8300235467 /* MockWriteEpisodeLocalRepository.swift */,
+				5A0C372A2F907E8300235467 /* MockWriteEpisodeRepository.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		5A0C372D2F907E8300235467 /* TestHelper */ = {
+			isa = PBXGroup;
+			children = (
+				5A0C372C2F907E8300235467 /* StoreVOFactory.swift */,
+			);
+			path = TestHelper;
+			sourceTree = "<group>";
+		};
+		5A0C37332F907E8300235467 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				5A0C372E2F907E8300235467 /* EpisodeDetailUseCaseTests.swift */,
+				5A0C372F2F907E8300235467 /* FavoriteUseCaseTests.swift */,
+				5A0C37302F907E8300235467 /* LocationDetailUseCaseTests.swift */,
+				5A0C37312F907E8300235467 /* SearchLocationUseCaseTests.swift */,
+				5A0C37322F907E8300235467 /* WriteEpisodeUseCaseTests.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 		5A35E5782AEB482E0074C8EC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,8 +893,6 @@
 				5A70BA482AC174EC00506846 /* MakgulliTests */,
 				5A70BA522AC174EC00506846 /* MakgulliUITests */,
 				5A70BA302AC174E600506846 /* Products */,
-				0C90E139FD36705BE1388911 /* Pods */,
-				64AEBEDA30B71C9D4154194F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -877,7 +922,9 @@
 		5A70BA482AC174EC00506846 /* MakgulliTests */ = {
 			isa = PBXGroup;
 			children = (
-				5A70BA492AC174EC00506846 /* MakgulliTests.swift */,
+				5A0C372B2F907E8300235467 /* Mock */,
+				5A0C372D2F907E8300235467 /* TestHelper */,
+				5A0C37332F907E8300235467 /* UseCase */,
 			);
 			path = MakgulliTests;
 			sourceTree = "<group>";
@@ -1412,12 +1459,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A70BA592AC174EC00506846 /* Build configuration list for PBXNativeTarget "Makgulli" */;
 			buildPhases = (
-				5B67162CB0DB09E678549152 /* [CP] Check Pods Manifest.lock */,
 				5A70BA2B2AC174E600506846 /* Sources */,
 				5A70BA2C2AC174E600506846 /* Frameworks */,
 				5A70BA2D2AC174E600506846 /* Resources */,
-				E889CEAF9F61E3A48B4D8D69 /* [CP] Embed Pods Frameworks */,
 				5A36F1C02B027F4700039ADA /* ShellScript */,
+				5A46FBAA2F91B0700028D6A1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1441,6 +1487,7 @@
 				C2773C642CEF26C400942765 /* RxRelay */,
 				C2773C662CEF26C400942765 /* RxSwift */,
 				C2C2FECB2CF02DD50000AC4F /* RealmSwift */,
+				5A2018F52F90D1C3004DBBE9 /* NMapsMap */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -1450,7 +1497,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A70BA5C2AC174EC00506846 /* Build configuration list for PBXNativeTarget "MakgulliTests" */;
 			buildPhases = (
-				2F322F6F8F340F83E52FA724 /* [CP] Check Pods Manifest.lock */,
 				5A70BA412AC174EC00506846 /* Sources */,
 				5A70BA422AC174EC00506846 /* Frameworks */,
 				5A70BA432AC174EC00506846 /* Resources */,
@@ -1469,11 +1515,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A70BA5F2AC174EC00506846 /* Build configuration list for PBXNativeTarget "MakgulliUITests" */;
 			buildPhases = (
-				C984B1E4B13FB59DB3836549 /* [CP] Check Pods Manifest.lock */,
 				5A70BA4B2AC174EC00506846 /* Sources */,
 				5A70BA4C2AC174EC00506846 /* Frameworks */,
 				5A70BA4D2AC174EC00506846 /* Resources */,
-				5D35DDBE5F5506EB25744EEF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1527,6 +1571,7 @@
 				C2773C562CEF25E500942765 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C2773C5F2CEF26C400942765 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				C2C2FECA2CF02DD50000AC4F /* XCRemoteSwiftPackageReference "realm-swift" */,
+				5A2018F42F90D1C3004DBBE9 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -1572,28 +1617,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2F322F6F8F340F83E52FA724 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MakgulliTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5A36F1C02B027F4700039ADA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1616,84 +1639,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
-		5B67162CB0DB09E678549152 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Makgulli-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5D35DDBE5F5506EB25744EEF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Makgulli-MakgulliUITests/Pods-Makgulli-MakgulliUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C984B1E4B13FB59DB3836549 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Makgulli-MakgulliUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E889CEAF9F61E3A48B4D8D69 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Makgulli/Pods-Makgulli-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Makgulli/Pods-Makgulli-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Makgulli/Pods-Makgulli-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1867,7 +1812,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A70BA4A2AC174EC00506846 /* MakgulliTests.swift in Sources */,
+				5A0C37342F907E8300235467 /* MockEpisodeDetailRepository.swift in Sources */,
+				5A0C37352F907E8300235467 /* MockLocationDetailLocalRepository.swift in Sources */,
+				5A0C37362F907E8300235467 /* MockWriteEpisodeLocalRepository.swift in Sources */,
+				5A0C37372F907E8300235467 /* MockEpisodeDetailLocalRepository.swift in Sources */,
+				5A0C37382F907E8300235467 /* MockSearchLocationRepository.swift in Sources */,
+				5A0C37392F907E8300235467 /* EpisodeDetailUseCaseTests.swift in Sources */,
+				5A0C373A2F907E8300235467 /* MockLocationDetailRepository.swift in Sources */,
+				5A0C373B2F907E8300235467 /* MockFavoriteRepository.swift in Sources */,
+				5A0C373C2F907E8300235467 /* FavoriteUseCaseTests.swift in Sources */,
+				5A0C373D2F907E8300235467 /* MockWriteEpisodeRepository.swift in Sources */,
+				5A0C373E2F907E8300235467 /* LocationDetailUseCaseTests.swift in Sources */,
+				5A0C373F2F907E8300235467 /* WriteEpisodeUseCaseTests.swift in Sources */,
+				5A0C37402F907E8300235467 /* SearchLocationUseCaseTests.swift in Sources */,
+				5A0C37412F907E8300235467 /* MockSearchLocationLocalRepository.swift in Sources */,
+				5A0C37422F907E8300235467 /* StoreVOFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2023,18 +1982,15 @@
 		};
 		5A70BA5A2AC174EC00506846 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F42A819738E82936BB69AC5F /* Pods-Makgulli.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Makgulli/Makgulli.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8LJ2P85FNV;
+				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Makgulli/Common/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "주막";
@@ -2050,11 +2006,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development com.ios.Makgulli";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2066,17 +2021,14 @@
 		};
 		5A70BA5B2AC174EC00506846 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 463D854F776FDADD2658D9BD /* Pods-Makgulli.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Makgulli/Makgulli.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8LJ2P85FNV;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Makgulli/Common/Resource/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "주막";
@@ -2092,11 +2044,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.ios.Makgulli";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2108,7 +2059,6 @@
 		};
 		5A70BA5D2AC174EC00506846 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E264EB7DCC1E4513F31412DC /* Pods-MakgulliTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2116,7 +2066,7 @@
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.MakgulliTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2129,7 +2079,6 @@
 		};
 		5A70BA5E2AC174EC00506846 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51419F2996E3155D102018C3 /* Pods-MakgulliTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2137,7 +2086,7 @@
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.MakgulliTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2150,7 +2099,6 @@
 		};
 		5A70BA602AC174EC00506846 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7713D3C968EC5B7EA1CAC4B4 /* Pods-Makgulli-MakgulliUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2169,7 +2117,6 @@
 		};
 		5A70BA612AC174EC00506846 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 629FCF6A48EC74CD51475DBD /* Pods-Makgulli-MakgulliUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2242,6 +2189,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
+			};
+		};
+		5A2018F42F90D1C3004DBBE9 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.23.2;
 			};
 		};
 		5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
@@ -2317,6 +2272,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5A0A98542AE817BE00545939 /* XCRemoteSwiftPackageReference "RxDataSources" */;
 			productName = RxDataSources;
+		};
+		5A0C371A2F907CEB00235467 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2773C5F2CEF26C400942765 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		5A0C371C2F907CEB00235467 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2773C5F2CEF26C400942765 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		5A0C371E2F907CEB00235467 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2773C5F2CEF26C400942765 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		5A0C37202F907CEB00235467 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2773C5F2CEF26C400942765 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		5A2018F52F90D1C3004DBBE9 /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A2018F42F90D1C3004DBBE9 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */;
+			productName = NMapsMap;
 		};
 		5A6827BB2AD6BDCE00C37B17 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;

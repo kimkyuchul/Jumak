@@ -24,7 +24,6 @@ protocol LocationUseCase: AnyObject {
 }
 
 final class DefaultLocationUseCase: LocationUseCase {
-    
     private let locationService: LocationService
     private let disposebag = DisposeBag()
     
@@ -96,10 +95,6 @@ private extension DefaultLocationUseCase {
         if let locality = placemark.locality {
             addressString += locality + " "
         }
-        
-//        if let subLocality = placemark.subLocality {
-//            addressString += subLocality + " "
-//        }
         
         if let thoroughfare = placemark.thoroughfare {
             addressString += thoroughfare + " "

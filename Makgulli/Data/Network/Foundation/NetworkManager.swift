@@ -10,33 +10,42 @@ import Foundation
 import RxSwift
 import Alamofire
 
-struct NetworkManager<T: TargetType> {
-    
+protocol NetworkService {
+    func request<T: Decodable>(_ target: TargetType, type: T.Type) -> Single<T>
+}
+
+final class DefaultNetworkService: NetworkService {
     func request<T: Decodable>(_ target: TargetType, type: T.Type) -> Single<T> {
-        
-        return Single.create(subscribe: { single in
+        return Single.create { single in
             AF.request(target).responseData { response in
-                switch response.result {
-                case .success(let value):
-                    guard let statusCode = response.response?.statusCode else { return }
-                    let isSuccessful = (200..<300).contains(statusCode)
-                    
-                    if isSuccessful {
-                        do {
-                            let data = try JSONDecoder().decode(T.self, from: value)
-                            single(.success(data))
-                        } catch {
-                            dump(error.localizedDescription)
-                            single(.failure(NetworkError.decodingError))
-                        }
-                    } else {
-                        single(.failure(NetworkError.isNotSuccessful(statusCode: response.response?.statusCode ?? 500)))
-                    }
-                case .failure(let failure):
-                    single(.failure(NetworkError.underlyingError(message: failure.localizedDescription)))
-                }
+                single(Self.handleResponse(response, type: type))
             }
             return Disposables.create()
-        })
+        }
+    }
+
+    // MARK: - 결과 분기
+    private static func handleResponse<T: Decodable>(_ response: AFDataResponse<Data>, type: T.Type) -> Result<T, Error> {
+        switch response.result {
+        case .success(let data):
+            return validateAndDecode(data: data, statusCode: response.response?.statusCode, type: type)
+        case .failure(let error):
+            return .failure(NetworkError.underlyingError(message: error.localizedDescription))
+        }
+    }
+
+    // MARK: - HTTP 상태코드 검증 + JSON 디코딩
+    private static func validateAndDecode<T: Decodable>(data: Data, statusCode: Int?, type: T.Type) -> Result<T, Error> {
+        guard let statusCode, (200..<300).contains(statusCode) else {
+            return .failure(NetworkError.isNotSuccessful(statusCode: statusCode ?? 500))
+        }
+
+        do {
+            let decoded = try JSONDecoder().decode(type, from: data)
+            return .success(decoded)
+        } catch {
+            dump(error.localizedDescription)
+            return .failure(NetworkError.decodingError)
+        }
     }
 }

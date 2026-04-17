@@ -10,73 +10,31 @@ import Foundation
 import RxSwift
 
 protocol EpisodeDetailUseCase: AnyObject {
-    func fetchEpisodeDetail(episode: Episode)
-    func deleteEpisode(storeId: String, episodeId: String)
-    func deleteEpisodeImage(fileName: String)
-    
-    var episodeDiffableItem: PublishSubject<Episode> { get }
-    var deleteEpisodeState: PublishSubject<Void> { get }
-    var deleteEpisodeImageState: PublishSubject<Void> { get }
-    var errorSubject: PublishSubject<Error> { get }
+    func deleteEpisode(storeId: String, episodeId: String, imageFileName: String) -> Completable
 }
 
 final class DefaultEpisodeDetailUseCase: EpisodeDetailUseCase {
-    
-    enum EpisodeDetailUseError: Error {
+    enum EpisodeDetailError: Error {
         case deleteEpisode
         case deleteEpisodeImage
     }
-    
+
     private let episodeDetailRepository: EpisodeDetailRepository
     private let episodeDetailLocalRepository: EpisodeDetailLocalRepository
-    private let disposebag = DisposeBag()
-    
+
     init(episodeDetailRepository: EpisodeDetailRepository,
          episodeDetailLocalRepository: EpisodeDetailLocalRepository
     ) {
         self.episodeDetailRepository = episodeDetailRepository
         self.episodeDetailLocalRepository = episodeDetailLocalRepository
     }
-    
-    var episodeDiffableItem = PublishSubject<Episode>()
-    var deleteEpisodeState = PublishSubject<Void>()
-    var deleteEpisodeImageState = PublishSubject<Void>()
-    var errorSubject = PublishSubject<Error>()
-    
-    func fetchEpisodeDetail(episode: Episode) {
-        Observable.just(episode)
-            .withUnretained(self)
-            .subscribe(onNext: { owner, episode in
-                owner.episodeDiffableItem.onNext(episode)
-            })
-            .disposed(by: disposebag)
-    }
-    
-    func deleteEpisode(storeId: String, episodeId: String) {
-        episodeDetailLocalRepository.deleteEpisode(id: storeId, episodeId: episodeId)
-            .subscribe { [weak self] completable in
-                switch completable {
-                case .completed:
-                    self?.deleteEpisodeState.onNext(Void())
-                case .error(let error):
-                    dump(error)
-                    self?.errorSubject.onNext(EpisodeDetailUseError.deleteEpisode)
-                }
-            }
-            .disposed(by: disposebag)
-    }
-    
-    func deleteEpisodeImage(fileName: String) {
-        episodeDetailRepository.removeImage(fileName: fileName)
-            .subscribe { [weak self] completable in
-                switch completable {
-                case .completed:
-                    self?.deleteEpisodeImageState.onNext(Void())
-                case .error(let error):
-                    dump(error)
-                    self?.errorSubject.onNext(EpisodeDetailUseError.deleteEpisodeImage)
-                }
-            }
-            .disposed(by: disposebag)
+
+    func deleteEpisode(storeId: String, episodeId: String, imageFileName: String) -> Completable {
+        let realmDelete = episodeDetailLocalRepository.deleteEpisode(id: storeId, episodeId: episodeId)
+            .catch { _ in .error(EpisodeDetailError.deleteEpisode) }
+        let imageDelete = episodeDetailRepository.removeImage(fileName: imageFileName)
+            .catch { _ in .error(EpisodeDetailError.deleteEpisodeImage) }
+
+        return Completable.zip(realmDelete, imageDelete)
     }
 }

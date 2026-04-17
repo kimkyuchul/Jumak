@@ -10,16 +10,10 @@ import Foundation
 import RxSwift
 
 protocol WriteEpisodeUseCase: AnyObject {
-    func updateEpisodeList(_ store: StoreVO, episode: EpisodeVO, imageData: Data)
-    func updateValidation(text: String) -> Bool
-    
-    var updateEpisodeListState: PublishSubject<Void> { get set }
-    var saveEpisodeImageState: PublishSubject<Void> { get set }
-    var errorSubject: PublishSubject<Error> { get set }
+    func updateEpisodeList(_ store: StoreVO, episode: EpisodeVO, imageData: Data) -> Completable
 }
 
 final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
-    
     enum WriteEpisodeError: Error {
         case createStore
         case updateEpisode
@@ -28,95 +22,39 @@ final class DefaultWriteEpisodeUseCase: WriteEpisodeUseCase {
     
     private let writeEpisodeRepository: WriteEpisodeRepository
     private let writeEpisodeLocalRepository: WriteEpisodeLocalRepository
-    private let disposebag = DisposeBag()
     
-    var updateEpisodeListState = PublishSubject<Void>()
-    var saveEpisodeImageState = PublishSubject<Void>()
-    var errorSubject = PublishSubject<Error>()
-    
-    
-    init(writeEpisodeRepository: WriteEpisodeRepository,
-         writeEpisodeLocalRepository: WriteEpisodeLocalRepository
+    init(
+        writeEpisodeRepository: WriteEpisodeRepository,
+        writeEpisodeLocalRepository: WriteEpisodeLocalRepository
     ) {
         self.writeEpisodeRepository = writeEpisodeRepository
         self.writeEpisodeLocalRepository = writeEpisodeLocalRepository
     }
     
-    func updateEpisodeList(_ store: StoreVO, episode: EpisodeVO, imageData: Data) {
-        let updateEpisodeTable = episode.makeEpisodeTable()
+    func updateEpisodeList(_ store: StoreVO, episode: EpisodeVO, imageData: Data) -> Completable {
+        let episodeTable = episode.makeEpisodeTable()
+        let exists = storeExists(store.id)
         
-        // 가게가 렘에 추가되지 않은 상태
-        if !storeExists(store.id) {
-            let updatedStoreTable = store.makeStoreTable()
-            updatedStoreTable.episode.append(updateEpisodeTable)
-            
-            // episode을 append하고 가게를 램에 추가
-            createStoreTable(updatedStoreTable)
-            saveEpisodeImage(fileName: "\(updateEpisodeTable._id).jpg", imageData: imageData)
-            
-        } else {
-            // 가게가 렘에 추가되어 있는 상태라면 해당 데이터에 updateEpisode
-            updateEpisode(store.id, updateEpisodeTable)
-            saveEpisodeImage(fileName: "\(updateEpisodeTable._id).jpg", imageData: imageData)
-        }
+        // Realm write: 가게가 없으면 episode을 append한 새 StoreTable 생성, 있으면 기존 데이터에 episode 추가
+        let realmWrite: Completable = exists
+        ? writeEpisodeLocalRepository.updateEpisode(id: store.id, episode: episodeTable)
+            .catch { _ in .error(WriteEpisodeError.updateEpisode) }
+        : {
+            let storeTable = store.makeStoreTable()
+            storeTable.episode.append(episodeTable)
+            return writeEpisodeLocalRepository.createStoreTable(storeTable)
+                .catch { _ in .error(WriteEpisodeError.createStore) }
+        }()
         
-        updateEpisodeListState.onNext(Void())
-    }
-            
-    func updateValidation(text: String) -> Bool {
-        guard !text.isEmpty else {
-            return false
-        }
+        let imageSave = writeEpisodeRepository
+            .saveImage(fileName: "\(episodeTable._id).jpg", imageData: imageData)
+            .catch { _ in .error(WriteEpisodeError.saveEpisodeImage) }
         
-        return true
+        return Completable.zip(realmWrite, imageSave)
     }
 }
 
 extension DefaultWriteEpisodeUseCase {
-    private func saveEpisodeImage(fileName: String, imageData: Data) {
-        writeEpisodeRepository.saveImage(fileName: fileName, imageData: imageData)
-            .subscribe { [weak self] completable in
-                switch completable {
-                case .completed:
-                    self?.saveEpisodeImageState.onNext(Void())
-                case .error(let error):
-                    dump(error)
-                    self?.errorSubject.onNext(WriteEpisodeError.saveEpisodeImage)
-                }
-            }
-            .disposed(by: disposebag)
-    }
-    
-    private func createStore(_ store: StoreVO) {
-        writeEpisodeLocalRepository.createStore(store)
-            .subscribe(onCompleted: {
-                dump("createStore")
-            }, onError: { [weak self] error in
-                self?.errorSubject.onNext(WriteEpisodeError.createStore)
-            })
-            .disposed(by: disposebag)
-    }
-    
-    private func createStoreTable(_ store: StoreTable) {
-        writeEpisodeLocalRepository.createStoreTable(store)
-            .subscribe(onCompleted: {
-                dump("createStoreTable")
-            }, onError: { [weak self] error in
-                self?.errorSubject.onNext(WriteEpisodeError.createStore)
-            })
-            .disposed(by: disposebag)
-    }
-    
-    private func updateEpisode(_ id: String, _ episode: EpisodeTable) {
-        writeEpisodeLocalRepository.updateEpisode(id: id, episode: episode)
-            .subscribe(onCompleted: {
-                dump("updateEpisode")
-            }, onError: { [weak self] error in
-                self?.errorSubject.onNext(WriteEpisodeError.updateEpisode)
-            })
-            .disposed(by: disposebag)
-    }
-    
     private func storeExists(_ id: String) -> Bool {
         writeEpisodeLocalRepository.checkContainsStore(id)
     }
@@ -124,12 +62,14 @@ extension DefaultWriteEpisodeUseCase {
 
 extension EpisodeVO {
     func makeEpisodeTable() -> EpisodeTable {
-        let episodeTable = EpisodeTable(date: self.date,
-                                        comment: self.comment,
-                                        imageURL: self.imageURL,
-                                        alcohol: self.alcohol,
-                                        drink: self.drink,
-                                        drinkQuantity: self.drinkQuantity)
+        let episodeTable = EpisodeTable(
+            date: self.date,
+            comment: self.comment,
+            imageURL: self.imageURL,
+            alcohol: self.alcohol,
+            drink: self.drink,
+            drinkQuantity: self.drinkQuantity
+        )
         return episodeTable
     }
 }

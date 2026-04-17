@@ -23,17 +23,22 @@
 
 # **⚙️ 개발환경 및 기술스택**
 
-- Minimum Deployment: iOS 15.5
-- Dependence Manager : SPM & CocoaPod(NaverMap)
-- Swift Version: 5.8.1
-- `UIKit` `MVVM-C` `RxSwift` `RxCocoa`
-- `Codebase UI` `SnapKit`
-- `DiffableDataSource` `CompositionalLayout` `PHPickerViewController` `RxDataSources` `RxGesture` `RxKeyboard`
-- `CoreLocation` `NaverMap`
-- `Alamofire` `RxReachability`
-- `RealmSwift`
-- `Firebase Crashlytics` `Firebase Push Notifications`
-- `fastlane`, `GithubAction`
+- **Minimum Deployment**: iOS 15.5
+- **Swift Version**: 5.8.1
+- **Dependency Manager**: SPM
+- **Architecture**: UIKit · Clean Architecture · MVVM-C (Input/Output) · Coordinator Pattern
+- **Reactive**: RxSwift 6.10.2 · RxCocoa · RxDataSources 5.0.2 · RxGesture 4.0.4 · RxKeyboard 2.0.1 · RxReachability 1.2.1
+- **UI**: AutoLayout · SnapKit 5.7.1 · DiffableDataSource · CompositionalLayout · PHPickerViewController
+- **Map & Location**: NMapsMap 3.23.2 · CoreLocation
+- **Networking**: Alamofire 5.11.2 · Reachability.swift 5.2.4
+- **Persistence**: RealmSwift 14.14.0
+- **Firebase**: Crashlytics · Analytics · Messaging (Push Notifications) — Firebase iOS SDK 11.15.0
+- **Testing**: XCTest · RxTest · RxBlocking
+- **CI/CD**: fastlane · GitHub Actions
+
+### 🛠️ Agent Skill
+
+- **[RxSwift Agent Skill](https://github.com/kimkyuchul/RxSwift-Skill)** — 본 프로젝트의 RxSwift 코드 작성·리뷰를 보조하기 위해 직접 제작한 Agent Skill을 Claude Code에 연동하여 활용했습니다.
 
 # **🔥 기술적 도전**
 

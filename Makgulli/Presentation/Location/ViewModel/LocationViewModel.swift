@@ -20,14 +20,26 @@ final class LocationViewModel: ViewModelType, Coordinatable {
     private var storeList: [StoreVO] = []
     var categoryType = BehaviorRelay<CategoryType>(value: .makgulli)
     private var currentLocation = PublishRelay<CLLocationCoordinate2D>()
+    private let fetchTrigger = PublishRelay<FetchParams>()
     
-    init(searchLocationUseCase: SearchLocationUseCase, locationUseCase: LocationUseCase) {
+    init(
+        searchLocationUseCase: SearchLocationUseCase,
+        locationUseCase: LocationUseCase
+    ) {
         self.searchLocationUseCase = searchLocationUseCase
         self.locationUseCase = locationUseCase
     }
     
     deinit {
         print("Deinit LocationViewModel")
+    }
+    
+    private struct FetchParams {
+        let query: String
+        let x: String
+        let y: String
+        let page: Int
+        let display: Int
     }
     
     struct Input {
@@ -55,7 +67,7 @@ final class LocationViewModel: ViewModelType, Coordinatable {
         let storeCollectionViewDataSource = BehaviorRelay<[StoreVO]>(value: [])
         let storeEmptyViewHidden = PublishRelay<Bool>()
         let showErrorAlert = PublishRelay<Error>()
-        let isLoding = BehaviorRelay<Bool>(value: false)
+        let isLoading = BehaviorRelay<Bool>(value: false)
     }
     
     func transform(input: Input) -> Output {
@@ -66,13 +78,6 @@ final class LocationViewModel: ViewModelType, Coordinatable {
                 owner.locationUseCase.checkLocationAuthorization()
                 owner.locationUseCase.checkAuthorization()
                 owner.locationUseCase.observeUserLocation()
-            }
-            .disposed(by: disposeBag)
-        
-        input.viewWillAppearEvent
-            .withLatestFrom(input.willDisplayCell)
-            .bind(with: self) { owner, indexPath in
-                owner.searchLocationUseCase.updateWillDisplayStoreCell(index: indexPath.row, storeList: owner.storeList)
             }
             .disposed(by: disposeBag)
         
@@ -98,15 +103,16 @@ final class LocationViewModel: ViewModelType, Coordinatable {
             .disposed(by: disposeBag)
         
         input.didSelectCategoryCell
-            .withLatestFrom(currentLocation) { index, location in
-                return (index, location)
-            }
-            .bind(with: self) { owner, indexLocation in
-                let categoryType = CategoryType.allCases[indexLocation.0.row]
+            .withLatestFrom(currentLocation) { ($0, $1) }
+            .bind(with: self) { owner, tuple in
+                let (indexPath, location) = tuple
+                let categoryType = CategoryType.allCases[indexPath.row]
                 
                 output.reSearchButtonHidden.accept(true)
                 owner.categoryType.accept(categoryType)
-                owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: indexLocation.1.x, y: indexLocation.1.y, page: 1, display: 30)
+                owner.fetchTrigger.accept(
+                    FetchParams(query: categoryType.rawValue, x: location.x, y: location.y, page: 1, display: 30)
+                )
             }
             .disposed(by: disposeBag)
         
@@ -117,22 +123,31 @@ final class LocationViewModel: ViewModelType, Coordinatable {
             }
             .disposed(by: disposeBag)
         
-        input.didSelectRefreshButton
+        let didSelectRefreshButton = input.didSelectRefreshButton
             .withLatestFrom(Observable.combineLatest(self.currentLocation, self.categoryType))
-            .withUnretained(self)
-            .flatMap { owner, currentLocationAndCategoryType -> Observable<String> in
-                let (currentLocation, categoryType) = currentLocationAndCategoryType
+            .share()
+        
+        didSelectRefreshButton
+            .bind(with: self) { owner, pair in
+                let (location, categoryType) = pair
                 output.reSearchButtonHidden.accept(true)
-                owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: currentLocation.x, y: currentLocation.y, page: 1, display: 30)
-                
-                return owner.locationUseCase.reverseGeocodeLocation(location: currentLocation.convertToCLLocation)
+                owner.fetchTrigger.accept(
+                    FetchParams(query: categoryType.rawValue, x: location.x, y: location.y, page: 1, display: 30)
+                )
+            }
+            .disposed(by: disposeBag)
+        
+        didSelectRefreshButton
+            .withUnretained(self)
+            .flatMapLatest { owner, pair -> Observable<String> in
+                let (location, _) = pair
+                return owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
                     .catchAndReturn("알 수 없는 지역입니다.")
             }
             .bind(to: output.currentUserAddress)
             .disposed(by: disposeBag)
         
         input.didSelectUserLocationButton
-            .withUnretained(self)
             .bind(with: self) { owner, _ in
                 output.reSearchButtonHidden.accept(true)
                 owner.locationUseCase.startUpdatingLocation()
@@ -155,32 +170,80 @@ final class LocationViewModel: ViewModelType, Coordinatable {
             }
             .disposed(by: disposeBag)
         
-        createOutput(input: input, output: output)
-        transformCollectionViewDataSource(input: input, output: output)
+        bindFetchPipeline(output: output)
+        bindWillDisplayUpdate(input: input, output: output)
+        bindLocationUpdates(output: output)
+        bindCollectionViewDataSource(output: output)
         
         return output
     }
     
-    private func createOutput(input: Input, output: Output) {
+    // MARK: - Bindings
+    
+    /// fetchTrigger → UseCase 호출 → isLoading 토글 + 성공/에러 분기를 한 스트림에서 원자적으로 처리
+    private func bindFetchPipeline(output: Output) {
+        fetchTrigger
+            .do(onNext: { _ in output.isLoading.accept(true) })
+            .flatMapLatest { [weak self] params -> Observable<Event<SearchLocationVO>> in
+                guard let self = self else { return .empty() }
+                return self.searchLocationUseCase
+                    .fetchLocation(query: params.query, x: params.x, y: params.y, page: params.page, display: params.display)
+                    .asObservable()
+                    .materialize()
+            }
+            .do(onNext: { _ in output.isLoading.accept(false) })
+            .subscribe(onNext: { event in
+                switch event {
+                case .next(let vo):
+                    output.storeEmptyViewHidden.accept(!vo.stores.isEmpty)
+                    output.selectedMarkerIndex.accept(nil)
+                    output.storeList.accept(vo.stores)
+                case .error(let error):
+                    output.showErrorAlert.accept(error)
+                case .completed:
+                    break
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    /// 셀 노출 시점마다 로컬 저장소에서 갱신된 StoreVO를 가져와 storeList를 부분 업데이트
+    private func bindWillDisplayUpdate(input: Input, output: Output) {
+        input.viewWillAppearEvent
+            .withLatestFrom(input.willDisplayCell)
+            .withUnretained(self)
+            .flatMapLatest { owner, indexPath -> Observable<(StoreVO, IndexPath)> in
+                owner.searchLocationUseCase
+                    .updateWillDisplayStoreCell(index: indexPath.row, storeList: owner.storeList)
+                    .asObservable()
+                    .map { ($0, indexPath) }
+                    .catch { error in
+                        output.showErrorAlert.accept(error)
+                        return .empty()
+                    }
+            }
+            .bind(with: self) { owner, tuple in
+                let (updatedStore, indexPath) = tuple
+                guard indexPath.row < owner.storeList.count else { return }
+                let current = owner.storeList[indexPath.row]
+                if owner.shouldUpdateStore(store: updatedStore, visibleStore: current) {
+                    owner.storeList[indexPath.row] = updatedStore
+                    output.storeList.accept(owner.storeList)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    /// LocationUseCase의 위치/권한 스트림을 VM의 Output과 내부 상태로 연결 (위치 갱신 시 재검색 포함)
+    private func bindLocationUpdates(output: Output) {
         locationUseCase.locationUpdateSubject
             .withLatestFrom(Observable.combineLatest(output.currentUserLocation, self.categoryType))
             .bind(with: self) { owner, userLocationAndCategoryType in
                 let (userLocation, categoryType) = userLocationAndCategoryType
                 
-                owner.searchLocationUseCase.fetchLocation(query: categoryType.rawValue, x: userLocation.x, y: userLocation.y, page: 1, display: 30)
-            }
-            .disposed(by: disposeBag)
-        
-        searchLocationUseCase.storeVO
-            .subscribe(onNext: { storeVO in
-                if storeVO.stores.isEmpty {
-                    output.storeEmptyViewHidden.accept(false)
-                } else {
-                    output.storeEmptyViewHidden.accept(true)
-                }
-                output.storeList.accept(storeVO.stores)
-            }) { error in
-                output.showErrorAlert.accept(error)
+                owner.fetchTrigger.accept(
+                    FetchParams(query: categoryType.rawValue, x: userLocation.x, y: userLocation.y, page: 1, display: 30)
+                )
             }
             .disposed(by: disposeBag)
         
@@ -206,7 +269,7 @@ final class LocationViewModel: ViewModelType, Coordinatable {
         locationCoordinate
             .withUnretained(self)
             .flatMapLatest { owner, location in
- owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
+                owner.locationUseCase.reverseGeocodeLocation(location: location.convertToCLLocation)
                     .catchAndReturn("알 수 없는 지역입니다.")
             }
             .bind(to: output.currentUserAddress)
@@ -215,33 +278,10 @@ final class LocationViewModel: ViewModelType, Coordinatable {
         locationUseCase.authorizationDeniedStatus
             .bind(to: output.authorizationAlertShouldShow)
             .disposed(by: disposeBag)
-        
-        searchLocationUseCase.updateStoreVO
-            .withLatestFrom(input.willDisplayCell) { storeVO, willDisplayCell in
-                return (storeVO, willDisplayCell)
-            }
-            .bind(with: self) { owner, visibleStore in
-                let willDisplayStore = owner.storeList[visibleStore.1.row]
-                
-                if owner.shouldUpdateStore(store: visibleStore.0, visibleStore: willDisplayStore) {
-                    owner.storeList[visibleStore.1.row] = visibleStore.0
-                    output.storeList.accept(owner.storeList)
-                }
-            }
-            .disposed(by: disposeBag)
-        
-        searchLocationUseCase.isLoding
-            .bind(to: output.isLoding)
-            .disposed(by: disposeBag)
-        
-        searchLocationUseCase.errorSubject
-            .bind(to: output.showErrorAlert)
-            .disposed(by: disposeBag)
     }
-}
-
-extension LocationViewModel {
-    private func transformCollectionViewDataSource(input: LocationViewModel.Input, output: LocationViewModel.Output) {
+    
+    /// storeList와 현재 categoryType을 합쳐 셀용 데이터 소스를 재구성
+    private func bindCollectionViewDataSource(output: Output) {
         Observable.combineLatest(output.storeList, self.categoryType)
             .map { storeList, categoryType in
                 return storeList.map { store in
