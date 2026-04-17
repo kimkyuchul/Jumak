@@ -70,7 +70,6 @@
 		5A35E57F2AEBDFCD0074C8EC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35E57E2AEBDFCD0074C8EC /* NetworkError.swift */; };
 		5A36F15D2AFFA84F00039ADA /* SearchLocationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15C2AFFA84E00039ADA /* SearchLocationDTO.swift */; };
 		5A36F1602AFFA85500039ADA /* SearchLocationReqeustDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15F2AFFA85500039ADA /* SearchLocationReqeustDTO.swift */; };
-		5A46FBA92F91B0700028D6A1 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -172,6 +171,7 @@
 		5AAB8EA92AE14607005969FA /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */; };
 		5AAB8EAB2AE15CC7005969FA /* PasteboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EAA2AE15CC7005969FA /* PasteboardService.swift */; };
 		5AAB8EAD2AE1645F005969FA /* EpisodeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EAC2AE1645E005969FA /* EpisodeEmptyView.swift */; };
+		5ACB197C2F91C4AA00A94B63 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
 		5ADC002D2AC5DEA70024D7F8 /* DefaultCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002C2AC5DEA70024D7F8 /* DefaultCircleButton.swift */; };
@@ -238,7 +238,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5A46FBA92F91B0700028D6A1 /* RealmSwift in Embed Frameworks */,
+				5ACB197C2F91C4AA00A94B63 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1462,8 +1462,8 @@
 				5A70BA2B2AC174E600506846 /* Sources */,
 				5A70BA2C2AC174E600506846 /* Frameworks */,
 				5A70BA2D2AC174E600506846 /* Resources */,
-				5A36F1C02B027F4700039ADA /* ShellScript */,
 				5A46FBAA2F91B0700028D6A1 /* Embed Frameworks */,
+				5A36F1C02B027F4700039ADA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2006,7 +2006,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2044,7 +2044,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Makgulli;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
