@@ -66,7 +66,10 @@ final class LocationViewController: BaseViewController {
             .bind(onNext: { owner, data in
                 let (storeList, selectedMarkerIndex) = data
                 owner.setUpMarker(selectedIndex: selectedMarkerIndex ?? 0, storeList: storeList)
-                owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: selectedMarkerIndex ?? 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+
+                let targetRow = selectedMarkerIndex ?? 0
+                guard targetRow < storeList.count else { return }
+                owner.locationView.storeCollectionView.selectItem(at: IndexPath(row: targetRow, section: 0), animated: false, scrollPosition: .centeredHorizontally)
             })
             .disposed(by: disposeBag)
         
@@ -153,7 +156,7 @@ final class LocationViewController: BaseViewController {
             .subscribe()
             .disposed(by: disposeBag)
         
-        output.isLoding
+        output.isLoading
             .bind(to: locationView.indicatorView.rx.isAnimating)
             .disposed(by: disposeBag)
     }
