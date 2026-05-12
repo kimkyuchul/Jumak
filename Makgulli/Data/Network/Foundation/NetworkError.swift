@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkError: Error, CustomDebugStringConvertible {
+enum NetworkError: Error, CustomDebugStringConvertible, Equatable {
     /// not contains 200~299.
     case isNotSuccessful(statusCode: Int)
     /// decoding error.

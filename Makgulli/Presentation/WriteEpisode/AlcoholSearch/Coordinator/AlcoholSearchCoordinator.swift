@@ -1,20 +1,19 @@
 //
-//  EpisodeCoordinator.swift
+//  AlcoholSearchCoordinator.swift
 //  Makgulli
 //
-//  Created by kyuchul on 11/24/24.
+//  Created by 김규철 on 5/12/26.
 //
 
 import UIKit
 
-final class WriteEpisodeCoordinator: Coordinator {
+final class AlcoholSearchCoordinator: Coordinator {
     weak var parentCoordinator: (any Coordinator)?
     var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
-    var store: StoreVO?
-    
+
     private let dependency: injector
-    
+
     init(
         navigationController: UINavigationController,
         dependency: injector
@@ -22,27 +21,28 @@ final class WriteEpisodeCoordinator: Coordinator {
         self.navigationController = navigationController
         self.dependency = dependency
     }
-    
+
     deinit {
         debugPrint("deinit Coordinator: \(self)")
     }
-    
+
     func start() {
-        guard let store else { return }
-        
         let viewModel = dependency
-            .makeEpisodeDIContainer()
-            .makeWriteEpisodeViewModel(store: store)
+            .makeSearchAlcoholDIContainer()
+            .makeAlcoholSearchViewModel()
         viewModel.coordinator = self
 
-        let viewController = WriteEpisodeViewController(viewModel: viewModel)
-        present(viewController, style: .fullScreen)
+        let viewController = AlcoholSearchViewController(viewModel: viewModel)
+        viewController.modalPresentationStyle = .fullScreen
+
+        let presenter = navigationController.presentedViewController ?? navigationController
+        presenter.present(viewController, animated: true)
     }
 }
 
-extension WriteEpisodeCoordinator {
-    func dismissWriteEpisode() {
+extension AlcoholSearchCoordinator {
+    func dismissAlcoholSearch() {
         parentCoordinator?.removeDependency(self)
-        dismiss()
+        navigationController.presentedViewController?.dismiss(animated: true)
     }
 }

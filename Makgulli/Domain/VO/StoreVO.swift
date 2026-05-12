@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StoreVO: Equatable, Hashable {
+struct StoreVO: Hashable {
     let placeName: String
     let distance: String
     let placeURL: String

@@ -87,9 +87,16 @@ final class WriteEpisodeViewController: BaseViewController {
                 owner.showPhotoGallery()
             })
             .disposed(by: disposeBag)
-        
+
         episodeThumbnailRelay
             .bind(to: episodeView.episodeContentView.rx.image)
+            .disposed(by: disposeBag)
+
+        episodeView.episodeDrinkNameView.rx.drinkSearchButtonTap
+            .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
+            .bind(with: self) { owner, _ in
+                owner.viewModel.coordinator?.startAlcoholSearch()
+            }
             .disposed(by: disposeBag)
     }
     

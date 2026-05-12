@@ -20,6 +20,15 @@ final class EpisodeDrinkNameView: BaseView {
         label.font = UIFont.boldLineSeed(size: ._16)
         return label
     }()
+    fileprivate let drinkSearchButton: UIButton = {
+        let button = UIButton()
+        let config = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular)
+        let image = UIImage(systemName: "magnifyingglass", withConfiguration: config) ?? UIImage()
+        button.setImage(image, for: .normal)
+        button.tintColor = .darkGray
+        button.accessibilityLabel = "술 검색"
+        return button
+    }()
     fileprivate let drinkNameTextField = EpisodeTextField(placeholderText: "먹은 술 이름을 기억해보세요.")
     fileprivate let checkBoxButton = CheckBoxView(checkLabelText: "술이 기억이 안나요.")
     private lazy var stackView: UIStackView = {
@@ -32,16 +41,23 @@ final class EpisodeDrinkNameView: BaseView {
     }()
     
     override func setHierarchy() {
-        [episodeTitleLabel, stackView].forEach {
+        [episodeTitleLabel, drinkSearchButton, stackView].forEach {
             addSubview($0)
         }
     }
-    
+
     override func setConstraints() {
         episodeTitleLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview()
         }
-        
+
+        drinkSearchButton.snp.makeConstraints { make in
+            make.centerY.equalTo(episodeTitleLabel.snp.centerY)
+            make.leading.greaterThanOrEqualTo(episodeTitleLabel.snp.trailing).offset(8)
+            make.trailing.equalToSuperview()
+            make.size.equalTo(44)
+        }
+
         stackView.snp.makeConstraints { make in
             make.top.equalTo(episodeTitleLabel.snp.bottom).offset(10)
             make.leading.trailing.bottom.equalToSuperview()
@@ -50,6 +66,10 @@ final class EpisodeDrinkNameView: BaseView {
 }
 
 extension Reactive where Base: EpisodeDrinkNameView {
+    var drinkSearchButtonTap: Observable<Void> {
+        return base.drinkSearchButton.rx.tap.asObservable()
+    }
+
     var tapCheckButton: Observable<Bool> {
         return base.checkBoxButton.checkButton.rx.isSelected.asObservable()
     }
