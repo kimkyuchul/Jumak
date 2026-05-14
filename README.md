@@ -23,12 +23,13 @@
 
 # **⚙️ 개발환경 및 기술스택**
 
-- **Minimum Deployment**: iOS 15.5
+- **Minimum Deployment**: iOS 16.0
 - **Swift Version**: 5.8.1
 - **Dependency Manager**: SPM
 - **Architecture**: UIKit · Clean Architecture · MVVM-C (Input/Output) · Coordinator Pattern
 - **Reactive**: RxSwift 6.10.2 · RxCocoa · RxDataSources 5.0.2 · RxGesture 4.0.4 · RxKeyboard 2.0.1 · RxReachability 1.2.1
 - **UI**: AutoLayout · SnapKit 5.7.1 · DiffableDataSource · CompositionalLayout · PHPickerViewController
+- **Image Caching**: [KCImageCache](https://github.com/kimkyuchul/KCImageCache) (자체 제작)
 - **Map & Location**: NMapsMap 3.23.2 · CoreLocation
 - **Networking**: Alamofire 5.11.2 · Reachability.swift 5.2.4
 - **Persistence**: RealmSwift 14.14.0
