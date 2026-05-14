@@ -74,6 +74,8 @@
 		5A36F15D2AFFA84F00039ADA /* SearchLocationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15C2AFFA84E00039ADA /* SearchLocationDTO.swift */; };
 		5A36F1602AFFA85500039ADA /* SearchLocationReqeustDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A36F15F2AFFA85500039ADA /* SearchLocationReqeustDTO.swift */; };
 		5A37FDF82FB31922000A5FD5 /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A37FDF72FB31922000A5FD5 /* Array+.swift */; };
+		5A37FE582FB372AE000A5FD5 /* KCImageCache in Frameworks */ = {isa = PBXBuildFile; productRef = 5A37FE572FB372AE000A5FD5 /* KCImageCache */; };
+		5A37FE5A2FB372AE000A5FD5 /* KCImageCacheUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5A37FE592FB372AE000A5FD5 /* KCImageCacheUI */; };
 		5A68271C2ACBFBA800C37B17 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271B2ACBFBA800C37B17 /* LocationDetailView.swift */; };
 		5A68271E2ACC078400C37B17 /* StoreEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68271D2ACC078400C37B17 /* StoreEmptyView.swift */; };
 		5A6827692ACE461F00C37B17 /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6827682ACE461F00C37B17 /* LocationDetailViewModel.swift */; };
@@ -168,6 +170,8 @@
 		5AAB8EA92AE14607005969FA /* UserDefaultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EA82AE14607005969FA /* UserDefaultHandler.swift */; };
 		5AAB8EAB2AE15CC7005969FA /* PasteboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EAA2AE15CC7005969FA /* PasteboardService.swift */; };
 		5AAB8EAD2AE1645F005969FA /* EpisodeEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB8EAC2AE1645E005969FA /* EpisodeEmptyView.swift */; };
+		5AC835112FB47B6C000E2DFD /* KCImageCache in Frameworks */ = {isa = PBXBuildFile; productRef = 5AC835102FB47B6C000E2DFD /* KCImageCache */; };
+		5AC835132FB47B6C000E2DFD /* KCImageCacheUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5AC835122FB47B6C000E2DFD /* KCImageCacheUI */; };
 		5ACB197C2F91C4AA00A94B63 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C2C2FECB2CF02DD50000AC4F /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5ADC00292AC5B8780024D7F8 /* UserAddressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC00282AC5B8770024D7F8 /* UserAddressButton.swift */; };
 		5ADC002B2AC5D72C0024D7F8 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADC002A2AC5D72C0024D7F8 /* UIView+.swift */; };
@@ -452,9 +456,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AC835132FB47B6C000E2DFD /* KCImageCacheUI in Frameworks */,
 				5A0C37192F907A0900235467 /* FirebaseAnalytics in Frameworks */,
 				C2773C672CEF26C400942765 /* RxSwift in Frameworks */,
 				C2773C5A2CEF25E500942765 /* FirebaseCore in Frameworks */,
+				5A37FE5A2FB372AE000A5FD5 /* KCImageCacheUI in Frameworks */,
 				5A0A984B2AE689C600545939 /* RxReachability in Frameworks */,
 				5A0A98582AE817BE00545939 /* RxDataSources in Frameworks */,
 				C2773C612CEF26C400942765 /* RxBlocking in Frameworks */,
@@ -463,10 +469,12 @@
 				C2773C652CEF26C400942765 /* RxRelay in Frameworks */,
 				C2C2FECC2CF02DD50000AC4F /* RealmSwift in Frameworks */,
 				5A9DA1E52AC2B4DF006040D2 /* Alamofire in Frameworks */,
+				5A37FE582FB372AE000A5FD5 /* KCImageCache in Frameworks */,
 				5A0A98562AE817BE00545939 /* Differentiator in Frameworks */,
 				C2773C5E2CEF25E500942765 /* FirebaseMessaging in Frameworks */,
 				5A70BA662AC178E600506846 /* SnapKit in Frameworks */,
 				C2773C5C2CEF25E500942765 /* FirebaseCrashlytics in Frameworks */,
+				5AC835112FB47B6C000E2DFD /* KCImageCache in Frameworks */,
 				5A2018F62F90D1C3004DBBE9 /* NMapsMap in Frameworks */,
 				5AAB8E8D2ADD780E005969FA /* RxKeyboard in Frameworks */,
 			);
@@ -1508,6 +1516,10 @@
 				C2773C662CEF26C400942765 /* RxSwift */,
 				C2C2FECB2CF02DD50000AC4F /* RealmSwift */,
 				5A2018F52F90D1C3004DBBE9 /* NMapsMap */,
+				5A37FE572FB372AE000A5FD5 /* KCImageCache */,
+				5A37FE592FB372AE000A5FD5 /* KCImageCacheUI */,
+				5AC835102FB47B6C000E2DFD /* KCImageCache */,
+				5AC835122FB47B6C000E2DFD /* KCImageCacheUI */,
 			);
 			productName = Makgulli;
 			productReference = 5A70BA2F2AC174E600506846 /* Makgulli.app */;
@@ -1592,6 +1604,7 @@
 				C2773C5F2CEF26C400942765 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				C2C2FECA2CF02DD50000AC4F /* XCRemoteSwiftPackageReference "realm-swift" */,
 				5A2018F42F90D1C3004DBBE9 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
+				5AC8350F2FB47B6C000E2DFD /* XCRemoteSwiftPackageReference "KCImageCache" */,
 			);
 			productRefGroup = 5A70BA302AC174E600506846 /* Products */;
 			projectDirPath = "";
@@ -1939,7 +1952,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1993,7 +2006,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2089,7 +2102,7 @@
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.MakgulliTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2109,7 +2122,7 @@
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 8LJ2P85FNV;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.MakgulliTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2254,6 +2267,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		5AC8350F2FB47B6C000E2DFD /* XCRemoteSwiftPackageReference "KCImageCache" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kimkyuchul/KCImageCache";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		C2773C562CEF25E500942765 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -2321,6 +2342,14 @@
 			package = 5A2018F42F90D1C3004DBBE9 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */;
 			productName = NMapsMap;
 		};
+		5A37FE572FB372AE000A5FD5 /* KCImageCache */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KCImageCache;
+		};
+		5A37FE592FB372AE000A5FD5 /* KCImageCacheUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KCImageCacheUI;
+		};
 		5A6827BB2AD6BDCE00C37B17 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5A6827BA2AD6BDCE00C37B17 /* XCRemoteSwiftPackageReference "RxGesture" */;
@@ -2340,6 +2369,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5AAB8E8B2ADD780D005969FA /* XCRemoteSwiftPackageReference "RxKeyboard" */;
 			productName = RxKeyboard;
+		};
+		5AC835102FB47B6C000E2DFD /* KCImageCache */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AC8350F2FB47B6C000E2DFD /* XCRemoteSwiftPackageReference "KCImageCache" */;
+			productName = KCImageCache;
+		};
+		5AC835122FB47B6C000E2DFD /* KCImageCacheUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AC8350F2FB47B6C000E2DFD /* XCRemoteSwiftPackageReference "KCImageCache" */;
+			productName = KCImageCacheUI;
 		};
 		C2773C572CEF25E500942765 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -1,5 +1,5 @@
 {
-  "originHash" : "65bbeb83e1e07e82c016fb91270cad991b8db92c93adc1662542ddea6ae0c691",
+  "originHash" : "1a5249b558b08ae495331fa1704c600399adb75202930cb0fbb4b7d50246dace",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -98,6 +98,15 @@
       "state" : {
         "revision" : "040d087ac2267d2ddd4cca36c757d1c6a05fdbfe",
         "version" : "101.0.0"
+      }
+    },
+    {
+      "identity" : "kcimagecache",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kimkyuchul/KCImageCache",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d043195e1e39305bd5b1e5c1a478fc2a2c6bbf5f"
       }
     },
     {
