@@ -43,12 +43,15 @@ final class AlcoholSearchViewModel: ViewModelType, Coordinatable {
         let viewDidLoadEvent: Observable<Void>
         let willDisplayCell: Observable<IndexPath>
         let didTapCloseButton: Observable<Void>
+        let didTapLayoutToggle: Observable<Void>
+        let didSelectAlcohol: Observable<AlcoholVO>
     }
-    
+
     struct Output {
         let snapshot = PublishRelay<[AlcoholSearchSection]>()
         let isLoading = BehaviorRelay<Bool>(value: false)
         let showErrorAlert = PublishRelay<Error>()
+        let layoutMode = BehaviorRelay<AlcoholSearchLayoutMode>(value: .grid)
     }
     
     func transform(input: Input) -> Output {
@@ -68,6 +71,18 @@ final class AlcoholSearchViewModel: ViewModelType, Coordinatable {
         input.didTapCloseButton
             .bind(with: self) { owner, _ in
                 owner.coordinator?.dismissAlcoholSearch()
+            }
+            .disposed(by: disposeBag)
+
+        input.didSelectAlcohol
+            .bind(with: self) { owner, alcohol in
+                owner.coordinator?.selectAlcohol(alcohol)
+            }
+            .disposed(by: disposeBag)
+
+        input.didTapLayoutToggle
+            .bind(with: self) { owner, _ in
+                owner.output.layoutMode.accept(owner.output.layoutMode.value.toggled)
             }
             .disposed(by: disposeBag)
 

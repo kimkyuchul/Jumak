@@ -7,12 +7,15 @@
 
 import UIKit
 
+import RxRelay
+
 final class WriteEpisodeCoordinator: Coordinator {
     weak var parentCoordinator: (any Coordinator)?
     var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
     var store: StoreVO?
-    
+    let didSelectAlcohol = PublishRelay<AlcoholVO>()
+
     private let dependency: injector
     
     init(
@@ -29,7 +32,7 @@ final class WriteEpisodeCoordinator: Coordinator {
     
     func start() {
         guard let store else { return }
-        
+
         let viewModel = dependency
             .makeEpisodeDIContainer()
             .makeWriteEpisodeViewModel(store: store)
@@ -49,6 +52,9 @@ extension WriteEpisodeCoordinator {
     func startAlcoholSearch() {
         let alcoholSearchCoordinator = AlcoholSearchCoordinator(navigationController: navigationController, dependency: dependency)
         alcoholSearchCoordinator.parentCoordinator = self
+        alcoholSearchCoordinator.onSelect = { [weak self] alcohol in
+            self?.didSelectAlcohol.accept(alcohol)
+        }
         alcoholSearchCoordinator.start()
 
         addDependency(alcoholSearchCoordinator)

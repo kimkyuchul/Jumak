@@ -11,6 +11,7 @@ final class AlcoholSearchCoordinator: Coordinator {
     weak var parentCoordinator: (any Coordinator)?
     var childCoordinators: [any Coordinator] = []
     var navigationController: UINavigationController
+    var onSelect: ((AlcoholVO) -> Void)?
 
     private let dependency: injector
 
@@ -44,5 +45,10 @@ extension AlcoholSearchCoordinator {
     func dismissAlcoholSearch() {
         parentCoordinator?.removeDependency(self)
         navigationController.presentedViewController?.dismiss(animated: true)
+    }
+
+    func selectAlcohol(_ alcohol: AlcoholVO) {
+        onSelect?(alcohol)
+        dismissAlcoholSearch()
     }
 }

@@ -51,7 +51,11 @@ final class WriteEpisodeViewController: BaseViewController {
         output.placeName
             .bind(to: episodeView.rx.placeTitle)
             .disposed(by: disposeBag)
-                
+
+        output.selectedDrinkName
+            .bind(to: episodeView.episodeDrinkNameView.rx.drinkNameText)
+            .disposed(by: disposeBag)
+
         output.isForgetDrinkName
             .bind(to: episodeView.episodeDrinkNameView.rx.isForgetDrinkName)
             .disposed(by: disposeBag)

@@ -21,12 +21,27 @@ final class EpisodeDrinkNameView: BaseView {
         return label
     }()
     fileprivate let drinkSearchButton: UIButton = {
-        let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular)
-        let image = UIImage(systemName: "magnifyingglass", withConfiguration: config) ?? UIImage()
-        button.setImage(image, for: .normal)
-        button.tintColor = .darkGray
+        let button = UIButton(type: .system)
+        var config = UIButton.Configuration.filled()
+        let symbolConfig = UIImage.SymbolConfiguration(pointSize: 13, weight: .semibold)
+        config.image = UIImage(systemName: "magnifyingglass", withConfiguration: symbolConfig)
+        config.imagePlacement = .leading
+        config.imagePadding = 4
+        config.baseBackgroundColor = .brown
+        config.baseForegroundColor = .white
+        config.cornerStyle = .capsule
+        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 14)
+        var titleAttr = AttributeContainer()
+        titleAttr.font = UIFont.boldLineSeed(size: ._14)
+        titleAttr.foregroundColor = .white
+        config.attributedTitle = AttributedString("검색", attributes: titleAttr)
+        button.configuration = config
+        button.layer.shadowColor = UIColor.brown.cgColor
+        button.layer.shadowOpacity = 0.25
+        button.layer.shadowRadius = 6
+        button.layer.shadowOffset = CGSize(width: 0, height: 2)
         button.accessibilityLabel = "술 검색"
+        button.accessibilityHint = "탭하면 술 목록에서 검색해요."
         return button
     }()
     fileprivate let drinkNameTextField = EpisodeTextField(placeholderText: "먹은 술 이름을 기억해보세요.")
@@ -55,7 +70,7 @@ final class EpisodeDrinkNameView: BaseView {
             make.centerY.equalTo(episodeTitleLabel.snp.centerY)
             make.leading.greaterThanOrEqualTo(episodeTitleLabel.snp.trailing).offset(8)
             make.trailing.equalToSuperview()
-            make.size.equalTo(44)
+            make.height.equalTo(32)
         }
 
         stackView.snp.makeConstraints { make in
@@ -76,6 +91,12 @@ extension Reactive where Base: EpisodeDrinkNameView {
     
     var drinkName: Observable<String> {
         return base.drinkNameTextField.rx.text.orEmpty.asObservable()
+    }
+
+    var drinkNameText: Binder<String> {
+        return Binder(self.base) { view, name in
+            view.drinkNameTextField.text = name
+        }
     }
     
     var drinkNameEditingDidBegin: ControlEvent<Void> {

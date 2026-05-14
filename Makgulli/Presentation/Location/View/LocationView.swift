@@ -69,7 +69,7 @@ final class LocationView: BaseView {
     }()
     fileprivate let storeEmptyView = StoreEmptyView()
     fileprivate let networkErrorView = NetworkErrorView()
-    lazy var indicatorView  = IndicatorView(frame: .zero)
+    lazy var indicatorView = IndicatorView()
     
     var locationOverlay: NMFLocationOverlay?
     var visibleItemsRelay = PublishRelay<Int?>()

@@ -10,22 +10,15 @@ import UIKit
 import RxSwift
 
 final class IndicatorView: UIActivityIndicatorView {
-    
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        setLayout()
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setLayout() {
-        frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        center = self.center
+    init(style: UIActivityIndicatorView.Style = .large, size: CGFloat = 80) {
+        super.init(style: style)
+        frame = CGRect(x: 0, y: 0, width: size, height: size)
         color = .brown
         hidesWhenStopped = true
-        style = UIActivityIndicatorView.Style.large
+    }
+
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
