@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Jumak (주막 / "Makgulli") is a published iOS app (App Store id6470310590) that helps users find nearby makgeolli pubs, save favorites, rate them, and log episodes. Minimum iOS 15.5, Swift 5.8.1, UIKit-based.
+Jumak (주막 / "Makgulli") is a published iOS app (App Store id6470310590) that helps users find nearby makgeolli pubs, save favorites, rate them, and log episodes. Minimum iOS 16.0, Swift 5.8.1, UIKit-based.
 
 The Xcode target is named **`Makgulli`** — open `Makgulli.xcodeproj`. All dependencies are SPM.
 
