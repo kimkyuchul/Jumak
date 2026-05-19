@@ -18,6 +18,7 @@ final class WriteEpisodeViewModel: ViewModelType, Coordinatable {
     private var storeVO: StoreVO
     private var defaultDrinkCount = 1.0
     private let drinkCountSubject = BehaviorSubject<Double>(value: 1.0)
+    private let drinkNameStateRelay = BehaviorRelay<String>(value: "")
     private var imageData = Data()
 
     init(
@@ -55,6 +56,7 @@ final class WriteEpisodeViewModel: ViewModelType, Coordinatable {
         let writeButtonIsEnabled = BehaviorRelay<Bool>(value: false)
         let updateStoreEpisode = PublishRelay<Void>()
         let showErrorAlert = PublishRelay<Error>()
+        let selectedDrinkName = PublishRelay<String>()
     }
 
     func transform(input: Input) -> Output {
@@ -107,6 +109,20 @@ final class WriteEpisodeViewModel: ViewModelType, Coordinatable {
             .disposed(by: disposeBag)
 
         input.drinkNameTextFieldDidEditEvent
+            .bind(to: drinkNameStateRelay)
+            .disposed(by: disposeBag)
+
+        let alcoholSelection: Observable<AlcoholVO> = coordinator?.didSelectAlcohol.asObservable() ?? .empty()
+
+        alcoholSelection
+            .map(\.name)
+            .bind(with: self) { owner, name in
+                owner.drinkNameStateRelay.accept(name)
+                output.selectedDrinkName.accept(name)
+            }
+            .disposed(by: disposeBag)
+
+        drinkNameStateRelay
             .distinctUntilChanged()
             .map { !$0.isEmpty }
             .bind(to: output.isDrinkNameValid)
@@ -117,11 +133,11 @@ final class WriteEpisodeViewModel: ViewModelType, Coordinatable {
 
         didSelectDefaultDrinkCheckButton
             .skip(1)
-            .withLatestFrom(input.drinkNameTextFieldDidEditEvent) { isSeleted, drinkName in
+            .withLatestFrom(drinkNameStateRelay) { isSeleted, drinkName in
                 return (isSeleted, drinkName.isEmpty)
             }
             .withUnretained(self)
-            .bind(onNext: { owner, drinkNameValid in
+            .bind(onNext: { _, drinkNameValid in
                 let (isSelected, drinkName) = drinkNameValid
 
                 if isSelected || !drinkName {
@@ -193,7 +209,7 @@ extension WriteEpisodeViewModel {
     private func transformUpdateEpisode(input: WriteEpisodeViewModel.Input, output: WriteEpisodeViewModel.Output) -> Observable<EpisodeTable> {
         return Observable.combineLatest(output.date,
                                         input.commentTextFieldDidEditEvent,
-                                        input.drinkNameTextFieldDidEditEvent,
+                                        drinkNameStateRelay.asObservable(),
                                         input.didSelectDefaultDrinkCheckButton,
                                         output.drinkCount, output.quantity)
             .map { date, comment, drinkName, isForgetDrinkName, drinkCount, drinkQuantity in

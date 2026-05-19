@@ -9,4 +9,5 @@ import Foundation
 
 enum URLConstants {
     static let kakao = "https://dapi.kakao.com/v2"
+    static let cocktailDB = "https://www.thecocktaildb.com/api/json/v1/1"
 }

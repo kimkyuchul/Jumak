@@ -12,34 +12,40 @@ protocol injector: AnyObject {
     func makeEpisodeDIContainer() -> EpisodeDIContainer
     func makeFavoriteDIContainer() -> FavoriteDIContainer
     func makeAppInfoDIContainer() -> AppInfoDIContainer
+    func makeSearchAlcoholDIContainer() -> SearchAlcoholDIContainer
 }
 
 final class AppDIContainer: injector {
     private lazy var networkService: NetworkService = DefaultNetworkService()
     private lazy var imageStorage = DefaultImageStorage(fileManager: FileManager.default)
-    
+
     func makeLocationDIContainer() -> LocationDIContainer {
         let dependencies = LocationDIContainer.Dependencies(
             networkService: networkService,
             imageStorage: imageStorage
         )
-        
+
         return LocationDIContainer(dependencies: dependencies)
     }
-    
+
     func makeEpisodeDIContainer() -> EpisodeDIContainer {
         let dependencies = EpisodeDIContainer.Dependencies(
             imageStorage: imageStorage
         )
-        
+
         return EpisodeDIContainer(dependencies: dependencies)
     }
-    
+
     func makeFavoriteDIContainer() -> FavoriteDIContainer {
         return FavoriteDIContainer()
     }
-    
+
     func makeAppInfoDIContainer() -> AppInfoDIContainer {
         return AppInfoDIContainer()
+    }
+
+    func makeSearchAlcoholDIContainer() -> SearchAlcoholDIContainer {
+        let dependencies = SearchAlcoholDIContainer.Dependencies(networkService: networkService)
+        return SearchAlcoholDIContainer(dependencies: dependencies)
     }
 }

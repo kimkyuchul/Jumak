@@ -67,7 +67,7 @@ final class FavoriteViewController: BaseViewController {
         collectionView.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCollectionViewCell")
         return collectionView
     }()
-    private lazy var indicatorView = IndicatorView(frame: .zero)
+    private lazy var indicatorView = IndicatorView()
     fileprivate lazy var favoriteEmptyView = FavoriteEmptyView()
     
     init(viewModel: FavoriteViewModel) {
